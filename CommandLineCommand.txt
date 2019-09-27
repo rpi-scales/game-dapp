@@ -1,0 +1,27 @@
+In General:
+    To interact with a truffle project you can either run a test file or use the console. Using the 
+console is allows you to see the output of every line of code, but requires the user to write each line 
+of code out every time they run the test.
+
+Using the Console: 
+	When using the console the user has to compiling and migrate the project separately  using the 
+$ truffle compile and the $ truffle migrate commands. Then the user can enter the developer console 
+by using the $ truffle console command. Once in the developer console the user can test functions 
+separately . Below I have put the MetaCoin tests that Truffle has in their documentations.
+
+MetaCoin Example:
+	let instance = await MetaCoin.deployed()
+	let accounts = await web3.eth.getAccounts()
+	let balance = await instance.getBalance(accounts[0])
+	balance.toNumber()
+	let ether = await instance.getBalanceInEth(accounts[0])
+	ether.toNumber()
+	instance.sendCoin(accounts[1], 500)
+	let received = await instance.getBalance(accounts[1])
+	received.toNumber()
+	let newBalance = await instance.getBalance(accounts[0])
+	newBalance.toNumber()
+
+Using a Test File:
+	When using a test file the user can create a .sol test file or a .js test file. These files are 
+located in the test folder in the project. The user runs these tests by using the $ truffle test command.

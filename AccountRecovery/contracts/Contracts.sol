@@ -50,6 +50,10 @@ contract VotingToken {
 		}		
 	}
 
+	function random(uint8 size) public view returns (uint8) {
+        return uint8(uint256(keccak256(abi.encodePacked(block.timestamp,block.timestamp,block.timestamp, block.difficulty)))%size);
+    }
+
 	function CastVote(address from, bool choice) public {
 		if (votes[from].eligible == false) return;
 		if (votes[from].voted == true) return;
@@ -74,7 +78,7 @@ contract VotingToken {
 
 	}
 
-	function CountVotes(address from) public view returns(bool) {
+	function Outcome(address from) public view returns(bool) {
 		if (from != newAccount) return false;
 
 		uint yeses = 0;

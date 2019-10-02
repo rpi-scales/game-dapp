@@ -28,5 +28,12 @@ contract('VotingToken', (accounts) => {
 		var temp = (await VotingTokenInstance.getVotes()).toNumber();
 		assert.equal(temp, 1, "Wrong 0");
 	});
+
+	it('Random Number', async () => {
+		var i;
+		for (i = 0; i < 10; i++) {
+			console.log((await VotingTokenInstance.random(251)).toNumber());
+		}
+	});
 });
 

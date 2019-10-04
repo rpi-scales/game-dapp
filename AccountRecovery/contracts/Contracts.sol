@@ -1,31 +1,35 @@
-pragma solidity >=0.4.25 <0.6.0;
+pragma solidity >=0.4.0 <0.7.0;
+
+contract Person {
+	address public ID;
+	uint public balance;
+
+	constructor(address _ID, uint _balance) public {
+		ID = _ID;
+		balance = _balance;
+	}
+}
 
 contract Manager {
-
-	struct Person {
-		address ID;
-		uint balance;
-	}
-
 	mapping (address => Person) Users;
-	address[] public addresses;
+	address[] addresses;
 
 	constructor(address[] memory _addresses) public {
 		addresses = _addresses;
 		for (uint i = 0; i < addresses.length; i++) {
-			Users[addresses[i]] = Person(addresses[i], 100);
+			Users[addresses[i]] = new Person(addresses[i], 100);
 		}
 	}
 
 	function getUserBalance(uint i) public view returns(uint) {
-		return Users[addresses[i]].balance;
+		return Users[addresses[i]].balance();
 	}
-
 	function getUserID(uint i) public view returns(address) {
-		return Users[addresses[i]].ID;
+		return Users[addresses[i]].ID();
 	}
 }
 
+/*
 contract Transaction {
 
 	Person public sender;
@@ -38,19 +42,18 @@ contract Transaction {
 		sender = _sender;
 		receiver = _reciever;
 		amount = _amount;
-		//sendCoin();
+		sendCoin();
 	}
-	/*
 
-	function sendCoin() public pure {
+	function sendCoin() public pure returns(bool sufficient) {
 		if (balances[msg.sender] < amount) return false;
 		balances[msg.sender] -= amount;
 		balances[receiver] += amount;
 		emit Transfer(msg.sender, receiver, amount);
 		return true;
 	}
-	*/
 }
+*/
 
 contract VotingToken {
 

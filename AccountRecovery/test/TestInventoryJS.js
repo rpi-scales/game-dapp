@@ -26,14 +26,37 @@ contract('VotingToken', (accounts) => {
 	it('Cast a Vote (Duplicate Votes)', async () => {
 		await VotingTokenInstance.CastVote(accounts[0], true);
 		var temp = (await VotingTokenInstance.getVotes()).toNumber();
-		assert.equal(temp, 1, "Wrong 0");
+		assert.equal(temp, 1, "Wrong");
 	});
 
+	it('Result (False)', async () => {
+		await VotingTokenInstance.CountVotes(newAccount);
+		var temp = (await VotingTokenInstance.getOutcome());
+		assert.equal(temp, false, "Wrong");
+	});
+
+	it('Result (True)', async () => {
+		await VotingTokenInstance.CastVote(accounts[2], true);
+		var temp = (await VotingTokenInstance.getVotes()).toNumber();
+		assert.equal(temp, 2, "Wrong 0");
+
+		await VotingTokenInstance.CountVotes(newAccount);
+
+		temp = (await VotingTokenInstance.getResult()).toNumber();
+		// console.log(temp);
+
+		var temp2 = (await VotingTokenInstance.getOutcome());
+		assert.equal(temp2, true, "Wrong 1");
+	});
+	/*
 	it('Random Number', async () => {
 		var i;
 		for (i = 0; i < 10; i++) {
+			//check(false);
 			console.log((await VotingTokenInstance.random(251)).toNumber());
 		}
 	});
+	*/
+	
 });
 

@@ -1,3 +1,4 @@
+/*
 const VotingToken = artifacts.require("VotingToken");
 var oldAccount;
 var newAccount;
@@ -47,16 +48,7 @@ contract('VotingToken', (accounts) => {
 
 		var temp2 = (await VotingTokenInstance.getOutcome());
 		assert.equal(temp2, true, "Wrong 1");
-	});
-	/*
-	it('Random Number', async () => {
-		var i;
-		for (i = 0; i < 10; i++) {
-			//check(false);
-			console.log((await VotingTokenInstance.random(251)).toNumber());
-		}
-	});
-	*/
-	
+	});	
 });
+*/
 

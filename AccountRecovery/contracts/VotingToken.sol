@@ -1,5 +1,7 @@
 pragma solidity >=0.4.0 <0.7.0;
 
+import "../contracts/Person.sol";
+
 contract VotingToken {
 
 	struct token {
@@ -12,8 +14,8 @@ contract VotingToken {
 	address[] public voters;
 	address public oldAccount;
 	address public newAccount;
-	uint256 public result;
-	uint256 public margin;
+	uint public result;
+	uint public margin;
 
 	event Vote(address indexed _from, bool _choice);
 
@@ -31,17 +33,16 @@ contract VotingToken {
 		margin = 6;
 	}
 
-	function random(uint8 size) public view returns (uint8) {
-        return uint8(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty)))%size);
-    }
+	function CastVote(bool choice) public {
+		require(votes[msg.sender].eligible != false, "Not an eligible voter");
+		require(votes[msg.sender].voted != false, "Already Voted");
 
-	function CastVote(address from, bool choice) public {
-		if (votes[from].eligible == false) return;
-		if (votes[from].voted == true) return;
-		votes[from].vote = choice;
-		votes[from].eligible = false;
-		votes[from].voted = true;
-		emit Vote(from, choice);
+		// if (votes[msg.sender].eligible == false) return;
+		// if (votes[msg.sender].voted == true) return;
+		votes[msg.sender].vote = choice;
+		votes[msg.sender].eligible = false;
+		votes[msg.sender].voted = true;
+		emit Vote(msg.sender, choice);
 	}
 
 	function getVotes() public view returns(uint) {

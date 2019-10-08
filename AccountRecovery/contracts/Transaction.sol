@@ -17,10 +17,10 @@ contract Transaction {
 		sendCoin();
 	}
 
-	function sendCoin() internal returns(bool sufficient) {
+	function sendCoin() internal {
+		require(sender.balance() >= amount, "Invalid Balance.");
 		sender.decreaseBalance(amount);
 		receiver.increaseBalance(amount);
 		emit Transfer(sender, receiver, amount);
-		return true;
 	}
-}
+}	

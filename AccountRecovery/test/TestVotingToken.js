@@ -51,4 +51,3 @@ contract('VotingToken', (accounts) => {
 	});	
 });
 */
-

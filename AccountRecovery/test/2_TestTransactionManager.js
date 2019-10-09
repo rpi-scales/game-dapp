@@ -17,7 +17,7 @@ contract('TransactionManager', (accounts) => {
 		TransactionManagerInstance = await TransactionManager.deployed(UserManagerInstance.address);
 	});
 
-	it('Send Money (Account 1 to Account 2): Valid', async () => {
+	it('Send Money (Account[0] to Account[1]): Valid', async () => {
 		const sender = accounts[0];
 		const receiver = accounts[1];
 
@@ -35,7 +35,7 @@ contract('TransactionManager', (accounts) => {
 		assert.equal(receiverEndingBalance, receiverStartingBalance + amount, "Amount wasn't correctly sent to the receiver");
 	});	
 
-	it('View Transaction (Account 1 to Account 2): Valid', async () => {
+	it('View Transaction (Account[0] to Account[1]): Valid', async () => {
 		var senderStart = accounts[0];
 		var receiverStart = accounts[1];
 
@@ -52,7 +52,7 @@ contract('TransactionManager', (accounts) => {
 		assert.equal(amount, 10, "Wrong amount");
 	});
 
-	it('Send Money (Account 3 to Account 4): Valid', async () => {
+	it('Send Money (Account[2] to Account[3]): Valid', async () => {
 		const sender = accounts[2];
 		const receiver = accounts[3];
 
@@ -70,7 +70,7 @@ contract('TransactionManager', (accounts) => {
 		assert.equal(receiverEndingBalance, receiverStartingBalance + amount, "Amount wasn't correctly sent to the receiver");
 	});
 
-	it('View Transaction (Account 3 to Account 4): Valid', async () => {
+	it('View Transaction (Account[2] to Account[3]): Valid', async () => {
 		var senderStart = accounts[2];
 		var receiverStart = accounts[3];
 
@@ -88,7 +88,7 @@ contract('TransactionManager', (accounts) => {
 	});
 
 	/*
-	it('Send Money (Account 5 to Account 6): Invalid', async () => {
+	it('Send Money (Account[4] to Account[5]): Invalid', async () => {
 		const sender = accounts[4];
 		const receiver = accounts[5];
 
@@ -106,7 +106,7 @@ contract('TransactionManager', (accounts) => {
 		assert.equal(receiverEndingBalance, receiverStartingBalance + amount, "Amount wasn't correctly sent to the receiver");
 	});
 
-	it('View Transaction (Account 5 to Account 6): Invalid', async () => {
+	it('View Transaction (Account[4] to Account[5]): Invalid', async () => {
 		var senderStart = accounts[4];
 		var receiverStart = accounts[5];
 

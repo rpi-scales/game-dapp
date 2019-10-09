@@ -32,11 +32,8 @@ contract Proposal {
 
 		for (uint i = 0; i < voters.length; i++) {
 			VotingToken temp = tokens[voters[i]];
-
-			if (temp.voted() == true){
-				if (temp.vote() == true){
-					yeses++;
-				}
+			if (temp.voted() &&temp.vote()){
+				yeses++;
 			}			
 		}
 		return yeses;
@@ -54,8 +51,8 @@ contract Proposal {
 
 		for (uint i = 0; i < voters.length; i++) {
 			VotingToken temp = tokens[voters[i]];
-			if (temp.voted() == true){
-				if (temp.vote() == true){
+			if (temp.voted()){
+				if (temp.vote()){
 					yeses++;
 				}
 				total++;

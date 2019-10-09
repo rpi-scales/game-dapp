@@ -38,8 +38,45 @@ contract ProposalManager {
 		delete voters;
 	}
 
+	function MakeProposalTradePartners(address oldAccount, address[] memory tradePartners) public {
+		require(activeProposals[oldAccount][msg.sender].length == 0, "There already exists a Proposal for this account");
+
+
+		for (uint i = 0; i < tradePartners.length; i++){
+			if (TransactionManagerInstance.getTransactions(oldAccount, tradePartners[i]).length > 0){
+				voters.push(tradePartners[i]);
+			}
+		}
+
+		address[] memory addresses = UserManagerInstance.getAddresses();
+
+		for (uint i = 0; i < addresses.length; i++){
+			if (TransactionManagerInstance.getTransactions(oldAccount, addresses[i]).length > 0){
+				bool exists = false;
+				for (uint j = 0; j < tradePartners.length; j++){
+					if (addresses[i] == tradePartners[j]){
+						exists = true;
+					}
+				}
+				if (exists == false){
+					voters.push(addresses[i]);
+				}
+			}
+		}
+
+		require(voters.length >= 3, "Invalid Number of transactions");
+
+		activeProposals[oldAccount][msg.sender].push(new Proposal(voters, oldAccount, msg.sender));
+
+		delete voters;
+	}
+
 	function CastVote(address oldAccount, address newAccount, bool choice) public {
 		getActiveProposal(oldAccount, newAccount).CastVote(msg.sender, choice);
+	}
+
+	function GetVoters(address oldAccount, address newAccount, uint i) public view returns(address) {
+		return getActiveProposal(oldAccount, newAccount).voters(i);
 	}
 
 	function GetVotes(address oldAccount, address newAccount) public view returns(uint) {

@@ -15,7 +15,6 @@ contract VotingToken {
 	address public oldAccount;
 	address public newAccount;
 	uint public result;
-	uint public margin;
 
 	event Vote(address indexed _from, bool _choice);
 
@@ -30,19 +29,15 @@ contract VotingToken {
 		}
 
 		result = 0;	
-		margin = 6;
 	}
 
-	function CastVote(bool choice) public {
-		require(votes[msg.sender].eligible != false, "Not an eligible voter");
-		require(votes[msg.sender].voted != false, "Already Voted");
-
-		// if (votes[msg.sender].eligible == false) return;
-		// if (votes[msg.sender].voted == true) return;
-		votes[msg.sender].vote = choice;
-		votes[msg.sender].eligible = false;
-		votes[msg.sender].voted = true;
-		emit Vote(msg.sender, choice);
+	function CastVote(address from, bool choice) public {
+		require(votes[from].eligible != false, "Not an eligible voter");
+		require(votes[from].voted == false, "Already Voted");
+		votes[from].vote = choice;
+		votes[from].eligible = false;
+		votes[from].voted = true;
+		emit Vote(from, choice);
 	}
 
 	function getVotes() public view returns(uint) {
@@ -60,15 +55,11 @@ contract VotingToken {
 	}
 
 	function getOutcome() public view returns(bool) {
-		return result >= margin;
-	}
-
-	function getResult() public view returns(uint256) {
-		return result;
+		return result >= 66;
 	}
 
 	function CountVotes(address from) public {
-		if (from != newAccount) return;
+		require(from == newAccount, "Wrong Account");
 
 		uint yeses = 0;
 		uint total = 0;
@@ -83,6 +74,6 @@ contract VotingToken {
 			}			
 		}
 
-		result = (yeses*10) / total;
+		result = (yeses*100) / total;
 	}
 }

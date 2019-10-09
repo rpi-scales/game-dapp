@@ -33,30 +33,36 @@ contract ProposalManager {
 
 		require(voters.length >= 3, "Invalid Number of transactions");
 
-		VotingToken temp = new VotingToken(voters, oldAccount, msg.sender);
-		activeTokens[oldAccount][msg.sender].push(temp);
+		activeTokens[oldAccount][msg.sender].push(new VotingToken(voters, oldAccount, msg.sender));
 
 		delete voters;
 	}
 
 	function CastVote(address oldAccount, address newAccount, bool choice) public {
-		getActiveVotingTokens(oldAccount, newAccount).CastVote(choice);
+		getActiveVotingTokens(oldAccount, newAccount).CastVote(msg.sender, choice);
 	}
 
 	function GetVotes(address oldAccount, address newAccount) public view returns(uint) {
 		return getActiveVotingTokens(oldAccount, newAccount).getVotes();
 	}
 
+	function CountVotes(address oldAccount, address newAccount) public {
+		getActiveVotingTokens(oldAccount, newAccount).CountVotes(msg.sender);
+	}
+
+	function getOutcome(address oldAccount, address newAccount) public view returns(bool) {
+		return getActiveVotingTokens(oldAccount, newAccount).getOutcome();
+	}
+
+	function getResult(address oldAccount, address newAccount) public view returns(uint) {
+		return getActiveVotingTokens(oldAccount, newAccount).result();
+	}
+
 	function getActiveVotingTokens(address oldAccount, address newAccount) public view returns (VotingToken) {
 		require(activeTokens[oldAccount][newAccount].length == 1, "There is no active propsal");
 		return activeTokens[oldAccount][newAccount][0];
 	}
-
-	function getActiveVotingTokensSender(address oldAccount, address newAccount) public view returns (address) {
-		require(activeTokens[oldAccount][newAccount].length == 1, "There is no active propsal");
-		return activeTokens[oldAccount][newAccount][0].newAccount();
-	}
-
+	
 	/*
 	function random(uint8 size) public view returns (uint8) {
         return uint8(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty)))%size);

@@ -4,7 +4,7 @@ import "../contracts/UserManager.sol";
 import "../contracts/TransactionManager.sol";
 
 import "../contracts/Person.sol";
-import "../contracts/VotingToken.sol";
+import "../contracts/Proposal.sol";
 
 contract ProposalManager {
 
@@ -12,8 +12,8 @@ contract ProposalManager {
 	TransactionManager TransactionManagerInstance;
 
 	address[] voters;
-	mapping (address => mapping (address => VotingToken[]) ) activeTokens;
-	// mapping (uint => VotingToken[]) activeTokens;
+	mapping (address => mapping (address => Proposal[]) ) activeProposals;
+	// mapping (uint => VotingToken[]) activeProposals;
 
 	constructor(address UserManagerAddress, address TransactionManagerAddress ) public {
 		UserManagerInstance = UserManager(UserManagerAddress);
@@ -21,7 +21,7 @@ contract ProposalManager {
 	}
 	
 	function MakeProposal(address oldAccount) public {
-		require(activeTokens[oldAccount][msg.sender].length == 0, "There already exists a propsal for this account");
+		require(activeProposals[oldAccount][msg.sender].length == 0, "There already exists a Proposal for this account");
 
 		address[] memory addresses = UserManagerInstance.getAddresses();
 
@@ -33,36 +33,36 @@ contract ProposalManager {
 
 		require(voters.length >= 3, "Invalid Number of transactions");
 
-		activeTokens[oldAccount][msg.sender].push(new VotingToken(voters, oldAccount, msg.sender));
+		activeProposals[oldAccount][msg.sender].push(new Proposal(voters, oldAccount, msg.sender));
 
 		delete voters;
 	}
 
 	function CastVote(address oldAccount, address newAccount, bool choice) public {
-		getActiveVotingTokens(oldAccount, newAccount).CastVote(msg.sender, choice);
+		getActiveProposal(oldAccount, newAccount).CastVote(msg.sender, choice);
 	}
 
 	function GetVotes(address oldAccount, address newAccount) public view returns(uint) {
-		return getActiveVotingTokens(oldAccount, newAccount).getVotes();
+		return getActiveProposal(oldAccount, newAccount).getVotes();
 	}
 
 	function CountVotes(address oldAccount, address newAccount) public {
-		getActiveVotingTokens(oldAccount, newAccount).CountVotes(msg.sender);
+		getActiveProposal(oldAccount, newAccount).CountVotes(msg.sender);
 	}
 
 	function getOutcome(address oldAccount, address newAccount) public view returns(bool) {
-		return getActiveVotingTokens(oldAccount, newAccount).getOutcome();
+		return getActiveProposal(oldAccount, newAccount).getOutcome();
 	}
 
 	function getResult(address oldAccount, address newAccount) public view returns(uint) {
-		return getActiveVotingTokens(oldAccount, newAccount).result();
+		return getActiveProposal(oldAccount, newAccount).result();
 	}
 
-	function getActiveVotingTokens(address oldAccount, address newAccount) public view returns (VotingToken) {
-		require(activeTokens[oldAccount][newAccount].length == 1, "There is no active propsal");
-		return activeTokens[oldAccount][newAccount][0];
+	function getActiveProposal(address oldAccount, address newAccount) public view returns (Proposal) {
+		require(activeProposals[oldAccount][newAccount].length == 1, "There is no active Proposal");
+		return activeProposals[oldAccount][newAccount][0];
 	}
-	
+
 	/*
 	function random(uint8 size) public view returns (uint8) {
         return uint8(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty)))%size);

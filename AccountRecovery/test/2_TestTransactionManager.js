@@ -5,9 +5,9 @@ const UserManager = artifacts.require("UserManager");
 var UserManagerInstance;
 
 function Transaction(sender, receiver, amount) {
-    this.sender = sender;
-    this.receiver = receiver;
-    this.amount = amount;
+	this.sender = sender;
+	this.receiver = receiver;
+	this.amount = amount;
 }
 
 contract('TransactionManager', (accounts) => {

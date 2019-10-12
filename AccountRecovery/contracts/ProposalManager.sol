@@ -10,7 +10,7 @@ contract ProposalManager {
 	UserManager UserManagerInstance;
 	TransactionManager TransactionManagerInstance;
 
-	address[] public voters;
+	address[] voters;
 	mapping (address => mapping (address => Proposal[]) ) activeProposals;
 
 	constructor(address UserManagerAddress, address TransactionManagerAddress ) public {

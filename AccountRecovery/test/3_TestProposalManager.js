@@ -53,8 +53,8 @@ contract('ProposalManager', (accounts) => {
 
 	it('Make Proposal (New Account[9], Old Account[0], TradePartners: [1,2,3,4]): Valid', async () => {
 		var TradePartners = [accounts[1], accounts[2], accounts[3], accounts[4]];
-		// var temp = (await PMI.MakeProposal.estimateGas(oldAccount, TradePartners, { from: newAccount }));
-		// console.log(temp);
+		var temp = (await PMI.MakeProposal.estimateGas(oldAccount, TradePartners, { from: newAccount }));
+		console.log("GAS: " + temp);
 		await PMI.MakeProposal(oldAccount, TradePartners, { from: newAccount });
 	});
 	

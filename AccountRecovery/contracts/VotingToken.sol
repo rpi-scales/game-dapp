@@ -14,16 +14,14 @@ contract VotingToken {
 		string itemsInTrade;
 	}
 
-	bool public exists;
+	bool exists;
 
-	address public voter;
+	address voter;
 	bool public vote;
 	bool public voted;
 
-	bool public publicInfo;
-	bool public privateInfo;
-
-	// DataSet public dataSet;
+	bool publicInfo;
+	bool privateInfo;
 
 	DataSetInfo dataSet;
 
@@ -39,7 +37,7 @@ contract VotingToken {
 		voted = false;
 
 		publicInfo = false;
-		privateInfo = true;
+		privateInfo = false;
 
 		dataSet = DataSetInfo(0, 0x0000000000000000000000000000000000000000, 0x0000000000000000000000000000000000000000, 0, "", "");
 	}
@@ -75,7 +73,6 @@ contract VotingToken {
 		require(exists == true, "This voter does not exist");
 		dataSet.description = description;
 		dataSet.itemsInTrade = itemsInTrade;
-		// dataSet.AddPrivateInformation( description, itemsInTrade );
 		privateInfo = true;
 	}
 

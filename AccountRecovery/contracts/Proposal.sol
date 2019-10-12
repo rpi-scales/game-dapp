@@ -5,9 +5,9 @@ import "../contracts/VotingToken.sol";
 contract Proposal {
 
 	mapping (address => VotingToken) tokens;
-	address[] public voters;
-	address public oldAccount;
-	address public newAccount;
+	address[] voters;
+	address oldAccount;
+	address newAccount;
 	uint public result;
 
 	constructor(address[] memory _voters, address _oldAccount, address _newAccount) public {

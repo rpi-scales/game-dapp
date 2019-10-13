@@ -57,15 +57,14 @@ contract('ProposalManager', (accounts) => {
 		console.log("GAS: " + temp);
 		await PMI.MakeProposal(oldAccount, TradePartners, { from: newAccount });
 	});
-	
-	it('Add Public Information (New Account[9], Old Account[0], Voter[1]: Valid', async () => {
+
+	it('Make Voting Token (New Account[9], Old Account[0], Voter[1,2,3,4]): Valid', async () => {
 		const timeStamp = 1;
 		const amount = 2;
 		const receiver = accounts[1];
 		const sender = oldAccount;
 
-		await PMI.AddPublicInformation(sender, timeStamp, amount, receiver, { from: newAccount });
-
+		await PMI.MakeVotingToken(sender, timeStamp, amount, receiver, { from: newAccount });
 		var temp = (await PMI.ViewPublicInformation(oldAccount, newAccount, {from: receiver}));
 		var dataSet = new PublicInfo(temp[0], temp[1], temp[2], temp[3]);
 
@@ -73,9 +72,13 @@ contract('ProposalManager', (accounts) => {
 		assert.equal(dataSet.amount, amount, "Wrong dataSet.amount");
 		assert.equal(dataSet.receiver, receiver, "Wrong dataSet.receiver");
 		assert.equal(dataSet.sender, sender, "Wrong dataSet.sender");
+
+
+		await PMI.MakeVotingToken(sender, timeStamp, amount, accounts[2], { from: newAccount });
+		await PMI.MakeVotingToken(sender, timeStamp, amount, accounts[3], { from: newAccount });
+		await PMI.MakeVotingToken(sender, timeStamp, amount, accounts[4], { from: newAccount });
 	});
 
-	
 	it('Add Private Information (New Account[9], Old Account[0], Voter[1]: Valid', async () => {
 		const description = "AAA";
 		const itemsInTrade = "BBB";
@@ -94,21 +97,12 @@ contract('ProposalManager', (accounts) => {
 	});	
 
 	it('Cast a Vote (No Votes)', async () => {
-		await PMI.AddPublicInformation(oldAccount, 1, 2, accounts[2], { from: newAccount });
 		await PMI.AddPrivateInformation(oldAccount, "description", "itemsInTrade", accounts[2], { from: newAccount });
 
 		await PMI.CastVote(oldAccount, newAccount, false, { from: accounts[2] });
 		var temp = (await PMI.GetVotes(oldAccount, newAccount)).toNumber();
 		assert.equal(temp, 1, "Wrong Number of Votes");
 	});	
-
-	/*
-	it('Cast a Vote (Duplicate Votes): Invalid', async () => {
-		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[1] });
-		var temp = (await PMI.GetVotes(oldAccount, newAccount)).toNumber();
-		assert.equal(temp, 1, "Wrong Number of Votes");
-	});	
-	*/
 
 	it('Result (False)', async () => {
 		await PMI.CountVotes(oldAccount, newAccount, {from: newAccount});
@@ -117,11 +111,9 @@ contract('ProposalManager', (accounts) => {
 	});
 
 	it('Result (True)', async () => {
-		await PMI.AddPublicInformation(oldAccount, 1, 2, accounts[3], { from: newAccount });
 		await PMI.AddPrivateInformation(oldAccount, "description", "itemsInTrade", accounts[3], { from: newAccount });
 		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[3] });
 
-		await PMI.AddPublicInformation(oldAccount, 1, 2, accounts[4], { from: newAccount });
 		await PMI.AddPrivateInformation(oldAccount, "description", "itemsInTrade", accounts[4], { from: newAccount });
 		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[4] });
 
@@ -134,5 +126,11 @@ contract('ProposalManager', (accounts) => {
 		assert.equal(outcome, true, "Wrong Outcome");
 	});
 
-
+	/*
+	it('Cast a Vote (Duplicate Votes): Invalid', async () => {
+		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[1] });
+		var temp = (await PMI.GetVotes(oldAccount, newAccount)).toNumber();
+		assert.equal(temp, 1, "Wrong Number of Votes");
+	});	
+	*/
 });

@@ -69,8 +69,8 @@ contract ProposalManager {
 		return activeProposals[oldAccount][newAccount][0];
 	}
 
-	function AddPublicInformation(address oldAccount,uint timeStamp, uint amount, address _voter) public {
-		getActiveProposal(oldAccount, msg.sender).AddPublicInformation(oldAccount, msg.sender, timeStamp, amount, _voter);
+	function MakeVotingToken(address oldAccount, uint timeStamp, uint amount, address _voter) public{
+		getActiveProposal(oldAccount, msg.sender).MakeVotingToken(oldAccount, msg.sender, timeStamp, amount, _voter);
 	}
 
 	function AddPrivateInformation(address oldAccount, string memory description, string memory itemsInTrade, address _voter) public {

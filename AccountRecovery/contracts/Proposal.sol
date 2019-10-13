@@ -8,6 +8,7 @@ contract Proposal {
 	address[] voters;
 	address oldAccount;
 	address newAccount;
+	uint VotingTokenCreated = 0;
 	uint public result;
 
 	constructor(address[] memory _voters, address _oldAccount, address _newAccount) public {
@@ -17,12 +18,26 @@ contract Proposal {
 		oldAccount = _oldAccount;
 		newAccount = _newAccount;
 		voters = _voters;
-
+		/*
 		for (uint i = 0; i < voters.length; i++) {
 			require(voters[i] != 0x0000000000000000000000000000000000000000, "There is no voter");
 			tokens[voters[i]] = new VotingToken(voters[i]);
 		}
+		*/
 		result = 1;
+	}
+
+	function MakeVotingToken(address _oldAccount, address _newAccount, uint timeStamp, uint amount, address _voter) public{
+		require(newAccount == _newAccount, "Only the owner of this proposal can add public information");
+
+		for (uint i = 0; i < voters.length; i++) {
+			if (voters[i] == _voter){
+				tokens[_voter] = new VotingToken(_oldAccount, timeStamp, amount, _voter);
+				VotingTokenCreated++;
+				return;
+			}
+		}
+		require(true != true, "Invalid Voter. Can not make a VotingToken");
 	}
 
 	function CastVote(address from, bool choice) public {
@@ -30,11 +45,12 @@ contract Proposal {
 	}
 
 	function getVotes() public view returns(uint) {
+		require(VotingTokenCreated == voters.length, "Have not created all the VotingTokens");
 		uint yeses = 0;
 
 		for (uint i = 0; i < voters.length; i++) {
 			VotingToken temp = tokens[voters[i]];
-			if (temp.voted() && temp.vote()){
+			if (temp.exists() && temp.voted() && temp.vote()){
 				yeses++;
 			}			
 		}
@@ -42,6 +58,7 @@ contract Proposal {
 	}
 
 	function CountVotes(address from) public {
+		require(VotingTokenCreated == voters.length, "Have not created all the VotingTokens");
 		require(from == newAccount, "Wrong Account");
 
 		uint yeses = 0;
@@ -62,11 +79,6 @@ contract Proposal {
 
 	function getOutcome() public view returns(bool) {
 		return result >= 66;
-	}
-
-	function AddPublicInformation(address _oldAccount, address _newAccount, uint timeStamp, uint amount, address _voter) public {
-		require(newAccount == _newAccount, "Only the owner of this proposal can add public information");
-		tokens[_voter].AddPublicInformation(_oldAccount, timeStamp, amount, _voter);
 	}
 
 	function AddPrivateInformation(string memory description, string memory itemsInTrade, address _voter) public {

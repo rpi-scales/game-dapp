@@ -69,7 +69,15 @@ contract ProposalManager {
 		return activeProposals[oldAccount][newAccount][0];
 	}
 
-	function MakeVotingToken(address oldAccount, uint timeStamp, uint amount, address _voter) public{
+	function MakeVotingToken(address oldAccount, uint timeStamp, uint amount, address _voter) public {
+		Transaction[] memory transaction = TransactionManagerInstance.getTransactions(oldAccount, _voter);
+
+		bool found = false;
+		for (uint i = 0; i < transaction.length; i++){
+			found = transaction[i].Equal(timeStamp, oldAccount, _voter, amount);
+		}
+		require( found == true, "This transaction does not exist");
+
 		getActiveProposal(oldAccount, msg.sender).MakeVotingToken(oldAccount, msg.sender, timeStamp, amount, _voter);
 	}
 
@@ -84,15 +92,6 @@ contract ProposalManager {
 	function ViewPrivateInformation(address oldAccount, address newAccount) public view returns (string memory, string memory)  {
 		return getActiveProposal(oldAccount, newAccount).ViewPrivateInformation( msg.sender );
 	}
-
-
-
-
-
-
-
-
-
 
 	/*
 	function random(uint8 size) public view returns (uint8) {

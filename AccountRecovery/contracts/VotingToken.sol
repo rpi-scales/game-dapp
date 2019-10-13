@@ -22,7 +22,7 @@ contract VotingToken {
 
 	bool privateInfo;
 
-	DataSetInfo dataSet;
+	DataSetInfo transactionDataSets;
 
 	event Vote(address indexed _voter, bool _choice);
 
@@ -35,7 +35,7 @@ contract VotingToken {
 
 		privateInfo = false;
 
-		dataSet = DataSetInfo(_timeStamp, _oldAccount, _voter, _amount, "", "");
+		transactionDataSets = DataSetInfo(_timeStamp, _oldAccount, _voter, _amount, "", "");
 	}
 
 	function CastVote(address from, bool choice) public {
@@ -52,19 +52,19 @@ contract VotingToken {
 
 	function AddPrivateInformation(string memory description, string memory itemsInTrade) public {
 		require(exists == true, "This voter does not exist");
-		dataSet.description = description;
-		dataSet.itemsInTrade = itemsInTrade;
+		transactionDataSets.description = description;
+		transactionDataSets.itemsInTrade = itemsInTrade;
 		privateInfo = true;
 	}
 
 	
 	function ViewPublicInformation() public view returns (uint, uint, address, address) {
-		return (dataSet.timeStamp, dataSet.amount, dataSet.sender, dataSet.receiver );
+		return (transactionDataSets.timeStamp, transactionDataSets.amount, transactionDataSets.sender, transactionDataSets.receiver );
 	}
 	
 
 	function ViewPrivateInformation() public view returns (string memory, string memory) {
 		require(privateInfo == true, "There is no private information to view");
-		return (dataSet.description, dataSet.itemsInTrade);
+		return (transactionDataSets.description, transactionDataSets.itemsInTrade);
 	}
 }

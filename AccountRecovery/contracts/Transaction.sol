@@ -16,7 +16,10 @@ contract Transaction {
 
 	constructor(Person _sender, Person _reciever, uint _amount) public {
 		require(_sender.balance() >= _amount, "Invalid Balance.");
-		timeStamp = block.timestamp;
+		
+		timeStamp = 1;
+
+		// timeStamp = block.timestamp;
 		sender = _sender;
 		receiver = _reciever;
 		amount = _amount;
@@ -28,5 +31,12 @@ contract Transaction {
 		sender.decreaseBalance(amount);
 		receiver.increaseBalance(amount);
 		emit Transfer(sender, receiver, amount);
+	}
+
+	function Equal(uint _timeStamp, address _sender, address _receiver, uint _amount) public view returns (bool){
+		if (_timeStamp == timeStamp && sender.ID() == _sender && receiver.ID() == _receiver && _amount == amount){
+			return true;
+		}
+		return false;
 	}
 }	

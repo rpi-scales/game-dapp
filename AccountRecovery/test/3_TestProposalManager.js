@@ -60,7 +60,7 @@ contract('ProposalManager', (accounts) => {
 
 	it('Make Voting Token (New Account[9], Old Account[0], Voter[1,2,3,4]): Valid', async () => {
 		const timeStamp = 1;
-		const amount = 2;
+		const amount = 10;
 		const receiver = accounts[1];
 		const sender = oldAccount;
 
@@ -132,5 +132,10 @@ contract('ProposalManager', (accounts) => {
 		var temp = (await PMI.GetVotes(oldAccount, newAccount)).toNumber();
 		assert.equal(temp, 1, "Wrong Number of Votes");
 	});	
+
+	it('Make Voting Token (New Account[9], Old Account[0], Voter[1]): Invalid', async () => {
+		await PMI.MakeVotingToken(oldAccount, 2, 20, accounts[1], { from: newAccount });
+	});
+
 	*/
 });

@@ -1,38 +1,46 @@
 pragma solidity >=0.4.0 <0.7.0;
 
 import "../contracts/VotingToken.sol";
+import "../contracts/QuizToken.sol";
 
 contract Proposal {
 
 	mapping (address => VotingToken) tokens;
 	address[] voters;
+
+	mapping (address => QuizToken) quizTokens;
+	address[] others;
+
+
 	address oldAccount;
 	address newAccount;
-	uint VotingTokenCreated = 0;
-	uint public result;
+	string description;
 
-	constructor(address[] memory _voters, address _oldAccount, address _newAccount) public {
+	uint VotingTokenCreated = 0;
+	uint public result = 1;
+
+	constructor(address[] memory _voters, address[] memory _others, address _oldAccount, address _newAccount, string memory _description) public {
 		require(_oldAccount != 0x0000000000000000000000000000000000000000, "There is no oldAccount");
 		require(_newAccount != 0x0000000000000000000000000000000000000000, "There is no newAccount");
 
 		oldAccount = _oldAccount;
 		newAccount = _newAccount;
 		voters = _voters;
-		/*
-		for (uint i = 0; i < voters.length; i++) {
-			require(voters[i] != 0x0000000000000000000000000000000000000000, "There is no voter");
-			tokens[voters[i]] = new VotingToken(voters[i]);
+		description = _description;
+
+		others = _others;
+
+		for (uint i = 0; i < others.length; i++){
+			quizTokens[others[i]] = new QuizToken();
 		}
-		*/
-		result = 1;
 	}
 
-	function MakeVotingToken(address _oldAccount, address _newAccount, uint timeStamp, uint amount, address _voter) public{
+	function MakeVotingToken(address _oldAccount, address _newAccount, address _voter, string memory _description) public{
 		require(newAccount == _newAccount, "Only the owner of this proposal can add public information");
 
 		for (uint i = 0; i < voters.length; i++) {
 			if (voters[i] == _voter){
-				tokens[_voter] = new VotingToken(_oldAccount, timeStamp, amount, _voter);
+				tokens[_voter] = new VotingToken(_oldAccount, _voter, _description);
 				VotingTokenCreated++;
 				return;
 			}
@@ -81,15 +89,15 @@ contract Proposal {
 		return result >= 66;
 	}
 
-	function AddPrivateInformation(string memory description, string memory itemsInTrade, address _voter) public {
-		tokens[_voter].AddPrivateInformation( description, itemsInTrade );
+	function AddTransactionDataSet(uint _timeStamp, address _voter, uint _amount, string memory _description, string memory _itemsInTrade) public {
+		tokens[_voter].AddTransactionDataSet(_timeStamp, _voter, _amount, _description, _itemsInTrade);
 	}
 
-	function ViewPublicInformation( address _voter ) public view returns (uint, uint, address, address) {
-		return tokens[_voter].ViewPublicInformation();
+	function ViewPublicInformation( address _voter, uint i) public view returns (uint, uint, address, address) {
+		return tokens[_voter].ViewPublicInformation(i);
 	}
 
-	function ViewPrivateInformation( address _voter ) public view returns (string memory, string memory) {
-		return tokens[_voter].ViewPrivateInformation();
+	function ViewPrivateInformation( address _voter, uint i) public view returns (string memory, string memory) {
+		return tokens[_voter].ViewPrivateInformation(i);
 	}
 }

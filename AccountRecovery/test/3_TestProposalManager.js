@@ -29,15 +29,6 @@ contract('ProposalManager', (accounts) => {
 		TransactionManagerInstance = await TransactionManager.deployed(UserManagerInstance.address);
 		PMI = await ProposalManager.deployed(UserManagerInstance.address, TransactionManagerInstance.address);
 	});
-	
-	/*
-	it('Make Proposal (New Account: 10, Old Account: 1): Invalid', async () => {
-		var newAccount = accounts[9];
-		var oldAccount = accounts[0];
-
-		await PMI.MakeProposal(oldAccount, { from: newAccount });
-	});
-	*/
 
 	it('Send Money (Account[0] to Accounts[1,2,3,4,5,6,7,8]): Valid', async () => {
 		const sender = accounts[0];
@@ -53,43 +44,48 @@ contract('ProposalManager', (accounts) => {
 
 	it('Make Proposal (New Account[9], Old Account[0], TradePartners: [1,2,3,4]): Valid', async () => {
 		var TradePartners = [accounts[1], accounts[2], accounts[3], accounts[4]];
-		var temp = (await PMI.MakeProposal.estimateGas(oldAccount, TradePartners, { from: newAccount }));
+
+		var temp = (await PMI.MakeProposal.estimateGas(oldAccount, TradePartners, "HI", { from: newAccount }));
 		console.log("GAS: " + temp);
-		await PMI.MakeProposal(oldAccount, TradePartners, { from: newAccount });
+		await PMI.MakeProposal(oldAccount, TradePartners, "HI: Proposal", { from: newAccount });
 	});
 
 	it('Make Voting Token (New Account[9], Old Account[0], Voter[1,2,3,4]): Valid', async () => {
+		await PMI.MakeVotingToken(oldAccount, accounts[1], "HI: 1", { from: newAccount });
+		await PMI.MakeVotingToken(oldAccount, accounts[2], "HI: 2", { from: newAccount });
+		await PMI.MakeVotingToken(oldAccount, accounts[3], "HI: 3", { from: newAccount });
+		await PMI.MakeVotingToken(oldAccount, accounts[4], "HI: 4", { from: newAccount });
+	});
+
+	it('Add Transaction Data Set (New Account[9], Old Account[0], Voter[1]: Valid', async () => {
 		const timeStamp = 1;
 		const amount = 10;
 		const receiver = accounts[1];
 		const sender = oldAccount;
+		const description = "1: AAA";
+		const itemsInTrade = "1: BBB";
 
-		await PMI.MakeVotingToken(sender, timeStamp, amount, receiver, { from: newAccount });
-		var temp = (await PMI.ViewPublicInformation(oldAccount, newAccount, {from: receiver}));
+		await PMI.MakeTransactionDataSet(oldAccount, timeStamp, amount, receiver, description, itemsInTrade, { from: newAccount });
+
+		var temp = (await PMI.ViewPublicInformation(oldAccount, newAccount, 0, {from: receiver}));
 		var dataSet = new PublicInfo(temp[0], temp[1], temp[2], temp[3]);
+
+		var temp2 = (await PMI.ViewPrivateInformation(oldAccount, newAccount, 0, {from: accounts[1]}));
+		var dataSet2 = new PrivateInfo(temp2[0], temp2[1]);
 
 		assert.equal(dataSet.timeStamp, timeStamp, "Wrong dataSet.timeStamp");
 		assert.equal(dataSet.amount, amount, "Wrong dataSet.amount");
 		assert.equal(dataSet.receiver, receiver, "Wrong dataSet.receiver");
 		assert.equal(dataSet.sender, sender, "Wrong dataSet.sender");
 
+		assert.equal(dataSet2.description, description, "Wrong dataSet.description");
+		assert.equal(dataSet2.itemsInTrade, itemsInTrade, "Wrong dataSet.itemsInTrade");
 
-		await PMI.MakeVotingToken(sender, timeStamp, amount, accounts[2], { from: newAccount });
-		await PMI.MakeVotingToken(sender, timeStamp, amount, accounts[3], { from: newAccount });
-		await PMI.MakeVotingToken(sender, timeStamp, amount, accounts[4], { from: newAccount });
+		await PMI.MakeTransactionDataSet(oldAccount, timeStamp, amount, accounts[2], description, itemsInTrade, { from: newAccount });
+		await PMI.MakeTransactionDataSet(oldAccount, timeStamp, amount, accounts[3], description, itemsInTrade, { from: newAccount });
+		await PMI.MakeTransactionDataSet(oldAccount, timeStamp, amount, accounts[4], description, itemsInTrade, { from: newAccount });
 	});
 
-	it('Add Private Information (New Account[9], Old Account[0], Voter[1]: Valid', async () => {
-		const description = "AAA";
-		const itemsInTrade = "BBB";
-
-		await PMI.AddPrivateInformation(oldAccount, description, itemsInTrade, accounts[1], { from: newAccount });
-		var temp = (await PMI.ViewPrivateInformation(oldAccount, newAccount, {from: accounts[1]}));
-		var dataSet = new PrivateInfo(temp[0], temp[1]);
-		assert.equal(dataSet.description, description, "Wrong dataSet.description");
-		assert.equal(dataSet.itemsInTrade, itemsInTrade, "Wrong dataSet.itemsInTrade");
-	});
-	
 	it('Cast a Vote (Yes Votes)', async () => {
 		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[1] });
 		var temp = (await PMI.GetVotes(oldAccount, newAccount)).toNumber();
@@ -97,8 +93,6 @@ contract('ProposalManager', (accounts) => {
 	});	
 
 	it('Cast a Vote (No Votes)', async () => {
-		await PMI.AddPrivateInformation(oldAccount, "description", "itemsInTrade", accounts[2], { from: newAccount });
-
 		await PMI.CastVote(oldAccount, newAccount, false, { from: accounts[2] });
 		var temp = (await PMI.GetVotes(oldAccount, newAccount)).toNumber();
 		assert.equal(temp, 1, "Wrong Number of Votes");
@@ -111,20 +105,30 @@ contract('ProposalManager', (accounts) => {
 	});
 
 	it('Result (True)', async () => {
-		await PMI.AddPrivateInformation(oldAccount, "description", "itemsInTrade", accounts[3], { from: newAccount });
 		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[3] });
-
-		await PMI.AddPrivateInformation(oldAccount, "description", "itemsInTrade", accounts[4], { from: newAccount });
 		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[4] });
 
 		await PMI.CountVotes(oldAccount, newAccount, {from: newAccount});
 
-		// var temp = (await PMI.getResult(oldAccount, newAccount)).toNumber();
-		// console.log(temp);
-
 		var outcome = (await PMI.getOutcome(oldAccount, newAccount));
 		assert.equal(outcome, true, "Wrong Outcome");
 	});
+
+	it('Random', async () => {
+		var temp = (await PMI.random(accounts[1], 255)).toNumber();
+		console.log(temp);
+	});
+
+
+
+
+
+
+
+
+
+
+
 
 	/*
 	it('Cast a Vote (Duplicate Votes): Invalid', async () => {

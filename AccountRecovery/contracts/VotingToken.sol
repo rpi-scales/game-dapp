@@ -16,33 +16,33 @@ contract VotingToken {
 
 	bool public exists;
 
+	string description;
+	address oldAccount;
 	address voter;
+
 	bool public vote;
 	bool public voted;
 
-	bool privateInfo;
-
-	DataSetInfo transactionDataSets;
+	DataSetInfo[] transactionDataSets;
 
 	event Vote(address indexed _voter, bool _choice);
 
-	constructor(address _oldAccount, uint _timeStamp, uint _amount, address _voter) public {
+	constructor(address _oldAccount, address _voter, string memory _description) public {
 		voter = _voter;
+		oldAccount = _oldAccount;
 
 		vote = false;
 		exists = true;
 		voted = false;
 
-		privateInfo = false;
-
-		transactionDataSets = DataSetInfo(_timeStamp, _oldAccount, _voter, _amount, "", "");
+		description = _description;
 	}
 
 	function CastVote(address from, bool choice) public {
 		require(exists == true, "This voter does not exist");
 		require(voter == from, "Sent from the wrong voter");
 
-		require(privateInfo == true, "No private information");
+		require(transactionDataSets.length > 0, "There is no transaction data to view");
 
 		require(voted == false, "Already Voted");
 		vote = choice;
@@ -50,21 +50,18 @@ contract VotingToken {
 		emit Vote(voter, choice);
 	}
 
-	function AddPrivateInformation(string memory description, string memory itemsInTrade) public {
+	function AddTransactionDataSet(uint _timeStamp, address _voter, uint _amount, string memory _description, string memory itemsInTrade) public {
 		require(exists == true, "This voter does not exist");
-		transactionDataSets.description = description;
-		transactionDataSets.itemsInTrade = itemsInTrade;
-		privateInfo = true;
+		transactionDataSets.push(DataSetInfo(_timeStamp, oldAccount, _voter, _amount, _description, itemsInTrade));
 	}
 
-	
-	function ViewPublicInformation() public view returns (uint, uint, address, address) {
-		return (transactionDataSets.timeStamp, transactionDataSets.amount, transactionDataSets.sender, transactionDataSets.receiver );
+	function ViewPublicInformation(uint i) public view returns (uint, uint, address, address) {
+		require(transactionDataSets.length > 0, "There is no transaction data to view");
+		return (transactionDataSets[i].timeStamp, transactionDataSets[i].amount, transactionDataSets[i].sender, transactionDataSets[i].receiver );
 	}
 	
-
-	function ViewPrivateInformation() public view returns (string memory, string memory) {
-		require(privateInfo == true, "There is no private information to view");
-		return (transactionDataSets.description, transactionDataSets.itemsInTrade);
+	function ViewPrivateInformation(uint i) public view returns (string memory, string memory) {
+		require(transactionDataSets.length > 0, "There is no transaction data to view");
+		return (transactionDataSets[i].description, transactionDataSets[i].itemsInTrade);
 	}
 }

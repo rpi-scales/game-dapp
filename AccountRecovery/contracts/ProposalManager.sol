@@ -10,7 +10,9 @@ contract ProposalManager {
 	UserManager UserManagerInstance;
 	TransactionManager TransactionManagerInstance;
 
-	address[] voters;
+	address[] tradePartners;
+	address[] otherPartners;
+	address[] haveTradedWith;
 	mapping (address => mapping (address => Proposal[]) ) activeProposals;
 
 	constructor(address UserManagerAddress, address TransactionManagerAddress ) public {
@@ -18,16 +20,29 @@ contract ProposalManager {
 		TransactionManagerInstance = TransactionManager(TransactionManagerAddress);
 	}
 	
-	function MakeProposal(address oldAccount, address[] memory tradePartners) public {
+	function MakeProposal(address oldAccount, address[] memory _tradePartners, string memory _description) public {
 		require(activeProposals[oldAccount][msg.sender].length == 0, "There already exists a Proposal for this account");
 
-		for (uint i = 0; i < tradePartners.length; i++){
-			if (TransactionManagerInstance.getTransactions(oldAccount, tradePartners[i]).length > 0){
-				voters.push(tradePartners[i]);
+		FindtradePartners(oldAccount, _tradePartners);
+		FindOtherAddresses(oldAccount);
+		
+		require(tradePartners.length >= 3, "Invalid Number of tradePartners");
+		require(otherPartners.length >= 3, "Invalid Number of otherPartners");
+
+		activeProposals[oldAccount][msg.sender].push(new Proposal(tradePartners, otherPartners, oldAccount, msg.sender, _description));
+		delete tradePartners;
+		delete otherPartners;
+	}
+
+	function FindtradePartners(address oldAccount, address[] memory _tradePartners) internal {
+		for (uint i = 0; i < _tradePartners.length; i++){
+			if (TransactionManagerInstance.getTransactions(oldAccount, _tradePartners[i]).length > 0){
+				tradePartners.push(_tradePartners[i]);
 			}
 		}
+	}
 
-		/*
+	function FindOtherAddresses(address oldAccount) internal {
 		address[] memory addresses = UserManagerInstance.getAddresses();
 
 		for (uint i = 0; i < addresses.length; i++){
@@ -39,17 +54,36 @@ contract ProposalManager {
 					}
 				}
 				if (exists == false){
-					voters.push(addresses[i]);
+					haveTradedWith.push(addresses[i]);
 				}
 			}
 		}
-		*/
-		require(voters.length >= 3, "Invalid Number of transactions");
 
-		// Proposal temp = new Proposal(tradePartners, oldAccount, msg.sender);
-		activeProposals[oldAccount][msg.sender].push(new Proposal(voters, oldAccount, msg.sender));
+		require(haveTradedWith.length >= 3, "Invalid Number of haveTradedWith");
 
-		delete voters;
+		uint j = random(0x0000000000000000000000000000000000000000, haveTradedWith.length);
+		otherPartners.push(haveTradedWith[j]);
+		for (uint i = 1; i < 5; i++){
+			j = random(haveTradedWith[i-1], haveTradedWith.length);
+			otherPartners.push(haveTradedWith[j]);
+		}
+
+	}
+
+	function MakeVotingToken(address oldAccount, address _voter, string memory _description) public {
+		getActiveProposal(oldAccount, msg.sender).MakeVotingToken(oldAccount, msg.sender, _voter, _description);
+	}
+
+	function MakeTransactionDataSet(address oldAccount, uint timeStamp, uint _amount, address _voter, string memory _description, string memory _itemsInTrade) public {
+		Transaction[] memory transaction = TransactionManagerInstance.getTransactions(oldAccount, _voter);
+
+		bool found = false;
+		for (uint i = 0; i < transaction.length; i++){
+			found = transaction[i].Equal(timeStamp, oldAccount, _voter, _amount);
+		}
+		require( found == true, "This transaction does not exist");
+
+		getActiveProposal(oldAccount, msg.sender).AddTransactionDataSet(timeStamp, _voter, _amount, _description, _itemsInTrade);
 	}
 
 	function CastVote(address oldAccount, address newAccount, bool choice) public {
@@ -69,35 +103,17 @@ contract ProposalManager {
 		return activeProposals[oldAccount][newAccount][0];
 	}
 
-	function MakeVotingToken(address oldAccount, uint timeStamp, uint amount, address _voter) public {
-		Transaction[] memory transaction = TransactionManagerInstance.getTransactions(oldAccount, _voter);
-
-		bool found = false;
-		for (uint i = 0; i < transaction.length; i++){
-			found = transaction[i].Equal(timeStamp, oldAccount, _voter, amount);
-		}
-		require( found == true, "This transaction does not exist");
-
-		getActiveProposal(oldAccount, msg.sender).MakeVotingToken(oldAccount, msg.sender, timeStamp, amount, _voter);
+	function ViewPublicInformation(address oldAccount, address newAccount, uint i) public view returns (uint, uint, address, address)  {
+		return getActiveProposal(oldAccount, newAccount).ViewPublicInformation( msg.sender, i );
 	}
 
-	function AddPrivateInformation(address oldAccount, string memory description, string memory itemsInTrade, address _voter) public {
-		getActiveProposal(oldAccount, msg.sender).AddPrivateInformation( description, itemsInTrade, _voter);
+	function ViewPrivateInformation(address oldAccount, address newAccount, uint i) public view returns (string memory, string memory)  {
+		return getActiveProposal(oldAccount, newAccount).ViewPrivateInformation( msg.sender, i );
 	}
 
-	function ViewPublicInformation(address oldAccount, address newAccount) public view returns (uint, uint, address, address)  {
-		return getActiveProposal(oldAccount, newAccount).ViewPublicInformation( msg.sender );
+	function random(address address1, uint size) public view returns (uint8) {
+		return uint8(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty, address1))) % size);
 	}
-
-	function ViewPrivateInformation(address oldAccount, address newAccount) public view returns (string memory, string memory)  {
-		return getActiveProposal(oldAccount, newAccount).ViewPrivateInformation( msg.sender );
-	}
-
-	/*
-	function random(uint8 size) public view returns (uint8) {
-        return uint8(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty)))%size);
-    }
-    */
 
 	function GetVotes(address oldAccount, address newAccount) public view returns(uint) {
 		return getActiveProposal(oldAccount, newAccount).getVotes();

@@ -10,7 +10,7 @@ contract UserManager {
 
 	constructor(address[] memory _addresses) public {
 		for (uint i = 0; i < _addresses.length; i++) {
-			Users[_addresses[i]] = new Person(_addresses[i], 100);
+			Users[_addresses[i]] = new Person(_addresses[i], 1000);
 		}
 		addresses = _addresses;
 	}

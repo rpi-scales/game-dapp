@@ -43,11 +43,22 @@ contract('ProposalManager', (accounts) => {
 	});
 
 	it('Make Proposal (New Account[9], Old Account[0], TradePartners: [1,2,3,4]): Valid', async () => {
+
+		// await TransactionManagerInstance.MakeTransaction(accounts[9], 1, { from: accounts[0] });
+
 		var TradePartners = [accounts[1], accounts[2], accounts[3], accounts[4]];
 
 		var temp = (await PMI.MakeProposal.estimateGas(oldAccount, TradePartners, "HI", { from: newAccount }));
 		console.log("GAS: " + temp);
+
+		const A1 = (await UserManagerInstance.getUserBalance(newAccount)).toNumber();
 		await PMI.MakeProposal(oldAccount, TradePartners, "HI: Proposal", { from: newAccount });
+		const A2 = (await UserManagerInstance.getUserBalance(newAccount)).toNumber();
+		const B = (await UserManagerInstance.getUserBalance(oldAccount)).toNumber();
+
+		console.log("New Account Balance Before: " + A1);
+		console.log("New Account Balance After: " + A2);
+		console.log("Old Account Balance: " + B);
 	});
 
 	it('Make Voting Token (New Account[9], Old Account[0], Voter[1,2,3,4]): Valid', async () => {
@@ -88,45 +99,51 @@ contract('ProposalManager', (accounts) => {
 
 	it('Cast a Vote (Yes Votes)', async () => {
 		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[1] });
-		var temp = (await PMI.GetVotes(oldAccount, newAccount)).toNumber();
-		assert.equal(temp, 1, "Wrong Number of Votes");
+		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[2] });
+		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[3] });
 	});	
 
 	it('Cast a Vote (No Votes)', async () => {
-		await PMI.CastVote(oldAccount, newAccount, false, { from: accounts[2] });
-		var temp = (await PMI.GetVotes(oldAccount, newAccount)).toNumber();
-		assert.equal(temp, 1, "Wrong Number of Votes");
+		await PMI.CastVote(oldAccount, newAccount, false, { from: accounts[4] });
 	});	
 
-	it('Result (False)', async () => {
-		await PMI.CountVotes(oldAccount, newAccount, {from: newAccount});
-		var outcome = (await PMI.getOutcome(oldAccount, newAccount));
-		assert.equal(outcome, false, "Wrong Outcome");
+	it('Conclude Account Recovery', async () => {
+		const before0 = (await UserManagerInstance.getUserBalance(accounts[0])).toNumber();
+		const before1 = (await UserManagerInstance.getUserBalance(accounts[1])).toNumber();
+		const before2 = (await UserManagerInstance.getUserBalance(accounts[2])).toNumber();
+		const before3 = (await UserManagerInstance.getUserBalance(accounts[3])).toNumber();
+		const before4 = (await UserManagerInstance.getUserBalance(accounts[4])).toNumber();
+		const before9 = (await UserManagerInstance.getUserBalance(accounts[9])).toNumber();
+
+		var outcome = (await PMI.ConcludeAccountRecovery(oldAccount, {from: newAccount}));
+		//assert.equal(outcome, true, "Wrong Outcome");
+
+		const after0 = (await UserManagerInstance.getUserBalance(accounts[0])).toNumber();
+		const after1 = (await UserManagerInstance.getUserBalance(accounts[1])).toNumber();
+		const after2 = (await UserManagerInstance.getUserBalance(accounts[2])).toNumber();
+		const after3 = (await UserManagerInstance.getUserBalance(accounts[3])).toNumber();
+		const after4 = (await UserManagerInstance.getUserBalance(accounts[4])).toNumber();
+		const after9 = (await UserManagerInstance.getUserBalance(accounts[9])).toNumber();
+
+		console.log("before0: " + before0);
+		console.log("after0: " + after0);
+
+		console.log("before1: " + before1);
+		console.log("after1: " + after1);
+
+		console.log("before2: " + before2);
+		console.log("after2: " + after2);
+
+		console.log("before3: " + before3);
+		console.log("after3: " + after3);
+
+		console.log("before4: " + before4);
+		console.log("after4: " + after4);
+
+		console.log("before9: " + before9);
+		console.log("after9: " + after9);
+
 	});
-
-	it('Result (True)', async () => {
-		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[3] });
-		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[4] });
-
-		await PMI.CountVotes(oldAccount, newAccount, {from: newAccount});
-
-		var outcome = (await PMI.getOutcome(oldAccount, newAccount));
-		assert.equal(outcome, true, "Wrong Outcome");
-	});
-
-	it('Random', async () => {
-		var temp = (await PMI.random(accounts[1], 255)).toNumber();
-		console.log(temp);
-	});
-
-
-
-
-
-
-
-
-
 
 
 

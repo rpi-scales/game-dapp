@@ -23,13 +23,20 @@ contract ProposalManager {
 	function MakeProposal(address oldAccount, address[] memory _tradePartners, string memory _description) public {
 		require(activeProposals[oldAccount][msg.sender].length == 0, "There already exists a Proposal for this account");
 
+		Person newAccount = UserManagerInstance.getUser(msg.sender);
+		uint price = CalculatePrice(oldAccount);
+
+		require(newAccount.balance() >= price, "Not Enough funds for this Proposal");
+
+		newAccount.decreaseBalance(price);
+
 		FindtradePartners(oldAccount, _tradePartners);
 		FindOtherAddresses(oldAccount);
 		
 		require(tradePartners.length >= 3, "Invalid Number of tradePartners");
 		require(otherPartners.length >= 3, "Invalid Number of otherPartners");
 
-		activeProposals[oldAccount][msg.sender].push(new Proposal(tradePartners, otherPartners, oldAccount, msg.sender, _description));
+		activeProposals[oldAccount][msg.sender].push(new Proposal(tradePartners, otherPartners, oldAccount, msg.sender, _description, price));
 		delete tradePartners;
 		delete otherPartners;
 	}
@@ -67,7 +74,12 @@ contract ProposalManager {
 			j = random(haveTradedWith[i-1], haveTradedWith.length);
 			otherPartners.push(haveTradedWith[j]);
 		}
+	}
 
+	function CalculatePrice(address _oldAccount) internal view returns (uint) {
+		Person oldAccount = UserManagerInstance.getUser(_oldAccount);
+		uint balance = oldAccount.balance();
+		return balance / 20;
 	}
 
 	function MakeVotingToken(address oldAccount, address _voter, string memory _description) public {
@@ -86,19 +98,32 @@ contract ProposalManager {
 		getActiveProposal(oldAccount, msg.sender).AddTransactionDataSet(timeStamp, _voter, _amount, _description, _itemsInTrade);
 	}
 
+	function ConcludeAccountRecovery(address _oldAccount) public returns (bool){
+		if (msg.sender == _oldAccount){
+			delete activeProposals[_oldAccount][msg.sender];
+			return false;
+		}else{
+			Person oldAccount = UserManagerInstance.getUser(_oldAccount);
+			Person newAccount = UserManagerInstance.getUser(msg.sender);
+			if (getActiveProposal(_oldAccount, msg.sender).ConcludeAccountRecovery(UserManagerInstance)){
+
+				newAccount.increaseBalance(oldAccount.balance());
+				oldAccount.decreaseBalance(oldAccount.balance());
+
+				delete activeProposals[_oldAccount][msg.sender];
+				return true;
+			}else{
+				delete activeProposals[_oldAccount][msg.sender];
+				return false;
+			}
+		}
+	}
+
 	function CastVote(address oldAccount, address newAccount, bool choice) public {
 		getActiveProposal(oldAccount, newAccount).CastVote(msg.sender, choice);
 	}
 
-	function CountVotes(address oldAccount, address newAccount) public {
-		getActiveProposal(oldAccount, newAccount).CountVotes(msg.sender);
-	}
-
-	function getOutcome(address oldAccount, address newAccount) public view returns(bool) {
-		return getActiveProposal(oldAccount, newAccount).getOutcome();
-	}
-
-	function getActiveProposal(address oldAccount, address newAccount) public view returns (Proposal) {
+	function getActiveProposal(address oldAccount, address newAccount) internal view returns (Proposal) {
 		require(activeProposals[oldAccount][newAccount].length == 1, "There is no active Proposal");
 		return activeProposals[oldAccount][newAccount][0];
 	}
@@ -111,14 +136,7 @@ contract ProposalManager {
 		return getActiveProposal(oldAccount, newAccount).ViewPrivateInformation( msg.sender, i );
 	}
 
-	function random(address address1, uint size) public view returns (uint8) {
+	function random(address address1, uint size) internal view returns (uint8) {
 		return uint8(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty, address1))) % size);
-	}
-
-	function GetVotes(address oldAccount, address newAccount) public view returns(uint) {
-		return getActiveProposal(oldAccount, newAccount).getVotes();
-	}
-	function getResult(address oldAccount, address newAccount) public view returns(uint) {
-		return getActiveProposal(oldAccount, newAccount).result();
 	}
 }

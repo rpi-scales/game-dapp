@@ -10,24 +10,24 @@ contract VotingToken {
 
 	struct DataSetInfo {
 		// Public Information
-		uint timeStamp;
-		address sender;
-		address receiver;
-		uint amount;
+		uint timeStamp;						// Time stamp of transaction
+		address sender;						// Sender of transaction
+		address receiver;					// Reciever of transaction
+		uint amount;						// Amount of transaction
 
 		// Private Information
-		string description;
-		string itemsInTrade;
+		string description;					// Description of transaction
+		string itemsInTrade;				// Items in transaction
 	}
 
-	bool public exists;						// Used to determine if a token exists in a map
+	bool exists;							// Used to determine if a token exists in a map
 
 	string description;						// Description of the transaction between these addresses
 	address oldAccount;						// Address of the old account
 	address voter;							// Address of the voter
 
-	bool public vote;						// The decision of the voter
-	bool public voted;						// If the voter has voted
+	bool vote;								// The decision of the voter
+	bool voted;								// If the voter has voted
 
 	DataSetInfo[] transactionDataSets;		// Sets of data for transactions
 
@@ -45,7 +45,7 @@ contract VotingToken {
 	}
 
 	// Casting a vote
-	function CastVote(address from, bool choice) public {
+	function CastVote(address from, bool choice) external {
 		// Checks if the voter is allowed to vote
 		require(exists == true, "This voter does not exist");
 		require(voter == from, "Sent from the wrong voter");
@@ -58,7 +58,7 @@ contract VotingToken {
 
 	// Add a data set for a transaction with this voter
 	function AddTransactionDataSet(uint _timeStamp, address _voter, uint _amount, 
-		string memory _description, string memory itemsInTrade) public {
+		string calldata _description, string calldata itemsInTrade) external {
 
 		require(exists == true, "This voter does not exist");
 		transactionDataSets.push(DataSetInfo(_timeStamp, oldAccount, _voter, 
@@ -66,14 +66,24 @@ contract VotingToken {
 	}
 
 	// View public information on a set of data for a transaction
-	function ViewPublicInformation(uint i) public view returns (uint, uint, address, address) {
+	function ViewPublicInformation(uint i) external view returns (uint, uint, address, address) {
 		require(transactionDataSets.length > 0, "There is no transaction data to view");
 		return (transactionDataSets[i].timeStamp, transactionDataSets[i].amount, transactionDataSets[i].sender, transactionDataSets[i].receiver );
 	}
 	
 	// View private information on a set of data for a transaction
-	function ViewPrivateInformation(uint i) public view returns (string memory, string memory) {
+	function ViewPrivateInformation(uint i) external view returns (string memory, string memory) {
 		require(transactionDataSets.length > 0, "There is no transaction data to view");
 		return (transactionDataSets[i].description, transactionDataSets[i].itemsInTrade);
+	}
+
+	// The voter is eligible to vote and has voted
+	function ExistsAndVoted() external view returns (bool){
+		return exists && voted;
+	}
+
+	// The voter is eligible to vote and voted yes
+	function VotedYes() external view returns (bool) {
+		return exists && voted && vote;
 	}
 }

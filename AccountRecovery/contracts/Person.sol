@@ -16,12 +16,12 @@ contract Person {
 	}
 
 	// Increase the balance of the user
-	function increaseBalance(uint amount) public {
+	function increaseBalance(uint amount) external {
 		balance += amount;
 	}
 
 	// Decrease the balance of the user
-	function decreaseBalance(uint amount) public {
+	function decreaseBalance(uint amount) external {
 		balance -= amount;
 	}
 }

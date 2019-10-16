@@ -19,7 +19,7 @@ contract TransactionManager {
 	}
 
 	// Makes a transaction between 2 users
-	function MakeTransaction(address _reciever, uint _amount) public {
+	function MakeTransaction(address _reciever, uint _amount) external {
 		Person sender = UserManagerInstance.getUser(msg.sender); // Finds sender
 		Person reciever = UserManagerInstance.getUser(_reciever); // Finds reciever
 
@@ -28,14 +28,13 @@ contract TransactionManager {
 	}
 
 	// Gets transacions between 2 addresses
-	function getTransactions(address sender, address receiver) public view returns(Transaction[] memory) {
+	function getTransactions(address sender, address receiver) external view returns(Transaction[] memory) {
 		return transactions[sender][receiver];
 	}
 
 	// Get a transaction between 2 address but returns it in parts
-	function getTransactionJS(address sender, address receiver, uint i) public view returns(address, address, uint) {
+	function getTransactionJS(address sender, address receiver, uint i) external view returns(address, address, uint) {
 		require(i < transactions[sender][receiver].length && i >= 0, "Invalid Index");
-		Transaction temp = transactions[sender][receiver][i];
-		return (temp.sender().ID(), temp.receiver().ID(), temp.amount());
+		return transactions[sender][receiver][i].getTransaction();
 	}
 }

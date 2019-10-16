@@ -11,9 +11,9 @@ import "../contracts/Person.sol";
 contract Transaction {
 
 	uint timeStamp;						// Time stamp of the transaction
-	Person public sender;				// Sender of the transaction
-	Person public receiver;				// Reciever of the transacion
-	uint public amount;					// Amount of money traded
+	Person sender;				// Sender of the transaction
+	Person receiver;				// Reciever of the transacion
+	uint amount;					// Amount of money traded
 
 	event Transfer(Person indexed _from, Person indexed _to, uint _value); // Transaction event
 
@@ -37,7 +37,11 @@ contract Transaction {
 	}
 
 	// Returns if a set of data and this tranaction have the same set of public information
-	function Equal(uint _timeStamp, address _sender, address _receiver, uint _amount) public view returns (bool){
+	function Equal(uint _timeStamp, address _sender, address _receiver, uint _amount) external view returns (bool){
 		return _timeStamp == timeStamp && sender.ID() == _sender && receiver.ID() == _receiver && _amount == amount;
 	}
+
+	function getTransaction() external view returns(address, address, uint) {
+		return (sender.ID(), receiver.ID(), amount);
+	} 
 }	

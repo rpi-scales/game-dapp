@@ -73,8 +73,8 @@ contract('ProposalManager', (accounts) => {
 		const amount = 10;
 		const receiver = accounts[1];
 		const sender = oldAccount;
-		const description = "1: AAA";
-		const itemsInTrade = "1: BBB";
+		const description = "AAA";
+		const itemsInTrade = "BBB";
 
 		await PMI.MakeTransactionDataSet(oldAccount, timeStamp, amount, receiver, description, itemsInTrade, { from: newAccount });
 
@@ -125,27 +125,14 @@ contract('ProposalManager', (accounts) => {
 		const after4 = (await UserManagerInstance.getUserBalance(accounts[4])).toNumber();
 		const after9 = (await UserManagerInstance.getUserBalance(accounts[9])).toNumber();
 
-		console.log("before0: " + before0);
-		console.log("after0: " + after0);
-
-		console.log("before1: " + before1);
-		console.log("after1: " + after1);
-
-		console.log("before2: " + before2);
-		console.log("after2: " + after2);
-
-		console.log("before3: " + before3);
-		console.log("after3: " + after3);
-
-		console.log("before4: " + before4);
-		console.log("after4: " + after4);
-
-		console.log("before9: " + before9);
-		console.log("after9: " + after9);
+		console.log("Before[0]: " + before0 + ",  \tAfter[0]: " + after0);
+		console.log("Before[1]: " + before1 + ",  \tAfter[1]: " + after1);
+		console.log("Before[2]: " + before2 + ",  \tAfter[2]: " + after2);
+		console.log("Before[3]: " + before3 + ",  \tAfter[3]: " + after3);
+		console.log("Before[4]: " + before4 + ",  \tAfter[4]: " + after4);
+		console.log("Before[9]: " + before9 + ",  \tAfter[9]: " + after9);
 
 	});
-
-
 
 	/*
 	it('Cast a Vote (Duplicate Votes): Invalid', async () => {

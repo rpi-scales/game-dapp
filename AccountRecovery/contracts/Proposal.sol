@@ -51,7 +51,7 @@ contract Proposal {
 	}
 
 	// Make Voting Tokens
-	function MakeVotingToken(address _oldAccount, address _newAccount, address _voter, string memory _description) public {
+	function MakeVotingToken(address _oldAccount, address _newAccount, address _voter, string calldata _description) external {
 		require(newAccount == _newAccount, "Only the owner of this proposal can make a voting token");
 
 		// Checks if the given voter address is eligible to vote
@@ -66,7 +66,7 @@ contract Proposal {
 	}
 
 	// Casts a vote
-	function CastVote(address from, bool choice) public {
+	function CastVote(address from, bool choice) external {
 		votingtokens[from].CastVote(from, choice);
 	}
 
@@ -75,7 +75,7 @@ contract Proposal {
 		uint total = 0;							// Total number of votes
 		for (uint i = 0; i < voters.length; i++) { // Goes through all voters
 			VotingToken temp = votingtokens[voters[i]];
-			if (temp.exists() && temp.voted()){	// They are a voter and they voted
+			if (temp.ExistsAndVoted()){	// They are a voter and they voted
 				total++;						// Incroment the total number of votes
 			}
 		}
@@ -87,7 +87,7 @@ contract Proposal {
 		uint yeses = 0;							// Total number of yesses
 		for (uint i = 0; i < voters.length; i++) { // Goes through all voters
 			VotingToken temp = votingtokens[voters[i]];
-			if (temp.exists() && temp.voted() && temp.vote()){ // They are a voter and they voted yes
+			if (temp.VotedYes()){ // They are a voter and they voted yes
 				yeses++;						// Incroment the number of yesses
 			}			
 		}
@@ -95,7 +95,7 @@ contract Proposal {
 	}
 
 	// Give rewards to voters and return outcome of vote
-	function ConcludeAccountRecovery(UserManager UserManagerInstance) public returns (bool){
+	function ConcludeAccountRecovery(UserManager UserManagerInstance) external returns (bool){
 		require(VotingTokenCreated == voters.length, "Have not created all the VotingTokens");
 
 		// Decides the outcome of the vote
@@ -103,10 +103,10 @@ contract Proposal {
 
 		for (uint i = 0; i < voters.length; i++) {				// Goes through all voters
 			VotingToken temp = votingtokens[voters[i]];
-			if (temp.exists() && temp.voted()){					// They are a voter and they voted
+			if (temp.ExistsAndVoted()){					// They are a voter and they voted
 				uint amount = (price / 2) / NumberOfVotes();	// Reward for participating 
-				if (temp.vote() == outcome){					// They voted correctly 
-					amount += (price / 2) / CountYesses();			// Reward for voting correctly 
+				if (temp.VotedYes() == outcome){					// They voted correctly 
+					amount += (price / 2) / CountYesses();		// Reward for voting correctly 
 				}
 
 				Person voter = UserManagerInstance.getUser(voters[i]); // Gets voter in the network
@@ -118,17 +118,17 @@ contract Proposal {
 
 	// Add set of data for a give transaction for a give voter
 	function AddTransactionDataSet(uint _timeStamp, address _voter, uint _amount, 
-		string memory _description, string memory _itemsInTrade) public {
+		string calldata _description, string calldata _itemsInTrade) external {
 		votingtokens[_voter].AddTransactionDataSet(_timeStamp, _voter, _amount, _description, _itemsInTrade);
 	}
 
 	// View public information on a set of data for a transaction
-	function ViewPublicInformation( address _voter, uint i) public view returns (uint, uint, address, address) {
+	function ViewPublicInformation( address _voter, uint i) external view returns (uint, uint, address, address) {
 		return votingtokens[_voter].ViewPublicInformation(i);
 	}
 
 	// View private information on a set of data for a transaction
-	function ViewPrivateInformation( address _voter, uint i) public view returns (string memory, string memory) {
+	function ViewPrivateInformation( address _voter, uint i) external view returns (string memory, string memory) {
 		return votingtokens[_voter].ViewPrivateInformation(i);
 	}
 }

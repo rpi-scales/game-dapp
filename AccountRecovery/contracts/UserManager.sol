@@ -22,20 +22,20 @@ contract UserManager {
 	}
 
 	// Gets User with the given address
-	function getUser(address i) public view returns(Person) {
+	function getUser(address i) external view returns(Person) {
 		return Users[i];
 	}
 
 	// Gets the list of addresses on the network
-	function getAddresses() public view returns(address[] memory) {
+	function getAddresses() external view returns(address[] memory) {
 		return addresses;
 	}
 
-	function getUserBalance(address i) public view returns(uint) {
+	function getUserBalance(address i) external view returns(uint) {
 		return Users[i].balance();
 	}
 
-	function getUserID(address i) public view returns(address) {
+	function getUserID(address i) external view returns(address) {
 		return Users[i].ID();
 	}
 }

@@ -1,24 +1,26 @@
+/* Transaction.sol */
+
 pragma solidity >=0.4.0 <0.7.0;
 
 import "../contracts/Person.sol";
 
+/* <Summary> 
+	This transaction repersents a transaction on the network
+*/
+
 contract Transaction {
 
-	// Public Information
-	uint timeStamp;
-	Person public sender;
-	Person public receiver;
-	uint public amount;
+	uint timeStamp;						// Time stamp of the transaction
+	Person public sender;				// Sender of the transaction
+	Person public receiver;				// Reciever of the transacion
+	uint public amount;					// Amount of money traded
 
-	// Private Information
-
-	event Transfer(Person indexed _from, Person indexed _to, uint _value);
+	event Transfer(Person indexed _from, Person indexed _to, uint _value); // Transaction event
 
 	constructor(Person _sender, Person _reciever, uint _amount) public {
 		require(_sender.balance() >= _amount, "Invalid Balance.");
 		
 		timeStamp = 1;
-
 		// timeStamp = block.timestamp;
 		sender = _sender;
 		receiver = _reciever;
@@ -26,17 +28,16 @@ contract Transaction {
 		sendCoin();
 	}
 
+	// Send Money
 	function sendCoin() internal {
 		require(sender.balance() >= amount, "Invalid Balance.");
-		sender.decreaseBalance(amount);
-		receiver.increaseBalance(amount);
+		sender.decreaseBalance(amount);			// Decrease the sender's balance
+		receiver.increaseBalance(amount);		// Increase the reciever's balance
 		emit Transfer(sender, receiver, amount);
 	}
 
+	// Returns if a set of data and this tranaction have the same set of public information
 	function Equal(uint _timeStamp, address _sender, address _receiver, uint _amount) public view returns (bool){
-		if (_timeStamp == timeStamp && sender.ID() == _sender && receiver.ID() == _receiver && _amount == amount){
-			return true;
-		}
-		return false;
+		return _timeStamp == timeStamp && sender.ID() == _sender && receiver.ID() == _receiver && _amount == amount;
 	}
 }	

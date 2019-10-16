@@ -1,117 +1,133 @@
+/* Proposal.sol */
+
 pragma solidity >=0.4.0 <0.7.0;
 
 import "../contracts/VotingToken.sol";
 import "../contracts/QuizToken.sol";
 
 import "../contracts/Person.sol";
-
 import "../contracts/UserManager.sol";
+
+/* <Summary> 
+	This contract manages one active proposal: Casts Votes, Tallies votes, give rewards
+*/
 
 contract Proposal {
 
-	mapping (address => VotingToken) votingtokens;
-	address[] voters;
+	mapping (address => VotingToken) votingtokens;		// Active Voting Tokens
+	address[] voters;									// Addresses who are eligible to vote
 
-	mapping (address => QuizToken) quizTokens;
-	address[] others;
+	mapping (address => QuizToken) quizTokens;			// Active Quiz Tokens
+	address[] others;									// Addresses connected to these quiz tokens
 
+	address oldAccount;									// Address of the old account
+	address newAccount;									// Address of the new account
+	string description;									// Description of Proposal
 
-	address oldAccount;
-	address newAccount;
-	string description;
+	uint price;											// Price of the account recovery
 
-	uint price;
+	uint VotingTokenCreated = 0;						// Number of Voting tokens created
 
-	uint VotingTokenCreated = 0;
-	uint public result = 0;
-
-	constructor(address[] memory _voters, address[] memory _others, address _oldAccount, address _newAccount, string memory _description, uint _price) public {
+	constructor(address[] memory _voters, address[] memory _others, address _oldAccount, 
+		address _newAccount, string memory _description, uint _price) public {
+		
 		require(_oldAccount != 0x0000000000000000000000000000000000000000, "There is no oldAccount");
 		require(_newAccount != 0x0000000000000000000000000000000000000000, "There is no newAccount");
 
+		// Set variable
 		oldAccount = _oldAccount;
 		newAccount = _newAccount;
+		
 		voters = _voters;
-		description = _description;
-
-		price = _price;
-
 		others = _others;
 
+		description = _description;
+		price = _price;
+
+		// Create Quiz Tokens
 		for (uint i = 0; i < others.length; i++){
 			quizTokens[others[i]] = new QuizToken();
 		}
 	}
 
-	function MakeVotingToken(address _oldAccount, address _newAccount, address _voter, string memory _description) public{
+	// Make Voting Tokens
+	function MakeVotingToken(address _oldAccount, address _newAccount, address _voter, string memory _description) public {
 		require(newAccount == _newAccount, "Only the owner of this proposal can make a voting token");
 
+		// Checks if the given voter address is eligible to vote
 		for (uint i = 0; i < voters.length; i++) {
-			if (voters[i] == _voter){
+			if (voters[i] == _voter){			// The address is eligible to vote
 				votingtokens[_voter] = new VotingToken(_oldAccount, _voter, _description);
-				VotingTokenCreated++;
+				VotingTokenCreated++;			// Incroment the number of voting tokens created
 				return;
 			}
 		}
 		require(true != true, "Invalid Voter. Can not make a VotingToken");
 	}
 
+	// Casts a vote
 	function CastVote(address from, bool choice) public {
 		votingtokens[from].CastVote(from, choice);
 	}
 
-
+	// Counts total number of votes
 	function NumberOfVotes() internal view returns (uint) {
-		uint total = 0;
-		for (uint i = 0; i < voters.length; i++) {
+		uint total = 0;							// Total number of votes
+		for (uint i = 0; i < voters.length; i++) { // Goes through all voters
 			VotingToken temp = votingtokens[voters[i]];
-			if (temp.exists() && temp.voted()){
-				total++;
+			if (temp.exists() && temp.voted()){	// They are a voter and they voted
+				total++;						// Incroment the total number of votes
 			}
 		}
 		return total;
 	}
 
-	function getVotes() internal view returns(uint) {
-		uint yeses = 0;
-
-		for (uint i = 0; i < voters.length; i++) {
+	// Counts the number of yess votes
+	function CountYesses() internal view returns(uint) {
+		uint yeses = 0;							// Total number of yesses
+		for (uint i = 0; i < voters.length; i++) { // Goes through all voters
 			VotingToken temp = votingtokens[voters[i]];
-			if (temp.exists() && temp.voted() && temp.vote()){
-				yeses++;
+			if (temp.exists() && temp.voted() && temp.vote()){ // They are a voter and they voted yes
+				yeses++;						// Incroment the number of yesses
 			}			
 		}
 		return yeses;
 	}
 
+	// Give rewards to voters and return outcome of vote
 	function ConcludeAccountRecovery(UserManager UserManagerInstance) public returns (bool){
 		require(VotingTokenCreated == voters.length, "Have not created all the VotingTokens");
 
-		bool outcome = (getVotes()*100) / NumberOfVotes() >= 66;
+		// Decides the outcome of the vote
+		bool outcome = (CountYesses()*100) / NumberOfVotes() >= 66;
 
-		for (uint i = 0; i < voters.length; i++) {
+		for (uint i = 0; i < voters.length; i++) {				// Goes through all voters
 			VotingToken temp = votingtokens[voters[i]];
-			if (temp.exists() && temp.voted()){
-				uint amount = (price / 2) / NumberOfVotes();
-
-				if (temp.vote() == outcome){
-					amount += (price / 2) / getVotes();
+			if (temp.exists() && temp.voted()){					// They are a voter and they voted
+				uint amount = (price / 2) / NumberOfVotes();	// Reward for participating 
+				if (temp.vote() == outcome){					// They voted correctly 
+					amount += (price / 2) / CountYesses();			// Reward for voting correctly 
 				}
 
-				Person voter = UserManagerInstance.getUser(voters[i]);
-				voter.increaseBalance(amount);
+				Person voter = UserManagerInstance.getUser(voters[i]); // Gets voter in the network
+				voter.increaseBalance(amount);					// Increases balance
 			}
 		}
+		return outcome;											// Return outcome of vote
 	}
 
-	function AddTransactionDataSet(uint _timeStamp, address _voter, uint _amount, string memory _description, string memory _itemsInTrade) public {
+	// Add set of data for a give transaction for a give voter
+	function AddTransactionDataSet(uint _timeStamp, address _voter, uint _amount, 
+		string memory _description, string memory _itemsInTrade) public {
 		votingtokens[_voter].AddTransactionDataSet(_timeStamp, _voter, _amount, _description, _itemsInTrade);
 	}
 
+	// View public information on a set of data for a transaction
 	function ViewPublicInformation( address _voter, uint i) public view returns (uint, uint, address, address) {
 		return votingtokens[_voter].ViewPublicInformation(i);
 	}
 
+	// View private information on a set of data for a transaction
 	function ViewPrivateInformation( address _voter, uint i) public view returns (string memory, string memory) {
 		return votingtokens[_voter].ViewPrivateInformation(i);
 	}

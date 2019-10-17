@@ -6,19 +6,23 @@ import "../contracts/UserManager.sol";
 import "../contracts/TransactionManager.sol";
 import "../contracts/Proposal.sol";
 
+import "../contracts/Set.sol";
+
 /* <Summary> 
 	This contract manages all active proposal as well as makes and concludes proposals.
 */
 
 contract ProposalManager {
+	using Set for Set.Data;
 
 	UserManager UserManagerInstance;				// Connects to the list of users on the network
 	TransactionManager TransactionManagerInstance;	// Connects to the transaction data on the network
 
 	// These arrays are used when creating Proposals. Needed to be on storage to use .push()
-	address[] tradePartners;						// List of trade partners indicated by the new account
-	address[] otherPartners;						// Randomized list of haveTradedWith (size == 5)
-	address[] haveTradedWith;						// List of other trade partners used to quiz the new account
+
+	Set.Data tradePartners;							// List of trade partners indicated by the new account
+	Set.Data otherPartners;							// Randomized list of haveTradedWith (size == 5)
+	address[] haveTradedWith;
 
 	mapping (address => mapping (address => Proposal[]) ) activeProposals; // Map of active proposals
 													// Old Account -> New Account -> Proposal
@@ -29,60 +33,73 @@ contract ProposalManager {
 		TransactionManagerInstance = TransactionManager(TransactionManagerAddress);
 	}
 	
-	// Makes new proposal
-	function MakeProposal(address oldAccount, address[] memory _tradePartners, string memory _description) public {
-		require(activeProposals[oldAccount][msg.sender].length == 0, "There already exists a Proposal for this account");
+	function StartProposal(address _oldAccount, string calldata _description) external returns (uint) {
+		require(_oldAccount != msg.sender, "An account can not recover itself");
+		require(_oldAccount != 0x0000000000000000000000000000000000000000, "There is no oldAccount");
+		require(activeProposals[_oldAccount][msg.sender].length == 0, "There already exists a Proposal for this account");
 
-		Person newAccount = UserManagerInstance.getUser(msg.sender); // Finds the person in the network
-		uint price = CalculatePrice(oldAccount);	// Calculates the price of the account recovery
-
-		require(newAccount.balance() >= price, "Not Enough funds for this Proposal");
-
-		newAccount.decreaseBalance(price);			// Removes money from the new account
-
-		FindtradePartners(oldAccount, _tradePartners); // Checks if indicated partners have transactions 
-		FindOtherAddresses(oldAccount);				// Finds other trade partners to quiz
-		
-		require(tradePartners.length >= 3, "Invalid Number of tradePartners");
-		require(otherPartners.length >= 3, "Invalid Number of otherPartners");
+		uint price = CalculatePrice(_oldAccount);			// Calculates the price of the account recovery
 
 		// Creates Proposal and adds it to the active proposal map
-		activeProposals[oldAccount][msg.sender].push(
-			new Proposal(tradePartners, otherPartners, oldAccount, msg.sender, _description, price));
+		activeProposals[_oldAccount][msg.sender].push(new Proposal(_oldAccount, msg.sender, _description, price));
+		return price;
+	}
 
-		// Clears these arrays
+	function Pay(address _oldAccount, bool _pay) external {
+		if (_pay){
+			Person newAccount = UserManagerInstance.getUser(msg.sender); // Finds the person in the network
+			getActiveProposal(_oldAccount, msg.sender).Pay(newAccount);
+		}else{
+			delete activeProposals[_oldAccount][msg.sender]; // Deletes proposal
+		}
+	}
+
+	function AddTradePartners(address _oldAccount, address[] calldata _tradePartners) external returns(address[] memory){
+		// Clears these sets
 		delete tradePartners;
 		delete otherPartners;
 		delete haveTradedWith;
+
+		FindtradePartners(_oldAccount, msg.sender, _tradePartners); // Checks if indicated partners have transactions 
+		// FindOtherAddresses(_oldAccount, msg.sender);			// Finds other trade partners to quiz
+		
+		require(tradePartners.getValuesLength() >= 3, "Invalid Number of tradePartners");
+		// require(otherPartners.getValuesLength() >= 3, "Invalid Number of otherPartners");
+
+		for(uint i = 0; i < otherPartners.getValuesLength(); i++){
+			tradePartners.insert(otherPartners.getValue(i));
+		}
+
+		// Creates Proposal and adds it to the active proposal map
+		getActiveProposal(_oldAccount, msg.sender).AddTradePartners(tradePartners.getValues());
+
+		return tradePartners.getValues();
 	}
 
 	// Checks if indicated trade partners actually have transactions with the old account
-	function FindtradePartners(address oldAccount, address[] memory _tradePartners) internal {
+	function FindtradePartners(address oldAccount, address newAccount, address[] memory _tradePartners) internal {
 		for (uint i = 0; i < _tradePartners.length; i++){	// For each partner
-
-			// They have made a transaction with the old account
-			if (TransactionManagerInstance.getTransactions(oldAccount, _tradePartners[i]).length > 0){
-				tradePartners.push(_tradePartners[i]);		// Add them to the array
+			if (newAccount != _tradePartners[i]){			// The new account can not be a voter
+				// They have made a transaction with the old account
+				if (TransactionManagerInstance.getTransactions(oldAccount, _tradePartners[i]).length > 0){
+					// tradePartners.push(_tradePartners[i]);	// Add them to the array
+					tradePartners.insert(_tradePartners[i]);
+				}
 			}
 		}
 	}
 
 	// Finds other trade partners that are used to quiz the new account. These are random
-	function FindOtherAddresses(address oldAccount) internal {
+	function FindOtherAddresses(address oldAccount, address newAccount) internal {
 		address[] memory addresses = UserManagerInstance.getAddresses(); // List of addresses on the network
 
 		for (uint i = 0; i < addresses.length; i++){		// For each address
-
-			// They have made a transaction with the old account
-			if (TransactionManagerInstance.getTransactions(oldAccount, addresses[i]).length > 0){
-				bool exists = false;				// Have they have already been indicated as a trade partner
-				for (uint j = 0; j < tradePartners.length; j++){
-					if (addresses[i] == tradePartners[j]){
-						exists = true;				// They have already been indicated
+			if (newAccount != addresses[i]){				// The new account can not be a voter
+				// They have made a transaction with the old account
+				if (TransactionManagerInstance.getTransactions(oldAccount, addresses[i]).length > 0){
+					if (!tradePartners.contains(addresses[i])){
+						haveTradedWith.push(addresses[i]);
 					}
-				}
-				if (exists == false){				// They have not already been indicated
-					haveTradedWith.push(addresses[i]);
 				}
 			}
 		}
@@ -91,10 +108,13 @@ contract ProposalManager {
 
 		// This randomizes the list of other partners
 		uint j = random(0x0000000000000000000000000000000000000000, haveTradedWith.length);
-		otherPartners.push(haveTradedWith[j]);		// Adds a random trade partner to otherPartners
-		for (uint i = 1; i < 5; i++){
-			j = random(haveTradedWith[i-1], haveTradedWith.length);
-			otherPartners.push(haveTradedWith[j]);	// Adds a random trade partner to otherPartners
+		address temp = haveTradedWith[j];				// Random value in havetraded with
+		otherPartners.insert(temp);								// Adds a random trade partner to otherPartners
+
+		while(otherPartners.getValuesLength() < 5 && otherPartners.getValuesLength() < haveTradedWith.length - 2){
+			j = random(temp, haveTradedWith.length);			// Find random value
+			temp = haveTradedWith[j];					// Random value in havetraded with
+			otherPartners.insert(temp);							// Adds a random trade partner to otherPartners
 		}
 	}
 
@@ -106,7 +126,7 @@ contract ProposalManager {
 
 	// Finds proposal and makes voting token for a specified voter
 	function MakeVotingToken(address oldAccount, address _voter, string memory _description) public {
-		getActiveProposal(oldAccount, msg.sender).MakeVotingToken(oldAccount, msg.sender, _voter, _description);
+		getActiveProposal(oldAccount, msg.sender).MakeVotingToken(oldAccount, _voter, _description);
 	}
 
 	// Makes a set of data for a transaction of one of the trade partners. Checks this data 
@@ -136,7 +156,7 @@ contract ProposalManager {
 		}else{										// The msg.sender == new account
 
 			// Checks outcome of vote
-			if (getActiveProposal(_oldAccount, msg.sender).ConcludeAccountRecovery(UserManagerInstance) == true){
+			if (getActiveProposal(_oldAccount, msg.sender).ConcludeAccountRecovery(UserManagerInstance)){
 
 				// Finds old account and new account on the network
 				Person oldAccount = UserManagerInstance.getUser(_oldAccount);
@@ -167,12 +187,12 @@ contract ProposalManager {
 	}
 
 	// View public information on a set of data for a transaction
-	function ViewPublicInformation(address oldAccount, address newAccount, uint i) public view returns (uint, uint, address, address)  {
+	function ViewPublicInformation(address oldAccount, address newAccount, uint i) public view returns (uint, uint, address, address)	{
 		return getActiveProposal(oldAccount, newAccount).ViewPublicInformation( msg.sender, i );
 	}
 
 	// View private information on a set of data for a transaction
-	function ViewPrivateInformation(address oldAccount, address newAccount, uint i) public view returns (string memory, string memory)  {
+	function ViewPrivateInformation(address oldAccount, address newAccount, uint i) public view returns (string memory, string memory)	{
 		return getActiveProposal(oldAccount, newAccount).ViewPrivateInformation( msg.sender, i );
 	}
 

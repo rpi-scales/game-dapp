@@ -23,6 +23,7 @@ contract UserManager {
 
 	// Gets User with the given address
 	function getUser(address i) external view returns(Person) {
+		require(Users[i].exists() == true, "This user does not exist");
 		return Users[i];
 	}
 
@@ -32,10 +33,12 @@ contract UserManager {
 	}
 
 	function getUserBalance(address i) external view returns(uint) {
+		require(Users[i].exists() == true, "This user does not exist");
 		return Users[i].balance();
 	}
 
 	function getUserID(address i) external view returns(address) {
+		require(Users[i].exists() == true, "This user does not exist");
 		return Users[i].ID();
 	}
 }

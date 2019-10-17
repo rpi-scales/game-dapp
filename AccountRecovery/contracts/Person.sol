@@ -9,10 +9,12 @@ pragma solidity >=0.4.0 <0.7.0;
 contract Person {
 	address public ID;			// The address of the user
 	uint public balance;		// The balance of that user
+	bool public exists;			// Used for mapping
 
 	constructor(address _ID, uint _balance) public {
 		ID = _ID;
 		balance = _balance;
+		exists = true;
 	}
 
 	// Increase the balance of the user

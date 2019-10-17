@@ -20,7 +20,7 @@ contract VotingToken {
 		string itemsInTrade;				// Items in transaction
 	}
 
-	bool exists;							// Used to determine if a token exists in a map
+	bool public exists;							// Used to determine if a token exists in a map
 
 	string description;						// Description of the transaction between these addresses
 	address oldAccount;						// Address of the old account

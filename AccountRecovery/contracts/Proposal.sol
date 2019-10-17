@@ -3,7 +3,6 @@
 pragma solidity >=0.4.0 <0.7.0;
 
 import "../contracts/VotingToken.sol";
-import "../contracts/QuizToken.sol";
 
 import "../contracts/Person.sol";
 import "../contracts/UserManager.sol";
@@ -17,9 +16,6 @@ contract Proposal {
 	mapping (address => VotingToken) votingtokens;		// Active Voting Tokens
 	address[] voters;									// Addresses who are eligible to vote
 
-	mapping (address => QuizToken) quizTokens;			// Active Quiz Tokens
-	address[] others;									// Addresses connected to these quiz tokens
-
 	address oldAccount;									// Address of the old account
 	address newAccount;									// Address of the new account
 	string description;									// Description of Proposal
@@ -28,31 +24,33 @@ contract Proposal {
 
 	uint VotingTokenCreated = 0;						// Number of Voting tokens created
 
-	constructor(address[] memory _voters, address[] memory _others, address _oldAccount, 
-		address _newAccount, string memory _description, uint _price) public {
-		
-		require(_oldAccount != 0x0000000000000000000000000000000000000000, "There is no oldAccount");
-		require(_newAccount != 0x0000000000000000000000000000000000000000, "There is no newAccount");
+	bool paided = false;
 
+	constructor(address _oldAccount, address _newAccount, string memory _description, uint _price) public {
 		// Set variable
 		oldAccount = _oldAccount;
 		newAccount = _newAccount;
 		
-		voters = _voters;
-		others = _others;
-
 		description = _description;
 		price = _price;
-
-		// Create Quiz Tokens
-		for (uint i = 0; i < others.length; i++){
-			quizTokens[others[i]] = new QuizToken();
-		}
 	}
 
+	function Pay(Person _newAccount) external {
+		require(_newAccount.balance() >= price, "Not Enough funds for this Proposal");
+		_newAccount.decreaseBalance(price);			// Removes money from the new account
+		paided = true;
+	}
+
+	function AddTradePartners(address[] calldata _voters) external {
+		require(paided == true, "This proposal has not been paid for yet");
+		voters = _voters;
+	}
+
+
 	// Make Voting Tokens
-	function MakeVotingToken(address _oldAccount, address _newAccount, address _voter, string calldata _description) external {
-		require(newAccount == _newAccount, "Only the owner of this proposal can make a voting token");
+	function MakeVotingToken(address _oldAccount, address _voter, string calldata _description) external {
+		require(paided == true, "This proposal has not been paid for yet");
+		require(voters.length > 0, "Trade partners have not been added to this yet proposal");
 
 		// Checks if the given voter address is eligible to vote
 		for (uint i = 0; i < voters.length; i++) {
@@ -67,15 +65,21 @@ contract Proposal {
 
 	// Casts a vote
 	function CastVote(address from, bool choice) external {
+		require(paided == true, "This proposal has not been paid for yet");
+		require(voters.length > 0, "Trade partners have not been added to this yet proposal");
+
 		votingtokens[from].CastVote(from, choice);
 	}
 
 	// Counts total number of votes
 	function NumberOfVotes() internal view returns (uint) {
+		require(paided == true, "This proposal has not been paid for yet");
+		require(voters.length > 0, "Trade partners have not been added to this yet proposal");
+
 		uint total = 0;							// Total number of votes
 		for (uint i = 0; i < voters.length; i++) { // Goes through all voters
 			VotingToken temp = votingtokens[voters[i]];
-			if (temp.ExistsAndVoted()){	// They are a voter and they voted
+			if (temp.ExistsAndVoted()){			// They are a voter and they voted
 				total++;						// Incroment the total number of votes
 			}
 		}
@@ -84,10 +88,13 @@ contract Proposal {
 
 	// Counts the number of yess votes
 	function CountYesses() internal view returns(uint) {
+		require(paided == true, "This proposal has not been paid for yet");
+		require(voters.length > 0, "Trade partners have not been added to this yet proposal");
+
 		uint yeses = 0;							// Total number of yesses
 		for (uint i = 0; i < voters.length; i++) { // Goes through all voters
 			VotingToken temp = votingtokens[voters[i]];
-			if (temp.VotedYes()){ // They are a voter and they voted yes
+			if (temp.VotedYes()){ 				// They are a voter and they voted yes
 				yeses++;						// Incroment the number of yesses
 			}			
 		}
@@ -96,6 +103,8 @@ contract Proposal {
 
 	// Give rewards to voters and return outcome of vote
 	function ConcludeAccountRecovery(UserManager UserManagerInstance) external returns (bool){
+		require(paided == true, "This proposal has not been paid for yet");
+		require(voters.length > 0, "Trade partners have not been added to this yet proposal");
 		require(VotingTokenCreated == voters.length, "Have not created all the VotingTokens");
 
 		// Decides the outcome of the vote
@@ -119,16 +128,25 @@ contract Proposal {
 	// Add set of data for a give transaction for a give voter
 	function AddTransactionDataSet(uint _timeStamp, address _voter, uint _amount, 
 		string calldata _description, string calldata _itemsInTrade) external {
+		require(paided == true, "This proposal has not been paid for yet");
+		require(voters.length > 0, "Trade partners have not been added to this yet proposal");
+		
 		votingtokens[_voter].AddTransactionDataSet(_timeStamp, _voter, _amount, _description, _itemsInTrade);
 	}
 
 	// View public information on a set of data for a transaction
 	function ViewPublicInformation( address _voter, uint i) external view returns (uint, uint, address, address) {
+		require(paided == true, "This proposal has not been paid for yet");
+		require(voters.length > 0, "Trade partners have not been added to this yet proposal");
+		
 		return votingtokens[_voter].ViewPublicInformation(i);
 	}
 
 	// View private information on a set of data for a transaction
 	function ViewPrivateInformation( address _voter, uint i) external view returns (string memory, string memory) {
+		require(paided == true, "This proposal has not been paid for yet");
+		require(voters.length > 0, "Trade partners have not been added to this yet proposal");
+
 		return votingtokens[_voter].ViewPrivateInformation(i);
 	}
 }

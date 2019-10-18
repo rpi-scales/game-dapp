@@ -22,12 +22,14 @@ function PrivateInfo(description, itemsInTrade) {
 	this.itemsInTrade = itemsInTrade;
 }
 
+function ReturnValue(value) {
+	this.value = value;
+}
+
 contract('ProposalManager', (accounts) => {
 
 	const newAccount = accounts[9];
 	const oldAccount = accounts[0];
-
-	var voters;
 
 	it('Constructor', async () => {
 		UserManagerInstance = await UserManager.deployed(accounts);
@@ -62,37 +64,38 @@ contract('ProposalManager', (accounts) => {
 		const A2 = (await UserManagerInstance.getUserBalance(newAccount)).toNumber();
 		const B = (await UserManagerInstance.getUserBalance(oldAccount)).toNumber();
 
-		console.log("New Account Balance Before: " + A1);
-		console.log("New Account Balance After: " + A2);
-		console.log("Old Account Balance: " + B);
+		// console.log("New Account Balance Before: " + A1);
+		// console.log("New Account Balance After: " + A2);
+		// console.log("Old Account Balance: " + B);
 	});
 
-	it('Add Trading Partners (New Account[9], Old Account[0], TradePartners: [1,2,3,4]): Valid', async () => {
+	var TradePartners = [accounts[1], accounts[2], accounts[3], accounts[4]];
 
-		var TradePartners = [accounts[1], accounts[2], accounts[3], accounts[4]];
-		voters = (await PCI.AddTradePartners(oldAccount, TradePartners, { from: newAccount }));
+	it('Add Trading Partners (New Account[9], Old Account[0], TradePartners: [1,2,3,4]): Valid', async () => {
+		await PCI.AddTradePartners(oldAccount, TradePartners, { from: newAccount });
 	});
 
 	it('Find Randomly assigned Voter (New Account[9], Old Account[0]): Valid', async () => {
-		var voter = (await PCI.FindRandomTradingPartner(oldAccount, { from: newAccount }));
+		await PCI.FindRandomTradingPartner(oldAccount, { from: newAccount });
+		var voter = (await PMI.ViewRandomTradingPartner(oldAccount, { from: newAccount }));
 		await PCI.AddRandomTradingPartner(oldAccount, true, { from: newAccount });
+		console.log("Random voter: " + voter);
+		TradePartners.push(voter);
 
-		voter = (await PCI.FindRandomTradingPartner(oldAccount, { from: newAccount }));
+		await PCI.FindRandomTradingPartner(oldAccount, { from: newAccount });
+		voter = (await PMI.ViewRandomTradingPartner(oldAccount, { from: newAccount }));
 		await PCI.AddRandomTradingPartner(oldAccount, true, { from: newAccount });
-
-		voter = (await PCI.FindRandomTradingPartner(oldAccount, { from: newAccount }));
-		await PCI.AddRandomTradingPartner(oldAccount, true, { from: newAccount });
-
-		// console.log(voter);
+		console.log("Random voter: " + voter);
+		TradePartners.push(voter);
 	});
 
 	it('Make Voting Token (New Account[9], Old Account[0], Voter[1,2,3,4]): Valid', async () => {
-		await PCI.MakeVotingToken(oldAccount, accounts[1], "HI: 1", { from: newAccount });
-		await PCI.MakeVotingToken(oldAccount, accounts[2], "HI: 2", { from: newAccount });
-		await PCI.MakeVotingToken(oldAccount, accounts[3], "HI: 3", { from: newAccount });
-		await PCI.MakeVotingToken(oldAccount, accounts[4], "HI: 4", { from: newAccount });
+		for (var i = 0; i < TradePartners.length; i++) {
+			console.log("TradePartners[" + i + "]: " + TradePartners[i]);
+			await PCI.MakeVotingToken(oldAccount, TradePartners[i], "HI", { from: newAccount });
+		}
 	});
-
+	
 	const timeStamp = 1;
 	const amount = 10;
 	const receiver = accounts[1];
@@ -101,10 +104,9 @@ contract('ProposalManager', (accounts) => {
 	const itemsInTrade = "BBB";
 
 	it('Add Transaction Data Set (New Account[9], Old Account[0], Voter[1,2,3,4]: Valid', async () => {
-		await PCI.MakeTransactionDataSet(oldAccount, timeStamp, amount, receiver, description, itemsInTrade, { from: newAccount });
-		await PCI.MakeTransactionDataSet(oldAccount, timeStamp, amount, accounts[2], description, itemsInTrade, { from: newAccount });
-		await PCI.MakeTransactionDataSet(oldAccount, timeStamp, amount, accounts[3], description, itemsInTrade, { from: newAccount });
-		await PCI.MakeTransactionDataSet(oldAccount, timeStamp, amount, accounts[4], description, itemsInTrade, { from: newAccount });
+		for (var i = 0; i < TradePartners.length; i++) {
+			await PCI.MakeTransactionDataSet(oldAccount, timeStamp, amount, TradePartners[i], description, itemsInTrade, { from: newAccount });
+		}
 	});
 
 	it('View Public Information (New Account[9], Old Account[0], Voter[1]: Valid', async () => {
@@ -143,8 +145,9 @@ contract('ProposalManager', (accounts) => {
 		const before4 = (await UserManagerInstance.getUserBalance(accounts[4])).toNumber();
 		const before9 = (await UserManagerInstance.getUserBalance(accounts[9])).toNumber();
 
-		var outcome = (await PMI.ConcludeAccountRecovery(oldAccount, {from: newAccount}));
-		//assert.equal(outcome, true, "Wrong Outcome");
+		await PMI.ConcludeAccountRecovery(oldAccount, {from: newAccount});
+		var temp = (await PMI.getArchivedProposals(oldAccount, newAccount));
+		assert.equal(temp[0], true, "Wrong Outcome");
 
 		const after0 = (await UserManagerInstance.getUserBalance(accounts[0])).toNumber();
 		const after1 = (await UserManagerInstance.getUserBalance(accounts[1])).toNumber();
@@ -160,7 +163,6 @@ contract('ProposalManager', (accounts) => {
 		console.log("Before[4]: " + before4 + ",  \tAfter[4]: " + after4);
 		console.log("Before[9]: " + before9 + ",  \tAfter[9]: " + after9);
 	});
-
 	/*
 	it('Cast a Vote (Duplicate Votes): Invalid', async () => {
 		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[1] });

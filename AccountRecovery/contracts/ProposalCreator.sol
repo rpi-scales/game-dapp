@@ -70,10 +70,10 @@ contract ProposalCreator {
 		delete haveTradedWith;
 	}
 
-	function FindRandomTradingPartner(address _oldAccount) external returns (address) {
-		return PMI.getActiveProposal(_oldAccount, msg.sender).FindRandomTradingPartner();
+	function FindRandomTradingPartner(address _oldAccount) external {
+		PMI.getActiveProposal(_oldAccount, msg.sender).FindRandomTradingPartner();
 	}
-
+	
 	function AddRandomTradingPartner(address _oldAccount, bool choice) external {
 		if (choice){
 			PMI.getActiveProposal(_oldAccount, msg.sender).AddRandomTradingPartner();
@@ -97,8 +97,8 @@ contract ProposalCreator {
 	function FindOtherAddresses(address oldAccount, address newAccount) internal {
 		address[] memory addresses = UserManagerInstance.getAddresses(); // List of addresses on the network
 
-		for (uint i = 0; i < addresses.length; i++){		// For each address
-			if (newAccount != addresses[i]){				// The new account can not be a voter
+		for (uint i = 0; i < addresses.length; i++){					// For each address
+			if (newAccount != addresses[i]){							// The new account can not be a voter
 				// They have made a transaction with the old account
 				if (TransactionManagerInstance.getTransactions(oldAccount, addresses[i]).length > 0){
 					if (!tradePartners.contains(addresses[i])){

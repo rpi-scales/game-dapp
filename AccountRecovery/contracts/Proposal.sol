@@ -12,9 +12,13 @@ import "../contracts/UserManager.sol";
 */
 
 contract Proposal {
-
 	mapping (address => VotingToken) votingtokens;		// Active Voting Tokens
 	address[] voters;									// Addresses who are eligible to vote
+
+	address[] haveTradedWith;
+
+	address[] otherPartners;
+	address lastOtherPartner = 0x0000000000000000000000000000000000000000;
 
 	address oldAccount;									// Address of the old account
 	address newAccount;									// Address of the new account
@@ -22,7 +26,7 @@ contract Proposal {
 
 	uint price;											// Price of the account recovery
 
-	uint VotingTokenCreated = 0;						// Number of Voting tokens created
+	uint8 VotingTokenCreated = 0;						// Number of Voting tokens created
 
 	bool paided = false;
 
@@ -38,19 +42,39 @@ contract Proposal {
 	function Pay(Person _newAccount) external {
 		require(_newAccount.balance() >= price, "Not Enough funds for this Proposal");
 		_newAccount.decreaseBalance(price);			// Removes money from the new account
-		paided = true;
+		paided = true;								// The proposal has been paid for
 	}
 
-	function AddTradePartners(address[] calldata _voters) external {
+	function AddTradePartners(address[] calldata _voters, address[] calldata _haveTradedWith) external {
 		require(paided == true, "This proposal has not been paid for yet");
 		voters = _voters;
+		haveTradedWith = _haveTradedWith;
 	}
 
+	function FindRandomTradingPartner() external returns (address) {
+		require(paided == true, "This proposal has not been paid for yet");
+		require(voters.length > 0, "Trade partners have not been added to this yet proposal");
+
+		uint j = random(lastOtherPartner, haveTradedWith.length);			// Find random value
+		lastOtherPartner = haveTradedWith[j];
+		return lastOtherPartner;				// Random value in havetraded with
+	}
+
+	function AddRandomTradingPartner() external {
+		require(paided == true, "This proposal has not been paid for yet");
+		require(voters.length > 0, "Trade partners have not been added to this yet proposal");
+
+		require( lastOtherPartner != 0x0000000000000000000000000000000000000000, "Have to find a random trading partner first");
+		// require( otherPartners[otherPartners.length - 1] != lastOtherPartner, "Already added that address");
+
+		otherPartners.push(lastOtherPartner);
+	}
 
 	// Make Voting Tokens
 	function MakeVotingToken(address _oldAccount, address _voter, string calldata _description) external {
 		require(paided == true, "This proposal has not been paid for yet");
 		require(voters.length > 0, "Trade partners have not been added to this yet proposal");
+		require(otherPartners.length >= 2, "Need more randomly selected other trading partners");
 
 		// Checks if the given voter address is eligible to vote
 		for (uint i = 0; i < voters.length; i++) {
@@ -67,6 +91,7 @@ contract Proposal {
 	function CastVote(address from, bool choice) external {
 		require(paided == true, "This proposal has not been paid for yet");
 		require(voters.length > 0, "Trade partners have not been added to this yet proposal");
+		require(VotingTokenCreated == voters.length, "Have not created all the VotingTokens");
 
 		votingtokens[from].CastVote(from, choice);
 	}
@@ -75,6 +100,7 @@ contract Proposal {
 	function NumberOfVotes() internal view returns (uint) {
 		require(paided == true, "This proposal has not been paid for yet");
 		require(voters.length > 0, "Trade partners have not been added to this yet proposal");
+		require(VotingTokenCreated == voters.length, "Have not created all the VotingTokens");
 
 		uint total = 0;							// Total number of votes
 		for (uint i = 0; i < voters.length; i++) { // Goes through all voters
@@ -90,6 +116,7 @@ contract Proposal {
 	function CountYesses() internal view returns(uint) {
 		require(paided == true, "This proposal has not been paid for yet");
 		require(voters.length > 0, "Trade partners have not been added to this yet proposal");
+		require(VotingTokenCreated == voters.length, "Have not created all the VotingTokens");
 
 		uint yeses = 0;							// Total number of yesses
 		for (uint i = 0; i < voters.length; i++) { // Goes through all voters
@@ -130,7 +157,8 @@ contract Proposal {
 		string calldata _description, string calldata _itemsInTrade) external {
 		require(paided == true, "This proposal has not been paid for yet");
 		require(voters.length > 0, "Trade partners have not been added to this yet proposal");
-		
+		require(VotingTokenCreated == voters.length, "Have not created all the VotingTokens");
+
 		votingtokens[_voter].AddTransactionDataSet(_timeStamp, _voter, _amount, _description, _itemsInTrade);
 	}
 
@@ -138,7 +166,8 @@ contract Proposal {
 	function ViewPublicInformation( address _voter, uint i) external view returns (uint, uint, address, address) {
 		require(paided == true, "This proposal has not been paid for yet");
 		require(voters.length > 0, "Trade partners have not been added to this yet proposal");
-		
+		require(VotingTokenCreated == voters.length, "Have not created all the VotingTokens");
+
 		return votingtokens[_voter].ViewPublicInformation(i);
 	}
 
@@ -146,7 +175,13 @@ contract Proposal {
 	function ViewPrivateInformation( address _voter, uint i) external view returns (string memory, string memory) {
 		require(paided == true, "This proposal has not been paid for yet");
 		require(voters.length > 0, "Trade partners have not been added to this yet proposal");
+		require(VotingTokenCreated == voters.length, "Have not created all the VotingTokens");
 
 		return votingtokens[_voter].ViewPrivateInformation(i);
+	}
+
+	// Generate random number using an address
+	function random(address address1, uint size) internal view returns (uint8) {
+		return uint8(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty, address1))) % size);
 	}
 }

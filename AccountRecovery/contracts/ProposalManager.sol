@@ -21,7 +21,6 @@ contract ProposalManager {
 	// These arrays are used when creating Proposals. Needed to be on storage to use .push()
 
 	Set.Data tradePartners;							// List of trade partners indicated by the new account
-	Set.Data otherPartners;							// Randomized list of haveTradedWith (size == 5)
 	address[] haveTradedWith;
 
 	mapping (address => mapping (address => Proposal[]) ) activeProposals; // Map of active proposals
@@ -54,26 +53,29 @@ contract ProposalManager {
 		}
 	}
 
-	function AddTradePartners(address _oldAccount, address[] calldata _tradePartners) external returns(address[] memory){
-		// Clears these sets
-		delete tradePartners;
-		delete otherPartners;
-		delete haveTradedWith;
-
-		FindtradePartners(_oldAccount, msg.sender, _tradePartners); // Checks if indicated partners have transactions 
-		// FindOtherAddresses(_oldAccount, msg.sender);			// Finds other trade partners to quiz
+	function AddTradePartners(address _oldAccount, address[] calldata _tradePartners) external{
 		
-		require(tradePartners.getValuesLength() >= 3, "Invalid Number of tradePartners");
-		// require(otherPartners.getValuesLength() >= 3, "Invalid Number of otherPartners");
+		FindtradePartners(_oldAccount, msg.sender, _tradePartners); // Checks if indicated partners have transactions 		
+		require(tradePartners.getValuesLength() >= 1, "Invalid Number of tradePartners");
 
-		for(uint i = 0; i < otherPartners.getValuesLength(); i++){
-			tradePartners.insert(otherPartners.getValue(i));
-		}
+		FindOtherAddresses(_oldAccount, msg.sender);			// Finds other trade partners to quiz
+		// require(otherPartners.getValuesLength() >= 2, "Invalid Number of otherPartners");
 
 		// Creates Proposal and adds it to the active proposal map
-		getActiveProposal(_oldAccount, msg.sender).AddTradePartners(tradePartners.getValues());
+		getActiveProposal(_oldAccount, msg.sender).AddTradePartners(tradePartners.getValues(), haveTradedWith);
 
-		return tradePartners.getValues();
+		delete tradePartners;
+		delete haveTradedWith;
+	}
+
+	function FindRandomTradingPartner(address _oldAccount) external returns (address) {
+		return getActiveProposal(_oldAccount, msg.sender).FindRandomTradingPartner();
+	}
+
+	function AddRandomTradingPartner(address _oldAccount, bool choice) external {
+		if (choice){
+			getActiveProposal(_oldAccount, msg.sender).AddRandomTradingPartner();
+		}
 	}
 
 	// Checks if indicated trade partners actually have transactions with the old account
@@ -82,7 +84,6 @@ contract ProposalManager {
 			if (newAccount != _tradePartners[i]){			// The new account can not be a voter
 				// They have made a transaction with the old account
 				if (TransactionManagerInstance.getTransactions(oldAccount, _tradePartners[i]).length > 0){
-					// tradePartners.push(_tradePartners[i]);	// Add them to the array
 					tradePartners.insert(_tradePartners[i]);
 				}
 			}
@@ -105,17 +106,6 @@ contract ProposalManager {
 		}
 
 		require(haveTradedWith.length >= 3, "Invalid Number of haveTradedWith");
-
-		// This randomizes the list of other partners
-		uint j = random(0x0000000000000000000000000000000000000000, haveTradedWith.length);
-		address temp = haveTradedWith[j];				// Random value in havetraded with
-		otherPartners.insert(temp);								// Adds a random trade partner to otherPartners
-
-		while(otherPartners.getValuesLength() < 5 && otherPartners.getValuesLength() < haveTradedWith.length - 2){
-			j = random(temp, haveTradedWith.length);			// Find random value
-			temp = haveTradedWith[j];					// Random value in havetraded with
-			otherPartners.insert(temp);							// Adds a random trade partner to otherPartners
-		}
 	}
 
 	// Calculates the price of recovering an account
@@ -148,6 +138,7 @@ contract ProposalManager {
 		getActiveProposal(oldAccount, msg.sender).AddTransactionDataSet(timeStamp, _voter, _amount, _description, _itemsInTrade);
 	}
 
+/*
 	// Counts up votes and distriputes the reward
 	function ConcludeAccountRecovery(address _oldAccount) public returns (bool){
 		if (msg.sender == _oldAccount){				// Veto from the old account
@@ -180,12 +171,6 @@ contract ProposalManager {
 		getActiveProposal(oldAccount, newAccount).CastVote(msg.sender, choice);
 	}
 
-	// Find the active proposal between _oldAccount and _newAccount
-	function getActiveProposal(address _oldAccount, address _newAccount) internal view returns (Proposal) {
-		require(activeProposals[_oldAccount][_newAccount].length == 1, "There is no active Proposal");
-		return activeProposals[_oldAccount][_newAccount][0];
-	}
-
 	// View public information on a set of data for a transaction
 	function ViewPublicInformation(address oldAccount, address newAccount, uint i) public view returns (uint, uint, address, address)	{
 		return getActiveProposal(oldAccount, newAccount).ViewPublicInformation( msg.sender, i );
@@ -195,9 +180,11 @@ contract ProposalManager {
 	function ViewPrivateInformation(address oldAccount, address newAccount, uint i) public view returns (string memory, string memory)	{
 		return getActiveProposal(oldAccount, newAccount).ViewPrivateInformation( msg.sender, i );
 	}
+	*/
 
-	// Generate random number using an address
-	function random(address address1, uint size) internal view returns (uint8) {
-		return uint8(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty, address1))) % size);
+	// Find the active proposal between _oldAccount and _newAccount
+	function getActiveProposal(address _oldAccount, address _newAccount) internal view returns (Proposal) {
+		require(activeProposals[_oldAccount][_newAccount].length == 1, "There is no active Proposal");
+		return activeProposals[_oldAccount][_newAccount][0];
 	}
 }

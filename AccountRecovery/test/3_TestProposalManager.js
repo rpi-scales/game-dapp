@@ -24,8 +24,6 @@ contract('ProposalManager', (accounts) => {
 	const newAccount = accounts[9];
 	const oldAccount = accounts[0];
 
-	var voters;
-
 	it('Constructor', async () => {
 		UserManagerInstance = await UserManager.deployed(accounts);
 		TransactionManagerInstance = await TransactionManager.deployed(UserManagerInstance.address);
@@ -62,17 +60,24 @@ contract('ProposalManager', (accounts) => {
 	});
 
 	it('Add Trading Partners (New Account[9], Old Account[0], TradePartners: [1,2,3,4]): Valid', async () => {
-
 		var TradePartners = [accounts[1], accounts[2], accounts[3], accounts[4]];
-		voters = (await PMI.AddTradePartners(oldAccount, TradePartners, { from: newAccount }));
+		await PMI.AddTradePartners(oldAccount, TradePartners, { from: newAccount });
+	});
+
+	it('Find Randomly assigned Voter (New Account[9], Old Account[0]): Valid', async () => {
+		var voter = (await PMI.FindRandomTradingPartner(oldAccount, { from: newAccount }));
+		await PMI.AddRandomTradingPartner(oldAccount, true, { from: newAccount });
+
+		voter = (await PMI.FindRandomTradingPartner(oldAccount, { from: newAccount }));
+		await PMI.AddRandomTradingPartner(oldAccount, true, { from: newAccount });
+
+		voter = (await PMI.FindRandomTradingPartner(oldAccount, { from: newAccount }));
+		await PMI.AddRandomTradingPartner(oldAccount, true, { from: newAccount });
+
+		// console.log(voter);
 	});
 
 	it('Make Voting Token (New Account[9], Old Account[0], Voter[1,2,3,4]): Valid', async () => {
-		/*
-		for (var i = 0; i < voters.length; i++) {
-			await PMI.MakeVotingToken(oldAccount, voters[i], "HI: 1", { from: newAccount });
-		}
-		*/
 		await PMI.MakeVotingToken(oldAccount, accounts[1], "HI: 1", { from: newAccount });
 		await PMI.MakeVotingToken(oldAccount, accounts[2], "HI: 2", { from: newAccount });
 		await PMI.MakeVotingToken(oldAccount, accounts[3], "HI: 3", { from: newAccount });
@@ -93,6 +98,7 @@ contract('ProposalManager', (accounts) => {
 		await PMI.MakeTransactionDataSet(oldAccount, timeStamp, amount, accounts[4], description, itemsInTrade, { from: newAccount });
 	});
 
+	/*
 	it('View Public Information (New Account[9], Old Account[0], Voter[1]: Valid', async () => {
 		var temp = (await PMI.ViewPublicInformation(oldAccount, newAccount, 0, {from: receiver}));
 		var dataSet = new PublicInfo(temp[0], temp[1], temp[2], temp[3]);
@@ -146,7 +152,7 @@ contract('ProposalManager', (accounts) => {
 		console.log("Before[4]: " + before4 + ",  \tAfter[4]: " + after4);
 		console.log("Before[9]: " + before9 + ",  \tAfter[9]: " + after9);
 	});
-
+	*/
 
 	/*
 	it('Cast a Vote (Duplicate Votes): Invalid', async () => {

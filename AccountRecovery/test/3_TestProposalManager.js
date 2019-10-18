@@ -95,7 +95,6 @@ contract('ProposalManager', (accounts) => {
 			await PCI.MakeVotingToken(oldAccount, TradePartners[i], "HI", { from: newAccount });
 		}
 	});
-	
 	const timeStamp = 1;
 	const amount = 10;
 	const receiver = accounts[1];

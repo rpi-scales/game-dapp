@@ -19,11 +19,9 @@ contract ProposalCreator {
 
 	UserManager UserManagerInstance;				// Connects to the list of users on the network
 	TransactionManager TransactionManagerInstance;	// Connects to the transaction data on the network
-
 	ProposalManager PMI;	// Connects to the transaction data on the network
 
 	// These arrays are used when creating Proposals. Needed to be on storage to use .push()
-
 	Set.Data tradePartners;							// List of trade partners indicated by the new account
 	address[] haveTradedWith;
 
@@ -36,8 +34,7 @@ contract ProposalCreator {
 	
 	function StartProposal(address _oldAccount, string calldata _description) external returns (uint) {
 		require(_oldAccount != msg.sender, "An account can not recover itself");
-		require(_oldAccount != 0x0000000000000000000000000000000000000000, "There is no oldAccount");
-		//require(activeProposals[_oldAccount][msg.sender].length == 0, "There already exists a Proposal for this account");
+		// require(activeProposals[_oldAccount][msg.sender].length == 0, "There already exists a Proposal for this account");
 
 		uint price = CalculatePrice(_oldAccount);			// Calculates the price of the account recovery
 
@@ -66,7 +63,7 @@ contract ProposalCreator {
 		// Creates Proposal and adds it to the active proposal map
 		PMI.getActiveProposal(_oldAccount, msg.sender).AddTradePartners(tradePartners.getValues(), haveTradedWith);
 
-		delete tradePartners;
+		// delete tradePartners;
 		delete haveTradedWith;
 	}
 
@@ -126,16 +123,7 @@ contract ProposalCreator {
 	function MakeTransactionDataSet(address oldAccount, uint timeStamp, uint _amount, address _voter, 
 		string calldata _description, string calldata _itemsInTrade) external {
 
-		// Transactions in the network between the old account and the voter
-		Transaction[] memory transaction = TransactionManagerInstance.getTransactions(oldAccount, _voter);
-
-		bool found = false;							// Does the transaction exist
-		for (uint i = 0; i < transaction.length; i++){
-			if (transaction[i].Equal(timeStamp, oldAccount, _voter, _amount)){
-				found = true;						// The transaction does exist
-			}
-		}
-		require( found == true, "This transaction does not exist");
+		require( TransactionManagerInstance.Equal(oldAccount, _voter, timeStamp, _amount), "This transaction does not exist");
 
 		// Finds proposal and creates set of data 
 		PMI.getActiveProposal(oldAccount, msg.sender).AddTransactionDataSet(timeStamp, _voter, _amount, _description, _itemsInTrade);

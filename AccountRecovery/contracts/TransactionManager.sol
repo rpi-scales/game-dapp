@@ -37,4 +37,16 @@ contract TransactionManager {
 		require(i < transactions[sender][receiver].length && i >= 0, "Invalid Index");
 		return transactions[sender][receiver][i].getTransaction();
 	}
+
+	function Equal(address sender, address receiver, uint timeStamp, uint _amount) external view returns (bool) {
+		Transaction[] storage temp = transactions[sender][receiver];
+
+		for (uint i = 0; i < temp.length; i++){
+			if (temp[i].Equal(timeStamp, sender, receiver, _amount)){
+				return true;
+			}
+		}
+		return false;
+	}
+
 }

@@ -6,6 +6,7 @@ const ProposalCreator = artifacts.require("ProposalCreator");
 const set = artifacts.require("Set");
 
 
+
 module.exports = (deployer, network, accounts) => {
 	deployer.deploy(set);
 	deployer.link(set, ProposalCreator);

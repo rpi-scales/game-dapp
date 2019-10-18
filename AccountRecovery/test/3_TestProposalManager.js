@@ -7,6 +7,9 @@ var TransactionManagerInstance;
 const ProposalManager = artifacts.require("ProposalManager");
 var PMI;
 
+const ProposalCreator = artifacts.require("ProposalCreator");
+var PCI;
+
 function PublicInfo(timeStamp, amount, sender, receiver) {
 	this.timeStamp = timeStamp;
 	this.amount = amount;
@@ -24,10 +27,13 @@ contract('ProposalManager', (accounts) => {
 	const newAccount = accounts[9];
 	const oldAccount = accounts[0];
 
+	var voters;
+
 	it('Constructor', async () => {
 		UserManagerInstance = await UserManager.deployed(accounts);
 		TransactionManagerInstance = await TransactionManager.deployed(UserManagerInstance.address);
 		PMI = await ProposalManager.deployed(UserManagerInstance.address, TransactionManagerInstance.address);
+		PCI = await ProposalCreator.deployed(UserManagerInstance.address, TransactionManagerInstance.address, ProposalManager.address);
 	});
 
 	it('Send Money (Account[0] to Accounts[1,2,3,4,5,6,7,8]): Valid', async () => {
@@ -43,13 +49,15 @@ contract('ProposalManager', (accounts) => {
 	});
 
 	it('Start Proposal (New Account[9], Old Account[0]): Valid', async () => {
-		await PMI.StartProposal(oldAccount, "HI: Proposal", { from: newAccount });
+		await PCI.StartProposal(oldAccount, "HI: Proposal", { from: newAccount });
 	});
+
+
 
 	it('Pay for Proposal (New Account[9], Old Account[0]): Valid', async () => {
 		const A1 = (await UserManagerInstance.getUserBalance(newAccount)).toNumber();
 
-		await PMI.Pay(oldAccount, true, { from: newAccount });
+		await PCI.Pay(oldAccount, true, { from: newAccount });
 		
 		const A2 = (await UserManagerInstance.getUserBalance(newAccount)).toNumber();
 		const B = (await UserManagerInstance.getUserBalance(oldAccount)).toNumber();
@@ -60,28 +68,29 @@ contract('ProposalManager', (accounts) => {
 	});
 
 	it('Add Trading Partners (New Account[9], Old Account[0], TradePartners: [1,2,3,4]): Valid', async () => {
+
 		var TradePartners = [accounts[1], accounts[2], accounts[3], accounts[4]];
-		await PMI.AddTradePartners(oldAccount, TradePartners, { from: newAccount });
+		voters = (await PCI.AddTradePartners(oldAccount, TradePartners, { from: newAccount }));
 	});
 
 	it('Find Randomly assigned Voter (New Account[9], Old Account[0]): Valid', async () => {
-		var voter = (await PMI.FindRandomTradingPartner(oldAccount, { from: newAccount }));
-		await PMI.AddRandomTradingPartner(oldAccount, true, { from: newAccount });
+		var voter = (await PCI.FindRandomTradingPartner(oldAccount, { from: newAccount }));
+		await PCI.AddRandomTradingPartner(oldAccount, true, { from: newAccount });
 
-		voter = (await PMI.FindRandomTradingPartner(oldAccount, { from: newAccount }));
-		await PMI.AddRandomTradingPartner(oldAccount, true, { from: newAccount });
+		voter = (await PCI.FindRandomTradingPartner(oldAccount, { from: newAccount }));
+		await PCI.AddRandomTradingPartner(oldAccount, true, { from: newAccount });
 
-		voter = (await PMI.FindRandomTradingPartner(oldAccount, { from: newAccount }));
-		await PMI.AddRandomTradingPartner(oldAccount, true, { from: newAccount });
+		voter = (await PCI.FindRandomTradingPartner(oldAccount, { from: newAccount }));
+		await PCI.AddRandomTradingPartner(oldAccount, true, { from: newAccount });
 
 		// console.log(voter);
 	});
 
 	it('Make Voting Token (New Account[9], Old Account[0], Voter[1,2,3,4]): Valid', async () => {
-		await PMI.MakeVotingToken(oldAccount, accounts[1], "HI: 1", { from: newAccount });
-		await PMI.MakeVotingToken(oldAccount, accounts[2], "HI: 2", { from: newAccount });
-		await PMI.MakeVotingToken(oldAccount, accounts[3], "HI: 3", { from: newAccount });
-		await PMI.MakeVotingToken(oldAccount, accounts[4], "HI: 4", { from: newAccount });
+		await PCI.MakeVotingToken(oldAccount, accounts[1], "HI: 1", { from: newAccount });
+		await PCI.MakeVotingToken(oldAccount, accounts[2], "HI: 2", { from: newAccount });
+		await PCI.MakeVotingToken(oldAccount, accounts[3], "HI: 3", { from: newAccount });
+		await PCI.MakeVotingToken(oldAccount, accounts[4], "HI: 4", { from: newAccount });
 	});
 
 	const timeStamp = 1;
@@ -92,13 +101,12 @@ contract('ProposalManager', (accounts) => {
 	const itemsInTrade = "BBB";
 
 	it('Add Transaction Data Set (New Account[9], Old Account[0], Voter[1,2,3,4]: Valid', async () => {
-		await PMI.MakeTransactionDataSet(oldAccount, timeStamp, amount, receiver, description, itemsInTrade, { from: newAccount });
-		await PMI.MakeTransactionDataSet(oldAccount, timeStamp, amount, accounts[2], description, itemsInTrade, { from: newAccount });
-		await PMI.MakeTransactionDataSet(oldAccount, timeStamp, amount, accounts[3], description, itemsInTrade, { from: newAccount });
-		await PMI.MakeTransactionDataSet(oldAccount, timeStamp, amount, accounts[4], description, itemsInTrade, { from: newAccount });
+		await PCI.MakeTransactionDataSet(oldAccount, timeStamp, amount, receiver, description, itemsInTrade, { from: newAccount });
+		await PCI.MakeTransactionDataSet(oldAccount, timeStamp, amount, accounts[2], description, itemsInTrade, { from: newAccount });
+		await PCI.MakeTransactionDataSet(oldAccount, timeStamp, amount, accounts[3], description, itemsInTrade, { from: newAccount });
+		await PCI.MakeTransactionDataSet(oldAccount, timeStamp, amount, accounts[4], description, itemsInTrade, { from: newAccount });
 	});
 
-	/*
 	it('View Public Information (New Account[9], Old Account[0], Voter[1]: Valid', async () => {
 		var temp = (await PMI.ViewPublicInformation(oldAccount, newAccount, 0, {from: receiver}));
 		var dataSet = new PublicInfo(temp[0], temp[1], temp[2], temp[3]);
@@ -152,7 +160,6 @@ contract('ProposalManager', (accounts) => {
 		console.log("Before[4]: " + before4 + ",  \tAfter[4]: " + after4);
 		console.log("Before[9]: " + before9 + ",  \tAfter[9]: " + after9);
 	});
-	*/
 
 	/*
 	it('Cast a Vote (Duplicate Votes): Invalid', async () => {

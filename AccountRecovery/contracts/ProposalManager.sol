@@ -36,9 +36,11 @@ contract ProposalManager {
 	// Counts up votes and distriputes the reward
 	function ConcludeAccountRecovery(address _oldAccount) external {
 		Proposal temp = getActiveProposal(_oldAccount, msg.sender);
-		bool result = temp.ConcludeAccountRecovery(UserManagerInstance);
-		if (result){							// Successful vote
+		RemoveActiveProposal(_oldAccount, msg.sender);	// Deletes proposal
 
+		(bool outcome, bool revote)  = temp.ConcludeAccountRecovery(UserManagerInstance);
+
+		if (outcome){											// Successful vote
 			// Finds old account and new account on the network
 			Person oldAccount = UserManagerInstance.getUser(_oldAccount);
 			Person newAccount = UserManagerInstance.getUser(msg.sender);
@@ -46,9 +48,12 @@ contract ProposalManager {
 			// Transfers balance
 			newAccount.increaseBalance(oldAccount.balance());	// Increase new accounts balance
 			oldAccount.decreaseBalance(oldAccount.balance());	// Decrease old accounts balance
+			
+			AddArchivedProposal(_oldAccount, msg.sender, outcome);
+
+		}else if (!revote){									// Requires a re-vote
+			AddArchivedProposal(_oldAccount, msg.sender, outcome);
 		}
-		AddArchivedProposal(_oldAccount, msg.sender, result);
-		RemoveActiveProposal(_oldAccount, msg.sender);	// Deletes proposal
 	}
 
 	// Allows a voter to cast a vote on a proposal
@@ -65,28 +70,43 @@ contract ProposalManager {
 	function ViewPrivateInformation(address oldAccount, address newAccount, uint i) external view returns (string memory, string memory)	{
 		return getActiveProposal(oldAccount, newAccount).ViewPrivateInformation( msg.sender, i );
 	}
-		// Find the active proposal between _oldAccount and _newAccount
+	
+	// Find the active proposal between _oldAccount and _newAccount
 	function getActiveProposal(address _oldAccount, address _newAccount) public view returns (Proposal) {
 		require(activeProposals[_oldAccount][_newAccount].length == 1, "There is no active Proposal");
 		return activeProposals[_oldAccount][_newAccount][0];
 	}
-		// Find the active proposal between _oldAccount and _newAccount
+
+	// Finds if there is an active Proposal between _oldAccount and _newAccount
+	function ActiveProposalLength(address _oldAccount, address _newAccount) external view returns (bool) {
+		return activeProposals[_oldAccount][_newAccount].length == 1;
+	}
+	
+	// Adds an active proposal between _oldAccount and _newAccount
 	function AddActiveProposal(address _oldAccount, address _newAccount, Proposal temp) external {
 		require(activeProposals[_oldAccount][_newAccount].length == 0, "There is already an active Proposal");
 		activeProposals[_oldAccount][_newAccount].push(temp);
 	}
-		// Find the active proposal between _oldAccount and _newAccount
+	
+	// Removes the active proposal between _oldAccount and _newAccount
 	function RemoveActiveProposal(address _oldAccount, address _newAccount) public {
 		require(activeProposals[_oldAccount][_newAccount].length == 1, "There is no active Proposal");
 		delete activeProposals[_oldAccount][_newAccount];
 	}
 
+	// Find the archived proposal between _oldAccount and _newAccount
 	function getArchivedProposals(address _oldAccount, address _newAccount) external view returns (bool[] memory) {
 		require(archivedProposalsResults[_oldAccount][_newAccount].length > 0, "There is no archived Proposal");
 		return archivedProposalsResults[_oldAccount][_newAccount];
 	}
 
-	function AddArchivedProposal(address _oldAccount, address _newAccount, bool temp) internal {
+	// Finds if there is an archived Proposal between _oldAccount and _newAccount
+	function ArchivedProposalLength(address _oldAccount, address _newAccount) external view returns (bool) {
+		return archivedProposalsResults[_oldAccount][_newAccount].length == 1;
+	}
+
+	// Adds an archived proposal between _oldAccount and _newAccount
+	function AddArchivedProposal(address _oldAccount, address _newAccount, bool temp) private {
 		archivedProposalsResults[_oldAccount][_newAccount].push(temp);
 	}
 }

@@ -55,7 +55,6 @@ contract('ProposalManager', (accounts) => {
 	});
 
 
-
 	it('Pay for Proposal (New Account[9], Old Account[0]): Valid', async () => {
 		const A1 = (await UserManagerInstance.getUserBalance(newAccount)).toNumber();
 
@@ -95,6 +94,7 @@ contract('ProposalManager', (accounts) => {
 			await PCI.MakeVotingToken(oldAccount, TradePartners[i], "HI", { from: newAccount });
 		}
 	});
+
 	const timeStamp = 1;
 	const amount = 10;
 	const receiver = accounts[1];
@@ -119,11 +119,11 @@ contract('ProposalManager', (accounts) => {
 	});
 
 	it('View Private Information (New Account[9], Old Account[0], Voter[1]: Valid', async () => {
-		var temp2 = (await PMI.ViewPrivateInformation(oldAccount, newAccount, 0, {from: accounts[1]}));
-		var dataSet2 = new PrivateInfo(temp2[0], temp2[1]);
+		var temp = (await PMI.ViewPrivateInformation(oldAccount, newAccount, 0, {from: accounts[1]}));
+		var dataSet = new PrivateInfo(temp[0], temp[1]);
 
-		assert.equal(dataSet2.description, description, "Wrong dataSet.description");
-		assert.equal(dataSet2.itemsInTrade, itemsInTrade, "Wrong dataSet.itemsInTrade");
+		assert.equal(dataSet.description, description, "Wrong dataSet.description");
+		assert.equal(dataSet.itemsInTrade, itemsInTrade, "Wrong dataSet.itemsInTrade");
 	});
 
 	it('Cast a Vote (Yes Votes)', async () => {

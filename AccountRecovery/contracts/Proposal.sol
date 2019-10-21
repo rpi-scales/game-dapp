@@ -107,7 +107,7 @@ contract Proposal {
 	}
 
 	// Counts total number of votes
-	function NumberOfVotes() internal view returns (uint) {
+	function NumberOfVotes() private view returns (uint) {
 		check();
 
 		uint total = 0;							// Total number of votes
@@ -121,7 +121,7 @@ contract Proposal {
 	}
 
 	// Counts the number of yess votes
-	function CountYesses() internal view returns(uint) {
+	function CountYesses() private view returns(uint) {
 		check();
 
 		uint yeses = 0;							// Total number of yesses
@@ -135,15 +135,16 @@ contract Proposal {
 	}
 
 	// Give rewards to voters and return outcome of vote
-	function ConcludeAccountRecovery(UserManager UserManagerInstance) external returns (bool){
+	function ConcludeAccountRecovery(UserManager UserManagerInstance) external returns (bool, bool){
 		check();
+		uint yesses = CountYesses()*100;						// Total number of yesses
+		uint total = NumberOfVotes();							// Total number of votes
+		bool outcome = yesses / total  >= 66;					// The outcome of the vote
+		bool revote = yesses / total  >= 60;					// There must be a re-vote
 
-		// Decides the outcome of the vote
-		bool outcome = (CountYesses()*100) / NumberOfVotes() >= 66;
-
-		for (uint i = 0; i < voters.getValuesLength(); i++) { // Goes through all voters
+		for (uint i = 0; i < voters.getValuesLength(); i++) { 	// Goes through all voters
 			VotingToken temp = votingtokens[voters.getValue(i)];
-			if (temp.ExistsAndVoted()){					// They are a voter and they voted
+			if (temp.ExistsAndVoted()){							// They are a voter and they voted
 				uint amount = (price / 2) / NumberOfVotes();	// Reward for participating 
 				if (temp.VotedYes() == outcome){					// They voted correctly 
 					amount += (price / 2) / CountYesses();		// Reward for voting correctly 
@@ -153,7 +154,7 @@ contract Proposal {
 				voter.increaseBalance(amount);					// Increases balance
 			}
 		}
-		return outcome;											// Return outcome of vote
+		return (outcome, revote);								// Return outcome of vote
 	}
 
 	// Add set of data for a give transaction for a give voter
@@ -176,11 +177,11 @@ contract Proposal {
 	}
 
 	// Generate random number using an address
-	function random(address address1, uint size) internal view returns (uint8) {
+	function random(address address1, uint size) private view returns (uint8) {
 		return uint8(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty, address1))) % size);
 	}
 
-	function check() internal view {
+	function check() private view {
 		require(paided == true, "This proposal has not been paid for yet");
 		require(voters.getValuesLength() > 0, "Trade partners have not been added to this yet proposal");
 		require(VotingTokenCreated == voters.getValuesLength(), "Have not created all the VotingTokens");

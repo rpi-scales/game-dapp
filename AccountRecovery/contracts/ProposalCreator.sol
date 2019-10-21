@@ -34,7 +34,8 @@ contract ProposalCreator {
 	
 	function StartProposal(address _oldAccount, string calldata _description) external returns (uint) {
 		require(_oldAccount != msg.sender, "An account can not recover itself");
-		// require(activeProposals[_oldAccount][msg.sender].length == 0, "There already exists a Proposal for this account");
+		// require(!PMI.ActiveProposalLength(_oldAccount, msg.sender), "There already exists a Proposal for this account");
+		// require(!PMI.ArchivedProposalLength(_oldAccount, msg.sender), "You have already failed a vote for this recovery");
 
 		uint price = CalculatePrice(_oldAccount);			// Calculates the price of the account recovery
 
@@ -55,15 +56,18 @@ contract ProposalCreator {
 	}
 
 	function AddTradePartners(address _oldAccount, address[] calldata _tradePartners) external returns(address[] memory){
+
 		FindtradePartners(_oldAccount, msg.sender, _tradePartners); // Checks if indicated partners have transactions 		
 		require(tradePartners.getValuesLength() >= 3, "Invalid Number of tradePartners");
+
+		// address[] memory haveTradedWith = FindOtherAddresses(_oldAccount, msg.sender);			// Finds other trade partners to quiz
 
 		FindOtherAddresses(_oldAccount, msg.sender);			// Finds other trade partners to quiz
 
 		// Creates Proposal and adds it to the active proposal map
 		PMI.getActiveProposal(_oldAccount, msg.sender).AddTradePartners(tradePartners.getValues(), haveTradedWith);
 
-		// delete tradePartners;
+		delete tradePartners;
 		delete haveTradedWith;
 	}
 
@@ -78,12 +82,11 @@ contract ProposalCreator {
 	}
 
 	// Checks if indicated trade partners actually have transactions with the old account
-	function FindtradePartners(address oldAccount, address newAccount, address[] memory _tradePartners) internal {
+	function FindtradePartners(address oldAccount, address newAccount, address[] memory _tradePartners) private {
 		for (uint i = 0; i < _tradePartners.length; i++){	// For each partner
 			if (newAccount != _tradePartners[i]){			// The new account can not be a voter
 				// They have made a transaction with the old account
 				if (TransactionManagerInstance.getTransactions(oldAccount, _tradePartners[i]).length > 0){
-					// tradePartners.push(_tradePartners[i]);	// Add them to the array
 					tradePartners.insert(_tradePartners[i]);
 				}
 			}
@@ -91,15 +94,15 @@ contract ProposalCreator {
 	}
 
 		// Finds other trade partners that are used to quiz the new account. These are random
-	function FindOtherAddresses(address oldAccount, address newAccount) internal {
+	function FindOtherAddresses(address oldAccount, address newAccount) private {
 		address[] memory addresses = UserManagerInstance.getAddresses(); // List of addresses on the network
 
 		for (uint i = 0; i < addresses.length; i++){					// For each address
 			if (newAccount != addresses[i]){							// The new account can not be a voter
 				// They have made a transaction with the old account
 				if (TransactionManagerInstance.getTransactions(oldAccount, addresses[i]).length > 0){
-					if (!tradePartners.contains(addresses[i])){
-						haveTradedWith.push(addresses[i]);
+					if (!tradePartners.contains(addresses[i])){			// This address is not already a voter
+						haveTradedWith.push(addresses[i]);				// This address is an eligible voter
 					}
 				}
 			}

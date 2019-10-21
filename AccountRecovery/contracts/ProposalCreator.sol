@@ -107,7 +107,6 @@ contract ProposalCreator {
 				}
 			}
 		}
-
 		require(haveTradedWith.length >= 3, "Invalid Number of haveTradedWith");
 	}
 

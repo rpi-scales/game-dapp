@@ -12,7 +12,7 @@ module.exports = (deployer, network, accounts) => {
 	deployer.link(set, ProposalCreator);
 
 	deployer.deploy(UserManager, accounts)
-	.then(() => deployer.deploy(TransactionManager, UserManager.address))
 	.then(() => deployer.deploy(ProposalManager, UserManager.address))
+	.then(() => deployer.deploy(TransactionManager, UserManager.address, ProposalManager.address))
 	.then(() => deployer.deploy(ProposalCreator, UserManager.address, TransactionManager.address, ProposalManager.address))
 };

@@ -5,6 +5,8 @@ pragma solidity >=0.4.0 <0.7.0;
 import "../contracts/UserManager.sol";
 import "../contracts/Proposal.sol";
 
+import "../contracts/Person.sol";
+
 
 /* <Summary> 
 	This contract manages all active proposal as well as makes and concludes proposals.

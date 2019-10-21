@@ -186,4 +186,8 @@ contract Proposal {
 		require(voters.getValuesLength() > 0, "Trade partners have not been added to this yet proposal");
 		require(VotingTokenCreated == voters.getValuesLength(), "Have not created all the VotingTokens");
 	}
+
+	function getVoters() public view returns (address[] memory){
+		return voters.getValues();
+	}
 }

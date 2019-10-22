@@ -29,7 +29,7 @@ function ReturnValue(value) {
 contract('ProposalManager', (accounts) => {
 
 	const newAccount = accounts[9];
-	const oldAccount = accounts[0];
+	const oldAccount = accounts[1];
 
 	it('Constructor', async () => {
 		UserManagerInstance = await UserManager.deployed(accounts);
@@ -38,11 +38,11 @@ contract('ProposalManager', (accounts) => {
 		PCI = await ProposalCreator.deployed(UserManagerInstance.address, TransactionManagerInstance.address, ProposalManager.address);
 	});
 
-	it('Send Money (Account[0] to Accounts[1,2,3,4,5,6,7,8]): Valid', async () => {
-		const sender = accounts[0];
+	it('Send Money (Account[1] to Accounts[2,3,4,5,6,7,8]): Valid', async () => {
+		const sender = accounts[1];
 
 		const amount = 10;
-		for (i = 1; i <= 8; i++) {
+		for (i = 2; i <= 8; i++) {
 			const senderStartingBalance = (await UserManagerInstance.getUserBalance(sender)).toNumber();
 			await TransactionManagerInstance.MakeTransaction(accounts[i], amount, { from: sender });
 			const senderEndingBalance = (await UserManagerInstance.getUserBalance(sender)).toNumber();
@@ -50,12 +50,12 @@ contract('ProposalManager', (accounts) => {
 		}
 	});
 
-	it('Start Proposal (New Account[9], Old Account[0]): Valid', async () => {
+	it('Start Proposal (New Account[9], Old Account[1]): Valid', async () => {
 		await PCI.StartProposal(oldAccount, "HI: Proposal", { from: newAccount });
 	});
 
 
-	it('Pay for Proposal (New Account[9], Old Account[0]): Valid', async () => {
+	it('Pay for Proposal: Valid', async () => {
 		const A1 = (await UserManagerInstance.getUserBalance(newAccount)).toNumber();
 
 		await PCI.Pay(oldAccount, true, { from: newAccount });
@@ -68,47 +68,43 @@ contract('ProposalManager', (accounts) => {
 		// console.log("Old Account Balance: " + B);
 	});
 
-	var TradePartners = [accounts[1], accounts[2], accounts[3], accounts[4]];
+	var TradePartners = [accounts[2], accounts[3], accounts[4], accounts[5]];
 
-	it('Add Trading Partners (New Account[9], Old Account[0], TradePartners: [1,2,3,4]): Valid', async () => {
+	it('Add Trading Partners: [2,3,4,5]: Valid', async () => {
 		await PCI.AddTradePartners(oldAccount, TradePartners, { from: newAccount });
 	});
 
-	it('Find Randomly assigned Voter (New Account[9], Old Account[0]): Valid', async () => {
-		await PCI.FindRandomTradingPartner(oldAccount, { from: newAccount });
-		var voter = (await PMI.ViewRandomTradingPartner(oldAccount, { from: newAccount }));
-		await PCI.AddRandomTradingPartner(oldAccount, true, { from: newAccount });
-		console.log("Random voter: " + voter);
-		TradePartners.push(voter);
-
-		await PCI.FindRandomTradingPartner(oldAccount, { from: newAccount });
-		voter = (await PMI.ViewRandomTradingPartner(oldAccount, { from: newAccount }));
-		await PCI.AddRandomTradingPartner(oldAccount, true, { from: newAccount });
-		console.log("Random voter: " + voter);
-		TradePartners.push(voter);
+	it('Find Randomly assigned Voter: Valid', async () => {
+		for (var i = 0; i < 3; i++) {
+			await PCI.FindRandomTradingPartner(oldAccount, { from: newAccount });
+			var voter = (await PCI.ViewRandomTradingPartner(oldAccount, { from: newAccount }));
+			await PCI.AddRandomTradingPartner(oldAccount, { from: newAccount });
+			// console.log("Random voter: " + voter);
+			TradePartners.push(voter);
+		}
 	});
 
-	it('Make Voting Token (New Account[9], Old Account[0], Voter[1,2,3,4]): Valid', async () => {
+	it('Make Voting Token: Valid', async () => {
 		for (var i = 0; i < TradePartners.length; i++) {
-			console.log("TradePartners[" + i + "]: " + TradePartners[i]);
+			// console.log("TradePartners[" + i + "]: " + TradePartners[i]);
 			await PCI.MakeVotingToken(oldAccount, TradePartners[i], "HI", { from: newAccount });
 		}
 	});
 
 	const timeStamp = 1;
 	const amount = 10;
-	const receiver = accounts[1];
+	const receiver = accounts[2];
 	const sender = oldAccount;
 	const description = "AAA";
 	const itemsInTrade = "BBB";
 
-	it('Add Transaction Data Set (New Account[9], Old Account[0], Voter[1,2,3,4]: Valid', async () => {
+	it('Add Transaction Data Set: Valid', async () => {
 		for (var i = 0; i < TradePartners.length; i++) {
 			await PCI.MakeTransactionDataSet(oldAccount, timeStamp, amount, TradePartners[i], description, itemsInTrade, { from: newAccount });
 		}
 	});
 
-	it('View Public Information (New Account[9], Old Account[0], Voter[1]: Valid', async () => {
+	it('View Public Information: Valid', async () => {
 		var temp = (await PMI.ViewPublicInformation(oldAccount, newAccount, 0, {from: receiver}));
 		var dataSet = new PublicInfo(temp[0], temp[1], temp[2], temp[3]);
 
@@ -118,8 +114,8 @@ contract('ProposalManager', (accounts) => {
 		assert.equal(dataSet.sender, sender, "Wrong dataSet.sender");
 	});
 
-	it('View Private Information (New Account[9], Old Account[0], Voter[1]: Valid', async () => {
-		var temp = (await PMI.ViewPrivateInformation(oldAccount, newAccount, 0, {from: accounts[1]}));
+	it('View Private Information: Valid', async () => {
+		var temp = (await PMI.ViewPrivateInformation(oldAccount, newAccount, 0, {from: receiver}));
 		var dataSet = new PrivateInfo(temp[0], temp[1]);
 
 		assert.equal(dataSet.description, description, "Wrong dataSet.description");
@@ -127,41 +123,46 @@ contract('ProposalManager', (accounts) => {
 	});
 
 	it('Cast a Vote (Yes Votes)', async () => {
-		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[1] });
 		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[2] });
 		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[3] });
+		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[4] });
 	});	
 
 	it('Cast a Vote (No Votes)', async () => {
-		await PMI.CastVote(oldAccount, newAccount, false, { from: accounts[4] });
+		await PMI.CastVote(oldAccount, newAccount, false, { from: accounts[5] });
 	});	
 
 	it('Conclude Account Recovery', async () => {
-		const before0 = (await UserManagerInstance.getUserBalance(accounts[0])).toNumber();
 		const before1 = (await UserManagerInstance.getUserBalance(accounts[1])).toNumber();
 		const before2 = (await UserManagerInstance.getUserBalance(accounts[2])).toNumber();
 		const before3 = (await UserManagerInstance.getUserBalance(accounts[3])).toNumber();
 		const before4 = (await UserManagerInstance.getUserBalance(accounts[4])).toNumber();
+		const before5 = (await UserManagerInstance.getUserBalance(accounts[5])).toNumber();
 		const before9 = (await UserManagerInstance.getUserBalance(accounts[9])).toNumber();
 
 		await PMI.ConcludeAccountRecovery(oldAccount, {from: newAccount});
 		var temp = (await PMI.getArchivedProposals(oldAccount, newAccount));
 		assert.equal(temp[0], true, "Wrong Outcome");
 
-		const after0 = (await UserManagerInstance.getUserBalance(accounts[0])).toNumber();
 		const after1 = (await UserManagerInstance.getUserBalance(accounts[1])).toNumber();
 		const after2 = (await UserManagerInstance.getUserBalance(accounts[2])).toNumber();
 		const after3 = (await UserManagerInstance.getUserBalance(accounts[3])).toNumber();
 		const after4 = (await UserManagerInstance.getUserBalance(accounts[4])).toNumber();
+		const after5 = (await UserManagerInstance.getUserBalance(accounts[5])).toNumber();
 		const after9 = (await UserManagerInstance.getUserBalance(accounts[9])).toNumber();
 
-		console.log("Before[0]: " + before0 + ",  \tAfter[0]: " + after0);
+		assert.equal(after1, 0, "Did not take the money from the old account");
+		assert.equal(after9, before9 + before1, "Did not give the money to the new account");
+
+
 		console.log("Before[1]: " + before1 + ",  \tAfter[1]: " + after1);
 		console.log("Before[2]: " + before2 + ",  \tAfter[2]: " + after2);
 		console.log("Before[3]: " + before3 + ",  \tAfter[3]: " + after3);
 		console.log("Before[4]: " + before4 + ",  \tAfter[4]: " + after4);
+		console.log("Before[5]: " + before5 + ",  \tAfter[5]: " + after5);
 		console.log("Before[9]: " + before9 + ",  \tAfter[9]: " + after9);
 	});
+
 	/*
 	it('Cast a Vote (Duplicate Votes): Invalid', async () => {
 		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[1] });

@@ -16,16 +16,27 @@ contract TransactionManager {
 	mapping (address => mapping (address => Transaction[]) ) transactions;
 	UserManager UserManagerInstance;			// Connects to the list of users on the network
 	ProposalManager ProposalManagerInstance;	// Connects to the list of active proposals on the network
-
+	address payable admin;
 
 	constructor(address UserManagerAddress, address ProposalManagerAddress) public {
 		UserManagerInstance = UserManager(UserManagerAddress);
 		ProposalManagerInstance = ProposalManager(ProposalManagerAddress);
+		admin = msg.sender;
+	}
+
+	function BuyCoin() public payable {
+		admin.transfer(msg.value);								// Spend ETH
+
+		Person buyer = UserManagerInstance.getUser(msg.sender); // Finds buy
+		uint price = msg.value/10000000000000000;				// 1 ETh = 100 Coins
+		buyer.increaseBalance(price);							// Increase the reciever's balance
+
 	}
 
 	// Makes a transaction between 2 users
 	function MakeTransaction(address _reciever, uint _amount) external {
 		require (!CheckForBribery(msg.sender, _reciever), "This is Bribery");
+		require (!CheckForOldAccount(msg.sender), "This transaction if from an Old Account");
 
 		Person sender = UserManagerInstance.getUser(msg.sender); // Finds sender
 		Person reciever = UserManagerInstance.getUser(_reciever); // Finds reciever
@@ -37,6 +48,11 @@ contract TransactionManager {
 	// Gets transacions between 2 addresses
 	function getTransactions(address sender, address receiver) external view returns(Transaction[] memory) {
 		return transactions[sender][receiver];
+	}
+
+	// Gets the number of transacions between 2 addresses
+	function NumberOfTransactions(address sender, address receiver) external view returns(uint) {
+		return transactions[sender][receiver].length;
 	}
 
 	// Get a transaction between 2 address but returns it in parts
@@ -51,6 +67,18 @@ contract TransactionManager {
 		for (uint i = 0; i < temp.length; i++){
 			if (temp[i].Equal(timeStamp, sender, receiver, _amount)){
 				return true;
+			}
+		}
+		return false;
+	}
+
+	function CheckForOldAccount(address _oldAccount) internal view returns (bool){
+		address[] memory addresses = UserManagerInstance.getAddresses(); // List of addresses on the network
+		for (uint i = 0; i < addresses.length; i++){					// For each address
+			if (_oldAccount != addresses[i]){							// The new account can not be a voter
+				if (ProposalManagerInstance.ActiveProposalLength(_oldAccount, addresses[i])){
+					return true;
+				}
 			}
 		}
 		return false;

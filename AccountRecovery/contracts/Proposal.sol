@@ -14,24 +14,19 @@ import "../contracts/Set.sol";
 */
 
 contract Proposal {
-
 	using Set for Set.Data;
 
 	mapping (address => VotingToken) votingtokens;		// Active Voting Tokens
 	Set.Data voters;									// Addresses who are eligible to vote
-
 	address[] haveTradedWith;
 
 	address lastOtherPartner = 0x0000000000000000000000000000000000000000;
-
 	address oldAccount;									// Address of the old account
 	address newAccount;									// Address of the new account
 	string description;									// Description of Proposal
 
 	uint price;											// Price of the account recovery
-
 	uint8 VotingTokenCreated = 0;						// Number of Voting tokens created
-
 	bool paided = false;
 
 	constructor(address _oldAccount, address _newAccount, string memory _description, uint _price) public {
@@ -49,15 +44,30 @@ contract Proposal {
 		paided = true;								// The proposal has been paid for
 	}
 
-	function AddTradePartners(address[] calldata _voters, address[] calldata _haveTradedWith) external {
-		require(paided == true, "This proposal has not been paid for yet");
-
-		for (uint i = 0; i < _voters.length; i++) { // Goes through all voters
-			voters.insert(_voters[i]);
+	function AddTradePartners(address[] calldata _tradePartners, UserManager UserManagerInstance, TransactionManager TransactionManagerInstance) external {
+		for (uint i = 0; i < _tradePartners.length; i++){	// For each partner
+			if (newAccount != _tradePartners[i]){			// The new account can not be a voter
+				// They have made a transaction with the old account
+				if (TransactionManagerInstance.NumberOfTransactions(oldAccount, _tradePartners[i]) > 0){
+					voters.insert(_tradePartners[i]);
+				}
+			}
 		}
+		require(voters.getValuesLength() >= 3, "Invalid Number of tradePartners");
 
-		// voters = _voters;
-		haveTradedWith = _haveTradedWith;
+		address[] memory addresses = UserManagerInstance.getAddresses(); // List of addresses on the network
+
+		for (uint i = 0; i < addresses.length; i++){					// For each address
+			if (newAccount != addresses[i]){							// The new account can not be a voter
+				// They have made a transaction with the old account
+				if (TransactionManagerInstance.NumberOfTransactions(oldAccount, addresses[i]) > 0){
+					if (!voters.contains(addresses[i])){			// This address is not already a voter
+						haveTradedWith.push(addresses[i]);				// This address is an eligible voter
+					}
+				}
+			}
+		}
+		require(haveTradedWith.length >= 3, "Invalid Number of haveTradedWith");
 	}
 
 	function FindRandomTradingPartner() external {
@@ -68,7 +78,7 @@ contract Proposal {
 		
 		while(voters.contains(haveTradedWith[index])){
 			index = random(lastOtherPartner, haveTradedWith.length);			// Find random value
-		}
+		}		
 		
 		lastOtherPartner = haveTradedWith[index];
 	}
@@ -106,48 +116,38 @@ contract Proposal {
 		votingtokens[from].CastVote(from, choice);
 	}
 
-	// Counts total number of votes
-	function NumberOfVotes() private view returns (uint) {
-		check();
-
+	function CountVotes() private view returns(uint, uint) {
 		uint total = 0;							// Total number of votes
+		uint yeses = 0;							// Total number of yesses
+
 		for (uint i = 0; i < voters.getValuesLength(); i++) { // Goes through all voters
 			VotingToken temp = votingtokens[voters.getValue(i)];
 			if (temp.ExistsAndVoted()){			// They are a voter and they voted
 				total++;						// Incroment the total number of votes
 			}
-		}
-		return total;
-	}
-
-	// Counts the number of yess votes
-	function CountYesses() private view returns(uint) {
-		check();
-
-		uint yeses = 0;							// Total number of yesses
-		for (uint i = 0; i < voters.getValuesLength(); i++) { // Goes through all voters
-			VotingToken temp = votingtokens[voters.getValue(i)];
 			if (temp.VotedYes()){ 				// They are a voter and they voted yes
 				yeses++;						// Incroment the number of yesses
-			}			
+			}
 		}
-		return yeses;
+		return (yeses, total);
 	}
+
 
 	// Give rewards to voters and return outcome of vote
 	function ConcludeAccountRecovery(UserManager UserManagerInstance) external returns (bool, bool){
 		check();
-		uint yesses = CountYesses()*100;						// Total number of yesses
-		uint total = NumberOfVotes();							// Total number of votes
-		bool outcome = yesses / total  >= 66;					// The outcome of the vote
-		bool revote = yesses / total  >= 60;					// There must be a re-vote
+
+		(uint yesses, uint total) = CountVotes();
+
+		bool outcome = (100*yesses) / total >= 66;			// The outcome of the vote
+		bool revote = (100*yesses) / total  >= 60;			// There must be a re-vote
 
 		for (uint i = 0; i < voters.getValuesLength(); i++) { 	// Goes through all voters
 			VotingToken temp = votingtokens[voters.getValue(i)];
 			if (temp.ExistsAndVoted()){							// They are a voter and they voted
-				uint amount = (price / 2) / NumberOfVotes();	// Reward for participating 
-				if (temp.VotedYes() == outcome){					// They voted correctly 
-					amount += (price / 2) / CountYesses();		// Reward for voting correctly 
+				uint amount = (price / 2) / total;				// Reward for participating 
+				if (temp.VotedYes() == outcome){				// They voted correctly 
+					amount += (price / 2) / yesses;				// Reward for voting correctly 
 				}
 
 				Person voter = UserManagerInstance.getUser(voters.getValue(i)); // Gets voter in the network
@@ -178,7 +178,7 @@ contract Proposal {
 
 	// Generate random number using an address
 	function random(address address1, uint size) private view returns (uint8) {
-		return uint8(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty, address1))) % size);
+		return uint8(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty, address1, gasleft()))) % size);
 	}
 
 	function check() private view {

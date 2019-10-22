@@ -9,15 +9,16 @@ pragma solidity >=0.4.0 <0.7.0;
 contract VotingToken {
 
 	struct DataSetInfo {
-		// Public Information
-		uint timeStamp;						// Time stamp of transaction
-		address sender;						// Sender of transaction
-		address receiver;					// Reciever of transaction
-		uint amount;						// Amount of transaction
-
 		// Private Information
 		string description;					// Description of transaction
 		string itemsInTrade;				// Items in transaction
+
+		// Public Information
+		address sender;						// Sender of transaction
+		address receiver;					// Reciever of transaction
+
+		uint timeStamp;						// Time stamp of transaction
+		uint amount;						// Amount of transaction
 	}
 
 	bool public exists;							// Used to determine if a token exists in a map
@@ -58,11 +59,24 @@ contract VotingToken {
 
 	// Add a data set for a transaction with this voter
 	function AddTransactionDataSet(uint _timeStamp, address _voter, uint _amount, 
-		string calldata _description, string calldata itemsInTrade) external {
+		string calldata _description, string calldata _itemsInTrade) external {
 
 		require(exists == true, "This voter does not exist");
-		transactionDataSets.push(DataSetInfo(_timeStamp, oldAccount, _voter, 
-			_amount, _description, itemsInTrade));
+		/*
+		DataSetInfo memory dataSet;
+
+		dataSet.timeStamp = _timeStamp;
+		dataSet.sender = oldAccount;
+		dataSet.receiver = _voter;
+		dataSet.amount = _amount;
+		dataSet.description = _description;
+		dataSet.itemsInTrade = _itemsInTrade;
+
+		transactionDataSets.push(dataSet);
+		*/
+
+		// transactionDataSets.push(DataSetInfo(_timeStamp, oldAccount, _voter, _amount, _description, _itemsInTrade));
+		transactionDataSets.push(DataSetInfo(_description, _itemsInTrade, oldAccount, _voter, _timeStamp, _amount));
 	}
 
 	// View public information on a set of data for a transaction

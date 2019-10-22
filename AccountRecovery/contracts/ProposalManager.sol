@@ -27,10 +27,6 @@ contract ProposalManager {
 		UserManagerInstance = UserManager(UserManagerAddress);
 	}
 
-	function ViewRandomTradingPartner(address _oldAccount) external view returns (address) {
-		return getActiveProposal(_oldAccount, msg.sender).ViewRandomTradingPartner();
-	}
-
 	function VetoAccountRecovery(address _newAccount) external{
 		RemoveActiveProposal(msg.sender, _newAccount);
 	}

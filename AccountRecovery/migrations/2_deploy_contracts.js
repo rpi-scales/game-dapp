@@ -6,8 +6,9 @@ const ProposalCreator = artifacts.require("ProposalCreator");
 const set = artifacts.require("Set");
 
 module.exports = (deployer, network, accounts) => {
-	deployer.deploy(set);
+	accounts.shift();
 
+	deployer.deploy(set);
 	deployer.deploy(UserManager, accounts)
 	.then(() => deployer.deploy(ProposalManager, UserManager.address))
 	.then(() => deployer.deploy(TransactionManager, UserManager.address, ProposalManager.address))

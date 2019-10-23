@@ -13,12 +13,23 @@ contract UserManager {
 
 	mapping (address => Person) Users;					// Map of users on the network
 	address[] addresses;								// Addresses on the network
+	address payable admin;
 
 	constructor(address[] memory _addresses) public {
 		addresses = _addresses;
+
+		admin = msg.sender;
+		Users[admin] = new Person(admin, 1000);
+
 		for (uint i = 0; i < addresses.length; i++) {	// Creates users on the network
-			Users[addresses[i]] = new Person(addresses[i], 1000);
+			require(admin != addresses[i], "Admin can not be part of the network");
+			Users[addresses[i]] = new Person(addresses[i], 0);
 		}
+	}
+
+	// Gets the adress of the admin of the network
+	function getAdmin() external view returns(address payable) {
+		return admin;
 	}
 
 	// Gets User with the given address

@@ -16,15 +16,14 @@ contract TransactionManager {
 	mapping (address => mapping (address => Transaction[]) ) transactions;
 	UserManager UserManagerInstance;			// Connects to the list of users on the network
 	ProposalManager ProposalManagerInstance;	// Connects to the list of active proposals on the network
-	address payable admin;
 
 	constructor(address UserManagerAddress, address ProposalManagerAddress) public {
 		UserManagerInstance = UserManager(UserManagerAddress);
 		ProposalManagerInstance = ProposalManager(ProposalManagerAddress);
-		admin = msg.sender;
 	}
 
 	function BuyCoin() public payable {
+		address payable admin = UserManagerInstance.getAdmin();
 		admin.transfer(msg.value);								// Spend ETH
 
 		Person buyer = UserManagerInstance.getUser(msg.sender); // Finds buy
@@ -35,6 +34,7 @@ contract TransactionManager {
 
 	// Makes a transaction between 2 users
 	function MakeTransaction(address _reciever, uint _amount) external {
+		require (_reciever != UserManagerInstance.getAdmin(), "Can not send money to the admin");
 		require (!CheckForBribery(msg.sender, _reciever), "This is Bribery");
 		require (!CheckForOldAccount(msg.sender), "This transaction if from an Old Account");
 

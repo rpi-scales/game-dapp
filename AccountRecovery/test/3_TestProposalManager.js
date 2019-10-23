@@ -22,14 +22,10 @@ function PrivateInfo(description, itemsInTrade) {
 	this.itemsInTrade = itemsInTrade;
 }
 
-function ReturnValue(value) {
-	this.value = value;
-}
-
 contract('ProposalManager', (accounts) => {
 
-	const newAccount = accounts[9];
-	const oldAccount = accounts[1];
+	const newAccount = accounts[8];
+	const oldAccount = accounts[0];
 
 	it('Constructor', async () => {
 		UserManagerInstance = await UserManager.deployed(accounts);
@@ -38,19 +34,30 @@ contract('ProposalManager', (accounts) => {
 		PCI = await ProposalCreator.deployed(UserManagerInstance.address, TransactionManagerInstance.address, ProposalManager.address);
 	});
 
-	it('Send Money (Account[1] to Accounts[2,3,4,5,6,7,8]): Valid', async () => {
-		const sender = accounts[1];
+	it('Buy Coins (accounts[0,8]): Valid', async () => {
+		const amount = 10000000000000000000;				// 10 ETH -> 1000 Coins
+		await TransactionManagerInstance.BuyCoin({ from: oldAccount, value: amount});
+		const endingBalance = (await UserManagerInstance.getUserBalance(oldAccount)).toNumber();
+		assert.equal(endingBalance, 1000, "Old Account did not buy the right amount of coins");
 
+		const amount2 = 1000000000000000000;				// 1 ETH -> 100 Coins
+		await TransactionManagerInstance.BuyCoin({ from: newAccount, value: amount2});
+		const endingBalance2 = (await UserManagerInstance.getUserBalance(newAccount)).toNumber();
+		assert.equal(endingBalance2, 100, "New Account did not buy the right amount of coins");
+
+	});
+
+	it('Send Money (Account[0] to Accounts[1,2,3,4,5,6,7]): Valid', async () => {
 		const amount = 10;
-		for (i = 2; i <= 8; i++) {
-			const senderStartingBalance = (await UserManagerInstance.getUserBalance(sender)).toNumber();
-			await TransactionManagerInstance.MakeTransaction(accounts[i], amount, { from: sender });
-			const senderEndingBalance = (await UserManagerInstance.getUserBalance(sender)).toNumber();
+		for (i = 1; i <= 7; i++) {
+			const senderStartingBalance = (await UserManagerInstance.getUserBalance(oldAccount)).toNumber();
+			await TransactionManagerInstance.MakeTransaction(accounts[i], amount, { from: oldAccount });
+			const senderEndingBalance = (await UserManagerInstance.getUserBalance(oldAccount)).toNumber();
 			assert.equal(senderEndingBalance, senderStartingBalance - amount, "Amount wasn't correctly taken from the sender");
 		}
 	});
 
-	it('Start Proposal (New Account[9], Old Account[1]): Valid', async () => {
+	it('Start Proposal (New Account[8], Old Account[0]): Valid', async () => {
 		await PCI.StartProposal(oldAccount, "HI: Proposal", { from: newAccount });
 	});
 
@@ -68,9 +75,9 @@ contract('ProposalManager', (accounts) => {
 		// console.log("Old Account Balance: " + B);
 	});
 
-	var TradePartners = [accounts[2], accounts[3], accounts[4], accounts[5]];
+	var TradePartners = [accounts[1], accounts[2], accounts[3], accounts[4]];
 
-	it('Add Trading Partners: [2,3,4,5]: Valid', async () => {
+	it('Add Trading Partners: [1,2,3,4]: Valid', async () => {
 		await PCI.AddTradePartners(oldAccount, TradePartners, { from: newAccount });
 	});
 
@@ -86,14 +93,13 @@ contract('ProposalManager', (accounts) => {
 
 	it('Make Voting Token: Valid', async () => {
 		for (var i = 0; i < TradePartners.length; i++) {
-			// console.log("TradePartners[" + i + "]: " + TradePartners[i]);
 			await PCI.MakeVotingToken(oldAccount, TradePartners[i], "HI", { from: newAccount });
 		}
 	});
 
 	const timeStamp = 1;
 	const amount = 10;
-	const receiver = accounts[2];
+	const receiver = accounts[1];
 	const sender = oldAccount;
 	const description = "AAA";
 	const itemsInTrade = "BBB";
@@ -123,44 +129,46 @@ contract('ProposalManager', (accounts) => {
 	});
 
 	it('Cast a Vote (Yes Votes)', async () => {
+		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[1] });
 		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[2] });
 		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[3] });
-		await PMI.CastVote(oldAccount, newAccount, true, { from: accounts[4] });
 	});	
 
 	it('Cast a Vote (No Votes)', async () => {
-		await PMI.CastVote(oldAccount, newAccount, false, { from: accounts[5] });
+		await PMI.CastVote(oldAccount, newAccount, false, { from: accounts[4] });
 	});	
 
 	it('Conclude Account Recovery', async () => {
+		const before0 = (await UserManagerInstance.getUserBalance(oldAccount)).toNumber();
 		const before1 = (await UserManagerInstance.getUserBalance(accounts[1])).toNumber();
 		const before2 = (await UserManagerInstance.getUserBalance(accounts[2])).toNumber();
 		const before3 = (await UserManagerInstance.getUserBalance(accounts[3])).toNumber();
 		const before4 = (await UserManagerInstance.getUserBalance(accounts[4])).toNumber();
-		const before5 = (await UserManagerInstance.getUserBalance(accounts[5])).toNumber();
-		const before9 = (await UserManagerInstance.getUserBalance(accounts[9])).toNumber();
+		const before8 = (await UserManagerInstance.getUserBalance(newAccount)).toNumber();
 
 		await PMI.ConcludeAccountRecovery(oldAccount, {from: newAccount});
 		var temp = (await PMI.getArchivedProposals(oldAccount, newAccount));
 		assert.equal(temp[0], true, "Wrong Outcome");
 
+		const after0 = (await UserManagerInstance.getUserBalance(oldAccount)).toNumber();
 		const after1 = (await UserManagerInstance.getUserBalance(accounts[1])).toNumber();
 		const after2 = (await UserManagerInstance.getUserBalance(accounts[2])).toNumber();
 		const after3 = (await UserManagerInstance.getUserBalance(accounts[3])).toNumber();
 		const after4 = (await UserManagerInstance.getUserBalance(accounts[4])).toNumber();
-		const after5 = (await UserManagerInstance.getUserBalance(accounts[5])).toNumber();
-		const after9 = (await UserManagerInstance.getUserBalance(accounts[9])).toNumber();
+		const after8 = (await UserManagerInstance.getUserBalance(newAccount)).toNumber();
 
-		assert.equal(after1, 0, "Did not take the money from the old account");
-		assert.equal(after9, before9 + before1, "Did not give the money to the new account");
+		assert.equal(after0, 0, "Did not take the money from the old account");
+		assert.equal(after8, before8 + before0, "Did not give the money to the new account");
+		assert.equal(after1, after2, "Did not award the same amount of money");
+		assert.equal(after2, after3, "Did not award the same amount of money 2");
+		assert.isAbove(after1, after4, "Voter was not rewarded for voting correctly");
 
-
-		console.log("Before[1]: " + before1 + ",  \tAfter[1]: " + after1);
-		console.log("Before[2]: " + before2 + ",  \tAfter[2]: " + after2);
-		console.log("Before[3]: " + before3 + ",  \tAfter[3]: " + after3);
-		console.log("Before[4]: " + before4 + ",  \tAfter[4]: " + after4);
-		console.log("Before[5]: " + before5 + ",  \tAfter[5]: " + after5);
-		console.log("Before[9]: " + before9 + ",  \tAfter[9]: " + after9);
+		// console.log("Before[0]: " + before0 + ",  \tAfter[0]: " + after0);
+		// console.log("Before[1]: " + before1 + ",  \tAfter[1]: " + after1);
+		// console.log("Before[2]: " + before2 + ",  \tAfter[2]: " + after2);
+		// console.log("Before[3]: " + before3 + ",  \tAfter[3]: " + after3);
+		// console.log("Before[4]: " + before4 + ",  \tAfter[4]: " + after4);
+		// console.log("Before[8]: " + before8 + ",  \tAfter[8]: " + after8);
 	});
 
 	/*

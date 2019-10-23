@@ -13,7 +13,6 @@ import "../contracts/Proposal.sol";
 */
 
 contract ProposalCreator {
-	
 	UserManager UserManagerInstance;				// Connects to the list of users on the network
 	TransactionManager TransactionManagerInstance;	// Connects to the transaction data on the network
 	ProposalManager PMI;							// Connects to the transaction data on the network
@@ -28,6 +27,7 @@ contract ProposalCreator {
 	}
 	
 	function StartProposal(address _oldAccount, string calldata _description) external returns (uint) {
+		require(_oldAccount != UserManagerInstance.getAdmin(), "Can not try to recover the admin");
 		require(_oldAccount != msg.sender, "An account can not recover itself");
 		require(!PMI.ActiveProposalLength(_oldAccount, msg.sender), "There already exists a Proposal for this account");
 		require(!PMI.ArchivedProposalLength(_oldAccount, msg.sender), "You have already failed a vote for this recovery");
@@ -84,22 +84,3 @@ contract ProposalCreator {
 		PMI.getActiveProposal(oldAccount, msg.sender).AddTransactionDataSet(timeStamp, _voter, _amount, _description, _itemsInTrade);
 	}
 }
-
-// Gas to Deploy 
-
-// 6595020	No Require 
-// 6323170	Moved functions and removed global variables
-// 6537625	Has both Require
-// 6537625	Removed link to Set
-// 6539233	Changed Instance to address
-// 6537625	Undid
-
-// 6556099	Combined Couting Votes in Proposal
-
-// 6555907	Repacking DataSetInfo
-// 6551071	Removing CalculatePrice function
-
-// 6542998	Combined FindOtherAddresses and FindtradePartners functions in Proposal
-
-// 6496688
-// 6498296

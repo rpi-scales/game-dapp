@@ -21,35 +21,27 @@ contract VotingToken {
 		uint amount;						// Amount of transaction
 	}
 
-	bool public exists;							// Used to determine if a token exists in a map
+	DataSetInfo[] transactionDataSets;		// Sets of data for transactions
 
 	string description;						// Description of the transaction between these addresses
 	address oldAccount;						// Address of the old account
 	address voter;							// Address of the voter
 
-	bool vote;								// The decision of the voter
-	bool voted;								// If the voter has voted
-
-	DataSetInfo[] transactionDataSets;		// Sets of data for transactions
+	bool public vote = false;								// The decision of the voter
+	bool public voted = false;								// If the voter has voted
 
 	event Vote(address indexed _voter, bool _choice); // Voting Event
 
 	constructor(address _oldAccount, address _voter, string memory _description) public {
 		voter = _voter;
 		oldAccount = _oldAccount;
-
-		vote = false;
-		exists = true;
-		voted = false;
-
 		description = _description;
 	}
 
 	// Casting a vote
-	function CastVote(address from, bool choice) external {
+	function CastVote(bool choice) external {
 		// Checks if the voter is allowed to vote
-		require(exists == true, "This voter does not exist");
-		require(voter == from, "Sent from the wrong voter");
+		// require(voter == from, "Sent from the wrong voter");
 		require(transactionDataSets.length > 0, "There is no transaction data to view");
 		require(voted == false, "Already Voted");
 		vote = choice;
@@ -61,21 +53,6 @@ contract VotingToken {
 	function AddTransactionDataSet(uint _timeStamp, address _voter, uint _amount, 
 		string calldata _description, string calldata _itemsInTrade) external {
 
-		require(exists == true, "This voter does not exist");
-		/*
-		DataSetInfo memory dataSet;
-
-		dataSet.timeStamp = _timeStamp;
-		dataSet.sender = oldAccount;
-		dataSet.receiver = _voter;
-		dataSet.amount = _amount;
-		dataSet.description = _description;
-		dataSet.itemsInTrade = _itemsInTrade;
-
-		transactionDataSets.push(dataSet);
-		*/
-
-		// transactionDataSets.push(DataSetInfo(_timeStamp, oldAccount, _voter, _amount, _description, _itemsInTrade));
 		transactionDataSets.push(DataSetInfo(_description, _itemsInTrade, oldAccount, _voter, _timeStamp, _amount));
 	}
 
@@ -89,15 +66,5 @@ contract VotingToken {
 	function ViewPrivateInformation(uint i) external view returns (string memory, string memory) {
 		require(transactionDataSets.length > 0, "There is no transaction data to view");
 		return (transactionDataSets[i].description, transactionDataSets[i].itemsInTrade);
-	}
-
-	// The voter is eligible to vote and has voted
-	function ExistsAndVoted() external view returns (bool){
-		return exists && voted;
-	}
-
-	// The voter is eligible to vote and voted yes
-	function VotedYes() external view returns (bool) {
-		return exists && voted && vote;
 	}
 }

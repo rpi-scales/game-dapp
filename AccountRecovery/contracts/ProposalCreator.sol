@@ -26,7 +26,7 @@ contract ProposalCreator {
 		PMI = ProposalManager(ProposalManagerAddress);
 	}
 	
-	function StartProposal(address _oldAccount, string calldata _description) external returns (uint) {
+	function StartProposal(address _oldAccount, string calldata _description) external {
 		require(_oldAccount != UserManagerInstance.getAdmin(), "Can not try to recover the admin");
 		require(_oldAccount != msg.sender, "An account can not recover itself");
 		require(!PMI.ActiveProposalLength(_oldAccount, msg.sender), "There already exists a Proposal for this account");
@@ -41,7 +41,10 @@ contract ProposalCreator {
 		Proposal temp = new Proposal(_oldAccount, msg.sender, _description, price);
 
 		PMI.AddActiveProposal(_oldAccount, msg.sender, temp);		// Deletes proposal
-		return price;
+	}
+
+	function ViewPrice(address _oldAccount) external view returns (uint) {
+		return PMI.getActiveProposal(_oldAccount, msg.sender).price();
 	}
 
 	function Pay(address _oldAccount, bool _pay) external {
@@ -84,3 +87,5 @@ contract ProposalCreator {
 		PMI.getActiveProposal(oldAccount, msg.sender).AddTransactionDataSet(timeStamp, _voter, _amount, _description, _itemsInTrade);
 	}
 }
+
+// 6471940

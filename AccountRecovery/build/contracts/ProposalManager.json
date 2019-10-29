@@ -10332,12 +10332,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xb231C9AD22d403f17E76660FA610502544deBc40",
-      "transactionHash": "0x4815beac0b792511153c40346acdd5849df84ac3ebfeb6d75a22f9f3ee27a4ee"
+      "address": "0xa54A2271Cf764Bd75F0524A5B928633d92783998",
+      "transactionHash": "0x4c618b0b252e72f5a645b400108194d6869737ac5d3d543c0bb9041150391052"
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-29T18:01:59.436Z",
+  "updatedAt": "2019-10-29T18:49:20.572Z",
   "devdoc": {
     "methods": {}
   },

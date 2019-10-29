@@ -9,6 +9,7 @@ module.exports = (deployer, network, accounts) => {
 	accounts.shift();
 
 	deployer.deploy(set);
+
 	deployer.deploy(UserManager, accounts)
 	.then(() => deployer.deploy(ProposalManager, UserManager.address))
 	.then(() => deployer.deploy(TransactionManager, UserManager.address, ProposalManager.address))

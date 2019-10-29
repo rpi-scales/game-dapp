@@ -2364,12 +2364,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xA95341289683F7A4Ba7e8d07C93c9421Ba3444B1",
-      "transactionHash": "0x7880e2cdddbdafd80ff72b15ad5c6f21563c97dbe7a1ab57381181ccfbf8ac42"
+      "address": "0x11aADE599aCcE90Ec83c7665E19b559bDf03aEDe",
+      "transactionHash": "0xe136a4b7212570696a46cc94634c1b05e85d3813bd1390b32dd893c6edfdf892"
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-29T18:01:59.462Z",
+  "updatedAt": "2019-10-29T18:49:20.598Z",
   "devdoc": {
     "methods": {}
   },

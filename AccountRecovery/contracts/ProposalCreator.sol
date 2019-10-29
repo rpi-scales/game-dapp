@@ -13,6 +13,9 @@ import "../contracts/Proposal.sol";
 */
 
 contract ProposalCreator {
+
+	// using Proposal for Proposal.AAA;
+
 	UserManager UserManagerInstance;				// Connects to the list of users on the network
 	TransactionManager TransactionManagerInstance;	// Connects to the transaction data on the network
 	ProposalManager PMI;							// Connects to the transaction data on the network
@@ -88,4 +91,5 @@ contract ProposalCreator {
 	}
 }
 
+// 6581377
 // 6581377

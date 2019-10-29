@@ -186,6 +186,8 @@ contract Proposal {
 	// Generate random number using an address
 	function random(address address1, uint size) private view returns (uint8) {
 		return uint8(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty, address1, gasleft()))) % size);
+		// return uint8(uint256(keccak256(abi.encodePacked(block.difficulty, block.coinbase, address1, gasleft()))) % size);
+
 	}
 
 	function check(address _voter) private view {

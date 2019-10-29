@@ -29,6 +29,7 @@ contract ProposalManager {
 
 	function VetoAccountRecovery(address _newAccount) external{
 		RemoveActiveProposal(msg.sender, _newAccount);
+		AddArchivedProposal(msg.sender, _newAccount, false);
 	}
 	
 	// Counts up votes and distriputes the reward

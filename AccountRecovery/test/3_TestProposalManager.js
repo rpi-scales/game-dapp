@@ -86,7 +86,7 @@ contract('ProposalManager', (accounts) => {
 			await PCI.FindRandomTradingPartner(oldAccount, { from: newAccount });
 			var voter = (await PCI.ViewRandomTradingPartner(oldAccount, { from: newAccount }));
 			await PCI.AddRandomTradingPartner(oldAccount, { from: newAccount });
-			// console.log("Random voter: " + voter);
+			console.log("Random voter: " + voter);
 			TradePartners.push(voter);
 		}
 	});

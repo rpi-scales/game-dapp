@@ -28,4 +28,8 @@ contract Person {
 	function decreaseBalance(uint amount) external {
 		balance -= amount;
 	}
+
+	function setVetoTime(uint time) external {
+		vetoTime = time;
+	}
 }

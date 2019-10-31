@@ -103,23 +103,37 @@
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "time",
+          "type": "uint256"
+        }
+      ],
+      "name": "setVetoTime",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"exists\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"decreaseBalance\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"increaseBalance\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"ID\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"balance\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"vetoTime\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"_ID\",\"type\":\"address\"},{\"name\":\"_balance\",\"type\":\"uint256\"},{\"name\":\"_vetoTime\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/Person.sol\":\"Person\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/Person.sol\":{\"keccak256\":\"0xe254f8b9d55935cca00eb8ecf1c7310820373286fd2fb6f8157f8d9b1af9e1a6\",\"urls\":[\"bzzr://e7bf7a57b8739b423ecb8d0e674e3c69721f2264b7e351590ce4897699fe5059\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b506040516060806102d18339810180604052606081101561003057600080fd5b81019080805190602001909291908051906020019092919080519060200190929190505050826000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550816001819055506001600260006101000a81548160ff02191690831515021790555080600381905550505050610201806100d06000396000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c8063267c4ae414610067578063392aee43146100895780633e4ccb40146100b7578063b3cea217146100e5578063b69ef8a81461012f578063b7f688521461014d575b600080fd5b61006f61016b565b604051808215151515815260200191505060405180910390f35b6100b56004803603602081101561009f57600080fd5b810190808035906020019092919050505061017e565b005b6100e3600480360360208110156100cd57600080fd5b8101908080359060200190929190505050610191565b005b6100ed6101a4565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6101376101c9565b6040518082815260200191505060405180910390f35b6101556101cf565b6040518082815260200191505060405180910390f35b600260009054906101000a900460ff1681565b8060016000828254039250508190555050565b8060016000828254019250508190555050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60015481565b6003548156fea165627a7a72305820668cf50e4b04e899810fcf0dcf86d8ef1b5304cc9033bccd9fdf6154b4a591610029",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100625760003560e01c8063267c4ae414610067578063392aee43146100895780633e4ccb40146100b7578063b3cea217146100e5578063b69ef8a81461012f578063b7f688521461014d575b600080fd5b61006f61016b565b604051808215151515815260200191505060405180910390f35b6100b56004803603602081101561009f57600080fd5b810190808035906020019092919050505061017e565b005b6100e3600480360360208110156100cd57600080fd5b8101908080359060200190929190505050610191565b005b6100ed6101a4565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6101376101c9565b6040518082815260200191505060405180910390f35b6101556101cf565b6040518082815260200191505060405180910390f35b600260009054906101000a900460ff1681565b8060016000828254039250508190555050565b8060016000828254019250508190555050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60015481565b6003548156fea165627a7a72305820668cf50e4b04e899810fcf0dcf86d8ef1b5304cc9033bccd9fdf6154b4a591610029",
-  "sourceMap": "125:576:1:-;;;317:147;8:9:-1;5:2;;;30:1;27;20:12;5:2;317:147:1;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;317:147:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;390:3;385:2;;:8;;;;;;;;;;;;;;;;;;408;398:7;:18;;;;430:4;421:6;;:13;;;;;;;;;;;;;;;;;;450:9;439:8;:20;;;;317:147;;;125:576;;;;;;",
-  "deployedSourceMap": "125:576:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;125:576:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;247:18;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;624:74;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;624:74:1;;;;;;;;;;;;;;;;;:::i;:::-;;507;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;507:74:1;;;;;;;;;;;;;;;;;:::i;:::-;;145:17;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;195:19;;;:::i;:::-;;;;;;;;;;;;;;;;;;;291:20;;;:::i;:::-;;;;;;;;;;;;;;;;;;;247:18;;;;;;;;;;;;;:::o;624:74::-;687:6;676:7;;:17;;;;;;;;;;;624:74;:::o;507:::-;570:6;559:7;;:17;;;;;;;;;;;507:74;:::o;145:17::-;;;;;;;;;;;;;:::o;195:19::-;;;;:::o;291:20::-;;;;:::o",
-  "source": "/* Person.sol */\r\n\r\npragma solidity >=0.4.0 <0.7.0;\r\n\r\n/* <Summary> \r\n\tThis contract repersents a user on the network\r\n*/\r\n\r\ncontract Person {\r\n\taddress public ID;\t\t\t// The address of the user\r\n\tuint public balance;\t\t// The balance of that user\r\n\tbool public exists;\t\t\t// Used for mapping\r\n\tuint public vetoTime;\r\n\r\n\tconstructor(address _ID, uint _balance, uint _vetoTime) public {\r\n\t\tID = _ID;\r\n\t\tbalance = _balance;\r\n\t\texists = true;\r\n\t\tvetoTime = _vetoTime;\r\n\t}\r\n\r\n\t// Increase the balance of the user\r\n\tfunction increaseBalance(uint amount) external {\r\n\t\tbalance += amount;\r\n\t}\r\n\r\n\t// Decrease the balance of the user\r\n\tfunction decreaseBalance(uint amount) external {\r\n\t\tbalance -= amount;\r\n\t}\r\n}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"exists\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"decreaseBalance\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"increaseBalance\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"setVetoTime\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"ID\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"balance\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"vetoTime\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"_ID\",\"type\":\"address\"},{\"name\":\"_balance\",\"type\":\"uint256\"},{\"name\":\"_vetoTime\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/Person.sol\":\"Person\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/Person.sol\":{\"keccak256\":\"0xda4371dfaf7b5501913e03fa272f1105631291c0c663dd8ce1d9c25ce6da2cdd\",\"urls\":[\"bzzr://768e304b2346df62bfca72b53c98c56b42e159aed483161da07ed8dd8225a211\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516060806103248339810180604052606081101561003057600080fd5b81019080805190602001909291908051906020019092919080519060200190929190505050826000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550816001819055506001600260006101000a81548160ff02191690831515021790555080600381905550505050610254806100d06000396000f3fe608060405234801561001057600080fd5b506004361061007d5760003560e01c80634ea13d841161005b5780634ea13d8414610100578063b3cea2171461012e578063b69ef8a814610178578063b7f68852146101965761007d565b8063267c4ae414610082578063392aee43146100a45780633e4ccb40146100d2575b600080fd5b61008a6101b4565b604051808215151515815260200191505060405180910390f35b6100d0600480360360208110156100ba57600080fd5b81019080803590602001909291905050506101c7565b005b6100fe600480360360208110156100e857600080fd5b81019080803590602001909291905050506101da565b005b61012c6004803603602081101561011657600080fd5b81019080803590602001909291905050506101ed565b005b6101366101f7565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61018061021c565b6040518082815260200191505060405180910390f35b61019e610222565b6040518082815260200191505060405180910390f35b600260009054906101000a900460ff1681565b8060016000828254039250508190555050565b8060016000828254019250508190555050565b8060038190555050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60015481565b6003548156fea165627a7a72305820cba3da87d532e2daa6cd7f39a77694b300ae42d367f580ac654f45a5d84a51a50029",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061007d5760003560e01c80634ea13d841161005b5780634ea13d8414610100578063b3cea2171461012e578063b69ef8a814610178578063b7f68852146101965761007d565b8063267c4ae414610082578063392aee43146100a45780633e4ccb40146100d2575b600080fd5b61008a6101b4565b604051808215151515815260200191505060405180910390f35b6100d0600480360360208110156100ba57600080fd5b81019080803590602001909291905050506101c7565b005b6100fe600480360360208110156100e857600080fd5b81019080803590602001909291905050506101da565b005b61012c6004803603602081101561011657600080fd5b81019080803590602001909291905050506101ed565b005b6101366101f7565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61018061021c565b6040518082815260200191505060405180910390f35b61019e610222565b6040518082815260200191505060405180910390f35b600260009054906101000a900460ff1681565b8060016000828254039250508190555050565b8060016000828254019250508190555050565b8060038190555050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60015481565b6003548156fea165627a7a72305820cba3da87d532e2daa6cd7f39a77694b300ae42d367f580ac654f45a5d84a51a50029",
+  "sourceMap": "125:647:1:-;;;317:147;8:9:-1;5:2;;;30:1;27;20:12;5:2;317:147:1;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;317:147:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;390:3;385:2;;:8;;;;;;;;;;;;;;;;;;408;398:7;:18;;;;430:4;421:6;;:13;;;;;;;;;;;;;;;;;;450:9;439:8;:20;;;;317:147;;;125:647;;;;;;",
+  "deployedSourceMap": "125:647:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;125:647:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;247:18;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;624:74;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;624:74:1;;;;;;;;;;;;;;;;;:::i;:::-;;507;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;507:74:1;;;;;;;;;;;;;;;;;:::i;:::-;;703:66;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;703:66:1;;;;;;;;;;;;;;;;;:::i;:::-;;145:17;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;195:19;;;:::i;:::-;;;;;;;;;;;;;;;;;;;291:20;;;:::i;:::-;;;;;;;;;;;;;;;;;;;247:18;;;;;;;;;;;;;:::o;624:74::-;687:6;676:7;;:17;;;;;;;;;;;624:74;:::o;507:::-;570:6;559:7;;:17;;;;;;;;;;;507:74;:::o;703:66::-;760:4;749:8;:15;;;;703:66;:::o;145:17::-;;;;;;;;;;;;;:::o;195:19::-;;;;:::o;291:20::-;;;;:::o",
+  "source": "/* Person.sol */\r\n\r\npragma solidity >=0.4.0 <0.7.0;\r\n\r\n/* <Summary> \r\n\tThis contract repersents a user on the network\r\n*/\r\n\r\ncontract Person {\r\n\taddress public ID;\t\t\t// The address of the user\r\n\tuint public balance;\t\t// The balance of that user\r\n\tbool public exists;\t\t\t// Used for mapping\r\n\tuint public vetoTime;\r\n\r\n\tconstructor(address _ID, uint _balance, uint _vetoTime) public {\r\n\t\tID = _ID;\r\n\t\tbalance = _balance;\r\n\t\texists = true;\r\n\t\tvetoTime = _vetoTime;\r\n\t}\r\n\r\n\t// Increase the balance of the user\r\n\tfunction increaseBalance(uint amount) external {\r\n\t\tbalance += amount;\r\n\t}\r\n\r\n\t// Decrease the balance of the user\r\n\tfunction decreaseBalance(uint amount) external {\r\n\t\tbalance -= amount;\r\n\t}\r\n\r\n\tfunction setVetoTime(uint time) external {\r\n\t\tvetoTime = time;\r\n\t}\r\n}",
   "sourcePath": "C:\\Users\\m5w5b\\Desktop\\GitHub\\game-dapp\\AccountRecovery\\contracts\\Person.sol",
   "ast": {
     "absolutePath": "/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/Person.sol",
     "exportedSymbols": {
       "Person": [
-        113
+        123
       ]
     },
-    "id": 114,
+    "id": 124,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -142,9 +156,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 113,
+        "id": 123,
         "linearizedBaseContracts": [
-          113
+          123
         ],
         "name": "Person",
         "nodeType": "ContractDefinition",
@@ -154,7 +168,7 @@
             "id": 60,
             "name": "ID",
             "nodeType": "VariableDeclaration",
-            "scope": 113,
+            "scope": 123,
             "src": "145:17:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -181,7 +195,7 @@
             "id": 62,
             "name": "balance",
             "nodeType": "VariableDeclaration",
-            "scope": 113,
+            "scope": 123,
             "src": "195:19:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -207,7 +221,7 @@
             "id": 64,
             "name": "exists",
             "nodeType": "VariableDeclaration",
-            "scope": 113,
+            "scope": 123,
             "src": "247:18:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -233,7 +247,7 @@
             "id": 66,
             "name": "vetoTime",
             "nodeType": "VariableDeclaration",
-            "scope": 113,
+            "scope": 123,
             "src": "291:20:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -550,7 +564,7 @@
               "parameters": [],
               "src": "380:0:1"
             },
-            "scope": 113,
+            "scope": 123,
             "src": "317:147:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -656,7 +670,7 @@
               "parameters": [],
               "src": "554:0:1"
             },
-            "scope": 113,
+            "scope": 123,
             "src": "507:74:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -762,27 +776,133 @@
               "parameters": [],
               "src": "671:0:1"
             },
-            "scope": 113,
+            "scope": 123,
             "src": "624:74:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 121,
+              "nodeType": "Block",
+              "src": "744:25:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 119,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 117,
+                      "name": "vetoTime",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 66,
+                      "src": "749:8:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 118,
+                      "name": "time",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 114,
+                      "src": "760:4:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "749:15:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 120,
+                  "nodeType": "ExpressionStatement",
+                  "src": "749:15:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 122,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setVetoTime",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 115,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 114,
+                  "name": "time",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 122,
+                  "src": "724:9:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 113,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "724:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "723:11:1"
+            },
+            "returnParameters": {
+              "id": 116,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "744:0:1"
+            },
+            "scope": 123,
+            "src": "703:66:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 114,
-        "src": "125:576:1"
+        "scope": 124,
+        "src": "125:647:1"
       }
     ],
-    "src": "20:681:1"
+    "src": "20:752:1"
   },
   "legacyAST": {
     "absolutePath": "/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/Person.sol",
     "exportedSymbols": {
       "Person": [
-        113
+        123
       ]
     },
-    "id": 114,
+    "id": 124,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -805,9 +925,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 113,
+        "id": 123,
         "linearizedBaseContracts": [
-          113
+          123
         ],
         "name": "Person",
         "nodeType": "ContractDefinition",
@@ -817,7 +937,7 @@
             "id": 60,
             "name": "ID",
             "nodeType": "VariableDeclaration",
-            "scope": 113,
+            "scope": 123,
             "src": "145:17:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -844,7 +964,7 @@
             "id": 62,
             "name": "balance",
             "nodeType": "VariableDeclaration",
-            "scope": 113,
+            "scope": 123,
             "src": "195:19:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -870,7 +990,7 @@
             "id": 64,
             "name": "exists",
             "nodeType": "VariableDeclaration",
-            "scope": 113,
+            "scope": 123,
             "src": "247:18:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -896,7 +1016,7 @@
             "id": 66,
             "name": "vetoTime",
             "nodeType": "VariableDeclaration",
-            "scope": 113,
+            "scope": 123,
             "src": "291:20:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1213,7 +1333,7 @@
               "parameters": [],
               "src": "380:0:1"
             },
-            "scope": 113,
+            "scope": 123,
             "src": "317:147:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1319,7 +1439,7 @@
               "parameters": [],
               "src": "554:0:1"
             },
-            "scope": 113,
+            "scope": 123,
             "src": "507:74:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1425,18 +1545,124 @@
               "parameters": [],
               "src": "671:0:1"
             },
-            "scope": 113,
+            "scope": 123,
             "src": "624:74:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 121,
+              "nodeType": "Block",
+              "src": "744:25:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 119,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 117,
+                      "name": "vetoTime",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 66,
+                      "src": "749:8:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 118,
+                      "name": "time",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 114,
+                      "src": "760:4:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "749:15:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 120,
+                  "nodeType": "ExpressionStatement",
+                  "src": "749:15:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 122,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setVetoTime",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 115,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 114,
+                  "name": "time",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 122,
+                  "src": "724:9:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 113,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "724:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "723:11:1"
+            },
+            "returnParameters": {
+              "id": 116,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "744:0:1"
+            },
+            "scope": 123,
+            "src": "703:66:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 114,
-        "src": "125:576:1"
+        "scope": 124,
+        "src": "125:647:1"
       }
     ],
-    "src": "20:681:1"
+    "src": "20:752:1"
   },
   "compiler": {
     "name": "solc",
@@ -1444,7 +1670,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-31T15:18:42.073Z",
+  "updatedAt": "2019-10-31T15:37:03.968Z",
   "devdoc": {
     "methods": {}
   },

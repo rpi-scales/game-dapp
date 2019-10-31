@@ -24,34 +24,37 @@ contract UserManager {
 		Users[addresses[0]] = new Person(addresses[0], 0, 1);
 
 		for (uint i = 1; i < addresses.length; i++) {	// Creates users on the network
-			// require(admin != addresses[i], "Admin can not be part of the network");
 			Users[addresses[i]] = new Person(addresses[i], 0, 86400);
 		}
 	}
 
 	// Gets the adress of the admin of the network
-	function getAdmin() external view returns(address payable) {
+	function getAdmin() external view returns (address payable) {
 		return admin;
 	}
 
 	// Gets User with the given address
-	function getUser(address i) external view returns(Person) {
+	function getUser(address i) external view returns (Person) {
 		require(Users[i].exists() == true, "This user does not exist");
 		return Users[i];
 	}
 
 	// Gets the list of addresses on the network
-	function getAddresses() external view returns(address[] memory) {
+	function getAddresses() external view returns (address[] memory) {
 		return addresses;
 	}
 
-	function getUserBalance(address i) external view returns(uint) {
+	function getUserBalance(address i) external view returns (uint) {
 		require(Users[i].exists() == true, "This user does not exist");
 		return Users[i].balance();
 	}
 
-	function getUserID(address i) external view returns(address) {
+	function getUserID(address i) external view returns (address) {
 		require(Users[i].exists() == true, "This user does not exist");
 		return Users[i].ID();
+	}
+
+	function changeVetoTime(uint _time) external {
+		Users[msg.sender].setVetoTime(_time);
 	}
 }

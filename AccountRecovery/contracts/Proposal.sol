@@ -2,12 +2,12 @@
 
 pragma solidity >=0.4.0 <0.7.0;
 
-import "../contracts/VotingToken.sol";
-
 import "../contracts/Person.sol";
 import "../contracts/UserManager.sol";
 
 import "../contracts/Set.sol";
+import "../contracts/VotingToken.sol";
+import "../contracts/TransactionDataSet.sol";
 
 /* <Summary> 
 	This contract manages one active proposal: Casts Votes, Tallies votes, give rewards
@@ -15,9 +15,20 @@ import "../contracts/Set.sol";
 
 contract Proposal {
 	using Set for Set.Data;
+	using VotingToken for VotingToken.Token;
+	using TransactionDataSet for TransactionDataSet.DataSet;
 
-	mapping (address => VotingToken) votingtokens;		// Active Voting Tokens
+	struct VotingTokenPair {
+		VotingToken.Token token;
+		bool exists;
+	}
+
+	mapping (address => TransactionDataSet.DataSet[]) transactionDataSets; // Map of active proposals
+
+	mapping (address => VotingTokenPair) votingtokens;// Active Voting Tokens
 	Set.Data voters;									// Addresses who are eligible to vote
+	Set.Data archivedVoters;
+
 	address[] haveTradedWith;
 
 	address lastOtherPartner = 0x0000000000000000000000000000000000000000;
@@ -27,9 +38,11 @@ contract Proposal {
 	
 	uint numberOfVoters = 0;
 	uint public price;									// Price of the account recovery
+	uint startTime;
 	uint8 VotingTokenCreated = 0;						// Number of Voting tokens created
 	uint8 randomVoterVetos = 3;
 	bool paided = false;
+
 
 	constructor(address _oldAccount, address _newAccount, string memory _description, uint _price) public {
 		// Set variable
@@ -38,6 +51,7 @@ contract Proposal {
 		
 		description = _description;
 		price = _price;
+		startTime = block.timestamp;
 	}
 
 	function Pay(Person _newAccount) external {
@@ -46,14 +60,21 @@ contract Proposal {
 		paided = true;								// The proposal has been paid for
 	}
 
-	function AddTradePartners(address[] calldata _tradePartners, UserManager UserManagerInstance, TransactionManager TransactionManagerInstance) external {
+	function AddTradePartners(address[] calldata _tradePartners, address[] calldata _archivedVoters, UserManager UserManagerInstance, TransactionManager TransactionManagerInstance) external {
 		require(paided == true, "This proposal has not been paid for yet");
+
+		for (uint i = 0; i < _archivedVoters.length; i++){
+			archivedVoters.insert(_archivedVoters[i]);
+		}
+
 
 		for (uint i = 0; i < _tradePartners.length; i++){	// For each partner
 			if (newAccount != _tradePartners[i]){			// The new account can not be a voter
 				// They have made a transaction with the old account
 				if (TransactionManagerInstance.NumberOfTransactions(oldAccount, _tradePartners[i]) > 0){
-					voters.insert(_tradePartners[i]);
+					if (!archivedVoters.contains(_tradePartners[i])){			// This address is not already a voter
+						voters.insert(_tradePartners[i]);
+					}
 				}
 			}
 		}
@@ -66,7 +87,7 @@ contract Proposal {
 			if (newAccount != addresses[i]){							// The new account can not be a voter
 				// They have made a transaction with the old account
 				if (TransactionManagerInstance.NumberOfTransactions(oldAccount, addresses[i]) > 0){
-					if (!voters.contains(addresses[i])){			// This address is not already a voter
+					if (!voters.contains(addresses[i]) && !archivedVoters.contains(addresses[i]) ){			// This address is not already a voter
 						haveTradedWith.push(addresses[i]);				// This address is an eligible voter
 					}
 				}
@@ -82,16 +103,18 @@ contract Proposal {
 
 		randomVoterVetos--;
 		uint index = random(lastOtherPartner, haveTradedWith.length);			// Find random value
-		
-		while(voters.contains(haveTradedWith[index])){
-			index = random(lastOtherPartner, haveTradedWith.length);			// Find random value
-		}		
-		
+				
 		lastOtherPartner = haveTradedWith[index];
+
+		for (uint i = index; i < haveTradedWith.length - 1; i++){
+			haveTradedWith[i] = haveTradedWith[i+1];
+		}
+		delete haveTradedWith[haveTradedWith.length-1];
+		haveTradedWith.length--;
 	}
 
 	function ViewRandomTradingPartner() external view returns (address) {
-		// require(lastOtherPartner != 0x0000000000000000000000000000000000000000, "You have not found a random trae partner yet");
+		// require(lastOtherPartner != 0x0000000000000000000000000000000000000000, "You have not found a random trade partner yet");
 		return lastOtherPartner;
 	}
 
@@ -113,7 +136,13 @@ contract Proposal {
 		require(voters.getValuesLength() == numberOfVoters, "Trade partners have not been added to this yet proposal");
 		require(voters.contains(_voter), "Invalid Voter. Can not make a VotingToken");
 
-		votingtokens[_voter] = new VotingToken(_oldAccount, _voter, _description);
+		require(votingtokens[_voter].exists == false, "This voter already has a voting token");
+
+		VotingTokenPair memory temp;
+		temp.token = VotingToken.Token(_description, _oldAccount, _voter, 0, false, false);
+		temp.exists = true;
+		votingtokens[_voter] = temp;
+
 		VotingTokenCreated++;			// Incroment the number of voting tokens created
 	}
 
@@ -121,7 +150,7 @@ contract Proposal {
 	function CastVote(address _voter, bool choice) external {
 		check(_voter);
 
-		votingtokens[_voter].CastVote(choice);
+		votingtokens[_voter].token.CastVote(choice);
 	}
 
 	function CountVotes() private view returns(uint, uint) {
@@ -129,10 +158,10 @@ contract Proposal {
 		uint yeses = 0;							// Total number of yesses
 
 		for (uint i = 0; i < voters.getValuesLength(); i++) { // Goes through all voters
-			VotingToken temp = votingtokens[voters.getValue(i)];
-			if (temp.voted()){			// They are a voter and they voted
+			VotingToken.Token storage temp = votingtokens[voters.getValue(i)].token;
+			if (temp.getVoted()){			// They are a voter and they voted
 				total++;						// Incroment the total number of votes
-				if (temp.vote()){ 				// They are a voter and they voted yes
+				if (temp.getVote()){ 				// They are a voter and they voted yes
 					yeses++;						// Incroment the number of yesses
 				}
 			}
@@ -141,58 +170,92 @@ contract Proposal {
 	}
 
 	// Give rewards to voters and return outcome of vote
-	function ConcludeAccountRecovery(UserManager UserManagerInstance) external returns (bool, bool){
+	function ConcludeAccountRecovery(UserManager UserManagerInstance) external returns (int){
 		require(VotingTokenCreated == voters.getValuesLength(), "Have not created all the VotingTokens");
+
+		Person oldUser = UserManagerInstance.getUser(oldAccount);
+		if (oldUser.vetoTime() > block.timestamp - startTime){
+			return -1;
+		}
 
 		(uint yeses, uint total) = CountVotes();
 
+		if (total < 5){
+			if (block.timestamp - startTime < 172800){
+				return 60;
+			}
+			return -1;
+		}
+
 		bool outcome = (100*yeses) / total >= 66;			// The outcome of the vote
-		bool revote = (100*yeses) / total  >= 60;			// There must be a re-vote
+
+		uint participationFactor = 2;
+		uint correctionFactor = 2;
+		uint timeFactor = 1;
+
+		uint totalTimeToVote = 0;
 
 		for (uint i = 0; i < voters.getValuesLength(); i++) { 	// Goes through all voters
-			VotingToken temp = votingtokens[voters.getValue(i)];
-			if (temp.voted()){							// They are a voter and they voted
-				uint amount = (price / 2) / total;				// Reward for participating 
-				if (temp.vote() == outcome){				// They voted correctly 
-					amount += (price / 2) / yeses;				// Reward for voting correctly 
+			VotingToken.Token storage temp = votingtokens[voters.getValue(i)].token;
+			totalTimeToVote += temp.getVotedTime();
+		}
+
+		uint averageTimeToVote = totalTimeToVote / total;
+
+		for (uint i = 0; i < voters.getValuesLength(); i++) { 	// Goes through all voters
+			VotingToken.Token storage temp = votingtokens[voters.getValue(i)].token;
+			if (temp.getVoted()){							// They are a voter and they voted
+				uint amount = (price / participationFactor) / total;			// Reward for participating 
+
+				if (outcome && temp.getVote()){									// Successful vote and voted yes
+					amount += (price / correctionFactor) / yeses;				// Reward for voting correctly 
+				}else if (!outcome && !temp.getVote()){							// Unsuccessful vote and voted no
+					amount += (price / correctionFactor) / (total-yeses);		// Reward for voting correctly 
 				}
 
-				Person voter = UserManagerInstance.getUser(voters.getValue(i)); // Gets voter in the network
-				voter.increaseBalance(amount);					// Increases balance
+				// amount -= (temp.getVotedTime() - startTime) / timeFactor;
+				amount += (averageTimeToVote - temp.getVotedTime()) / timeFactor;
+
+				if (amount > 0){
+					Person voter = UserManagerInstance.getUser(voters.getValue(i)); // Gets voter in the network
+					voter.increaseBalance(amount);					// Increases balance
+				}
 			}
 		}
-		return (outcome, revote);								// Return outcome of vote
+		return int((100*yeses) / total);								// Return outcome of vote
 	}
 
 	// Add set of data for a give transaction for a give voter
 	function AddTransactionDataSet(uint _timeStamp, address _voter, uint _amount, 
 		string calldata _description, string calldata _itemsInTrade) external {
-		check(_voter);
-		votingtokens[_voter].AddTransactionDataSet(_timeStamp, _voter, _amount, _description, _itemsInTrade);
+		
+		require(voters.contains(_voter), "Invalid Voter. Can not make a VotingToken");
+
+		transactionDataSets[_voter].push(TransactionDataSet.DataSet(_description, _itemsInTrade, oldAccount, _voter, _timeStamp, _amount));
 	}
 
 	// View public information on a set of data for a transaction
 	function ViewPublicInformation( address _voter, uint i) external view returns (uint, uint, address, address) {
 		check(_voter);
-		return votingtokens[_voter].ViewPublicInformation(i);
+		return transactionDataSets[_voter][i].ViewPublicInformation();
 	}
 
 	// View private information on a set of data for a transaction
 	function ViewPrivateInformation( address _voter, uint i) external view returns (string memory, string memory) {
 		check(_voter);
-		return votingtokens[_voter].ViewPrivateInformation(i);
+		return transactionDataSets[_voter][i].ViewPrivateInformation();
 	}
 
 	// Generate random number using an address
 	function random(address address1, uint size) private view returns (uint8) {
 		return uint8(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty, address1, gasleft()))) % size);
 		// return uint8(uint256(keccak256(abi.encodePacked(block.difficulty, block.coinbase, address1, gasleft()))) % size);
-
 	}
 
 	function check(address _voter) private view {
 		require(voters.contains(_voter), "Invalid Voter. Can not make a VotingToken");
 		require(VotingTokenCreated == voters.getValuesLength(), "Have not created all the VotingTokens");
+		require(transactionDataSets[_voter].length > 0, "There is no transaction data to view");
 	} 
 
 	function getVoters() public view returns (address[] memory){

@@ -3,19 +3,13 @@
 pragma solidity >=0.4.0 <0.7.0;
 
 import "../contracts/UserManager.sol";
-import "../contracts/TransactionManager.sol";
 import "../contracts/ProposalManager.sol";
-
-import "../contracts/Proposal.sol";
 
 /* <Summary> 
 	This contract manages all active proposal as well as makes and concludes proposals.
 */
 
 contract ProposalCreator {
-
-	// using Proposal for Proposal.AAA;
-
 	UserManager UserManagerInstance;				// Connects to the list of users on the network
 	TransactionManager TransactionManagerInstance;	// Connects to the transaction data on the network
 	ProposalManager PMI;							// Connects to the transaction data on the network
@@ -32,8 +26,8 @@ contract ProposalCreator {
 	function StartProposal(address _oldAccount, string calldata _description) external {
 		require(_oldAccount != UserManagerInstance.getAdmin(), "Can not try to recover the admin");
 		require(_oldAccount != msg.sender, "An account can not recover itself");
-		require(!PMI.ActiveProposalLength(_oldAccount, msg.sender), "There already exists a Proposal for this account");
-		require(!PMI.ArchivedProposalLength(_oldAccount, msg.sender), "You have already failed a vote for this recovery");
+		require(PMI.validProposal(_oldAccount, msg.sender), "There already exists a Proposal for this account");
+		// require(!PMI.ArchivedProposalLength(_oldAccount, msg.sender), "You have already failed a vote for this recovery");
 
 		// uint price = CalculatePrice(_oldAccount);			// Calculates the price of the account recovery
 
@@ -55,12 +49,13 @@ contract ProposalCreator {
 			Person newAccount = UserManagerInstance.getUser(msg.sender); // Finds the person in the network
 			PMI.getActiveProposal(_oldAccount, msg.sender).Pay(newAccount);
 		}else{
-			PMI.RemoveActiveProposal(_oldAccount, msg.sender);		// Deletes proposal
+			PMI.archiveProposal(_oldAccount, msg.sender);		// Deletes proposal
 		}
 	}
 
 	function AddTradePartners(address _oldAccount, address[] calldata _tradePartners) external {
-		PMI.getActiveProposal(_oldAccount, msg.sender).AddTradePartners(_tradePartners, UserManagerInstance, TransactionManagerInstance);
+		address[] memory archivedVoters = PMI.getArchivedVoter(_oldAccount, msg.sender);
+		PMI.getActiveProposal(_oldAccount, msg.sender).AddTradePartners(_tradePartners, archivedVoters, UserManagerInstance, TransactionManagerInstance);
 	}
 
 	function FindRandomTradingPartner(address _oldAccount) external {
@@ -92,4 +87,12 @@ contract ProposalCreator {
 }
 
 // 6581377
-// 6581377
+// 5733423
+// 5782027
+// 6339420
+// 6422229
+
+// 6338896
+// 6231665
+// 6441734
+// 6564637

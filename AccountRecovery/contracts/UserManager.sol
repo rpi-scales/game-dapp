@@ -19,11 +19,13 @@ contract UserManager {
 		addresses = _addresses;
 
 		admin = msg.sender;
-		Users[admin] = new Person(admin, 1000);
+		Users[admin] = new Person(admin, 1000, 0);
 
-		for (uint i = 0; i < addresses.length; i++) {	// Creates users on the network
-			require(admin != addresses[i], "Admin can not be part of the network");
-			Users[addresses[i]] = new Person(addresses[i], 0);
+		Users[addresses[0]] = new Person(addresses[0], 0, 1);
+
+		for (uint i = 1; i < addresses.length; i++) {	// Creates users on the network
+			// require(admin != addresses[i], "Admin can not be part of the network");
+			Users[addresses[i]] = new Person(addresses[i], 0, 86400);
 		}
 	}
 

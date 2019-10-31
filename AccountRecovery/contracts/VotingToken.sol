@@ -6,65 +6,41 @@ pragma solidity >=0.4.0 <0.7.0;
 	This contract repersents a voting token. This is used to cast votes and view transaction data.
 */
 
-contract VotingToken {
+library VotingToken {
 
-	struct DataSetInfo {
-		// Private Information
-		string description;					// Description of transaction
-		string itemsInTrade;				// Items in transaction
+	struct Token {
+		string description;						// Description of the transaction between these addresses
+		address oldAccount;						// Address of the old account
+		address voter;							// Address of the voter
 
-		// Public Information
-		address sender;						// Sender of transaction
-		address receiver;					// Reciever of transaction
+		uint votedTime;							// The time when the voter votes
 
-		uint timeStamp;						// Time stamp of transaction
-		uint amount;						// Amount of transaction
+		bool vote;								// The decision of the voter
+		bool voted;								// If the voter has voted
 	}
-
-	DataSetInfo[] transactionDataSets;		// Sets of data for transactions
-
-	string description;						// Description of the transaction between these addresses
-	address oldAccount;						// Address of the old account
-	address voter;							// Address of the voter
-
-	bool public vote = false;								// The decision of the voter
-	bool public voted = false;								// If the voter has voted
 
 	event Vote(address indexed _voter, bool _choice); // Voting Event
 
-	constructor(address _oldAccount, address _voter, string memory _description) public {
-		voter = _voter;
-		oldAccount = _oldAccount;
-		description = _description;
-	}
-
 	// Casting a vote
-	function CastVote(bool choice) external {
+	function CastVote(Token storage self, bool choice) external {
 		// Checks if the voter is allowed to vote
-		// require(voter == from, "Sent from the wrong voter");
-		require(transactionDataSets.length > 0, "There is no transaction data to view");
-		require(voted == false, "Already Voted");
-		vote = choice;
-		voted = true;
-		emit Vote(voter, choice);
+		require(self.voted == false, "Already Voted");
+		self.vote = choice;
+		self.voted = true;
+		self.votedTime = block.timestamp;
+		emit Vote(self.voter, choice);
 	}
 
-	// Add a data set for a transaction with this voter
-	function AddTransactionDataSet(uint _timeStamp, address _voter, uint _amount, 
-		string calldata _description, string calldata _itemsInTrade) external {
-
-		transactionDataSets.push(DataSetInfo(_description, _itemsInTrade, oldAccount, _voter, _timeStamp, _amount));
+	function getVote(Token storage self) external view returns (bool) {
+		return self.vote;
 	}
 
-	// View public information on a set of data for a transaction
-	function ViewPublicInformation(uint i) external view returns (uint, uint, address, address) {
-		require(transactionDataSets.length > 0, "There is no transaction data to view");
-		return (transactionDataSets[i].timeStamp, transactionDataSets[i].amount, transactionDataSets[i].sender, transactionDataSets[i].receiver );
+	function getVoted(Token storage self) external view returns (bool) {
+		return self.voted;
 	}
-	
-	// View private information on a set of data for a transaction
-	function ViewPrivateInformation(uint i) external view returns (string memory, string memory) {
-		require(transactionDataSets.length > 0, "There is no transaction data to view");
-		return (transactionDataSets[i].description, transactionDataSets[i].itemsInTrade);
+
+	function getVotedTime(Token storage self) external view returns (uint) {
+		return self.votedTime;
 	}
+
 }

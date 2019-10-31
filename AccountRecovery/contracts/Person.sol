@@ -10,11 +10,13 @@ contract Person {
 	address public ID;			// The address of the user
 	uint public balance;		// The balance of that user
 	bool public exists;			// Used for mapping
+	uint public vetoTime;
 
-	constructor(address _ID, uint _balance) public {
+	constructor(address _ID, uint _balance, uint _vetoTime) public {
 		ID = _ID;
 		balance = _balance;
 		exists = true;
+		vetoTime = _vetoTime;
 	}
 
 	// Increase the balance of the user

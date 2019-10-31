@@ -76,7 +76,7 @@ contract TransactionManager {
 		address[] memory addresses = UserManagerInstance.getAddresses(); // List of addresses on the network
 		for (uint i = 0; i < addresses.length; i++){					// For each address
 			if (_oldAccount != addresses[i]){							// The new account can not be a voter
-				if (ProposalManagerInstance.ActiveProposalLength(_oldAccount, addresses[i])){
+				if (ProposalManagerInstance.getActiveProposalExists(_oldAccount, addresses[i])){
 					return true;
 				}
 			}
@@ -89,7 +89,7 @@ contract TransactionManager {
 
 		for (uint i = 0; i < addresses.length; i++){					// For each address
 			if (_newAccount != addresses[i]){							// The new account can not be a voter
-				if (ProposalManagerInstance.ActiveProposalLength(addresses[i], _newAccount)){
+				if (ProposalManagerInstance.getActiveProposalExists(addresses[i], _newAccount)){
 					Proposal temp = ProposalManagerInstance.getActiveProposal(addresses[i], _newAccount);
 					address[] memory voters = temp.getVoters();
 					for(uint j = 0; j < voters.length; j++){

@@ -1,14 +1,16 @@
+/*
+
 const UserManager = artifacts.require("UserManager");
-var UMI;		// UserManagerInstance
+var UserManagerInstance;
 
 const TransactionManager = artifacts.require("TransactionManager");
-var TMI;		// TransactionManagerInstance
+var TransactionManagerInstance;
 
 const ProposalManager = artifacts.require("ProposalManager");
-var PMI;		// ProposalManagerInstance
+var PMI;
 
 const ProposalCreator = artifacts.require("ProposalCreator");
-var PCI;		// ProposalCreatorInstance
+var PCI;
 
 function PublicInfo(timeStamp, amount, sender, receiver) {
 	this.timeStamp = timeStamp;
@@ -32,25 +34,21 @@ contract('ProposalManager', (accounts) => {
 	const oldAccount = accounts[0];
 
 	it('Constructor', async () => {
-		UMI = await UserManager.deployed(accounts);
-		TMI = await TransactionManager.deployed(UMI.address);
-		PMI = await ProposalManager.deployed(UMI.address, TMI.address);
-		PCI = await ProposalCreator.deployed(UMI.address, TMI.address, ProposalManager.address);
-	});
-
-	it('Valid: Change Veto Time', async () => {
-		await UMI.changeVetoTime(1, {from: oldAccount});
+		UserManagerInstance = await UserManager.deployed(accounts);
+		TransactionManagerInstance = await TransactionManager.deployed(UserManagerInstance.address);
+		PMI = await ProposalManager.deployed(UserManagerInstance.address, TransactionManagerInstance.address);
+		PCI = await ProposalCreator.deployed(UserManagerInstance.address, TransactionManagerInstance.address, ProposalManager.address);
 	});
 
 	it('Buy Coins (accounts[0,8]): Valid', async () => {
 		const amount = 10000000000000000000;				// 10 ETH -> 1000 Coins
-		await TMI.BuyCoin({ from: oldAccount, value: amount});
-		const endingBalance = (await UMI.getUserBalance(oldAccount)).toNumber();
+		await TransactionManagerInstance.BuyCoin({ from: oldAccount, value: amount});
+		const endingBalance = (await UserManagerInstance.getUserBalance(oldAccount)).toNumber();
 		assert.equal(endingBalance, 1000, "Old Account did not buy the right amount of coins");
 
 		const amount2 = 1000000000000000000;				// 1 ETH -> 100 Coins
-		await TMI.BuyCoin({ from: newAccount, value: amount2});
-		const endingBalance2 = (await UMI.getUserBalance(newAccount)).toNumber();
+		await TransactionManagerInstance.BuyCoin({ from: newAccount, value: amount2});
+		const endingBalance2 = (await UserManagerInstance.getUserBalance(newAccount)).toNumber();
 		assert.equal(endingBalance2, 100, "New Account did not buy the right amount of coins");
 
 	});
@@ -58,9 +56,9 @@ contract('ProposalManager', (accounts) => {
 	it('Send Money (Account[0] to Accounts[1,2,3,4,5,6]): Valid', async () => {
 		const amount = 10;
 		for (i = 1; i <= 6; i++) {
-			const senderStartingBalance = (await UMI.getUserBalance(oldAccount)).toNumber();
-			await TMI.MakeTransaction(accounts[i], amount, { from: oldAccount });
-			const senderEndingBalance = (await UMI.getUserBalance(oldAccount)).toNumber();
+			const senderStartingBalance = (await UserManagerInstance.getUserBalance(oldAccount)).toNumber();
+			await TransactionManagerInstance.MakeTransaction(accounts[i], amount, { from: oldAccount });
+			const senderEndingBalance = (await UserManagerInstance.getUserBalance(oldAccount)).toNumber();
 			assert.equal(senderEndingBalance, senderStartingBalance - amount, "Amount wasn't correctly taken from the sender");
 		}
 	});
@@ -70,13 +68,13 @@ contract('ProposalManager', (accounts) => {
 	});
 
 	it('Pay for Proposal: Valid', async () => {
-		const A1 = (await UMI.getUserBalance(newAccount)).toNumber();
+		const A1 = (await UserManagerInstance.getUserBalance(newAccount)).toNumber();
 
 		const price = (	await PCI.ViewPrice(oldAccount, { from: newAccount }));
 		await PCI.Pay(oldAccount, true, { from: newAccount });
 		
-		const A2 = (await UMI.getUserBalance(newAccount)).toNumber();
-		const B = (await UMI.getUserBalance(oldAccount)).toNumber();
+		const A2 = (await UserManagerInstance.getUserBalance(newAccount)).toNumber();
+		const B = (await UserManagerInstance.getUserBalance(oldAccount)).toNumber();
 
 		// console.log("New Account Balance Before: " + A1);
 		// console.log("New Account Balance After: " + A2);
@@ -153,27 +151,27 @@ contract('ProposalManager', (accounts) => {
 	});	
 
 	it('Conclude Account Recovery', async () => {
-		const before0 = (await UMI.getUserBalance(oldAccount)).toNumber();
-		const before1 = (await UMI.getUserBalance(accounts[1])).toNumber();
-		const before2 = (await UMI.getUserBalance(accounts[2])).toNumber();
-		const before3 = (await UMI.getUserBalance(accounts[3])).toNumber();
-		const before4 = (await UMI.getUserBalance(accounts[4])).toNumber();
-		const before5 = (await UMI.getUserBalance(accounts[5])).toNumber();
-		const before6 = (await UMI.getUserBalance(accounts[6])).toNumber();
-		const before8 = (await UMI.getUserBalance(newAccount)).toNumber();
+		const before0 = (await UserManagerInstance.getUserBalance(oldAccount)).toNumber();
+		const before1 = (await UserManagerInstance.getUserBalance(accounts[1])).toNumber();
+		const before2 = (await UserManagerInstance.getUserBalance(accounts[2])).toNumber();
+		const before3 = (await UserManagerInstance.getUserBalance(accounts[3])).toNumber();
+		const before4 = (await UserManagerInstance.getUserBalance(accounts[4])).toNumber();
+		const before5 = (await UserManagerInstance.getUserBalance(accounts[5])).toNumber();
+		const before6 = (await UserManagerInstance.getUserBalance(accounts[6])).toNumber();
+		const before8 = (await UserManagerInstance.getUserBalance(newAccount)).toNumber();
 
 		await PMI.ConcludeAccountRecovery(oldAccount, {from: newAccount});
 		// var temp = (await PMI.getArchivedProposals(oldAccount, newAccount));
 		// assert.equal(temp[0], true, "Wrong Outcome");
 
-		const after0 = (await UMI.getUserBalance(oldAccount)).toNumber();
-		const after1 = (await UMI.getUserBalance(accounts[1])).toNumber();
-		const after2 = (await UMI.getUserBalance(accounts[2])).toNumber();
-		const after3 = (await UMI.getUserBalance(accounts[3])).toNumber();
-		const after4 = (await UMI.getUserBalance(accounts[4])).toNumber();
-		const after5 = (await UMI.getUserBalance(accounts[5])).toNumber();
-		const after6 = (await UMI.getUserBalance(accounts[6])).toNumber();
-		const after8 = (await UMI.getUserBalance(newAccount)).toNumber();
+		const after0 = (await UserManagerInstance.getUserBalance(oldAccount)).toNumber();
+		const after1 = (await UserManagerInstance.getUserBalance(accounts[1])).toNumber();
+		const after2 = (await UserManagerInstance.getUserBalance(accounts[2])).toNumber();
+		const after3 = (await UserManagerInstance.getUserBalance(accounts[3])).toNumber();
+		const after4 = (await UserManagerInstance.getUserBalance(accounts[4])).toNumber();
+		const after5 = (await UserManagerInstance.getUserBalance(accounts[5])).toNumber();
+		const after6 = (await UserManagerInstance.getUserBalance(accounts[6])).toNumber();
+		const after8 = (await UserManagerInstance.getUserBalance(newAccount)).toNumber();
 
 		assert.equal(after0, 0, "Did not take the money from the old account");
 		assert.equal(after8, before8 + before0, "Did not give the money to the new account");
@@ -191,3 +189,4 @@ contract('ProposalManager', (accounts) => {
 		console.log("Before[8]: " + before8 + ",  \tAfter[8]: " + after8);
 	});
 });
+*/

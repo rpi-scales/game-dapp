@@ -89,8 +89,6 @@ contract ProposalManager {
 	
 	// Adds an active proposal between _oldAccount and _newAccount
 	function AddActiveProposal(address _oldAccount, address _newAccount, Proposal temp) external {
-		require(!getActiveProposalExists(_oldAccount, _newAccount), "There is already an active Proposal");
-
 		invalidProposal[_oldAccount][_newAccount] = true;
 
 		ProposalPair memory tempPair;

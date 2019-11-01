@@ -34,7 +34,8 @@ contract TransactionManager {
 
 	// Makes a transaction between 2 users
 	function MakeTransaction(address _reciever, uint _amount) external {
-		require (_reciever != UserManagerInstance.getAdmin(), "Can not send money to the admin");
+		require (_reciever != msg.sender, "Can not send money to yourself");
+		require (_reciever != address(UserManagerInstance.getAdmin()), "Can not send money to the admin");
 		require (!CheckForBribery(msg.sender, _reciever), "This is Bribery");
 		require (!CheckForOldAccount(msg.sender), "This transaction if from an Old Account");
 
@@ -94,7 +95,7 @@ contract TransactionManager {
 					address[] memory voters = temp.getVoters();
 					for(uint j = 0; j < voters.length; j++){
 						if (voters[j] == _voter){
-							return false;
+							return true;
 						}
 					}
 				}

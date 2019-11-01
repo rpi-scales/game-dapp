@@ -11,7 +11,12 @@ import "../contracts/TransactionManager.sol";
 
 contract UserManager {
 
-	mapping (address => Person) Users;					// Map of users on the network
+	struct UserPair {
+		Person person;
+		bool exists;
+	}
+
+	mapping (address => UserPair) Users;					// Map of users on the network
 	address[] addresses;								// Addresses on the network
 	address payable admin;
 
@@ -19,12 +24,12 @@ contract UserManager {
 		addresses = _addresses;
 
 		admin = msg.sender;
-		Users[admin] = new Person(admin, 1000, 0);
 
-		Users[addresses[0]] = new Person(addresses[0], 0, 1);
-
-		for (uint i = 1; i < addresses.length; i++) {	// Creates users on the network
-			Users[addresses[i]] = new Person(addresses[i], 0, 86400);
+		for (uint i = 0; i < addresses.length; i++) {	// Creates users on the network
+			UserPair memory tempPair;
+			tempPair.person = new Person(addresses[i], 0, 86400);
+			tempPair.exists = true;
+			Users[addresses[i]] = tempPair;
 		}
 	}
 
@@ -35,8 +40,8 @@ contract UserManager {
 
 	// Gets User with the given address
 	function getUser(address i) external view returns (Person) {
-		require(Users[i].exists() == true, "This user does not exist");
-		return Users[i];
+		require(Users[i].exists == true, "This user does not exist");
+		return Users[i].person;
 	}
 
 	// Gets the list of addresses on the network
@@ -45,16 +50,12 @@ contract UserManager {
 	}
 
 	function getUserBalance(address i) external view returns (uint) {
-		require(Users[i].exists() == true, "This user does not exist");
-		return Users[i].balance();
-	}
-
-	function getUserID(address i) external view returns (address) {
-		require(Users[i].exists() == true, "This user does not exist");
-		return Users[i].ID();
+		require(Users[i].exists == true, "This user does not exist");
+		return Users[i].person.balance();
 	}
 
 	function changeVetoTime(uint _time) external {
-		Users[msg.sender].setVetoTime(_time);
+		require(Users[msg.sender].exists == true, "This user does not exist");
+		Users[msg.sender].person.setVetoTime(_time);
 	}
 }

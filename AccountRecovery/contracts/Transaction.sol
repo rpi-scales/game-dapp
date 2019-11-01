@@ -30,7 +30,6 @@ contract Transaction {
 
 	// Send Money
 	function sendCoin() internal {
-		require(sender.balance() >= amount, "Invalid Balance.");
 		sender.decreaseBalance(amount);			// Decrease the sender's balance
 		receiver.increaseBalance(amount);		// Increase the reciever's balance
 		emit Transfer(sender, receiver, amount);

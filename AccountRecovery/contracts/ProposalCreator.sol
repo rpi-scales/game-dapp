@@ -14,8 +14,6 @@ contract ProposalCreator {
 	TransactionManager TransactionManagerInstance;	// Connects to the transaction data on the network
 	ProposalManager PMI;							// Connects to the transaction data on the network
 
-	// These arrays are used when creating Proposals. Needed to be on storage to use .push()
-
 	// Used to originally deploy the contract
 	constructor(address UserManagerAddress, address TransactionManagerAddress, address ProposalManagerAddress) public {
 		UserManagerInstance = UserManager(UserManagerAddress);
@@ -27,9 +25,6 @@ contract ProposalCreator {
 		require(_oldAccount != UserManagerInstance.getAdmin(), "Can not try to recover the admin");
 		require(_oldAccount != msg.sender, "An account can not recover itself");
 		require(PMI.validProposal(_oldAccount, msg.sender), "There already exists a Proposal for this account");
-		// require(!PMI.ArchivedProposalLength(_oldAccount, msg.sender), "You have already failed a vote for this recovery");
-
-		// uint price = CalculatePrice(_oldAccount);			// Calculates the price of the account recovery
 
 		uint balance = UserManagerInstance.getUser(_oldAccount).balance();
 		uint price = balance / 20;
@@ -86,13 +81,4 @@ contract ProposalCreator {
 	}
 }
 
-// 6581377
-// 5733423
-// 5782027
-// 6339420
-// 6422229
-
-// 6338896
-// 6231665
-// 6441734
-// 6564637
+// 6527800

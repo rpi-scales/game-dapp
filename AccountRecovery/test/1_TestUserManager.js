@@ -11,8 +11,9 @@ contract('UserManager', (accounts) => {
 	it('Getters', async () => {
 		var balance = (await UserManagerInstance.getUserBalance(accounts[0])).toNumber();
 		assert.equal(balance, 0, "Wrong Balance");
+	});
 
-		var ID = await UserManagerInstance.getUserID(accounts[0]);
-		assert.equal(ID, accounts[0], "Wrong ID");
+	it('Change Veto Time', async () => {
+		await UserManagerInstance.changeVetoTime(1, {from: accounts[0]});
 	});
 });

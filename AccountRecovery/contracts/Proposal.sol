@@ -14,7 +14,7 @@ import "../contracts/TransactionDataSet.sol";
 */
 
 contract Proposal {
-	using Set for Set.Data;
+	using Set for Set.AddressData;
 	using VotingToken for VotingToken.Token;
 	using TransactionDataSet for TransactionDataSet.DataSet;
 
@@ -26,8 +26,8 @@ contract Proposal {
 	mapping (address => TransactionDataSet.DataSet[]) transactionDataSets; // Map of active proposals
 
 	mapping (address => VotingTokenPair) votingtokens;// Active Voting Tokens
-	Set.Data voters;									// Addresses who are eligible to vote
-	Set.Data archivedVoters;
+	Set.AddressData voters;									// Addresses who are eligible to vote
+	Set.AddressData archivedVoters;
 
 	address[] haveTradedWith;
 
@@ -97,9 +97,9 @@ contract Proposal {
 	}
 
 	function FindRandomTradingPartner() external {
-		// require(paided == true, "This proposal has not been paid for yet");
 		require(numberOfVoters > 0, "Trade partners have not been added to this yet proposal");
 		require(randomVoterVetos > 0, "Can not veto any more random voters");
+		require(haveTradedWith.length > 0, "Can not veto this voter because there is not enough trade partners left");
 
 		randomVoterVetos--;
 		uint index = random(lastOtherPartner, haveTradedWith.length);			// Find random value
@@ -114,14 +114,10 @@ contract Proposal {
 	}
 
 	function ViewRandomTradingPartner() external view returns (address) {
-		// require(lastOtherPartner != 0x0000000000000000000000000000000000000000, "You have not found a random trade partner yet");
 		return lastOtherPartner;
 	}
 
 	function AddRandomTradingPartner() external {
-		// require(paided == true, "This proposal has not been paid for yet");
-		// require(voters.getValuesLength() > 0, "Trade partners have not been added to this yet proposal");
-
 		require( lastOtherPartner != 0x0000000000000000000000000000000000000000, "Have to find a random trading partner first");
 		require( !voters.contains(lastOtherPartner), "Already added that address");
 
@@ -132,7 +128,6 @@ contract Proposal {
 
 	// Make Voting Tokens
 	function MakeVotingToken(address _oldAccount, address _voter, string calldata _description) external {
-		// require(paided == true, "This proposal has not been paid for yet");
 		require(voters.getValuesLength() == numberOfVoters, "Trade partners have not been added to this yet proposal");
 		require(voters.contains(_voter), "Invalid Voter. Can not make a VotingToken");
 
@@ -146,89 +141,9 @@ contract Proposal {
 		VotingTokenCreated++;			// Incroment the number of voting tokens created
 	}
 
-	// Casts a vote
-	function CastVote(address _voter, bool choice) external {
-		check(_voter);
-
-		votingtokens[_voter].token.CastVote(choice);
-	}
-
-	function CountVotes() private view returns(uint, uint) {
-		uint total = 0;							// Total number of votes
-		uint yeses = 0;							// Total number of yesses
-
-		for (uint i = 0; i < voters.getValuesLength(); i++) { // Goes through all voters
-			VotingToken.Token storage temp = votingtokens[voters.getValue(i)].token;
-			if (temp.getVoted()){			// They are a voter and they voted
-				total++;						// Incroment the total number of votes
-				if (temp.getVote()){ 				// They are a voter and they voted yes
-					yeses++;						// Incroment the number of yesses
-				}
-			}
-		}
-		return (yeses, total);
-	}
-
-	// Give rewards to voters and return outcome of vote
-	function ConcludeAccountRecovery(UserManager UserManagerInstance) external returns (int){
-		require(VotingTokenCreated == voters.getValuesLength(), "Have not created all the VotingTokens");
-
-		Person oldUser = UserManagerInstance.getUser(oldAccount);
-		if (oldUser.vetoTime() > block.timestamp - startTime){
-			return -1;
-		}
-
-		(uint yeses, uint total) = CountVotes();
-
-		if (total < 5){
-			if (block.timestamp - startTime < 172800){
-				return 60;
-			}
-			return -1;
-		}
-
-		bool outcome = (100*yeses) / total >= 66;			// The outcome of the vote
-
-		uint participationFactor = 2;
-		uint correctionFactor = 2;
-		uint timeFactor = 1;
-
-		uint totalTimeToVote = 0;
-
-		for (uint i = 0; i < voters.getValuesLength(); i++) { 	// Goes through all voters
-			VotingToken.Token storage temp = votingtokens[voters.getValue(i)].token;
-			totalTimeToVote += temp.getVotedTime();
-		}
-
-		uint averageTimeToVote = totalTimeToVote / total;
-
-		for (uint i = 0; i < voters.getValuesLength(); i++) { 	// Goes through all voters
-			VotingToken.Token storage temp = votingtokens[voters.getValue(i)].token;
-			if (temp.getVoted()){							// They are a voter and they voted
-				uint amount = (price / participationFactor) / total;			// Reward for participating 
-
-				if (outcome && temp.getVote()){									// Successful vote and voted yes
-					amount += (price / correctionFactor) / yeses;				// Reward for voting correctly 
-				}else if (!outcome && !temp.getVote()){							// Unsuccessful vote and voted no
-					amount += (price / correctionFactor) / (total-yeses);		// Reward for voting correctly 
-				}
-
-				// amount -= (temp.getVotedTime() - startTime) / timeFactor;
-				amount += (averageTimeToVote - temp.getVotedTime()) / timeFactor;
-
-				if (amount > 0){
-					Person voter = UserManagerInstance.getUser(voters.getValue(i)); // Gets voter in the network
-					voter.increaseBalance(amount);					// Increases balance
-				}
-			}
-		}
-		return int((100*yeses) / total);								// Return outcome of vote
-	}
-
 	// Add set of data for a give transaction for a give voter
 	function AddTransactionDataSet(uint _timeStamp, address _voter, uint _amount, 
 		string calldata _description, string calldata _itemsInTrade) external {
-		
 		require(voters.contains(_voter), "Invalid Voter. Can not make a VotingToken");
 
 		transactionDataSets[_voter].push(TransactionDataSet.DataSet(_description, _itemsInTrade, oldAccount, _voter, _timeStamp, _amount));
@@ -244,6 +159,75 @@ contract Proposal {
 	function ViewPrivateInformation( address _voter, uint i) external view returns (string memory, string memory) {
 		check(_voter);
 		return transactionDataSets[_voter][i].ViewPrivateInformation();
+	}
+
+	// Casts a vote
+	function CastVote(address _voter, bool choice) external {
+		check(_voter);
+		votingtokens[_voter].token.CastVote(choice);
+	}
+
+	// Give rewards to voters and return outcome of vote
+	function ConcludeAccountRecovery(UserManager UMI) external returns (int){
+		require(VotingTokenCreated == voters.getValuesLength(), "Have not created all the VotingTokens");
+
+		if (UMI.getUser(oldAccount).vetoTime() > block.timestamp - startTime){
+			return -1;
+		}
+
+		// (uint yeses, uint total) = CountVotes();
+		uint total = 0;							// Total number of votes
+		uint yeses = 0;							// Total number of yesses
+
+		uint totalTimeToVote = 0;
+
+		for (uint i = 0; i < voters.getValuesLength(); i++) { // Goes through all voters
+			require(transactionDataSets[voters.getValue(i)].length > 0, "There is no transaction data to view");
+			VotingToken.Token storage temp = votingtokens[voters.getValue(i)].token;
+			totalTimeToVote += temp.getVotedTime();
+			if (temp.getVoted()){			// They are a voter and they voted
+				total++;						// Incroment the total number of votes
+				if (temp.getVote()){ 				// They are a voter and they voted yes
+					yeses++;						// Incroment the number of yesses
+				}
+			}
+		}
+
+		if (total < 5){
+			if (block.timestamp - startTime > 172800){
+				return 60;
+			}
+			return -1;
+		}
+
+		bool outcome = (100*yeses) / total >= 66;			// The outcome of the vote
+
+		uint participationFactor = 2;
+		uint correctionFactor = 2;
+		uint timeFactor = 1;
+
+		uint averageTimeToVote = totalTimeToVote / total;
+
+		for (uint i = 0; i < voters.getValuesLength(); i++) { 	// Goes through all voters
+			VotingToken.Token storage temp = votingtokens[voters.getValue(i)].token;
+			if (temp.getVoted()){							// They are a voter and they voted
+				uint amount = (price / participationFactor) / total;			// Reward for participating 
+
+				if (outcome && temp.getVote()){									// Successful vote and voted yes
+					amount += (price / correctionFactor) / yeses;				// Reward for voting correctly 
+				}else if (!outcome && !temp.getVote()){							// Unsuccessful vote and voted no
+					amount += (price / correctionFactor) / (total-yeses);		// Reward for voting correctly 
+				}
+
+				amount += (averageTimeToVote - temp.getVotedTime()) / timeFactor;
+
+				if (amount > 0){
+					Person voter = UMI.getUser(voters.getValue(i)); // Gets voter in the network
+					voter.increaseBalance(amount);					// Increases balance
+				}
+			}
+		}
+		return int((100*yeses) / total);								// Return outcome of vote
 	}
 
 	// Generate random number using an address

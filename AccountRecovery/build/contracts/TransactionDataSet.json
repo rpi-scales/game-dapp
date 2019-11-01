@@ -12,14 +12,14 @@
     "absolutePath": "/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/TransactionDataSet.sol",
     "exportedSymbols": {
       "TransactionDataSet": [
-        2107
+        2124
       ]
     },
-    "id": 2108,
+    "id": 2125,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2053,
+        "id": 2070,
         "literals": [
           "solidity",
           ">=",
@@ -38,23 +38,23 @@
         "contractKind": "library",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 2107,
+        "id": 2124,
         "linearizedBaseContracts": [
-          2107
+          2124
         ],
         "name": "TransactionDataSet",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "TransactionDataSet.DataSet",
-            "id": 2066,
+            "id": 2083,
             "members": [
               {
                 "constant": false,
-                "id": 2055,
+                "id": 2072,
                 "name": "description",
                 "nodeType": "VariableDeclaration",
-                "scope": 2066,
+                "scope": 2083,
                 "src": "175:18:7",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -63,7 +63,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 2054,
+                  "id": 2071,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "175:6:7",
@@ -77,10 +77,10 @@
               },
               {
                 "constant": false,
-                "id": 2057,
+                "id": 2074,
                 "name": "itemsInTrade",
                 "nodeType": "VariableDeclaration",
-                "scope": 2066,
+                "scope": 2083,
                 "src": "232:19:7",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -89,7 +89,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 2056,
+                  "id": 2073,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "232:6:7",
@@ -103,10 +103,10 @@
               },
               {
                 "constant": false,
-                "id": 2059,
+                "id": 2076,
                 "name": "sender",
                 "nodeType": "VariableDeclaration",
-                "scope": 2066,
+                "scope": 2083,
                 "src": "310:14:7",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -115,7 +115,7 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 2058,
+                  "id": 2075,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
                   "src": "310:7:7",
@@ -130,10 +130,10 @@
               },
               {
                 "constant": false,
-                "id": 2061,
+                "id": 2078,
                 "name": "receiver",
                 "nodeType": "VariableDeclaration",
-                "scope": 2066,
+                "scope": 2083,
                 "src": "359:16:7",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -142,7 +142,7 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 2060,
+                  "id": 2077,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
                   "src": "359:7:7",
@@ -157,10 +157,10 @@
               },
               {
                 "constant": false,
-                "id": 2063,
+                "id": 2080,
                 "name": "timeStamp",
                 "nodeType": "VariableDeclaration",
-                "scope": 2066,
+                "scope": 2083,
                 "src": "413:14:7",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -169,7 +169,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2062,
+                  "id": 2079,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
                   "src": "413:4:7",
@@ -183,10 +183,10 @@
               },
               {
                 "constant": false,
-                "id": 2065,
+                "id": 2082,
                 "name": "amount",
                 "nodeType": "VariableDeclaration",
-                "scope": 2066,
+                "scope": 2083,
                 "src": "466:11:7",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -195,7 +195,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2064,
+                  "id": 2081,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
                   "src": "466:4:7",
@@ -210,13 +210,13 @@
             ],
             "name": "DataSet",
             "nodeType": "StructDefinition",
-            "scope": 2107,
+            "scope": 2124,
             "src": "129:383:7",
             "visibility": "public"
           },
           {
             "body": {
-              "id": 2089,
+              "id": 2106,
               "nodeType": "Block",
               "src": "687:75:7",
               "statements": [
@@ -228,25 +228,25 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2079,
+                          "id": 2096,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2068,
+                          "referencedDeclaration": 2085,
                           "src": "700:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2080,
+                        "id": 2097,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "timeStamp",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 2063,
+                        "referencedDeclaration": 2080,
                         "src": "700:14:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -257,25 +257,25 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2081,
+                          "id": 2098,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2068,
+                          "referencedDeclaration": 2085,
                           "src": "716:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2082,
+                        "id": 2099,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "amount",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 2065,
+                        "referencedDeclaration": 2082,
                         "src": "716:11:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -286,25 +286,25 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2083,
+                          "id": 2100,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2068,
+                          "referencedDeclaration": 2085,
                           "src": "729:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2084,
+                        "id": 2101,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 2059,
+                        "referencedDeclaration": 2076,
                         "src": "729:11:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -315,25 +315,25 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2085,
+                          "id": 2102,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2068,
+                          "referencedDeclaration": 2085,
                           "src": "742:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2086,
+                        "id": 2103,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "receiver",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 2061,
+                        "referencedDeclaration": 2078,
                         "src": "742:13:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -341,7 +341,7 @@
                         }
                       }
                     ],
-                    "id": 2087,
+                    "id": 2104,
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
@@ -354,46 +354,46 @@
                       "typeString": "tuple(uint256,uint256,address,address)"
                     }
                   },
-                  "functionReturnParameters": 2078,
-                  "id": 2088,
+                  "functionReturnParameters": 2095,
+                  "id": 2105,
                   "nodeType": "Return",
                   "src": "692:65:7"
                 }
               ]
             },
             "documentation": null,
-            "id": 2090,
+            "id": 2107,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "ViewPublicInformation",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2069,
+              "id": 2086,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2068,
+                  "id": 2085,
                   "name": "self",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2090,
+                  "scope": 2107,
                   "src": "612:20:7",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                    "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                     "typeString": "struct TransactionDataSet.DataSet"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2067,
+                    "id": 2084,
                     "name": "DataSet",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2066,
+                    "referencedDeclaration": 2083,
                     "src": "612:7:7",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                      "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                       "typeString": "struct TransactionDataSet.DataSet"
                     }
                   },
@@ -404,15 +404,15 @@
               "src": "611:22:7"
             },
             "returnParameters": {
-              "id": 2078,
+              "id": 2095,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2071,
+                  "id": 2088,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2090,
+                  "scope": 2107,
                   "src": "657:4:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -421,7 +421,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2070,
+                    "id": 2087,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "657:4:7",
@@ -435,10 +435,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 2073,
+                  "id": 2090,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2090,
+                  "scope": 2107,
                   "src": "663:4:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -447,7 +447,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2072,
+                    "id": 2089,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "663:4:7",
@@ -461,10 +461,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 2075,
+                  "id": 2092,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2090,
+                  "scope": 2107,
                   "src": "669:7:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -473,7 +473,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2074,
+                    "id": 2091,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "669:7:7",
@@ -488,10 +488,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 2077,
+                  "id": 2094,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2090,
+                  "scope": 2107,
                   "src": "678:7:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -500,7 +500,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2076,
+                    "id": 2093,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "678:7:7",
@@ -516,7 +516,7 @@
               ],
               "src": "656:30:7"
             },
-            "scope": 2107,
+            "scope": 2124,
             "src": "581:181:7",
             "stateMutability": "view",
             "superFunction": null,
@@ -524,7 +524,7 @@
           },
           {
             "body": {
-              "id": 2105,
+              "id": 2122,
               "nodeType": "Block",
               "src": "940:54:7",
               "statements": [
@@ -536,25 +536,25 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2099,
+                          "id": 2116,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2092,
+                          "referencedDeclaration": 2109,
                           "src": "953:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2100,
+                        "id": 2117,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "description",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 2055,
+                        "referencedDeclaration": 2072,
                         "src": "953:16:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_storage",
@@ -565,25 +565,25 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2101,
+                          "id": 2118,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2092,
+                          "referencedDeclaration": 2109,
                           "src": "971:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2102,
+                        "id": 2119,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "itemsInTrade",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 2057,
+                        "referencedDeclaration": 2074,
                         "src": "971:17:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_storage",
@@ -591,7 +591,7 @@
                         }
                       }
                     ],
-                    "id": 2103,
+                    "id": 2120,
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
@@ -604,46 +604,46 @@
                       "typeString": "tuple(string storage ref,string storage ref)"
                     }
                   },
-                  "functionReturnParameters": 2098,
-                  "id": 2104,
+                  "functionReturnParameters": 2115,
+                  "id": 2121,
                   "nodeType": "Return",
                   "src": "945:44:7"
                 }
               ]
             },
             "documentation": null,
-            "id": 2106,
+            "id": 2123,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "ViewPrivateInformation",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2093,
+              "id": 2110,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2092,
+                  "id": 2109,
                   "name": "self",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2106,
+                  "scope": 2123,
                   "src": "865:20:7",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                    "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                     "typeString": "struct TransactionDataSet.DataSet"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2091,
+                    "id": 2108,
                     "name": "DataSet",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2066,
+                    "referencedDeclaration": 2083,
                     "src": "865:7:7",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                      "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                       "typeString": "struct TransactionDataSet.DataSet"
                     }
                   },
@@ -654,15 +654,15 @@
               "src": "864:22:7"
             },
             "returnParameters": {
-              "id": 2098,
+              "id": 2115,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2095,
+                  "id": 2112,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2106,
+                  "scope": 2123,
                   "src": "910:13:7",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -671,7 +671,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2094,
+                    "id": 2111,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "910:6:7",
@@ -685,10 +685,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 2097,
+                  "id": 2114,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2106,
+                  "scope": 2123,
                   "src": "925:13:7",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -697,7 +697,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2096,
+                    "id": 2113,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "925:6:7",
@@ -712,14 +712,14 @@
               ],
               "src": "909:30:7"
             },
-            "scope": 2107,
+            "scope": 2124,
             "src": "833:161:7",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 2108,
+        "scope": 2125,
         "src": "98:899:7"
       }
     ],
@@ -729,14 +729,14 @@
     "absolutePath": "/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/TransactionDataSet.sol",
     "exportedSymbols": {
       "TransactionDataSet": [
-        2107
+        2124
       ]
     },
-    "id": 2108,
+    "id": 2125,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2053,
+        "id": 2070,
         "literals": [
           "solidity",
           ">=",
@@ -755,23 +755,23 @@
         "contractKind": "library",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 2107,
+        "id": 2124,
         "linearizedBaseContracts": [
-          2107
+          2124
         ],
         "name": "TransactionDataSet",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "TransactionDataSet.DataSet",
-            "id": 2066,
+            "id": 2083,
             "members": [
               {
                 "constant": false,
-                "id": 2055,
+                "id": 2072,
                 "name": "description",
                 "nodeType": "VariableDeclaration",
-                "scope": 2066,
+                "scope": 2083,
                 "src": "175:18:7",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -780,7 +780,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 2054,
+                  "id": 2071,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "175:6:7",
@@ -794,10 +794,10 @@
               },
               {
                 "constant": false,
-                "id": 2057,
+                "id": 2074,
                 "name": "itemsInTrade",
                 "nodeType": "VariableDeclaration",
-                "scope": 2066,
+                "scope": 2083,
                 "src": "232:19:7",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -806,7 +806,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 2056,
+                  "id": 2073,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "232:6:7",
@@ -820,10 +820,10 @@
               },
               {
                 "constant": false,
-                "id": 2059,
+                "id": 2076,
                 "name": "sender",
                 "nodeType": "VariableDeclaration",
-                "scope": 2066,
+                "scope": 2083,
                 "src": "310:14:7",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -832,7 +832,7 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 2058,
+                  "id": 2075,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
                   "src": "310:7:7",
@@ -847,10 +847,10 @@
               },
               {
                 "constant": false,
-                "id": 2061,
+                "id": 2078,
                 "name": "receiver",
                 "nodeType": "VariableDeclaration",
-                "scope": 2066,
+                "scope": 2083,
                 "src": "359:16:7",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -859,7 +859,7 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 2060,
+                  "id": 2077,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
                   "src": "359:7:7",
@@ -874,10 +874,10 @@
               },
               {
                 "constant": false,
-                "id": 2063,
+                "id": 2080,
                 "name": "timeStamp",
                 "nodeType": "VariableDeclaration",
-                "scope": 2066,
+                "scope": 2083,
                 "src": "413:14:7",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -886,7 +886,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2062,
+                  "id": 2079,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
                   "src": "413:4:7",
@@ -900,10 +900,10 @@
               },
               {
                 "constant": false,
-                "id": 2065,
+                "id": 2082,
                 "name": "amount",
                 "nodeType": "VariableDeclaration",
-                "scope": 2066,
+                "scope": 2083,
                 "src": "466:11:7",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -912,7 +912,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2064,
+                  "id": 2081,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
                   "src": "466:4:7",
@@ -927,13 +927,13 @@
             ],
             "name": "DataSet",
             "nodeType": "StructDefinition",
-            "scope": 2107,
+            "scope": 2124,
             "src": "129:383:7",
             "visibility": "public"
           },
           {
             "body": {
-              "id": 2089,
+              "id": 2106,
               "nodeType": "Block",
               "src": "687:75:7",
               "statements": [
@@ -945,25 +945,25 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2079,
+                          "id": 2096,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2068,
+                          "referencedDeclaration": 2085,
                           "src": "700:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2080,
+                        "id": 2097,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "timeStamp",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 2063,
+                        "referencedDeclaration": 2080,
                         "src": "700:14:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -974,25 +974,25 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2081,
+                          "id": 2098,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2068,
+                          "referencedDeclaration": 2085,
                           "src": "716:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2082,
+                        "id": 2099,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "amount",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 2065,
+                        "referencedDeclaration": 2082,
                         "src": "716:11:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -1003,25 +1003,25 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2083,
+                          "id": 2100,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2068,
+                          "referencedDeclaration": 2085,
                           "src": "729:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2084,
+                        "id": 2101,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 2059,
+                        "referencedDeclaration": 2076,
                         "src": "729:11:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -1032,25 +1032,25 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2085,
+                          "id": 2102,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2068,
+                          "referencedDeclaration": 2085,
                           "src": "742:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2086,
+                        "id": 2103,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "receiver",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 2061,
+                        "referencedDeclaration": 2078,
                         "src": "742:13:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -1058,7 +1058,7 @@
                         }
                       }
                     ],
-                    "id": 2087,
+                    "id": 2104,
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
@@ -1071,46 +1071,46 @@
                       "typeString": "tuple(uint256,uint256,address,address)"
                     }
                   },
-                  "functionReturnParameters": 2078,
-                  "id": 2088,
+                  "functionReturnParameters": 2095,
+                  "id": 2105,
                   "nodeType": "Return",
                   "src": "692:65:7"
                 }
               ]
             },
             "documentation": null,
-            "id": 2090,
+            "id": 2107,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "ViewPublicInformation",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2069,
+              "id": 2086,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2068,
+                  "id": 2085,
                   "name": "self",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2090,
+                  "scope": 2107,
                   "src": "612:20:7",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                    "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                     "typeString": "struct TransactionDataSet.DataSet"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2067,
+                    "id": 2084,
                     "name": "DataSet",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2066,
+                    "referencedDeclaration": 2083,
                     "src": "612:7:7",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                      "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                       "typeString": "struct TransactionDataSet.DataSet"
                     }
                   },
@@ -1121,15 +1121,15 @@
               "src": "611:22:7"
             },
             "returnParameters": {
-              "id": 2078,
+              "id": 2095,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2071,
+                  "id": 2088,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2090,
+                  "scope": 2107,
                   "src": "657:4:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1138,7 +1138,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2070,
+                    "id": 2087,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "657:4:7",
@@ -1152,10 +1152,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 2073,
+                  "id": 2090,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2090,
+                  "scope": 2107,
                   "src": "663:4:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1164,7 +1164,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2072,
+                    "id": 2089,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "663:4:7",
@@ -1178,10 +1178,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 2075,
+                  "id": 2092,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2090,
+                  "scope": 2107,
                   "src": "669:7:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1190,7 +1190,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2074,
+                    "id": 2091,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "669:7:7",
@@ -1205,10 +1205,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 2077,
+                  "id": 2094,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2090,
+                  "scope": 2107,
                   "src": "678:7:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1217,7 +1217,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2076,
+                    "id": 2093,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "678:7:7",
@@ -1233,7 +1233,7 @@
               ],
               "src": "656:30:7"
             },
-            "scope": 2107,
+            "scope": 2124,
             "src": "581:181:7",
             "stateMutability": "view",
             "superFunction": null,
@@ -1241,7 +1241,7 @@
           },
           {
             "body": {
-              "id": 2105,
+              "id": 2122,
               "nodeType": "Block",
               "src": "940:54:7",
               "statements": [
@@ -1253,25 +1253,25 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2099,
+                          "id": 2116,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2092,
+                          "referencedDeclaration": 2109,
                           "src": "953:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2100,
+                        "id": 2117,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "description",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 2055,
+                        "referencedDeclaration": 2072,
                         "src": "953:16:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_storage",
@@ -1282,25 +1282,25 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2101,
+                          "id": 2118,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2092,
+                          "referencedDeclaration": 2109,
                           "src": "971:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2102,
+                        "id": 2119,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "itemsInTrade",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 2057,
+                        "referencedDeclaration": 2074,
                         "src": "971:17:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_storage",
@@ -1308,7 +1308,7 @@
                         }
                       }
                     ],
-                    "id": 2103,
+                    "id": 2120,
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
@@ -1321,46 +1321,46 @@
                       "typeString": "tuple(string storage ref,string storage ref)"
                     }
                   },
-                  "functionReturnParameters": 2098,
-                  "id": 2104,
+                  "functionReturnParameters": 2115,
+                  "id": 2121,
                   "nodeType": "Return",
                   "src": "945:44:7"
                 }
               ]
             },
             "documentation": null,
-            "id": 2106,
+            "id": 2123,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "ViewPrivateInformation",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2093,
+              "id": 2110,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2092,
+                  "id": 2109,
                   "name": "self",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2106,
+                  "scope": 2123,
                   "src": "865:20:7",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                    "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                     "typeString": "struct TransactionDataSet.DataSet"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2091,
+                    "id": 2108,
                     "name": "DataSet",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2066,
+                    "referencedDeclaration": 2083,
                     "src": "865:7:7",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_DataSet_$2066_storage_ptr",
+                      "typeIdentifier": "t_struct$_DataSet_$2083_storage_ptr",
                       "typeString": "struct TransactionDataSet.DataSet"
                     }
                   },
@@ -1371,15 +1371,15 @@
               "src": "864:22:7"
             },
             "returnParameters": {
-              "id": 2098,
+              "id": 2115,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2095,
+                  "id": 2112,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2106,
+                  "scope": 2123,
                   "src": "910:13:7",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1388,7 +1388,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2094,
+                    "id": 2111,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "910:6:7",
@@ -1402,10 +1402,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 2097,
+                  "id": 2114,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2106,
+                  "scope": 2123,
                   "src": "925:13:7",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1414,7 +1414,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2096,
+                    "id": 2113,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "925:6:7",
@@ -1429,14 +1429,14 @@
               ],
               "src": "909:30:7"
             },
-            "scope": 2107,
+            "scope": 2124,
             "src": "833:161:7",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 2108,
+        "scope": 2125,
         "src": "98:899:7"
       }
     ],
@@ -1455,7 +1455,7 @@
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-31T15:37:03.997Z",
+  "updatedAt": "2019-11-01T16:20:45.644Z",
   "devdoc": {
     "methods": {}
   },

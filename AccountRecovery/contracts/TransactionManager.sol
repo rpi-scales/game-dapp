@@ -15,11 +15,11 @@ import "../contracts/Transaction.sol";
 contract TransactionManager {
 	mapping (address => mapping (address => Transaction[]) ) transactions;
 	UserManager UserManagerInstance;			// Connects to the list of users on the network
-	ProposalManager ProposalManagerInstance;	// Connects to the list of active proposals on the network
+	ProposalManager PMI;	// Connects to the list of active proposals on the network
 
 	constructor(address UserManagerAddress, address ProposalManagerAddress) public {
 		UserManagerInstance = UserManager(UserManagerAddress);
-		ProposalManagerInstance = ProposalManager(ProposalManagerAddress);
+		PMI = ProposalManager(ProposalManagerAddress);
 	}
 
 	function BuyCoin() public payable {
@@ -37,8 +37,12 @@ contract TransactionManager {
 		require (_reciever != msg.sender, "Can not send money to yourself");
 		require (_reciever != address(UserManagerInstance.getAdmin()), "Can not send money to the admin");
 		require (!CheckForBribery(msg.sender, _reciever), "This is Bribery");
-		require (!CheckForOldAccount(msg.sender), "This transaction if from an Old Account");
 
+		address newAccount = CheckForOldAccount(msg.sender);
+		while (newAccount != 0x0000000000000000000000000000000000000000){
+			PMI.archiveProposal(msg.sender, newAccount);
+			newAccount = CheckForOldAccount(msg.sender);
+		}
 		Person sender = UserManagerInstance.getUser(msg.sender); // Finds sender
 		Person reciever = UserManagerInstance.getUser(_reciever); // Finds reciever
 
@@ -73,16 +77,16 @@ contract TransactionManager {
 		return false;
 	}
 
-	function CheckForOldAccount(address _oldAccount) internal view returns (bool){
+	function CheckForOldAccount(address _oldAccount) internal view returns (address){
 		address[] memory addresses = UserManagerInstance.getAddresses(); // List of addresses on the network
 		for (uint i = 0; i < addresses.length; i++){					// For each address
 			if (_oldAccount != addresses[i]){							// The new account can not be a voter
-				if (ProposalManagerInstance.getActiveProposalExists(_oldAccount, addresses[i])){
-					return true;
+				if (PMI.getActiveProposalExists(_oldAccount, addresses[i])){
+					return addresses[i];
 				}
 			}
 		}
-		return false;
+		return 0x0000000000000000000000000000000000000000;
 	}
 
 	function CheckForBribery(address _newAccount, address _voter) internal view returns (bool){
@@ -90,8 +94,8 @@ contract TransactionManager {
 
 		for (uint i = 0; i < addresses.length; i++){					// For each address
 			if (_newAccount != addresses[i]){							// The new account can not be a voter
-				if (ProposalManagerInstance.getActiveProposalExists(addresses[i], _newAccount)){
-					Proposal temp = ProposalManagerInstance.getActiveProposal(addresses[i], _newAccount);
+				if (PMI.getActiveProposalExists(addresses[i], _newAccount)){
+					Proposal temp = PMI.getActiveProposal(addresses[i], _newAccount);
 					address[] memory voters = temp.getVoters();
 					for(uint j = 0; j < voters.length; j++){
 						if (voters[j] == _voter){

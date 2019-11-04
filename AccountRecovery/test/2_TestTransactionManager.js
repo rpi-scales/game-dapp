@@ -4,21 +4,17 @@ var TransactionManagerInstance;
 const UserManager = artifacts.require("UserManager");
 var UserManagerInstance;
 
-function Transaction(sender, receiver, amount) {
-	this.sender = sender;
-	this.receiver = receiver;
-	this.amount = amount;
-}
-
 contract('TransactionManager', (accounts) => {
+	var users = accounts.slice();
+	users.shift();
 
 	it('Constructor', async () => {
-		UserManagerInstance = await UserManager.deployed(accounts);
+		UserManagerInstance = await UserManager.deployed(users);
 		TransactionManagerInstance = await TransactionManager.deployed(UserManagerInstance.address);
 	});
 
-	it('Buy Coins (accounts[0]): Valid', async () => {
-		const buyer = accounts[0];
+	it('Buy Coins (users[0]): Valid', async () => {
+		const buyer = users[0];
 		const buyerStartingBalance = (await UserManagerInstance.getUserBalance(buyer)).toNumber();
 
 		const amount = 1000000000000000000;				// 1 ETH -> 100 Coins
@@ -28,9 +24,9 @@ contract('TransactionManager', (accounts) => {
 		assert.equal(buyerEndingBalance, buyerStartingBalance + (amount/10000000000000000), "Amount wasn't correctly given to the buyer");
 	});
 
-	it('Send Money (Account[0] to Account[1] ): Valid', async () => {
-		const sender = accounts[0];
-		const receiver = accounts[1];
+	it('Send Money (users[0] to users[1] ): Valid', async () => {
+		const sender = users[0];
+		const receiver = users[1];
 
 		const senderStartingBalance = (await UserManagerInstance.getUserBalance(sender)).toNumber();
 		const receiverStartingBalance = (await UserManagerInstance.getUserBalance(receiver)).toNumber();
@@ -45,20 +41,14 @@ contract('TransactionManager', (accounts) => {
 		assert.equal(receiverEndingBalance, receiverStartingBalance + amount, "Amount wasn't correctly sent to the receiver");
 	});
 
-	it('View Transaction (Account[0] to Account[1]): Valid', async () => {
-		var senderStart = accounts[0];
-		var receiverStart = accounts[1];
+	it('View Transaction (users[0] to users[1]): Valid', async () => {
+		var senderStart = users[0];
+		var receiverStart = users[1];
 
 		var temp = await TransactionManagerInstance.getTransactionJS(senderStart, receiverStart, 0);
-		var transactionOne = new Transaction(temp[0], temp[1], temp[2]);
 
-		var sender = transactionOne.sender;
-		assert.equal(sender, senderStart, "Wrong sender");
-
-		const receiver = transactionOne.receiver;
-		assert.equal(receiver, receiverStart, "Wrong receiver");
-
-		const amount = (transactionOne.amount).toNumber();
-		assert.equal(amount, 10, "Wrong amount");
+		assert.equal(temp[0], senderStart, "Wrong sender");
+		assert.equal(temp[1], receiverStart, "Wrong receiver");
+		assert.equal(temp[2], 10, "Wrong amount");
 	});
 });

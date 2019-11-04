@@ -19,8 +19,6 @@ module.exports = (deployer, network, accounts) => {
 	deployer.link(votingToken, ProposalCreator);
 	deployer.link(transactionDataSet, ProposalCreator);
 
-	// deployer.link(set, UserManager);
-
 	deployer.deploy(UserManager, accounts)
 	.then(() => deployer.deploy(ProposalManager, UserManager.address))
 	.then(() => deployer.deploy(TransactionManager, UserManager.address, ProposalManager.address))

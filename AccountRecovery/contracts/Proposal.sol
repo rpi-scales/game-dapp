@@ -144,7 +144,7 @@ contract Proposal {
 	// Add set of data for a give transaction for a give voter
 	function AddTransactionDataSet(uint _timeStamp, address _voter, uint _amount, 
 		string calldata _description, string calldata _itemsInTrade) external {
-		require(voters.contains(_voter), "Invalid Voter. Can not make a VotingToken");
+		require(voters.contains(_voter), "Invalid Voter. Can not add transaction data");
 
 		transactionDataSets[_voter].push(TransactionDataSet.DataSet(_description, _itemsInTrade, oldAccount, _voter, _timeStamp, _amount));
 	}
@@ -237,7 +237,7 @@ contract Proposal {
 	}
 
 	function check(address _voter) private view {
-		require(voters.contains(_voter), "Invalid Voter. Can not make a VotingToken");
+		require(voters.contains(_voter), "Invalid Voter");
 		require(VotingTokenCreated == voters.getValuesLength(), "Have not created all the VotingTokens");
 		require(transactionDataSets[_voter].length > 0, "There is no transaction data to view");
 	} 

@@ -31,27 +31,4 @@ library Set {
 	function getValuesLength(AddressData storage self) external view returns (uint) {
 		return self.values.length;
 	}
-	/*
-
-	struct PersonData {
-		mapping(address => bool) exists;
-		mapping(address => Person) values;
-	}
-
-	function insert(PersonData storage self, Person value) external {
-		if (self.exists[value.ID()]) return;
-		self.exists[value.ID()] = true;
-		self.values[value.ID()] = value;
-	}
-
-	function contains(PersonData storage self, address value) external view returns (bool) {
-		return self.exists[value];
-	}
-
-	function getValue(PersonData storage self, address i) external view returns (Person) {
-		return self.values[i];
-	}
-	*/
-
-
 }

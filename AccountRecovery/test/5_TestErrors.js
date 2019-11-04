@@ -10,55 +10,65 @@ var PMI;		// ProposalManagerInstance
 const ProposalCreator = artifacts.require("ProposalCreator");
 var PCI;		// ProposalCreatorInstance
 
-contract('UserManager: Invalid Tests', (accounts) => {
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-	var newAccount = accounts[8];
-	var oldAccount = accounts[0];
+var newAccount;
+var oldAccount;
+
+contract('Invalid Tests', (accounts) => {
+	var users = accounts.slice();
+	users.shift();
+
+	newAccount = users[8];
+	oldAccount = users[0];
 
 	it('Valid: Constructor', async () => {
-		UMI = await UserManager.deployed(accounts);
+		UMI = await UserManager.deployed(users);
 		TMI = await TransactionManager.deployed(UMI.address);
 		PMI = await ProposalManager.deployed(UMI.address, TMI.address);
 		PCI = await ProposalCreator.deployed(UMI.address, TMI.address, ProposalManager.address);
 	});
-
+	/*
 	it('Getting a user that does not exist', async () => {
 		const admin = (await UMI.getAdmin());
 		console.log(await UMI.getUserBalance(admin));
 	});
-
+	*/
 	it('Valid: Change Veto Time', async () => {
 		await UMI.changeVetoTime(1, {from: oldAccount});
 	});
 
-
 	/*
 	it('Sending money to the admin', async () => {
 		const admin = (await UMI.getAdmin());
-		await TMI.MakeTransaction(admin, 10, {from: accounts[1]});
+		await TMI.MakeTransaction(admin, 10, {from: users[1]});
 	});
 	*/
 	/*
 	it('Sending money to yourself', async () => {
-		await TMI.MakeTransaction(accounts[0], 10, {from: accounts[0]});
+		await TMI.MakeTransaction(users[0], 10, {from: users[0]});
 	});
 	*/
 	/*
 	it('Not having enough money for a transaction', async () => {
-		await TMI.MakeTransaction(accounts[1], 10, {from: accounts[0]});
+		await TMI.MakeTransaction(users[1], 10, {from: users[0]});
 	});
 	*/
 	/*
 	it('Getting a transaction that does not exist', async () => {
-		await TMI.getTransactionJS(accounts[0], accounts[1], 10);
+		await TMI.getTransactionJS(users[0], users[1], 10);
 	});
 	*/
-
-
-
+	/*
+	it('Look up a Proposa that does not exist', async () => {
+		await PCI.Pay(oldAccount, true, { from: newAccount });
+	});
+	*/
 	/*
 	it('Creating a proposal to recover your own account', async () => {
-		await PCI.StartProposal(accounts[0], "AA", {from: newAccount});
+		await PCI.StartProposal(users[0], "AA", {from: newAccount});
 	});
 	*/
 	/*
@@ -69,17 +79,15 @@ contract('UserManager: Invalid Tests', (accounts) => {
 	*/
 
 	it('Valid: Buy Coins for old account', async () => {
-		const amount = 10000000000000000000;				// 10 ETH -> 1000 Coins
-		await TMI.BuyCoin({ from: oldAccount, value: amount});
-		const endingBalance = (await UMI.getUserBalance(oldAccount)).toNumber();
-		assert.equal(endingBalance, 1000, "Old Account did not buy the right amount of coins");
+		await TMI.BuyCoin({ from: oldAccount, value: 10000000000000000000});
 	});
 
 	it('Valid: Send Money from old account to indicated trade partners: Valid', async () => {
 		const amount = 10;
 		for (i = 1; i <= 6; i++) {
-			await TMI.MakeTransaction(accounts[i], amount, { from: oldAccount });
+			await TMI.MakeTransaction(users[i], amount, { from: oldAccount });
 		}
+		await TMI.MakeTransaction(users[8], amount, { from: oldAccount });
 	});
 
 	it('Valid: Creating a valid proposal', async () => {
@@ -98,16 +106,13 @@ contract('UserManager: Invalid Tests', (accounts) => {
 	*/
 	/*
 	it('Adding trade partners before paying', async () => {
-		var TradePartners = [accounts[1], accounts[2], accounts[3]];
+		var TradePartners = [users[1], users[2], users[3]];
 		await PCI.AddTradePartners(oldAccount, TradePartners, { from: newAccount });
 	});
 	*/
 
 	it('Valid: Buy Coins for new account', async () => {
-		const amount = 1000000000000000000;				// 1 ETH -> 100 Coins
-		await TMI.BuyCoin({ from: newAccount, value: amount});
-		const endingBalance = (await UMI.getUserBalance(newAccount)).toNumber();
-		assert.equal(endingBalance, 100, "New Account did not buy the right amount of coins");
+		await TMI.BuyCoin({ from: newAccount, value: 1000000000000000000});
 	});
 
 	it('Valid: Pay for Proposal', async () => {
@@ -116,19 +121,19 @@ contract('UserManager: Invalid Tests', (accounts) => {
 
 	/*
 	it('Not enough indicated trade partners up front', async () => {
-		var TradePartners = [accounts[1]];
+		var TradePartners = [users[1]];
 		await PCI.AddTradePartners(oldAccount, TradePartners, { from: newAccount });
 	});
 	*/
 	/*
 	it('Not have enough of the indicated trade partners be actual trade parttners', async () => {
-		var TradePartners = [accounts[1], accounts[7], accounts[8]];
+		var TradePartners = [users[1], users[7], users[8]];
 		await PCI.AddTradePartners(oldAccount, TradePartners, { from: newAccount });
 	});
 	*/
 	/*
 	it('Do not have enough of the other trade partners', async () => {
-		var TradePartners = [accounts[1], accounts[2], accounts[3], accounts[4], accounts[5]];
+		var TradePartners = [users[1], users[2], users[3], users[4], users[5]];
 		await PCI.AddTradePartners(oldAccount, TradePartners, { from: newAccount });
 	});
 	*/
@@ -138,7 +143,7 @@ contract('UserManager: Invalid Tests', (accounts) => {
 	});
 	*/
 
-	var TradePartners = [accounts[1], accounts[2], accounts[3]];
+	var TradePartners = [users[1], users[2], users[3]];
 	it('Valid: Add Trading Partners: [1,2,3]', async () => {
 		await PCI.AddTradePartners(oldAccount, TradePartners, { from: newAccount });
 	});
@@ -192,7 +197,7 @@ contract('UserManager: Invalid Tests', (accounts) => {
 	});
 
 	/*
-	it('Cast a Vote (Yes Votes)', async () => {
+	it('Cast a Vote before creating all voting tokens', async () => {
 		await PMI.CastVote(oldAccount, newAccount, true, { from: TradePartners[0] });
 	});
 	*/	
@@ -200,6 +205,11 @@ contract('UserManager: Invalid Tests', (accounts) => {
 	/*
 	it('Concluding the vote before creating all voting tokens', async () => {
 		await PMI.ConcludeAccountRecovery(oldAccount, {from: newAccount});
+	});
+	*/
+	/*
+	it('Make Voting Token for a voter that is not a voter', async () => {
+		await PCI.MakeVotingToken(oldAccount, users[8], "HI", { from: newAccount });
 	});
 	*/
 
@@ -220,17 +230,26 @@ contract('UserManager: Invalid Tests', (accounts) => {
 	});
 	*/
 	/*
+	it('Add transaction data for a voter that is not a voter', async () => {
+		await PCI.MakeTransactionDataSet(oldAccount, 1, 10, users[8], "AAA", "BBB", { from: newAccount });
+	});
+	*/
+	/*
 	it('Concluding the vote before adding all transaction data', async () => {
 		await PMI.ConcludeAccountRecovery(oldAccount, {from: newAccount});
 	});
 	*/
 
-	it('Valid: Add Transaction Data Set', async () => {
+	it('Valid: Adding transaction data', async () => {
 		for (var i = 0; i < TradePartners.length; i++) {
 			await PCI.MakeTransactionDataSet(oldAccount, 1, 10, TradePartners[i], "AAA", "BBB", { from: newAccount });
 		}
 	});
-
+	/*
+	it('Invalid user casting a vote', async () => {
+		await PMI.CastVote(oldAccount, newAccount, false, { from: users[8] });
+	});	
+	*/
 	/*
 	it('Concluding the vote before enough voters have voted', async () => {
 		await PMI.ConcludeAccountRecovery(oldAccount, {from: newAccount});
@@ -241,7 +260,7 @@ contract('UserManager: Invalid Tests', (accounts) => {
 		for (var i = 0; i < TradePartners.length; i++) {
 			await PMI.CastVote(oldAccount, newAccount, false, { from: TradePartners[i] });
 		}
-	});	
+	});
 	/*
 	it('Cast a Duplicate Vote', async () => {
 		await PMI.CastVote(oldAccount, newAccount, true, { from: TradePartners[0] });
@@ -257,14 +276,20 @@ contract('UserManager: Invalid Tests', (accounts) => {
 		await TMI.MakeTransaction(TradePartners[0], 1, { from: oldAccount });
 	});
 	*/
+	/*
+	it('Concluding the vote before veto time has elapsed', async () => {
+		await PMI.ConcludeAccountRecovery(oldAccount, {from: newAccount});
+	});
+	*/
+
 	it('Valid: Concluding a failed vote', async () => {
 		const before0 = (await UMI.getUserBalance(oldAccount)).toNumber();
-		const before1 = (await UMI.getUserBalance(accounts[1])).toNumber();
-		const before2 = (await UMI.getUserBalance(accounts[2])).toNumber();
-		const before3 = (await UMI.getUserBalance(accounts[3])).toNumber();
-		const before4 = (await UMI.getUserBalance(accounts[4])).toNumber();
-		const before5 = (await UMI.getUserBalance(accounts[5])).toNumber();
-		const before6 = (await UMI.getUserBalance(accounts[6])).toNumber();
+		const before1 = (await UMI.getUserBalance(users[1])).toNumber();
+		const before2 = (await UMI.getUserBalance(users[2])).toNumber();
+		const before3 = (await UMI.getUserBalance(users[3])).toNumber();
+		const before4 = (await UMI.getUserBalance(users[4])).toNumber();
+		const before5 = (await UMI.getUserBalance(users[5])).toNumber();
+		const before6 = (await UMI.getUserBalance(users[6])).toNumber();
 		const before8 = (await UMI.getUserBalance(newAccount)).toNumber();
 
 		await PMI.ConcludeAccountRecovery(oldAccount, {from: newAccount});
@@ -272,12 +297,12 @@ contract('UserManager: Invalid Tests', (accounts) => {
 		// assert.equal(temp[0], true, "Wrong Outcome");
 
 		const after0 = (await UMI.getUserBalance(oldAccount)).toNumber();
-		const after1 = (await UMI.getUserBalance(accounts[1])).toNumber();
-		const after2 = (await UMI.getUserBalance(accounts[2])).toNumber();
-		const after3 = (await UMI.getUserBalance(accounts[3])).toNumber();
-		const after4 = (await UMI.getUserBalance(accounts[4])).toNumber();
-		const after5 = (await UMI.getUserBalance(accounts[5])).toNumber();
-		const after6 = (await UMI.getUserBalance(accounts[6])).toNumber();
+		const after1 = (await UMI.getUserBalance(users[1])).toNumber();
+		const after2 = (await UMI.getUserBalance(users[2])).toNumber();
+		const after3 = (await UMI.getUserBalance(users[3])).toNumber();
+		const after4 = (await UMI.getUserBalance(users[4])).toNumber();
+		const after5 = (await UMI.getUserBalance(users[5])).toNumber();
+		const after6 = (await UMI.getUserBalance(users[6])).toNumber();
 		const after8 = (await UMI.getUserBalance(newAccount)).toNumber();
 
 		console.log("Before[0]: " + before0 + ",  \tAfter[0]: " + after0);

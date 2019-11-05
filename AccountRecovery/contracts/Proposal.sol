@@ -25,7 +25,7 @@ contract Proposal {
 
 	mapping (address => TransactionDataSet.DataSet[]) transactionDataSets; // Map of active proposals
 
-	mapping (address => VotingTokenPair) votingtokens;// Active Voting Tokens
+	mapping (address => VotingTokenPair) votingtokens;		// Active Voting Tokens
 	Set.AddressData voters;									// Addresses who are eligible to vote
 	Set.AddressData archivedVoters;
 
@@ -33,8 +33,7 @@ contract Proposal {
 
 	address lastOtherPartner = 0x0000000000000000000000000000000000000000;
 	address oldAccount;									// Address of the old account
-	address newAccount;									// Address of the new account
-	string description;									// Description of Proposal
+	address newAccount;							// Address of the new account
 	
 	uint numberOfVoters = 0;
 	uint public price;									// Price of the account recovery
@@ -44,12 +43,11 @@ contract Proposal {
 	bool paided = false;
 
 
-	constructor(address _oldAccount, address _newAccount, string memory _description, uint _price) public {
+	constructor(address _oldAccount, address _newAccount, uint _price) public {
 		// Set variable
 		oldAccount = _oldAccount;
 		newAccount = _newAccount;
 		
-		description = _description;
 		price = _price;
 		startTime = block.timestamp;
 	}
@@ -60,7 +58,7 @@ contract Proposal {
 		paided = true;								// The proposal has been paid for
 	}
 
-	function AddTradePartners(address[] calldata _tradePartners, address[] calldata _archivedVoters, UserManager UserManagerInstance, TransactionManager TransactionManagerInstance) external {
+	function AddTradePartners(address[] calldata _tradePartners, address[] calldata _archivedVoters, UserManager UMI, TransactionManager TMI) external {
 		require(paided == true, "This proposal has not been paid for yet");
 
 		for (uint i = 0; i < _archivedVoters.length; i++){
@@ -71,7 +69,7 @@ contract Proposal {
 		for (uint i = 0; i < _tradePartners.length; i++){	// For each partner
 			if (newAccount != _tradePartners[i]){			// The new account can not be a voter
 				// They have made a transaction with the old account
-				if (TransactionManagerInstance.NumberOfTransactions(oldAccount, _tradePartners[i]) > 0){
+				if (TMI.NumberOfTransactions(oldAccount, _tradePartners[i]) > 0){
 					if (!archivedVoters.contains(_tradePartners[i])){			// This address is not already a voter
 						voters.insert(_tradePartners[i]);
 					}
@@ -81,12 +79,12 @@ contract Proposal {
 		require(voters.getValuesLength() >= 3, "Invalid Number of tradePartners");
 		numberOfVoters = voters.getValuesLength() * 2;
 
-		address[] memory addresses = UserManagerInstance.getAddresses(); // List of addresses on the network
+		address[] memory addresses = UMI.getAddresses(); // List of addresses on the network
 
 		for (uint i = 0; i < addresses.length; i++){					// For each address
 			if (newAccount != addresses[i]){							// The new account can not be a voter
 				// They have made a transaction with the old account
-				if (TransactionManagerInstance.NumberOfTransactions(oldAccount, addresses[i]) > 0){
+				if (TMI.NumberOfTransactions(oldAccount, addresses[i]) > 0){
 					if (!voters.contains(addresses[i]) && !archivedVoters.contains(addresses[i]) ){			// This address is not already a voter
 						haveTradedWith.push(addresses[i]);				// This address is an eligible voter
 					}

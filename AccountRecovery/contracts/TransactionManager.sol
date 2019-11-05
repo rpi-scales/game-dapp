@@ -23,6 +23,8 @@ contract TransactionManager {
 	}
 
 	function BuyCoin() public payable {
+		require (!PMI.getBlacklistedAccount(msg.sender), "The buyer is blacklisted");
+
 		address payable admin = UserManagerInstance.getAdmin();
 		admin.transfer(msg.value);								// Spend ETH
 
@@ -35,6 +37,8 @@ contract TransactionManager {
 	// Makes a transaction between 2 users
 	function MakeTransaction(address _reciever, uint _amount) external {
 		require (_reciever != msg.sender, "Can not send money to yourself");
+		require (!PMI.getBlacklistedAccount(msg.sender), "The sender is blacklisted");
+		require (!PMI.getBlacklistedAccount(_reciever), "The reciever is blacklisted");
 		require (_reciever != address(UserManagerInstance.getAdmin()), "Can not send money to the admin");
 		require (!CheckForBribery(msg.sender, _reciever), "This is Bribery");
 
@@ -43,6 +47,7 @@ contract TransactionManager {
 			PMI.archiveProposal(msg.sender, newAccount);
 			newAccount = CheckForOldAccount(msg.sender);
 		}
+
 		Person sender = UserManagerInstance.getUser(msg.sender); // Finds sender
 		Person reciever = UserManagerInstance.getUser(_reciever); // Finds reciever
 
@@ -77,11 +82,14 @@ contract TransactionManager {
 		return false;
 	}
 
-	function CheckForOldAccount(address _oldAccount) internal view returns (address){
+	function CheckForOldAccount(address _oldAccount) internal returns (address){
 		address[] memory addresses = UserManagerInstance.getAddresses(); // List of addresses on the network
 		for (uint i = 0; i < addresses.length; i++){					// For each address
 			if (_oldAccount != addresses[i]){							// The new account can not be a voter
 				if (PMI.getActiveProposalExists(_oldAccount, addresses[i])){
+
+					PMI.setBlacklistedAccount(addresses[i]);
+
 					return addresses[i];
 				}
 			}
@@ -89,7 +97,7 @@ contract TransactionManager {
 		return 0x0000000000000000000000000000000000000000;
 	}
 
-	function CheckForBribery(address _newAccount, address _voter) internal view returns (bool){
+	function CheckForBribery(address _newAccount, address _voter) internal returns (bool){
 		address[] memory addresses = UserManagerInstance.getAddresses(); // List of addresses on the network
 
 		for (uint i = 0; i < addresses.length; i++){					// For each address
@@ -99,6 +107,10 @@ contract TransactionManager {
 					address[] memory voters = temp.getVoters();
 					for(uint j = 0; j < voters.length; j++){
 						if (voters[j] == _voter){
+
+							PMI.setBlacklistedAccount(_voter);
+							PMI.setBlacklistedAccount(_newAccount);
+
 							return true;
 						}
 					}
@@ -107,5 +119,4 @@ contract TransactionManager {
 		}
 		return false;
 	}
-
 }

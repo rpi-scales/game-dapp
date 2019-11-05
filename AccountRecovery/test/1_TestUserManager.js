@@ -1,20 +1,20 @@
 const UserManager = artifacts.require("UserManager");
-var UserManagerInstance;
+var UMI;			// UserManagerInstance
 
 contract('UserManager', (accounts) => {
 	var users = accounts.slice();
 	users.shift();
 
 	it('Constructor', async () => {
-		UserManagerInstance = await UserManager.deployed(users);
+		UMI = await UserManager.deployed(users);
 	});	
 
 	it('Getters', async () => {
-		var balance = (await UserManagerInstance.getUserBalance(users[0])).toNumber();
+		var balance = (await UMI.getUserBalance(users[0])).toNumber();
 		assert.equal(balance, 0, "Wrong Balance");
 	});
 
 	it('Change Veto Time', async () => {
-		await UserManagerInstance.changeVetoTime(1, {from: users[0]});
+		await UMI.changeVetoTime(1, {from: users[0]});
 	});
 });

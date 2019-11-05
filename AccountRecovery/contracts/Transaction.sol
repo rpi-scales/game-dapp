@@ -20,8 +20,8 @@ contract Transaction {
 	constructor(Person _sender, Person _reciever, uint _amount) public {
 		require(_sender.balance() >= _amount, "Invalid Balance.");
 		
-		timeStamp = 1;
-		// timeStamp = block.timestamp;
+		// timeStamp = 1;
+		timeStamp = block.timestamp;
 		sender = _sender;
 		receiver = _reciever;
 		amount = _amount;

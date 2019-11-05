@@ -28,11 +28,11 @@ contract('ProposalManager', (accounts) => {
 		PCI = await ProposalCreator.deployed(UMI.address, TMI.address, ProposalManager.address);
 	});
 
-	it('Valid: Change Veto Time', async () => {
+	it('Change Veto Time', async () => {
 		await UMI.changeVetoTime(1, {from: oldAccount});
 	});
 
-	it('Buy Coins (users[0,8]): Valid', async () => {
+	it('Buy Coins (users[0,8])', async () => {
 		const amount = 10000000000000000000;				// 10 ETH -> 1000 Coins
 		await TMI.BuyCoin({ from: oldAccount, value: amount});
 		const endingBalance = (await UMI.getUserBalance(oldAccount)).toNumber();
@@ -45,21 +45,29 @@ contract('ProposalManager', (accounts) => {
 
 	});
 
-	it('Send Money (Account[0] to users[1,2,3,4,5,6]): Valid', async () => {
+	var timeStamps = [];
+	
+	
+	it('Send Money (Account[0] to users[1,2,3,4,5,6])', async () => {
 		const amount = 10;
 		for (i = 1; i <= 6; i++) {
 			const senderStartingBalance = (await UMI.getUserBalance(oldAccount)).toNumber();
+
+
+			var date = new Date();
 			await TMI.MakeTransaction(users[i], amount, { from: oldAccount });
+			timeStamps.push(parseInt(date.getTime()/1000));
+
 			const senderEndingBalance = (await UMI.getUserBalance(oldAccount)).toNumber();
 			assert.equal(senderEndingBalance, senderStartingBalance - amount, "Amount wasn't correctly taken from the sender");
 		}
 	});
 
-	it('Start Proposal (New Account[8], Old Account[0]): Valid', async () => {
-		await PCI.StartProposal(oldAccount, "HI: Proposal", { from: newAccount });
+	it('Start Proposal (New Account[8], Old Account[0])', async () => {
+		await PCI.StartProposal(oldAccount, { from: newAccount });
 	});
 
-	it('Pay for Proposal: Valid', async () => {
+	it('Pay for Proposal', async () => {
 		const A1 = (await UMI.getUserBalance(newAccount)).toNumber();
 
 		const price = (	await PCI.ViewPrice(oldAccount, { from: newAccount }));
@@ -75,11 +83,11 @@ contract('ProposalManager', (accounts) => {
 
 	var TradePartners = [users[1], users[2], users[3]];
 
-	it('Add Trading Partners: [1,2,3]: Valid', async () => {
+	it('Add Trading Partners: [1,2,3]', async () => {
 		await PCI.AddTradePartners(oldAccount, TradePartners, { from: newAccount });
 	});
 
-	it('Find Randomly assigned Voter: Valid', async () => {
+	it('Find Randomly assigned Voter', async () => {
 		for (var i = 0; i < 3; i++) {
 			await PCI.FindRandomTradingPartner(oldAccount, { from: newAccount });
 			var voter = (await PCI.ViewRandomTradingPartner(oldAccount, { from: newAccount }));
@@ -89,35 +97,34 @@ contract('ProposalManager', (accounts) => {
 		}
 	});
 
-	it('Make Voting Token: Valid', async () => {
+	it('Make Voting Token', async () => {
 		for (var i = 0; i < TradePartners.length; i++) {
 			await PCI.MakeVotingToken(oldAccount, TradePartners[i], "HI", { from: newAccount });
 		}
 	});
 
-	const timeStamp = 1;
 	const amount = 10;
 	const receiver = users[1];
 	const sender = oldAccount;
 	const description = "AAA";
 	const itemsInTrade = "BBB";
 
-	it('Add Transaction Data Set: Valid', async () => {
+	it('Add Transaction Data Set', async () => {
 		for (var i = 0; i < TradePartners.length; i++) {
-			await PCI.MakeTransactionDataSet(oldAccount, timeStamp, amount, TradePartners[i], description, itemsInTrade, { from: newAccount });
+			await PCI.MakeTransactionDataSet(oldAccount, timeStamps[i], amount, TradePartners[i], description, itemsInTrade, { from: newAccount });
 		}
 	});
 
-	it('View Public Information: Valid', async () => {
+	it('View Public Information', async () => {
 		var temp = (await PMI.ViewPublicInformation(oldAccount, newAccount, 0, {from: receiver}));
 
-		assert.equal(temp[0], timeStamp, "Wrong dataSet.timeStamp");
+		// assert.equal(temp[0], timeStamp, "Wrong dataSet.timeStamp");
 		assert.equal(temp[1], amount, "Wrong dataSet.amount");
 		assert.equal(temp[2], sender, "Wrong dataSet.sender");
 		assert.equal(temp[3], receiver, "Wrong dataSet.receiver");
 	});
 
-	it('View Private Information: Valid', async () => {
+	it('View Private Information', async () => {
 		var temp = (await PMI.ViewPrivateInformation(oldAccount, newAccount, 0, {from: receiver}));
 
 		assert.equal(temp[0], description, "Wrong dataSet.description");

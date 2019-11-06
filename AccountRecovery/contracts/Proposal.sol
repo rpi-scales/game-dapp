@@ -31,7 +31,7 @@ contract Proposal {
 
 	address[] haveTradedWith;
 
-	address lastOtherPartner = 0x0000000000000000000000000000000000000000;
+	address public lastOtherPartner = 0x0000000000000000000000000000000000000000;
 	address oldAccount;									// Address of the old account
 	address newAccount;							// Address of the new account
 	
@@ -92,10 +92,6 @@ contract Proposal {
 		RandomTradingPartner(true);
 	}
 
-	function ViewRandomTradingPartner() external view returns (address) {
-		return lastOtherPartner;
-	}
-
 	function RandomTradingPartner(bool _veto) public {
 		if (!_veto){
 			require(!voters.contains(lastOtherPartner), "Already added that address");
@@ -124,9 +120,7 @@ contract Proposal {
 	// Make Voting Tokens
 	function MakeVotingToken(address _oldAccount, address _voter, string calldata _description) external {
 		require(voters.getValuesLength() == numberOfVoters, "Trade partners have not been added to this yet proposal");
-		require(voters.contains(_voter), "Invalid Voter. Can not make a VotingToken");
-
-		require(votingtokens[_voter].exists == false, "This voter already has a voting token");
+		require(!votingtokens[_voter].exists, "This voter already has a voting token");
 
 		VotingTokenPair memory temp;
 		temp.token = VotingToken.Token(_description, _oldAccount, _voter, 0, false, false);
@@ -139,26 +133,32 @@ contract Proposal {
 	// Add set of data for a give transaction for a give voter
 	function AddTransactionDataSet(uint _timeStamp, address _voter, uint _amount, 
 		string calldata _description, string calldata _itemsInTrade) external {
-		require(voters.contains(_voter), "Invalid Voter. Can not add transaction data");
-
+		
+		require(votingtokens[_voter].exists, "Need to create a voting token for this voter first");
 		transactionDataSets[_voter].push(TransactionDataSet.DataSet(_description, _itemsInTrade, oldAccount, _voter, _timeStamp, _amount));
 	}
 
 	// View public information on a set of data for a transaction
-	function ViewPublicInformation( address _voter, uint i) external view returns (uint, uint, address, address) {
-		check(_voter);
-		return transactionDataSets[_voter][i].ViewPublicInformation();
+	function ViewPublicInformation( address _voter, uint j) external view returns (uint, uint, address, address) {
+		for (uint i = 0; i < voters.getValuesLength(); i++) { // Goes through all voters
+			require(transactionDataSets[voters.getValue(i)].length > 0, "New account has not shared data with all voters yet");
+		}
+		return transactionDataSets[_voter][j].ViewPublicInformation();
 	}
 
 	// View private information on a set of data for a transaction
-	function ViewPrivateInformation( address _voter, uint i) external view returns (string memory, string memory) {
-		check(_voter);
-		return transactionDataSets[_voter][i].ViewPrivateInformation();
+	function ViewPrivateInformation( address _voter, uint j) external view returns (string memory, string memory) {
+		for (uint i = 0; i < voters.getValuesLength(); i++) { // Goes through all voters
+			require(transactionDataSets[voters.getValue(i)].length > 0, "New account has not shared data with all voters yet");
+		}
+		return transactionDataSets[_voter][j].ViewPrivateInformation();
 	}
 
 	// Casts a vote
 	function CastVote(address _voter, bool choice) external {
-		check(_voter);
+		for (uint i = 0; i < voters.getValuesLength(); i++) { // Goes through all voters
+			require(transactionDataSets[voters.getValue(i)].length > 0, "New account has not shared data with all voters yet");
+		}
 		votingtokens[_voter].token.CastVote(choice);
 	}
 
@@ -207,21 +207,22 @@ contract Proposal {
 			if (temp.getVoted()){							// They are a voter and they voted
 				uint amount = (price / participationFactor) / total;			// Reward for participating 
 
-				if (outcome && temp.getVote()){									// Successful vote and voted yes
-					amount += (price / correctionFactor) / yeses;				// Reward for voting correctly 
-				}else if (!outcome && !temp.getVote()){							// Unsuccessful vote and voted no
-					amount += (price / correctionFactor) / (total-yeses);		// Reward for voting correctly 
+				if (outcome == temp.getVote()){
+					if (outcome){
+						amount += (price / correctionFactor) / yeses;				// Reward for voting correctly 
+					}else{
+						amount += (price / correctionFactor) / (total-yeses);		// Reward for voting correctly
+					}
 				}
 
 				amount += (averageTimeToVote - temp.getVotedTime()) / timeFactor;
 
 				if (amount > 0){
-					Person voter = UMI.getUser(voters.getValue(i)); // Gets voter in the network
-					voter.increaseBalance(amount);					// Increases balance
+					UMI.getUser(voters.getValue(i)).increaseBalance(amount);	// Increases balance
 				}
 			}
 		}
-		return int((100*yeses) / total);								// Return outcome of vote
+		return int((100*yeses) / total);										// Return outcome of vote
 	}
 
 	// Generate random number using an address
@@ -230,13 +231,11 @@ contract Proposal {
 		// return uint8(uint256(keccak256(abi.encodePacked(block.difficulty, block.coinbase, address1, gasleft()))) % size);
 	}
 
-	function check(address _voter) private view {
-		require(voters.contains(_voter), "Invalid Voter");
-		require(VotingTokenCreated == voters.getValuesLength(), "Have not created all the VotingTokens");
-		require(transactionDataSets[_voter].length > 0, "There is no transaction data to view");
-	} 
-
 	function getVoters() external view returns (address[] memory){
 		return voters.getValues();
+	}
+
+	function ContainsVoter(address _voter) external view returns (bool) {
+		return voters.contains(_voter);
 	}
 }

@@ -48,7 +48,7 @@ contract UserManager {
 	function getAddresses() external view returns (address[] memory) {
 		return addresses;
 	}
-
+	
 	function getUserBalance(address i) external view returns (uint) {
 		require(Users[i].exists == true, "This user does not exist");
 		return Users[i].person.balance();

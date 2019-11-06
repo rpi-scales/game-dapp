@@ -55,7 +55,7 @@ contract ProposalCreator {
 	}
 
 	function ViewRandomTradingPartner(address _oldAccount) external view returns (address) {
-		return PMI.getActiveProposal(_oldAccount, msg.sender).ViewRandomTradingPartner();
+		return PMI.getActiveProposal(_oldAccount, msg.sender).lastOtherPartner();
 	}
 
 	function RandomTradingPartner(address _oldAccount, bool _veto) external {
@@ -64,7 +64,9 @@ contract ProposalCreator {
 
 	// Finds proposal and makes voting token for a specified voter
 	function MakeVotingToken(address oldAccount, address _voter, string calldata _description) external {
-		PMI.getActiveProposal(oldAccount, msg.sender).MakeVotingToken(oldAccount, _voter, _description);
+		Proposal temp = PMI.getActiveProposal(oldAccount, msg.sender);
+		require(temp.ContainsVoter(_voter), "Invalid Voter");
+		temp.MakeVotingToken(oldAccount, _voter, _description);
 	}
 
 	// Makes a set of data for a transaction of one of the trade partners. Checks this data 
@@ -72,13 +74,12 @@ contract ProposalCreator {
 		string calldata _description, string calldata _itemsInTrade) external {
 		TMI.Equal(oldAccount, _voter, timeStamp, _amount);
 
+		Proposal temp = PMI.getActiveProposal(oldAccount, msg.sender);
+		require(temp.ContainsVoter(_voter), "Invalid Voter");
 		// Finds proposal and creates set of data 
-		PMI.getActiveProposal(oldAccount, msg.sender).AddTransactionDataSet(timeStamp, _voter, _amount, _description, _itemsInTrade);
+		temp.AddTransactionDataSet(timeStamp, _voter, _amount, _description, _itemsInTrade);
 	}
 }
 
-// 6527579
-// 6400425
-// 6330146
-// 6402941
-// 6520794
+// 6471200
+// 6568080

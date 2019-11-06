@@ -4,20 +4,6 @@
     {
       "constant": true,
       "inputs": [],
-      "name": "exists",
-      "outputs": [
-        {
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
       "name": "ID",
       "outputs": [
         {
@@ -119,21 +105,21 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"exists\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"decreaseBalance\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"increaseBalance\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"setVetoTime\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"ID\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"balance\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"vetoTime\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"_ID\",\"type\":\"address\"},{\"name\":\"_balance\",\"type\":\"uint256\"},{\"name\":\"_vetoTime\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/Person.sol\":\"Person\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/Person.sol\":{\"keccak256\":\"0x16a6806e7f2c13a83a85fdc3c1289f9e167fcaca5aa6b8fd5045a5af55f72704\",\"urls\":[\"bzzr://118298d2d9fda619aaee9ab99f1a66044f1a390ef812e8a34499d23ec67f1a3f\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b506040516060806103248339810180604052606081101561003057600080fd5b81019080805190602001909291908051906020019092919080519060200190929190505050826000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550816001819055506001600260006101000a81548160ff02191690831515021790555080600381905550505050610254806100d06000396000f3fe608060405234801561001057600080fd5b506004361061007d5760003560e01c80634ea13d841161005b5780634ea13d8414610100578063b3cea2171461012e578063b69ef8a814610178578063b7f68852146101965761007d565b8063267c4ae414610082578063392aee43146100a45780633e4ccb40146100d2575b600080fd5b61008a6101b4565b604051808215151515815260200191505060405180910390f35b6100d0600480360360208110156100ba57600080fd5b81019080803590602001909291905050506101c7565b005b6100fe600480360360208110156100e857600080fd5b81019080803590602001909291905050506101da565b005b61012c6004803603602081101561011657600080fd5b81019080803590602001909291905050506101ed565b005b6101366101f7565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61018061021c565b6040518082815260200191505060405180910390f35b61019e610222565b6040518082815260200191505060405180910390f35b600260009054906101000a900460ff1681565b8060016000828254039250508190555050565b8060016000828254019250508190555050565b8060038190555050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60015481565b6003548156fea165627a7a72305820d84a4199c975c6bf08bca9cbc3573d756a6806d94c383b013be96ff7f12266470029",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061007d5760003560e01c80634ea13d841161005b5780634ea13d8414610100578063b3cea2171461012e578063b69ef8a814610178578063b7f68852146101965761007d565b8063267c4ae414610082578063392aee43146100a45780633e4ccb40146100d2575b600080fd5b61008a6101b4565b604051808215151515815260200191505060405180910390f35b6100d0600480360360208110156100ba57600080fd5b81019080803590602001909291905050506101c7565b005b6100fe600480360360208110156100e857600080fd5b81019080803590602001909291905050506101da565b005b61012c6004803603602081101561011657600080fd5b81019080803590602001909291905050506101ed565b005b6101366101f7565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61018061021c565b6040518082815260200191505060405180910390f35b61019e610222565b6040518082815260200191505060405180910390f35b600260009054906101000a900460ff1681565b8060016000828254039250508190555050565b8060016000828254019250508190555050565b8060038190555050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60015481565b6003548156fea165627a7a72305820d84a4199c975c6bf08bca9cbc3573d756a6806d94c383b013be96ff7f12266470029",
-  "sourceMap": "125:765:1:-;;;393:147;8:9:-1;5:2;;;30:1;27;20:12;5:2;393:147:1;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;393:147:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;466:3;461:2;;:8;;;;;;;;;;;;;;;;;;484;474:7;:18;;;;506:4;497:6;;:13;;;;;;;;;;;;;;;;;;526:9;515:8;:20;;;;393:147;;;125:765;;;;;;",
-  "deployedSourceMap": "125:765:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;125:765:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;247:18;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;700:74;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;700:74:1;;;;;;;;;;;;;;;;;:::i;:::-;;583;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;583:74:1;;;;;;;;;;;;;;;;;:::i;:::-;;821:66;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;821:66:1;;;;;;;;;;;;;;;;;:::i;:::-;;145:17;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;195:19;;;:::i;:::-;;;;;;;;;;;;;;;;;;;312:20;;;:::i;:::-;;;;;;;;;;;;;;;;;;;247:18;;;;;;;;;;;;;:::o;700:74::-;763:6;752:7;;:17;;;;;;;;;;;700:74;:::o;583:::-;646:6;635:7;;:17;;;;;;;;;;;583:74;:::o;821:66::-;878:4;867:8;:15;;;;821:66;:::o;145:17::-;;;;;;;;;;;;;:::o;195:19::-;;;;:::o;312:20::-;;;;:::o",
-  "source": "/* Person.sol */\r\n\r\npragma solidity >=0.4.0 <0.7.0;\r\n\r\n/* <Summary> \r\n\tThis contract repersents a user on the network\r\n*/\r\n\r\ncontract Person {\r\n\taddress public ID;\t\t\t// The address of the user\r\n\tuint public balance;\t\t// The balance of that user\r\n\tbool public exists;\t\t\t// If this user exists. Used for mapping\r\n\tuint public vetoTime;\t\t// Time required before this account can be recovered\r\n\r\n\tconstructor(address _ID, uint _balance, uint _vetoTime) public {\r\n\t\tID = _ID;\r\n\t\tbalance = _balance;\r\n\t\texists = true;\r\n\t\tvetoTime = _vetoTime;\r\n\t}\r\n\r\n\t// Increase the balance of the user\r\n\tfunction increaseBalance(uint amount) external {\r\n\t\tbalance += amount;\r\n\t}\r\n\r\n\t// Decrease the balance of the user\r\n\tfunction decreaseBalance(uint amount) external {\r\n\t\tbalance -= amount;\r\n\t}\r\n\r\n\t// Change the time desinated to vetoing\r\n\tfunction setVetoTime(uint time) external {\r\n\t\tvetoTime = time;\r\n\t}\r\n}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"decreaseBalance\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"increaseBalance\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"setVetoTime\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"ID\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"balance\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"vetoTime\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"_ID\",\"type\":\"address\"},{\"name\":\"_balance\",\"type\":\"uint256\"},{\"name\":\"_vetoTime\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/Person.sol\":\"Person\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/Person.sol\":{\"keccak256\":\"0x96230a8c6d689252b4cbcb988643b1cc0cea9eacaa45fe7568b881aa2e1feb85\",\"urls\":[\"bzzr://a354f550c40ef5837e3c9ce7a26fe2f2cb5c7cbf6c8a7e196b70389de4ce1c03\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516060806102b98339810180604052606081101561003057600080fd5b81019080805190602001909291908051906020019092919080519060200190929190505050826000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055508160018190555080600281905550505050610204806100b56000396000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c8063392aee43146100675780633e4ccb40146100955780634ea13d84146100c3578063b3cea217146100f1578063b69ef8a81461013b578063b7f6885214610159575b600080fd5b6100936004803603602081101561007d57600080fd5b8101908080359060200190929190505050610177565b005b6100c1600480360360208110156100ab57600080fd5b810190808035906020019092919050505061018a565b005b6100ef600480360360208110156100d957600080fd5b810190808035906020019092919050505061019d565b005b6100f96101a7565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6101436101cc565b6040518082815260200191505060405180910390f35b6101616101d2565b6040518082815260200191505060405180910390f35b8060016000828254039250508190555050565b8060016000828254019250508190555050565b8060028190555050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60015481565b6002548156fea165627a7a723058207c428967853a30dc542254f5e486a36d982f505504e37f330e1757bbf6baaa190029",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100625760003560e01c8063392aee43146100675780633e4ccb40146100955780634ea13d84146100c3578063b3cea217146100f1578063b69ef8a81461013b578063b7f6885214610159575b600080fd5b6100936004803603602081101561007d57600080fd5b8101908080359060200190929190505050610177565b005b6100c1600480360360208110156100ab57600080fd5b810190808035906020019092919050505061018a565b005b6100ef600480360360208110156100d957600080fd5b810190808035906020019092919050505061019d565b005b6100f96101a7565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6101436101cc565b6040518082815260200191505060405180910390f35b6101616101d2565b6040518082815260200191505060405180910390f35b8060016000828254039250508190555050565b8060016000828254019250508190555050565b8060028190555050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60015481565b6002548156fea165627a7a723058207c428967853a30dc542254f5e486a36d982f505504e37f330e1757bbf6baaa190029",
+  "sourceMap": "125:682:1:-;;;328:129;8:9:-1;5:2;;;30:1;27;20:12;5:2;328:129:1;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;328:129:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;401:3;396:2;;:8;;;;;;;;;;;;;;;;;;419;409:7;:18;;;;443:9;432:8;:20;;;;328:129;;;125:682;;;;;;",
+  "deployedSourceMap": "125:682:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;125:682:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;617:74;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;617:74:1;;;;;;;;;;;;;;;;;:::i;:::-;;500;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;500:74:1;;;;;;;;;;;;;;;;;:::i;:::-;;738:66;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;738:66:1;;;;;;;;;;;;;;;;;:::i;:::-;;145:17;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;195:19;;;:::i;:::-;;;;;;;;;;;;;;;;;;;247:20;;;:::i;:::-;;;;;;;;;;;;;;;;;;;617:74;680:6;669:7;;:17;;;;;;;;;;;617:74;:::o;500:::-;563:6;552:7;;:17;;;;;;;;;;;500:74;:::o;738:66::-;795:4;784:8;:15;;;;738:66;:::o;145:17::-;;;;;;;;;;;;;:::o;195:19::-;;;;:::o;247:20::-;;;;:::o",
+  "source": "/* Person.sol */\r\n\r\npragma solidity >=0.4.0 <0.7.0;\r\n\r\n/* <Summary> \r\n\tThis contract repersents a user on the network\r\n*/\r\n\r\ncontract Person {\r\n\taddress public ID;\t\t\t// The address of the user\r\n\tuint public balance;\t\t// The balance of that user\r\n\tuint public vetoTime;\t\t// Time required before this account can be recovered\r\n\r\n\tconstructor(address _ID, uint _balance, uint _vetoTime) public {\r\n\t\tID = _ID;\r\n\t\tbalance = _balance;\r\n\t\tvetoTime = _vetoTime;\r\n\t}\r\n\r\n\t// Increase the balance of the user\r\n\tfunction increaseBalance(uint amount) external {\r\n\t\tbalance += amount;\r\n\t}\r\n\r\n\t// Decrease the balance of the user\r\n\tfunction decreaseBalance(uint amount) external {\r\n\t\tbalance -= amount;\r\n\t}\r\n\r\n\t// Change the time desinated to vetoing\r\n\tfunction setVetoTime(uint time) external {\r\n\t\tvetoTime = time;\r\n\t}\r\n}",
   "sourcePath": "C:\\Users\\m5w5b\\Desktop\\GitHub\\game-dapp\\AccountRecovery\\contracts\\Person.sol",
   "ast": {
     "absolutePath": "/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/Person.sol",
     "exportedSymbols": {
       "Person": [
-        123
+        117
       ]
     },
-    "id": 124,
+    "id": 118,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -156,9 +142,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 123,
+        "id": 117,
         "linearizedBaseContracts": [
-          123
+          117
         ],
         "name": "Person",
         "nodeType": "ContractDefinition",
@@ -168,7 +154,7 @@
             "id": 60,
             "name": "ID",
             "nodeType": "VariableDeclaration",
-            "scope": 123,
+            "scope": 117,
             "src": "145:17:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -195,7 +181,7 @@
             "id": 62,
             "name": "balance",
             "nodeType": "VariableDeclaration",
-            "scope": 123,
+            "scope": 117,
             "src": "195:19:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -219,36 +205,10 @@
           {
             "constant": false,
             "id": 64,
-            "name": "exists",
-            "nodeType": "VariableDeclaration",
-            "scope": 123,
-            "src": "247:18:1",
-            "stateVariable": true,
-            "storageLocation": "default",
-            "typeDescriptions": {
-              "typeIdentifier": "t_bool",
-              "typeString": "bool"
-            },
-            "typeName": {
-              "id": 63,
-              "name": "bool",
-              "nodeType": "ElementaryTypeName",
-              "src": "247:4:1",
-              "typeDescriptions": {
-                "typeIdentifier": "t_bool",
-                "typeString": "bool"
-              }
-            },
-            "value": null,
-            "visibility": "public"
-          },
-          {
-            "constant": false,
-            "id": 66,
             "name": "vetoTime",
             "nodeType": "VariableDeclaration",
-            "scope": 123,
-            "src": "312:20:1",
+            "scope": 117,
+            "src": "247:20:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -256,10 +216,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 65,
+              "id": 63,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "312:4:1",
+              "src": "247:4:1",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -270,26 +230,26 @@
           },
           {
             "body": {
-              "id": 91,
+              "id": 85,
               "nodeType": "Block",
-              "src": "456:84:1",
+              "src": "391:66:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 77,
+                    "id": 75,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 75,
+                      "id": 73,
                       "name": "ID",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 60,
-                      "src": "461:2:1",
+                      "src": "396:2:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -299,43 +259,43 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 76,
+                      "id": 74,
                       "name": "_ID",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 68,
-                      "src": "466:3:1",
+                      "referencedDeclaration": 66,
+                      "src": "401:3:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "461:8:1",
+                    "src": "396:8:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 78,
+                  "id": 76,
                   "nodeType": "ExpressionStatement",
-                  "src": "461:8:1"
+                  "src": "396:8:1"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 81,
+                    "id": 79,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 79,
+                      "id": 77,
                       "name": "balance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 62,
-                      "src": "474:7:1",
+                      "src": "409:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -345,94 +305,43 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 80,
+                      "id": 78,
                       "name": "_balance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 70,
-                      "src": "484:8:1",
+                      "referencedDeclaration": 68,
+                      "src": "419:8:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "474:18:1",
+                    "src": "409:18:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 82,
+                  "id": 80,
                   "nodeType": "ExpressionStatement",
-                  "src": "474:18:1"
+                  "src": "409:18:1"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 85,
+                    "id": 83,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 83,
-                      "name": "exists",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 64,
-                      "src": "497:6:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_bool",
-                        "typeString": "bool"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "hexValue": "74727565",
-                      "id": 84,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "kind": "bool",
-                      "lValueRequested": false,
-                      "nodeType": "Literal",
-                      "src": "506:4:1",
-                      "subdenomination": null,
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_bool",
-                        "typeString": "bool"
-                      },
-                      "value": "true"
-                    },
-                    "src": "497:13:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "id": 86,
-                  "nodeType": "ExpressionStatement",
-                  "src": "497:13:1"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 89,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "id": 87,
+                      "id": 81,
                       "name": "vetoTime",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 66,
-                      "src": "515:8:1",
+                      "referencedDeclaration": 64,
+                      "src": "432:8:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -442,47 +351,47 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 88,
+                      "id": 82,
                       "name": "_vetoTime",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 72,
-                      "src": "526:9:1",
+                      "referencedDeclaration": 70,
+                      "src": "443:9:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "515:20:1",
+                    "src": "432:20:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 90,
+                  "id": 84,
                   "nodeType": "ExpressionStatement",
-                  "src": "515:20:1"
+                  "src": "432:20:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 92,
+            "id": 86,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 73,
+              "id": 71,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 68,
+                  "id": 66,
                   "name": "_ID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 92,
-                  "src": "405:11:1",
+                  "scope": 86,
+                  "src": "340:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -490,10 +399,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 67,
+                    "id": 65,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "405:7:1",
+                    "src": "340:7:1",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -505,11 +414,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 70,
+                  "id": 68,
                   "name": "_balance",
                   "nodeType": "VariableDeclaration",
-                  "scope": 92,
-                  "src": "418:13:1",
+                  "scope": 86,
+                  "src": "353:13:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -517,10 +426,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 69,
+                    "id": 67,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "418:4:1",
+                    "src": "353:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -531,11 +440,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 72,
+                  "id": 70,
                   "name": "_vetoTime",
                   "nodeType": "VariableDeclaration",
-                  "scope": 92,
-                  "src": "433:14:1",
+                  "scope": 86,
+                  "src": "368:14:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -543,10 +452,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 71,
+                    "id": 69,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "433:4:1",
+                    "src": "368:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -556,42 +465,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "404:44:1"
+              "src": "339:44:1"
             },
             "returnParameters": {
-              "id": 74,
+              "id": 72,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "456:0:1"
+              "src": "391:0:1"
             },
-            "scope": 123,
-            "src": "393:147:1",
+            "scope": 117,
+            "src": "328:129:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 101,
+              "id": 95,
               "nodeType": "Block",
-              "src": "630:27:1",
+              "src": "547:27:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 99,
+                    "id": 93,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 97,
+                      "id": 91,
                       "name": "balance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 62,
-                      "src": "635:7:1",
+                      "src": "552:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -601,47 +510,47 @@
                     "operator": "+=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 98,
+                      "id": 92,
                       "name": "amount",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 94,
-                      "src": "646:6:1",
+                      "referencedDeclaration": 88,
+                      "src": "563:6:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "635:17:1",
+                    "src": "552:17:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 100,
+                  "id": 94,
                   "nodeType": "ExpressionStatement",
-                  "src": "635:17:1"
+                  "src": "552:17:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 102,
+            "id": 96,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "increaseBalance",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 95,
+              "id": 89,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 94,
+                  "id": 88,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 102,
-                  "src": "608:11:1",
+                  "scope": 96,
+                  "src": "525:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -649,10 +558,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 93,
+                    "id": 87,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "608:4:1",
+                    "src": "525:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -662,42 +571,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "607:13:1"
+              "src": "524:13:1"
             },
             "returnParameters": {
-              "id": 96,
+              "id": 90,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "630:0:1"
+              "src": "547:0:1"
             },
-            "scope": 123,
-            "src": "583:74:1",
+            "scope": 117,
+            "src": "500:74:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 111,
+              "id": 105,
               "nodeType": "Block",
-              "src": "747:27:1",
+              "src": "664:27:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 109,
+                    "id": 103,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 107,
+                      "id": 101,
                       "name": "balance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 62,
-                      "src": "752:7:1",
+                      "src": "669:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -707,47 +616,47 @@
                     "operator": "-=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 108,
+                      "id": 102,
                       "name": "amount",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 104,
-                      "src": "763:6:1",
+                      "referencedDeclaration": 98,
+                      "src": "680:6:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "752:17:1",
+                    "src": "669:17:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 110,
+                  "id": 104,
                   "nodeType": "ExpressionStatement",
-                  "src": "752:17:1"
+                  "src": "669:17:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 112,
+            "id": 106,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "decreaseBalance",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 105,
+              "id": 99,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 104,
+                  "id": 98,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 112,
-                  "src": "725:11:1",
+                  "scope": 106,
+                  "src": "642:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -755,10 +664,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 103,
+                    "id": 97,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "725:4:1",
+                    "src": "642:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -768,42 +677,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "724:13:1"
+              "src": "641:13:1"
             },
             "returnParameters": {
-              "id": 106,
+              "id": 100,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "747:0:1"
+              "src": "664:0:1"
             },
-            "scope": 123,
-            "src": "700:74:1",
+            "scope": 117,
+            "src": "617:74:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 121,
+              "id": 115,
               "nodeType": "Block",
-              "src": "862:25:1",
+              "src": "779:25:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 119,
+                    "id": 113,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 117,
+                      "id": 111,
                       "name": "vetoTime",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 66,
-                      "src": "867:8:1",
+                      "referencedDeclaration": 64,
+                      "src": "784:8:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -813,47 +722,47 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 118,
+                      "id": 112,
                       "name": "time",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 114,
-                      "src": "878:4:1",
+                      "referencedDeclaration": 108,
+                      "src": "795:4:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "867:15:1",
+                    "src": "784:15:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 120,
+                  "id": 114,
                   "nodeType": "ExpressionStatement",
-                  "src": "867:15:1"
+                  "src": "784:15:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 122,
+            "id": 116,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setVetoTime",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 115,
+              "id": 109,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 114,
+                  "id": 108,
                   "name": "time",
                   "nodeType": "VariableDeclaration",
-                  "scope": 122,
-                  "src": "842:9:1",
+                  "scope": 116,
+                  "src": "759:9:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -861,10 +770,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 113,
+                    "id": 107,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "842:4:1",
+                    "src": "759:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -874,35 +783,35 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "841:11:1"
+              "src": "758:11:1"
             },
             "returnParameters": {
-              "id": 116,
+              "id": 110,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "862:0:1"
+              "src": "779:0:1"
             },
-            "scope": 123,
-            "src": "821:66:1",
+            "scope": 117,
+            "src": "738:66:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 124,
-        "src": "125:765:1"
+        "scope": 118,
+        "src": "125:682:1"
       }
     ],
-    "src": "20:870:1"
+    "src": "20:787:1"
   },
   "legacyAST": {
     "absolutePath": "/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/Person.sol",
     "exportedSymbols": {
       "Person": [
-        123
+        117
       ]
     },
-    "id": 124,
+    "id": 118,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -925,9 +834,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 123,
+        "id": 117,
         "linearizedBaseContracts": [
-          123
+          117
         ],
         "name": "Person",
         "nodeType": "ContractDefinition",
@@ -937,7 +846,7 @@
             "id": 60,
             "name": "ID",
             "nodeType": "VariableDeclaration",
-            "scope": 123,
+            "scope": 117,
             "src": "145:17:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -964,7 +873,7 @@
             "id": 62,
             "name": "balance",
             "nodeType": "VariableDeclaration",
-            "scope": 123,
+            "scope": 117,
             "src": "195:19:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -988,36 +897,10 @@
           {
             "constant": false,
             "id": 64,
-            "name": "exists",
-            "nodeType": "VariableDeclaration",
-            "scope": 123,
-            "src": "247:18:1",
-            "stateVariable": true,
-            "storageLocation": "default",
-            "typeDescriptions": {
-              "typeIdentifier": "t_bool",
-              "typeString": "bool"
-            },
-            "typeName": {
-              "id": 63,
-              "name": "bool",
-              "nodeType": "ElementaryTypeName",
-              "src": "247:4:1",
-              "typeDescriptions": {
-                "typeIdentifier": "t_bool",
-                "typeString": "bool"
-              }
-            },
-            "value": null,
-            "visibility": "public"
-          },
-          {
-            "constant": false,
-            "id": 66,
             "name": "vetoTime",
             "nodeType": "VariableDeclaration",
-            "scope": 123,
-            "src": "312:20:1",
+            "scope": 117,
+            "src": "247:20:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -1025,10 +908,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 65,
+              "id": 63,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "312:4:1",
+              "src": "247:4:1",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -1039,26 +922,26 @@
           },
           {
             "body": {
-              "id": 91,
+              "id": 85,
               "nodeType": "Block",
-              "src": "456:84:1",
+              "src": "391:66:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 77,
+                    "id": 75,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 75,
+                      "id": 73,
                       "name": "ID",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 60,
-                      "src": "461:2:1",
+                      "src": "396:2:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -1068,43 +951,43 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 76,
+                      "id": 74,
                       "name": "_ID",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 68,
-                      "src": "466:3:1",
+                      "referencedDeclaration": 66,
+                      "src": "401:3:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "461:8:1",
+                    "src": "396:8:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 78,
+                  "id": 76,
                   "nodeType": "ExpressionStatement",
-                  "src": "461:8:1"
+                  "src": "396:8:1"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 81,
+                    "id": 79,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 79,
+                      "id": 77,
                       "name": "balance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 62,
-                      "src": "474:7:1",
+                      "src": "409:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1114,94 +997,43 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 80,
+                      "id": 78,
                       "name": "_balance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 70,
-                      "src": "484:8:1",
+                      "referencedDeclaration": 68,
+                      "src": "419:8:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "474:18:1",
+                    "src": "409:18:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 82,
+                  "id": 80,
                   "nodeType": "ExpressionStatement",
-                  "src": "474:18:1"
+                  "src": "409:18:1"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 85,
+                    "id": 83,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 83,
-                      "name": "exists",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 64,
-                      "src": "497:6:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_bool",
-                        "typeString": "bool"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "hexValue": "74727565",
-                      "id": 84,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "kind": "bool",
-                      "lValueRequested": false,
-                      "nodeType": "Literal",
-                      "src": "506:4:1",
-                      "subdenomination": null,
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_bool",
-                        "typeString": "bool"
-                      },
-                      "value": "true"
-                    },
-                    "src": "497:13:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "id": 86,
-                  "nodeType": "ExpressionStatement",
-                  "src": "497:13:1"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 89,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "id": 87,
+                      "id": 81,
                       "name": "vetoTime",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 66,
-                      "src": "515:8:1",
+                      "referencedDeclaration": 64,
+                      "src": "432:8:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1211,47 +1043,47 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 88,
+                      "id": 82,
                       "name": "_vetoTime",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 72,
-                      "src": "526:9:1",
+                      "referencedDeclaration": 70,
+                      "src": "443:9:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "515:20:1",
+                    "src": "432:20:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 90,
+                  "id": 84,
                   "nodeType": "ExpressionStatement",
-                  "src": "515:20:1"
+                  "src": "432:20:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 92,
+            "id": 86,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 73,
+              "id": 71,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 68,
+                  "id": 66,
                   "name": "_ID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 92,
-                  "src": "405:11:1",
+                  "scope": 86,
+                  "src": "340:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1259,10 +1091,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 67,
+                    "id": 65,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "405:7:1",
+                    "src": "340:7:1",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1274,11 +1106,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 70,
+                  "id": 68,
                   "name": "_balance",
                   "nodeType": "VariableDeclaration",
-                  "scope": 92,
-                  "src": "418:13:1",
+                  "scope": 86,
+                  "src": "353:13:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1286,10 +1118,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 69,
+                    "id": 67,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "418:4:1",
+                    "src": "353:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1300,11 +1132,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 72,
+                  "id": 70,
                   "name": "_vetoTime",
                   "nodeType": "VariableDeclaration",
-                  "scope": 92,
-                  "src": "433:14:1",
+                  "scope": 86,
+                  "src": "368:14:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1312,10 +1144,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 71,
+                    "id": 69,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "433:4:1",
+                    "src": "368:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1325,42 +1157,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "404:44:1"
+              "src": "339:44:1"
             },
             "returnParameters": {
-              "id": 74,
+              "id": 72,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "456:0:1"
+              "src": "391:0:1"
             },
-            "scope": 123,
-            "src": "393:147:1",
+            "scope": 117,
+            "src": "328:129:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 101,
+              "id": 95,
               "nodeType": "Block",
-              "src": "630:27:1",
+              "src": "547:27:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 99,
+                    "id": 93,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 97,
+                      "id": 91,
                       "name": "balance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 62,
-                      "src": "635:7:1",
+                      "src": "552:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1370,47 +1202,47 @@
                     "operator": "+=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 98,
+                      "id": 92,
                       "name": "amount",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 94,
-                      "src": "646:6:1",
+                      "referencedDeclaration": 88,
+                      "src": "563:6:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "635:17:1",
+                    "src": "552:17:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 100,
+                  "id": 94,
                   "nodeType": "ExpressionStatement",
-                  "src": "635:17:1"
+                  "src": "552:17:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 102,
+            "id": 96,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "increaseBalance",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 95,
+              "id": 89,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 94,
+                  "id": 88,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 102,
-                  "src": "608:11:1",
+                  "scope": 96,
+                  "src": "525:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1418,10 +1250,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 93,
+                    "id": 87,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "608:4:1",
+                    "src": "525:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1431,42 +1263,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "607:13:1"
+              "src": "524:13:1"
             },
             "returnParameters": {
-              "id": 96,
+              "id": 90,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "630:0:1"
+              "src": "547:0:1"
             },
-            "scope": 123,
-            "src": "583:74:1",
+            "scope": 117,
+            "src": "500:74:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 111,
+              "id": 105,
               "nodeType": "Block",
-              "src": "747:27:1",
+              "src": "664:27:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 109,
+                    "id": 103,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 107,
+                      "id": 101,
                       "name": "balance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 62,
-                      "src": "752:7:1",
+                      "src": "669:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1476,47 +1308,47 @@
                     "operator": "-=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 108,
+                      "id": 102,
                       "name": "amount",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 104,
-                      "src": "763:6:1",
+                      "referencedDeclaration": 98,
+                      "src": "680:6:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "752:17:1",
+                    "src": "669:17:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 110,
+                  "id": 104,
                   "nodeType": "ExpressionStatement",
-                  "src": "752:17:1"
+                  "src": "669:17:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 112,
+            "id": 106,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "decreaseBalance",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 105,
+              "id": 99,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 104,
+                  "id": 98,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 112,
-                  "src": "725:11:1",
+                  "scope": 106,
+                  "src": "642:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1524,10 +1356,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 103,
+                    "id": 97,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "725:4:1",
+                    "src": "642:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1537,42 +1369,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "724:13:1"
+              "src": "641:13:1"
             },
             "returnParameters": {
-              "id": 106,
+              "id": 100,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "747:0:1"
+              "src": "664:0:1"
             },
-            "scope": 123,
-            "src": "700:74:1",
+            "scope": 117,
+            "src": "617:74:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 121,
+              "id": 115,
               "nodeType": "Block",
-              "src": "862:25:1",
+              "src": "779:25:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 119,
+                    "id": 113,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 117,
+                      "id": 111,
                       "name": "vetoTime",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 66,
-                      "src": "867:8:1",
+                      "referencedDeclaration": 64,
+                      "src": "784:8:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1582,47 +1414,47 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 118,
+                      "id": 112,
                       "name": "time",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 114,
-                      "src": "878:4:1",
+                      "referencedDeclaration": 108,
+                      "src": "795:4:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "867:15:1",
+                    "src": "784:15:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 120,
+                  "id": 114,
                   "nodeType": "ExpressionStatement",
-                  "src": "867:15:1"
+                  "src": "784:15:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 122,
+            "id": 116,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setVetoTime",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 115,
+              "id": 109,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 114,
+                  "id": 108,
                   "name": "time",
                   "nodeType": "VariableDeclaration",
-                  "scope": 122,
-                  "src": "842:9:1",
+                  "scope": 116,
+                  "src": "759:9:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1630,10 +1462,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 113,
+                    "id": 107,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "842:4:1",
+                    "src": "759:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1643,26 +1475,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "841:11:1"
+              "src": "758:11:1"
             },
             "returnParameters": {
-              "id": 116,
+              "id": 110,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "862:0:1"
+              "src": "779:0:1"
             },
-            "scope": 123,
-            "src": "821:66:1",
+            "scope": 117,
+            "src": "738:66:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 124,
-        "src": "125:765:1"
+        "scope": 118,
+        "src": "125:682:1"
       }
     ],
-    "src": "20:870:1"
+    "src": "20:787:1"
   },
   "compiler": {
     "name": "solc",
@@ -1670,7 +1502,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-11-06T17:13:07.908Z",
+  "updatedAt": "2019-11-06T18:46:06.780Z",
   "devdoc": {
     "methods": {}
   },

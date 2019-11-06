@@ -38,17 +38,23 @@ contract ProposalManager {
 
 	// View public information on a set of data for a transaction
 	function ViewPublicInformation(address oldAccount, address newAccount, uint i) external view returns (uint, uint, address, address)	{
-		return getActiveProposal(oldAccount, newAccount).ViewPublicInformation( msg.sender, i );
+		Proposal temp = getActiveProposal(oldAccount, newAccount);
+		require(temp.ContainsVoter(msg.sender), "Invalid Voter");
+		return temp.ViewPublicInformation( msg.sender, i );
 	}
 
 	// View private information on a set of data for a transaction
-	function ViewPrivateInformation(address oldAccount, address newAccount, uint i) external view returns (string memory, string memory)	{
-		return getActiveProposal(oldAccount, newAccount).ViewPrivateInformation( msg.sender, i );
+	function ViewPrivateInformation(address oldAccount, address newAccount, uint i) external view returns (string memory, string memory) {
+		Proposal temp = getActiveProposal(oldAccount, newAccount);
+		require(temp.ContainsVoter(msg.sender), "Invalid Voter");
+		return temp.ViewPrivateInformation( msg.sender, i );
 	}
 
 	// Allows a voter to cast a vote on a proposal
 	function CastVote(address oldAccount, address newAccount, bool choice) external {
-		getActiveProposal(oldAccount, newAccount).CastVote(msg.sender, choice);
+		Proposal temp = getActiveProposal(oldAccount, newAccount);
+		require(temp.ContainsVoter(msg.sender), "Invalid Voter");
+		temp.CastVote(msg.sender, choice);
 	}
 	
 	// Counts up votes and distriputes the reward

@@ -96,14 +96,8 @@ contract('ProposalManager', (accounts) => {
 			TradePartners.push(voter);
 		}
 
-		// console.log("Voters: " + (await PCI.getVoters(oldAccount, { from: newAccount })));
+		// console.log("Voters: " + (await PCI.ViewVoters(oldAccount, { from: newAccount })));
 
-	});
-
-	it('Make Voting Token', async () => {
-		for (var i = 0; i < TradePartners.length; i++) {
-			await PCI.MakeVotingToken(oldAccount, TradePartners[i], "HI", { from: newAccount });
-		}
 	});
 
 	const amount = 10;

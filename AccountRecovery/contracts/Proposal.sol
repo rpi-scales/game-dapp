@@ -18,14 +18,16 @@ contract Proposal {
 	using VotingToken for VotingToken.Token;
 	using TransactionDataSet for TransactionDataSet.DataSet;
 
+	/*
 	struct VotingTokenPair {
 		VotingToken.Token token;
 		bool exists;
 	}
+	*/
 
 	mapping (address => TransactionDataSet.DataSet[]) transactionDataSets; // Map of active proposals
 
-	mapping (address => VotingTokenPair) votingtokens;		// Active Voting Tokens
+	mapping (address => VotingToken.Token) votingtokens;		// Active Voting Tokens
 	Set.AddressData voters;									// Addresses who are eligible to vote
 	Set.AddressData archivedVoters;
 
@@ -37,8 +39,8 @@ contract Proposal {
 	
 	uint numberOfVoters = 0;
 	uint public price;									// Price of the account recovery
-	uint startTime;
-	uint8 VotingTokenCreated = 0;						// Number of Voting tokens created
+	uint startTime = 0;
+	uint8 VotingTokensCreated = 0;						// Number of Voting tokens created
 	uint8 randomVoterVetos = 3;
 	bool paided = false;
 
@@ -49,7 +51,6 @@ contract Proposal {
 		newAccount = _newAccount;
 		
 		price = _price;
-		startTime = block.timestamp;
 	}
 
 	function Pay(Person _newAccount) external {
@@ -117,54 +118,42 @@ contract Proposal {
 		}
 	}
 
-	// Make Voting Tokens
-	function MakeVotingToken(address _oldAccount, address _voter, string calldata _description) external {
-		require(voters.getValuesLength() == numberOfVoters, "Trade partners have not been added to this yet proposal");
-		require(!votingtokens[_voter].exists, "This voter already has a voting token");
-
-		VotingTokenPair memory temp;
-		temp.token = VotingToken.Token(_description, _oldAccount, _voter, 0, false, false);
-		temp.exists = true;
-		votingtokens[_voter] = temp;
-
-		VotingTokenCreated++;			// Incroment the number of voting tokens created
-	}
-
 	// Add set of data for a give transaction for a give voter
 	function AddTransactionDataSet(uint _timeStamp, address _voter, uint _amount, 
 		string calldata _description, string calldata _itemsInTrade) external {
-		
-		require(votingtokens[_voter].exists, "Need to create a voting token for this voter first");
+
+		if (transactionDataSets[_voter].length == 0){
+			votingtokens[_voter] = VotingToken.Token(oldAccount, _voter, 0, false, false);
+			VotingTokensCreated++;			// Incroment the number of voting tokens created
+
+			if (VotingTokensCreated == voters.getValuesLength()){
+				startTime = block.timestamp;
+			}
+		}
 		transactionDataSets[_voter].push(TransactionDataSet.DataSet(_description, _itemsInTrade, oldAccount, _voter, _timeStamp, _amount));
 	}
 
 	// View public information on a set of data for a transaction
 	function ViewPublicInformation( address _voter, uint j) external view returns (uint, uint, address, address) {
-		for (uint i = 0; i < voters.getValuesLength(); i++) { // Goes through all voters
-			require(transactionDataSets[voters.getValue(i)].length > 0, "New account has not shared data with all voters yet");
-		}
+		require(VotingTokensCreated == voters.getValuesLength(), "Have not created all the VotingTokens");
 		return transactionDataSets[_voter][j].ViewPublicInformation();
 	}
 
 	// View private information on a set of data for a transaction
 	function ViewPrivateInformation( address _voter, uint j) external view returns (string memory, string memory) {
-		for (uint i = 0; i < voters.getValuesLength(); i++) { // Goes through all voters
-			require(transactionDataSets[voters.getValue(i)].length > 0, "New account has not shared data with all voters yet");
-		}
+		require(VotingTokensCreated == voters.getValuesLength(), "Have not created all the VotingTokens");
 		return transactionDataSets[_voter][j].ViewPrivateInformation();
 	}
 
 	// Casts a vote
 	function CastVote(address _voter, bool choice) external {
-		for (uint i = 0; i < voters.getValuesLength(); i++) { // Goes through all voters
-			require(transactionDataSets[voters.getValue(i)].length > 0, "New account has not shared data with all voters yet");
-		}
-		votingtokens[_voter].token.CastVote(choice);
+		require(VotingTokensCreated == voters.getValuesLength(), "Have not created all the VotingTokens");
+		votingtokens[_voter].CastVote(choice);
 	}
 
 	// Give rewards to voters and return outcome of vote
 	function ConcludeAccountRecovery(UserManager UMI) external returns (int){
-		require(VotingTokenCreated == voters.getValuesLength(), "Have not created all the VotingTokens");
+		require(VotingTokensCreated == voters.getValuesLength(), "Have not created all the VotingTokens");
 
 		if (UMI.getUser(oldAccount).vetoTime() > block.timestamp - startTime){
 			return -1;
@@ -177,7 +166,7 @@ contract Proposal {
 
 		for (uint i = 0; i < voters.getValuesLength(); i++) { // Goes through all voters
 			require(transactionDataSets[voters.getValue(i)].length > 0, "There is no transaction data to view");
-			VotingToken.Token storage temp = votingtokens[voters.getValue(i)].token;
+			VotingToken.Token storage temp = votingtokens[voters.getValue(i)];
 			totalTimeToVote += temp.getVotedTime();
 			if (temp.getVoted()){				// They are a voter and they voted
 				total++;						// Incroment the total number of votes
@@ -203,7 +192,7 @@ contract Proposal {
 		uint averageTimeToVote = totalTimeToVote / total;
 
 		for (uint i = 0; i < voters.getValuesLength(); i++) { 	// Goes through all voters
-			VotingToken.Token storage temp = votingtokens[voters.getValue(i)].token;
+			VotingToken.Token storage temp = votingtokens[voters.getValue(i)];
 			if (temp.getVoted()){							// They are a voter and they voted
 				uint amount = (price / participationFactor) / total;			// Reward for participating 
 

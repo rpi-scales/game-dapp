@@ -19,25 +19,25 @@
       "type": "event"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"_voter\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"_choice\",\"type\":\"bool\"}],\"name\":\"Vote\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/VotingToken.sol\":\"VotingToken\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/VotingToken.sol\":{\"keccak256\":\"0x410556d0c3ddad27d083e3345aeadbc92aa0cebd690d19c64df3ccbef10c27ce\",\"urls\":[\"bzzr://1eac75cdb0c46af67fb4d9d7921437d2ff1628a22ad0e744372ed704974f98e2\"]}},\"version\":1}",
-  "bytecode": "0x610327610026600b82828239805160001a60731461001957fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600436106100565760003560e01c8063117d52aa1461005b5780632bf6c95f146100a1578063fb84fe7b146100e8578063ffef631c1461012e575b600080fd5b6100876004803603602081101561007157600080fd5b8101908080359060200190929190505050610170565b604051808215151515815260200191505060405180910390f35b8180156100ad57600080fd5b506100e6600480360360408110156100c457600080fd5b810190808035906020019092919080351515906020019092919050505061018b565b005b610114600480360360208110156100fe57600080fd5b81019080803590602001909291905050506102d2565b604051808215151515815260200191505060405180910390f35b61015a6004803603602081101561014457600080fd5b81019080803590602001909291905050506102ed565b6040518082815260200191505060405180910390f35b60008160040160019054906101000a900460ff169050919050565b600015158260040160019054906101000a900460ff16151514610216576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252600d8152602001807f416c726561647920566f7465640000000000000000000000000000000000000081525060200191505060405180910390fd5b808260040160006101000a81548160ff02191690831515021790555060018260040160016101000a81548160ff0219169083151502179055504282600301819055508160020160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167fa635d31e67484fd1d93ba01ab0ef882e4440a78aa40d0e2771e8a2aace45986982604051808215151515815260200191505060405180910390a25050565b60008160040160009054906101000a900460ff169050919050565b60008160030154905091905056fea165627a7a723058203772682da902c4f8f7e7a7a2ce492ef16062fa21f0bbf5d4de9b2bd481c6b9f50029",
-  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600436106100565760003560e01c8063117d52aa1461005b5780632bf6c95f146100a1578063fb84fe7b146100e8578063ffef631c1461012e575b600080fd5b6100876004803603602081101561007157600080fd5b8101908080359060200190929190505050610170565b604051808215151515815260200191505060405180910390f35b8180156100ad57600080fd5b506100e6600480360360408110156100c457600080fd5b810190808035906020019092919080351515906020019092919050505061018b565b005b610114600480360360208110156100fe57600080fd5b81019080803590602001909291905050506102d2565b604051808215151515815260200191505060405180910390f35b61015a6004803603602081101561014457600080fd5b81019080803590602001909291905050506102ed565b6040518082815260200191505060405180910390f35b60008160040160019054906101000a900460ff169050919050565b600015158260040160019054906101000a900460ff16151514610216576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252600d8152602001807f416c726561647920566f7465640000000000000000000000000000000000000081525060200191505060405180910390fd5b808260040160006101000a81548160ff02191690831515021790555060018260040160016101000a81548160ff0219169083151502179055504282600301819055508160020160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167fa635d31e67484fd1d93ba01ab0ef882e4440a78aa40d0e2771e8a2aace45986982604051808215151515815260200191505060405180910390a25050565b60008160040160009054906101000a900460ff169050919050565b60008160030154905091905056fea165627a7a723058203772682da902c4f8f7e7a7a2ce492ef16062fa21f0bbf5d4de9b2bd481c6b9f50029",
-  "sourceMap": "170:1038:10:-;;132:2:-1;166:7;155:9;146:7;137:37;255:7;249:14;246:1;241:23;235:4;232:33;222:2;;269:9;222:2;293:9;290:1;283:20;323:4;314:7;306:22;347:7;338;331:24",
-  "deployedSourceMap": "170:1038:10:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1010:92;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1010:92:10;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;645:269;;8:9:-1;5:2;;;30:1;27;20:12;5:2;645:269:10;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;645:269:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;917:90;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;917:90:10;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;1105:100;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1105:100:10;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;1010:92;1071:4;1088;:10;;;;;;;;;;;;1081:17;;1010:92;;;:::o;645:269::-;775:5;761:19;;:4;:10;;;;;;;;;;;;:19;;;753:45;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;814:6;802:4;:9;;;:18;;;;;;;;;;;;;;;;;;837:4;824;:10;;;:17;;;;;;;;;;;;;;;;;;862:15;845:4;:14;;:32;;;;891:4;:10;;;;;;;;;;;;886:24;;;903:6;886:24;;;;;;;;;;;;;;;;;;;;;;645:269;;:::o;917:90::-;977:4;994;:9;;;;;;;;;;;;987:16;;917:90;;;:::o;1105:100::-;1170:4;1187;:14;;;1180:21;;1105:100;;;:::o",
-  "source": "/* VotingToken.sol */\n\npragma solidity >=0.4.0 <0.7.0;\n\n/* <Summary> \n\tThis contract repersents a voting token. This is used to cast votes and view transaction data.\n*/\n\nlibrary VotingToken {\n\n\tstruct Token {\n\t\tstring description;\t\t\t\t\t\t// Description of the transaction between these addresses\n\t\taddress oldAccount;\t\t\t\t\t\t// Address of the old account\n\t\taddress voter;\t\t\t\t\t\t\t// Address of the voter\n\n\t\tuint votedTime;\t\t\t\t\t\t\t// The time when the voter votes\n\n\t\tbool vote;\t\t\t\t\t\t\t\t// The decision of the voter\n\t\tbool voted;\t\t\t\t\t\t\t\t// If the voter has voted\n\t}\n\n\tevent Vote(address indexed _voter, bool _choice); // Voting Event\n\n\t// Casting a vote\n\tfunction CastVote(Token storage self, bool choice) external {\n\t\t// Checks if the voter is allowed to vote\n\t\trequire(self.voted == false, \"Already Voted\");\n\t\tself.vote = choice;\n\t\tself.voted = true;\n\t\tself.votedTime = block.timestamp;\n\t\temit Vote(self.voter, choice);\n\t}\n\n\tfunction getVote(Token storage self) external view returns (bool) {\n\t\treturn self.vote;\n\t}\n\n\tfunction getVoted(Token storage self) external view returns (bool) {\n\t\treturn self.voted;\n\t}\n\n\tfunction getVotedTime(Token storage self) external view returns (uint) {\n\t\treturn self.votedTime;\n\t}\n\n}\n",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"_voter\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"_choice\",\"type\":\"bool\"}],\"name\":\"Vote\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/VotingToken.sol\":\"VotingToken\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/VotingToken.sol\":{\"keccak256\":\"0xcf8c86025189b7be58ba49047cc11d2f64e7988910f7f838511e299cbe50233e\",\"urls\":[\"bzzr://2f0024f75f5ed637a5233798d673c0c7ed1acdda4e1f91a0b5901a5d7e9d7694\"]}},\"version\":1}",
+  "bytecode": "0x610327610026600b82828239805160001a60731461001957fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600436106100565760003560e01c8063117d52aa1461005b5780632bf6c95f146100a1578063fb84fe7b146100e8578063ffef631c1461012e575b600080fd5b6100876004803603602081101561007157600080fd5b8101908080359060200190929190505050610170565b604051808215151515815260200191505060405180910390f35b8180156100ad57600080fd5b506100e6600480360360408110156100c457600080fd5b810190808035906020019092919080351515906020019092919050505061018b565b005b610114600480360360208110156100fe57600080fd5b81019080803590602001909291905050506102d2565b604051808215151515815260200191505060405180910390f35b61015a6004803603602081101561014457600080fd5b81019080803590602001909291905050506102ed565b6040518082815260200191505060405180910390f35b60008160030160019054906101000a900460ff169050919050565b600015158260030160019054906101000a900460ff16151514610216576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252600d8152602001807f416c726561647920566f7465640000000000000000000000000000000000000081525060200191505060405180910390fd5b808260030160006101000a81548160ff02191690831515021790555060018260030160016101000a81548160ff0219169083151502179055504282600201819055508160010160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167fa635d31e67484fd1d93ba01ab0ef882e4440a78aa40d0e2771e8a2aace45986982604051808215151515815260200191505060405180910390a25050565b60008160030160009054906101000a900460ff169050919050565b60008160020154905091905056fea165627a7a723058201a4e5908041901b1a1403e5e5190c527924bce3849f082881eb2315ca970a3aa0029",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600436106100565760003560e01c8063117d52aa1461005b5780632bf6c95f146100a1578063fb84fe7b146100e8578063ffef631c1461012e575b600080fd5b6100876004803603602081101561007157600080fd5b8101908080359060200190929190505050610170565b604051808215151515815260200191505060405180910390f35b8180156100ad57600080fd5b506100e6600480360360408110156100c457600080fd5b810190808035906020019092919080351515906020019092919050505061018b565b005b610114600480360360208110156100fe57600080fd5b81019080803590602001909291905050506102d2565b604051808215151515815260200191505060405180910390f35b61015a6004803603602081101561014457600080fd5b81019080803590602001909291905050506102ed565b6040518082815260200191505060405180910390f35b60008160030160019054906101000a900460ff169050919050565b600015158260030160019054906101000a900460ff16151514610216576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252600d8152602001807f416c726561647920566f7465640000000000000000000000000000000000000081525060200191505060405180910390fd5b808260030160006101000a81548160ff02191690831515021790555060018260030160016101000a81548160ff0219169083151502179055504282600201819055508160010160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167fa635d31e67484fd1d93ba01ab0ef882e4440a78aa40d0e2771e8a2aace45986982604051808215151515815260200191505060405180910390a25050565b60008160030160009054906101000a900460ff169050919050565b60008160020154905091905056fea165627a7a723058201a4e5908041901b1a1403e5e5190c527924bce3849f082881eb2315ca970a3aa0029",
+  "sourceMap": "170:953:10:-;;132:2:-1;166:7;155:9;146:7;137:37;255:7;249:14;246:1;241:23;235:4;232:33;222:2;;269:9;222:2;293:9;290:1;283:20;323:4;314:7;306:22;347:7;338;331:24",
+  "deployedSourceMap": "170:953:10:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;925:92;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;925:92:10;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;560:269;;8:9:-1;5:2;;;30:1;27;20:12;5:2;560:269:10;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;560:269:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;832:90;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;832:90:10;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;1020:100;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1020:100:10;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;925:92;986:4;1003;:10;;;;;;;;;;;;996:17;;925:92;;;:::o;560:269::-;690:5;676:19;;:4;:10;;;;;;;;;;;;:19;;;668:45;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;729:6;717:4;:9;;;:18;;;;;;;;;;;;;;;;;;752:4;739;:10;;;:17;;;;;;;;;;;;;;;;;;777:15;760:4;:14;;:32;;;;806:4;:10;;;;;;;;;;;;801:24;;;818:6;801:24;;;;;;;;;;;;;;;;;;;;;;560:269;;:::o;832:90::-;892:4;909;:9;;;;;;;;;;;;902:16;;832:90;;;:::o;1020:100::-;1085:4;1102;:14;;;1095:21;;1020:100;;;:::o",
+  "source": "/* VotingToken.sol */\n\npragma solidity >=0.4.0 <0.7.0;\n\n/* <Summary> \n\tThis contract repersents a voting token. This is used to cast votes and view transaction data.\n*/\n\nlibrary VotingToken {\n\n\tstruct Token {\n\t\taddress oldAccount;\t\t\t\t\t\t// Address of the old account\n\t\taddress voter;\t\t\t\t\t\t\t// Address of the voter\n\n\t\tuint votedTime;\t\t\t\t\t\t\t// The time when the voter votes\n\n\t\tbool vote;\t\t\t\t\t\t\t\t// The decision of the voter\n\t\tbool voted;\t\t\t\t\t\t\t\t// If the voter has voted\n\t}\n\n\tevent Vote(address indexed _voter, bool _choice); // Voting Event\n\n\t// Casting a vote\n\tfunction CastVote(Token storage self, bool choice) external {\n\t\t// Checks if the voter is allowed to vote\n\t\trequire(self.voted == false, \"Already Voted\");\n\t\tself.vote = choice;\n\t\tself.voted = true;\n\t\tself.votedTime = block.timestamp;\n\t\temit Vote(self.voter, choice);\n\t}\n\n\tfunction getVote(Token storage self) external view returns (bool) {\n\t\treturn self.vote;\n\t}\n\n\tfunction getVoted(Token storage self) external view returns (bool) {\n\t\treturn self.voted;\n\t}\n\n\tfunction getVotedTime(Token storage self) external view returns (uint) {\n\t\treturn self.votedTime;\n\t}\n\n}\n",
   "sourcePath": "C:\\Users\\m5w5b\\Desktop\\GitHub\\game-dapp\\AccountRecovery\\contracts\\VotingToken.sol",
   "ast": {
     "absolutePath": "/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/VotingToken.sol",
     "exportedSymbols": {
       "VotingToken": [
-        3001
+        2862
       ]
     },
-    "id": 3002,
+    "id": 2863,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2907,
+        "id": 2770,
         "literals": [
           "solidity",
           ">=",
@@ -56,61 +56,35 @@
         "contractKind": "library",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 3001,
+        "id": 2862,
         "linearizedBaseContracts": [
-          3001
+          2862
         ],
         "name": "VotingToken",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "VotingToken.Token",
-            "id": 2920,
+            "id": 2781,
             "members": [
               {
                 "constant": false,
-                "id": 2909,
-                "name": "description",
+                "id": 2772,
+                "name": "oldAccount",
                 "nodeType": "VariableDeclaration",
-                "scope": 2920,
+                "scope": 2781,
                 "src": "211:18:10",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 2908,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "211:6:10",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 2911,
-                "name": "oldAccount",
-                "nodeType": "VariableDeclaration",
-                "scope": 2920,
-                "src": "296:18:10",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 2910,
+                  "id": 2771,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "296:7:10",
+                  "src": "211:7:10",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -122,11 +96,11 @@
               },
               {
                 "constant": false,
-                "id": 2913,
+                "id": 2774,
                 "name": "voter",
                 "nodeType": "VariableDeclaration",
-                "scope": 2920,
-                "src": "353:13:10",
+                "scope": 2781,
+                "src": "268:13:10",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -134,10 +108,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 2912,
+                  "id": 2773,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "353:7:10",
+                  "src": "268:7:10",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -149,11 +123,11 @@
               },
               {
                 "constant": false,
-                "id": 2915,
+                "id": 2776,
                 "name": "votedTime",
                 "nodeType": "VariableDeclaration",
-                "scope": 2920,
-                "src": "401:14:10",
+                "scope": 2781,
+                "src": "316:14:10",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -161,10 +135,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2914,
+                  "id": 2775,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "401:4:10",
+                  "src": "316:4:10",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -175,11 +149,11 @@
               },
               {
                 "constant": false,
-                "id": 2917,
+                "id": 2778,
                 "name": "vote",
                 "nodeType": "VariableDeclaration",
-                "scope": 2920,
-                "src": "459:9:10",
+                "scope": 2781,
+                "src": "374:9:10",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -187,10 +161,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 2916,
+                  "id": 2777,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "459:4:10",
+                  "src": "374:4:10",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -201,11 +175,11 @@
               },
               {
                 "constant": false,
-                "id": 2919,
+                "id": 2780,
                 "name": "voted",
                 "nodeType": "VariableDeclaration",
-                "scope": 2920,
-                "src": "508:10:10",
+                "scope": 2781,
+                "src": "423:10:10",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -213,10 +187,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 2918,
+                  "id": 2779,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "508:4:10",
+                  "src": "423:4:10",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -228,28 +202,28 @@
             ],
             "name": "Token",
             "nodeType": "StructDefinition",
-            "scope": 3001,
-            "src": "194:361:10",
+            "scope": 2862,
+            "src": "194:276:10",
             "visibility": "public"
           },
           {
             "anonymous": false,
             "documentation": null,
-            "id": 2926,
+            "id": 2787,
             "name": "Vote",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 2925,
+              "id": 2786,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2922,
+                  "id": 2783,
                   "indexed": true,
                   "name": "_voter",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2926,
-                  "src": "569:22:10",
+                  "scope": 2787,
+                  "src": "484:22:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -257,10 +231,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2921,
+                    "id": 2782,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "569:7:10",
+                    "src": "484:7:10",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -272,12 +246,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 2924,
+                  "id": 2785,
                   "indexed": false,
                   "name": "_choice",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2926,
-                  "src": "593:12:10",
+                  "scope": 2787,
+                  "src": "508:12:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -285,10 +259,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2923,
+                    "id": 2784,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "593:4:10",
+                    "src": "508:4:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -298,15 +272,15 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "568:38:10"
+              "src": "483:38:10"
             },
-            "src": "558:49:10"
+            "src": "473:49:10"
           },
           {
             "body": {
-              "id": 2966,
+              "id": 2827,
               "nodeType": "Block",
-              "src": "705:209:10",
+              "src": "620:209:10",
               "statements": [
                 {
                   "expression": {
@@ -318,7 +292,7 @@
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
                         },
-                        "id": 2937,
+                        "id": 2798,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -327,26 +301,26 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 2934,
+                            "id": 2795,
                             "name": "self",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2928,
-                            "src": "761:4:10",
+                            "referencedDeclaration": 2789,
+                            "src": "676:4:10",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                              "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                               "typeString": "struct VotingToken.Token storage pointer"
                             }
                           },
-                          "id": 2935,
+                          "id": 2796,
                           "isConstant": false,
                           "isLValue": true,
                           "isPure": false,
                           "lValueRequested": false,
                           "memberName": "voted",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 2919,
-                          "src": "761:10:10",
+                          "referencedDeclaration": 2780,
+                          "src": "676:10:10",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
@@ -357,14 +331,14 @@
                         "rightExpression": {
                           "argumentTypes": null,
                           "hexValue": "66616c7365",
-                          "id": 2936,
+                          "id": 2797,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "bool",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "775:5:10",
+                          "src": "690:5:10",
                           "subdenomination": null,
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
@@ -372,7 +346,7 @@
                           },
                           "value": "false"
                         },
-                        "src": "761:19:10",
+                        "src": "676:19:10",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -381,14 +355,14 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "416c726561647920566f746564",
-                        "id": 2938,
+                        "id": 2799,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "782:15:10",
+                        "src": "697:15:10",
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_13153fdbf83bdfad556fc550a7ed6165470df59f6823a99ceb86576910e59254",
@@ -408,21 +382,21 @@
                           "typeString": "literal_string \"Already Voted\""
                         }
                       ],
-                      "id": 2933,
+                      "id": 2794,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3019,
-                        3020
+                        2880,
+                        2881
                       ],
-                      "referencedDeclaration": 3020,
-                      "src": "753:7:10",
+                      "referencedDeclaration": 2881,
+                      "src": "668:7:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 2939,
+                    "id": 2800,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -430,20 +404,20 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "753:45:10",
+                    "src": "668:45:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2940,
+                  "id": 2801,
                   "nodeType": "ExpressionStatement",
-                  "src": "753:45:10"
+                  "src": "668:45:10"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2945,
+                    "id": 2806,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -452,26 +426,26 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2941,
+                        "id": 2802,
                         "name": "self",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2928,
-                        "src": "802:4:10",
+                        "referencedDeclaration": 2789,
+                        "src": "717:4:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                          "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                           "typeString": "struct VotingToken.Token storage pointer"
                         }
                       },
-                      "id": 2943,
+                      "id": 2804,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "vote",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2917,
-                      "src": "802:9:10",
+                      "referencedDeclaration": 2778,
+                      "src": "717:9:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -481,31 +455,31 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 2944,
+                      "id": 2805,
                       "name": "choice",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2930,
-                      "src": "814:6:10",
+                      "referencedDeclaration": 2791,
+                      "src": "729:6:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
                       }
                     },
-                    "src": "802:18:10",
+                    "src": "717:18:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 2946,
+                  "id": 2807,
                   "nodeType": "ExpressionStatement",
-                  "src": "802:18:10"
+                  "src": "717:18:10"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2951,
+                    "id": 2812,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -514,26 +488,26 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2947,
+                        "id": 2808,
                         "name": "self",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2928,
-                        "src": "824:4:10",
+                        "referencedDeclaration": 2789,
+                        "src": "739:4:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                          "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                           "typeString": "struct VotingToken.Token storage pointer"
                         }
                       },
-                      "id": 2949,
+                      "id": 2810,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "voted",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2919,
-                      "src": "824:10:10",
+                      "referencedDeclaration": 2780,
+                      "src": "739:10:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -544,14 +518,14 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "74727565",
-                      "id": 2950,
+                      "id": 2811,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "bool",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "837:4:10",
+                      "src": "752:4:10",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
@@ -559,20 +533,20 @@
                       },
                       "value": "true"
                     },
-                    "src": "824:17:10",
+                    "src": "739:17:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 2952,
+                  "id": 2813,
                   "nodeType": "ExpressionStatement",
-                  "src": "824:17:10"
+                  "src": "739:17:10"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2958,
+                    "id": 2819,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -581,26 +555,26 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2953,
+                        "id": 2814,
                         "name": "self",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2928,
-                        "src": "845:4:10",
+                        "referencedDeclaration": 2789,
+                        "src": "760:4:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                          "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                           "typeString": "struct VotingToken.Token storage pointer"
                         }
                       },
-                      "id": 2955,
+                      "id": 2816,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "votedTime",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2915,
-                      "src": "845:14:10",
+                      "referencedDeclaration": 2776,
+                      "src": "760:14:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -612,18 +586,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2956,
+                        "id": 2817,
                         "name": "block",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3006,
-                        "src": "862:5:10",
+                        "referencedDeclaration": 2867,
+                        "src": "777:5:10",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_block",
                           "typeString": "block"
                         }
                       },
-                      "id": 2957,
+                      "id": 2818,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -631,21 +605,21 @@
                       "memberName": "timestamp",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "862:15:10",
+                      "src": "777:15:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "845:32:10",
+                    "src": "760:32:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 2959,
+                  "id": 2820,
                   "nodeType": "ExpressionStatement",
-                  "src": "845:32:10"
+                  "src": "760:32:10"
                 },
                 {
                   "eventCall": {
@@ -655,26 +629,26 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2961,
+                          "id": 2822,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2928,
-                          "src": "891:4:10",
+                          "referencedDeclaration": 2789,
+                          "src": "806:4:10",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                            "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                             "typeString": "struct VotingToken.Token storage pointer"
                           }
                         },
-                        "id": 2962,
+                        "id": 2823,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "voter",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 2913,
-                        "src": "891:10:10",
+                        "referencedDeclaration": 2774,
+                        "src": "806:10:10",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -682,12 +656,12 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2963,
+                        "id": 2824,
                         "name": "choice",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2930,
-                        "src": "903:6:10",
+                        "referencedDeclaration": 2791,
+                        "src": "818:6:10",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -705,18 +679,18 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 2960,
+                      "id": 2821,
                       "name": "Vote",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2926,
-                      "src": "886:4:10",
+                      "referencedDeclaration": 2787,
+                      "src": "801:4:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_bool_$returns$__$",
                         "typeString": "function (address,bool)"
                       }
                     },
-                    "id": 2964,
+                    "id": 2825,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -724,51 +698,51 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "886:24:10",
+                    "src": "801:24:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2965,
+                  "id": 2826,
                   "nodeType": "EmitStatement",
-                  "src": "881:29:10"
+                  "src": "796:29:10"
                 }
               ]
             },
             "documentation": null,
-            "id": 2967,
+            "id": 2828,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "CastVote",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2931,
+              "id": 2792,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2928,
+                  "id": 2789,
                   "name": "self",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2967,
-                  "src": "663:18:10",
+                  "scope": 2828,
+                  "src": "578:18:10",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                    "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                     "typeString": "struct VotingToken.Token"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2927,
+                    "id": 2788,
                     "name": "Token",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2920,
-                    "src": "663:5:10",
+                    "referencedDeclaration": 2781,
+                    "src": "578:5:10",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                      "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                       "typeString": "struct VotingToken.Token"
                     }
                   },
@@ -777,11 +751,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2930,
+                  "id": 2791,
                   "name": "choice",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2967,
-                  "src": "683:11:10",
+                  "scope": 2828,
+                  "src": "598:11:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -789,10 +763,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2929,
+                    "id": 2790,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "683:4:10",
+                    "src": "598:4:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -802,96 +776,96 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "662:33:10"
+              "src": "577:33:10"
             },
             "returnParameters": {
-              "id": 2932,
+              "id": 2793,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "705:0:10"
+              "src": "620:0:10"
             },
-            "scope": 3001,
-            "src": "645:269:10",
+            "scope": 2862,
+            "src": "560:269:10",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 2977,
+              "id": 2838,
               "nodeType": "Block",
-              "src": "983:24:10",
+              "src": "898:24:10",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 2974,
+                      "id": 2835,
                       "name": "self",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2969,
-                      "src": "994:4:10",
+                      "referencedDeclaration": 2830,
+                      "src": "909:4:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                        "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                         "typeString": "struct VotingToken.Token storage pointer"
                       }
                     },
-                    "id": 2975,
+                    "id": 2836,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
                     "lValueRequested": false,
                     "memberName": "vote",
                     "nodeType": "MemberAccess",
-                    "referencedDeclaration": 2917,
-                    "src": "994:9:10",
+                    "referencedDeclaration": 2778,
+                    "src": "909:9:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 2973,
-                  "id": 2976,
+                  "functionReturnParameters": 2834,
+                  "id": 2837,
                   "nodeType": "Return",
-                  "src": "987:16:10"
+                  "src": "902:16:10"
                 }
               ]
             },
             "documentation": null,
-            "id": 2978,
+            "id": 2839,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getVote",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2970,
+              "id": 2831,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2969,
+                  "id": 2830,
                   "name": "self",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2978,
-                  "src": "934:18:10",
+                  "scope": 2839,
+                  "src": "849:18:10",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                    "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                     "typeString": "struct VotingToken.Token"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2968,
+                    "id": 2829,
                     "name": "Token",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2920,
-                    "src": "934:5:10",
+                    "referencedDeclaration": 2781,
+                    "src": "849:5:10",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                      "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                       "typeString": "struct VotingToken.Token"
                     }
                   },
@@ -899,19 +873,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "933:20:10"
+              "src": "848:20:10"
             },
             "returnParameters": {
-              "id": 2973,
+              "id": 2834,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2972,
+                  "id": 2833,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2978,
-                  "src": "977:4:10",
+                  "scope": 2839,
+                  "src": "892:4:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -919,10 +893,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2971,
+                    "id": 2832,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "977:4:10",
+                    "src": "892:4:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -932,90 +906,90 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "976:6:10"
+              "src": "891:6:10"
             },
-            "scope": 3001,
-            "src": "917:90:10",
+            "scope": 2862,
+            "src": "832:90:10",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 2988,
+              "id": 2849,
               "nodeType": "Block",
-              "src": "1077:25:10",
+              "src": "992:25:10",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 2985,
+                      "id": 2846,
                       "name": "self",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2980,
-                      "src": "1088:4:10",
+                      "referencedDeclaration": 2841,
+                      "src": "1003:4:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                        "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                         "typeString": "struct VotingToken.Token storage pointer"
                       }
                     },
-                    "id": 2986,
+                    "id": 2847,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
                     "lValueRequested": false,
                     "memberName": "voted",
                     "nodeType": "MemberAccess",
-                    "referencedDeclaration": 2919,
-                    "src": "1088:10:10",
+                    "referencedDeclaration": 2780,
+                    "src": "1003:10:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 2984,
-                  "id": 2987,
+                  "functionReturnParameters": 2845,
+                  "id": 2848,
                   "nodeType": "Return",
-                  "src": "1081:17:10"
+                  "src": "996:17:10"
                 }
               ]
             },
             "documentation": null,
-            "id": 2989,
+            "id": 2850,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getVoted",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2981,
+              "id": 2842,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2980,
+                  "id": 2841,
                   "name": "self",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2989,
-                  "src": "1028:18:10",
+                  "scope": 2850,
+                  "src": "943:18:10",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                    "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                     "typeString": "struct VotingToken.Token"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2979,
+                    "id": 2840,
                     "name": "Token",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2920,
-                    "src": "1028:5:10",
+                    "referencedDeclaration": 2781,
+                    "src": "943:5:10",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                      "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                       "typeString": "struct VotingToken.Token"
                     }
                   },
@@ -1023,19 +997,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1027:20:10"
+              "src": "942:20:10"
             },
             "returnParameters": {
-              "id": 2984,
+              "id": 2845,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2983,
+                  "id": 2844,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2989,
-                  "src": "1071:4:10",
+                  "scope": 2850,
+                  "src": "986:4:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1043,10 +1017,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2982,
+                    "id": 2843,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1071:4:10",
+                    "src": "986:4:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1056,90 +1030,90 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1070:6:10"
+              "src": "985:6:10"
             },
-            "scope": 3001,
-            "src": "1010:92:10",
+            "scope": 2862,
+            "src": "925:92:10",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 2999,
+              "id": 2860,
               "nodeType": "Block",
-              "src": "1176:29:10",
+              "src": "1091:29:10",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 2996,
+                      "id": 2857,
                       "name": "self",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2991,
-                      "src": "1187:4:10",
+                      "referencedDeclaration": 2852,
+                      "src": "1102:4:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                        "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                         "typeString": "struct VotingToken.Token storage pointer"
                       }
                     },
-                    "id": 2997,
+                    "id": 2858,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
                     "lValueRequested": false,
                     "memberName": "votedTime",
                     "nodeType": "MemberAccess",
-                    "referencedDeclaration": 2915,
-                    "src": "1187:14:10",
+                    "referencedDeclaration": 2776,
+                    "src": "1102:14:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 2995,
-                  "id": 2998,
+                  "functionReturnParameters": 2856,
+                  "id": 2859,
                   "nodeType": "Return",
-                  "src": "1180:21:10"
+                  "src": "1095:21:10"
                 }
               ]
             },
             "documentation": null,
-            "id": 3000,
+            "id": 2861,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getVotedTime",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2992,
+              "id": 2853,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2991,
+                  "id": 2852,
                   "name": "self",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3000,
-                  "src": "1127:18:10",
+                  "scope": 2861,
+                  "src": "1042:18:10",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                    "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                     "typeString": "struct VotingToken.Token"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2990,
+                    "id": 2851,
                     "name": "Token",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2920,
-                    "src": "1127:5:10",
+                    "referencedDeclaration": 2781,
+                    "src": "1042:5:10",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                      "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                       "typeString": "struct VotingToken.Token"
                     }
                   },
@@ -1147,19 +1121,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1126:20:10"
+              "src": "1041:20:10"
             },
             "returnParameters": {
-              "id": 2995,
+              "id": 2856,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2994,
+                  "id": 2855,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3000,
-                  "src": "1170:4:10",
+                  "scope": 2861,
+                  "src": "1085:4:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1167,10 +1141,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2993,
+                    "id": 2854,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1170:4:10",
+                    "src": "1085:4:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1180,33 +1154,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1169:6:10"
+              "src": "1084:6:10"
             },
-            "scope": 3001,
-            "src": "1105:100:10",
+            "scope": 2862,
+            "src": "1020:100:10",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 3002,
-        "src": "170:1038:10"
+        "scope": 2863,
+        "src": "170:953:10"
       }
     ],
-    "src": "23:1186:10"
+    "src": "23:1101:10"
   },
   "legacyAST": {
     "absolutePath": "/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/VotingToken.sol",
     "exportedSymbols": {
       "VotingToken": [
-        3001
+        2862
       ]
     },
-    "id": 3002,
+    "id": 2863,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2907,
+        "id": 2770,
         "literals": [
           "solidity",
           ">=",
@@ -1225,61 +1199,35 @@
         "contractKind": "library",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 3001,
+        "id": 2862,
         "linearizedBaseContracts": [
-          3001
+          2862
         ],
         "name": "VotingToken",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "VotingToken.Token",
-            "id": 2920,
+            "id": 2781,
             "members": [
               {
                 "constant": false,
-                "id": 2909,
-                "name": "description",
+                "id": 2772,
+                "name": "oldAccount",
                 "nodeType": "VariableDeclaration",
-                "scope": 2920,
+                "scope": 2781,
                 "src": "211:18:10",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 2908,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "211:6:10",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 2911,
-                "name": "oldAccount",
-                "nodeType": "VariableDeclaration",
-                "scope": 2920,
-                "src": "296:18:10",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 2910,
+                  "id": 2771,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "296:7:10",
+                  "src": "211:7:10",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -1291,11 +1239,11 @@
               },
               {
                 "constant": false,
-                "id": 2913,
+                "id": 2774,
                 "name": "voter",
                 "nodeType": "VariableDeclaration",
-                "scope": 2920,
-                "src": "353:13:10",
+                "scope": 2781,
+                "src": "268:13:10",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1303,10 +1251,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 2912,
+                  "id": 2773,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "353:7:10",
+                  "src": "268:7:10",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -1318,11 +1266,11 @@
               },
               {
                 "constant": false,
-                "id": 2915,
+                "id": 2776,
                 "name": "votedTime",
                 "nodeType": "VariableDeclaration",
-                "scope": 2920,
-                "src": "401:14:10",
+                "scope": 2781,
+                "src": "316:14:10",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1330,10 +1278,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2914,
+                  "id": 2775,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "401:4:10",
+                  "src": "316:4:10",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1344,11 +1292,11 @@
               },
               {
                 "constant": false,
-                "id": 2917,
+                "id": 2778,
                 "name": "vote",
                 "nodeType": "VariableDeclaration",
-                "scope": 2920,
-                "src": "459:9:10",
+                "scope": 2781,
+                "src": "374:9:10",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1356,10 +1304,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 2916,
+                  "id": 2777,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "459:4:10",
+                  "src": "374:4:10",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -1370,11 +1318,11 @@
               },
               {
                 "constant": false,
-                "id": 2919,
+                "id": 2780,
                 "name": "voted",
                 "nodeType": "VariableDeclaration",
-                "scope": 2920,
-                "src": "508:10:10",
+                "scope": 2781,
+                "src": "423:10:10",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1382,10 +1330,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 2918,
+                  "id": 2779,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "508:4:10",
+                  "src": "423:4:10",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -1397,28 +1345,28 @@
             ],
             "name": "Token",
             "nodeType": "StructDefinition",
-            "scope": 3001,
-            "src": "194:361:10",
+            "scope": 2862,
+            "src": "194:276:10",
             "visibility": "public"
           },
           {
             "anonymous": false,
             "documentation": null,
-            "id": 2926,
+            "id": 2787,
             "name": "Vote",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 2925,
+              "id": 2786,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2922,
+                  "id": 2783,
                   "indexed": true,
                   "name": "_voter",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2926,
-                  "src": "569:22:10",
+                  "scope": 2787,
+                  "src": "484:22:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1426,10 +1374,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2921,
+                    "id": 2782,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "569:7:10",
+                    "src": "484:7:10",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1441,12 +1389,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 2924,
+                  "id": 2785,
                   "indexed": false,
                   "name": "_choice",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2926,
-                  "src": "593:12:10",
+                  "scope": 2787,
+                  "src": "508:12:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1454,10 +1402,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2923,
+                    "id": 2784,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "593:4:10",
+                    "src": "508:4:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1467,15 +1415,15 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "568:38:10"
+              "src": "483:38:10"
             },
-            "src": "558:49:10"
+            "src": "473:49:10"
           },
           {
             "body": {
-              "id": 2966,
+              "id": 2827,
               "nodeType": "Block",
-              "src": "705:209:10",
+              "src": "620:209:10",
               "statements": [
                 {
                   "expression": {
@@ -1487,7 +1435,7 @@
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
                         },
-                        "id": 2937,
+                        "id": 2798,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1496,26 +1444,26 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 2934,
+                            "id": 2795,
                             "name": "self",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2928,
-                            "src": "761:4:10",
+                            "referencedDeclaration": 2789,
+                            "src": "676:4:10",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                              "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                               "typeString": "struct VotingToken.Token storage pointer"
                             }
                           },
-                          "id": 2935,
+                          "id": 2796,
                           "isConstant": false,
                           "isLValue": true,
                           "isPure": false,
                           "lValueRequested": false,
                           "memberName": "voted",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 2919,
-                          "src": "761:10:10",
+                          "referencedDeclaration": 2780,
+                          "src": "676:10:10",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
@@ -1526,14 +1474,14 @@
                         "rightExpression": {
                           "argumentTypes": null,
                           "hexValue": "66616c7365",
-                          "id": 2936,
+                          "id": 2797,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "bool",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "775:5:10",
+                          "src": "690:5:10",
                           "subdenomination": null,
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
@@ -1541,7 +1489,7 @@
                           },
                           "value": "false"
                         },
-                        "src": "761:19:10",
+                        "src": "676:19:10",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -1550,14 +1498,14 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "416c726561647920566f746564",
-                        "id": 2938,
+                        "id": 2799,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "782:15:10",
+                        "src": "697:15:10",
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_13153fdbf83bdfad556fc550a7ed6165470df59f6823a99ceb86576910e59254",
@@ -1577,21 +1525,21 @@
                           "typeString": "literal_string \"Already Voted\""
                         }
                       ],
-                      "id": 2933,
+                      "id": 2794,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3019,
-                        3020
+                        2880,
+                        2881
                       ],
-                      "referencedDeclaration": 3020,
-                      "src": "753:7:10",
+                      "referencedDeclaration": 2881,
+                      "src": "668:7:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 2939,
+                    "id": 2800,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1599,20 +1547,20 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "753:45:10",
+                    "src": "668:45:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2940,
+                  "id": 2801,
                   "nodeType": "ExpressionStatement",
-                  "src": "753:45:10"
+                  "src": "668:45:10"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2945,
+                    "id": 2806,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1621,26 +1569,26 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2941,
+                        "id": 2802,
                         "name": "self",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2928,
-                        "src": "802:4:10",
+                        "referencedDeclaration": 2789,
+                        "src": "717:4:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                          "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                           "typeString": "struct VotingToken.Token storage pointer"
                         }
                       },
-                      "id": 2943,
+                      "id": 2804,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "vote",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2917,
-                      "src": "802:9:10",
+                      "referencedDeclaration": 2778,
+                      "src": "717:9:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -1650,31 +1598,31 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 2944,
+                      "id": 2805,
                       "name": "choice",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2930,
-                      "src": "814:6:10",
+                      "referencedDeclaration": 2791,
+                      "src": "729:6:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
                       }
                     },
-                    "src": "802:18:10",
+                    "src": "717:18:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 2946,
+                  "id": 2807,
                   "nodeType": "ExpressionStatement",
-                  "src": "802:18:10"
+                  "src": "717:18:10"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2951,
+                    "id": 2812,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1683,26 +1631,26 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2947,
+                        "id": 2808,
                         "name": "self",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2928,
-                        "src": "824:4:10",
+                        "referencedDeclaration": 2789,
+                        "src": "739:4:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                          "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                           "typeString": "struct VotingToken.Token storage pointer"
                         }
                       },
-                      "id": 2949,
+                      "id": 2810,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "voted",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2919,
-                      "src": "824:10:10",
+                      "referencedDeclaration": 2780,
+                      "src": "739:10:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -1713,14 +1661,14 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "74727565",
-                      "id": 2950,
+                      "id": 2811,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "bool",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "837:4:10",
+                      "src": "752:4:10",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
@@ -1728,20 +1676,20 @@
                       },
                       "value": "true"
                     },
-                    "src": "824:17:10",
+                    "src": "739:17:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 2952,
+                  "id": 2813,
                   "nodeType": "ExpressionStatement",
-                  "src": "824:17:10"
+                  "src": "739:17:10"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2958,
+                    "id": 2819,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1750,26 +1698,26 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2953,
+                        "id": 2814,
                         "name": "self",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2928,
-                        "src": "845:4:10",
+                        "referencedDeclaration": 2789,
+                        "src": "760:4:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                          "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                           "typeString": "struct VotingToken.Token storage pointer"
                         }
                       },
-                      "id": 2955,
+                      "id": 2816,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "votedTime",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2915,
-                      "src": "845:14:10",
+                      "referencedDeclaration": 2776,
+                      "src": "760:14:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1781,18 +1729,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2956,
+                        "id": 2817,
                         "name": "block",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3006,
-                        "src": "862:5:10",
+                        "referencedDeclaration": 2867,
+                        "src": "777:5:10",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_block",
                           "typeString": "block"
                         }
                       },
-                      "id": 2957,
+                      "id": 2818,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1800,21 +1748,21 @@
                       "memberName": "timestamp",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "862:15:10",
+                      "src": "777:15:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "845:32:10",
+                    "src": "760:32:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 2959,
+                  "id": 2820,
                   "nodeType": "ExpressionStatement",
-                  "src": "845:32:10"
+                  "src": "760:32:10"
                 },
                 {
                   "eventCall": {
@@ -1824,26 +1772,26 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2961,
+                          "id": 2822,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2928,
-                          "src": "891:4:10",
+                          "referencedDeclaration": 2789,
+                          "src": "806:4:10",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                            "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                             "typeString": "struct VotingToken.Token storage pointer"
                           }
                         },
-                        "id": 2962,
+                        "id": 2823,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "voter",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 2913,
-                        "src": "891:10:10",
+                        "referencedDeclaration": 2774,
+                        "src": "806:10:10",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1851,12 +1799,12 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2963,
+                        "id": 2824,
                         "name": "choice",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2930,
-                        "src": "903:6:10",
+                        "referencedDeclaration": 2791,
+                        "src": "818:6:10",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -1874,18 +1822,18 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 2960,
+                      "id": 2821,
                       "name": "Vote",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2926,
-                      "src": "886:4:10",
+                      "referencedDeclaration": 2787,
+                      "src": "801:4:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_bool_$returns$__$",
                         "typeString": "function (address,bool)"
                       }
                     },
-                    "id": 2964,
+                    "id": 2825,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1893,51 +1841,51 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "886:24:10",
+                    "src": "801:24:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2965,
+                  "id": 2826,
                   "nodeType": "EmitStatement",
-                  "src": "881:29:10"
+                  "src": "796:29:10"
                 }
               ]
             },
             "documentation": null,
-            "id": 2967,
+            "id": 2828,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "CastVote",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2931,
+              "id": 2792,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2928,
+                  "id": 2789,
                   "name": "self",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2967,
-                  "src": "663:18:10",
+                  "scope": 2828,
+                  "src": "578:18:10",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                    "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                     "typeString": "struct VotingToken.Token"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2927,
+                    "id": 2788,
                     "name": "Token",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2920,
-                    "src": "663:5:10",
+                    "referencedDeclaration": 2781,
+                    "src": "578:5:10",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                      "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                       "typeString": "struct VotingToken.Token"
                     }
                   },
@@ -1946,11 +1894,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2930,
+                  "id": 2791,
                   "name": "choice",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2967,
-                  "src": "683:11:10",
+                  "scope": 2828,
+                  "src": "598:11:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1958,10 +1906,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2929,
+                    "id": 2790,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "683:4:10",
+                    "src": "598:4:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1971,96 +1919,96 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "662:33:10"
+              "src": "577:33:10"
             },
             "returnParameters": {
-              "id": 2932,
+              "id": 2793,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "705:0:10"
+              "src": "620:0:10"
             },
-            "scope": 3001,
-            "src": "645:269:10",
+            "scope": 2862,
+            "src": "560:269:10",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 2977,
+              "id": 2838,
               "nodeType": "Block",
-              "src": "983:24:10",
+              "src": "898:24:10",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 2974,
+                      "id": 2835,
                       "name": "self",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2969,
-                      "src": "994:4:10",
+                      "referencedDeclaration": 2830,
+                      "src": "909:4:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                        "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                         "typeString": "struct VotingToken.Token storage pointer"
                       }
                     },
-                    "id": 2975,
+                    "id": 2836,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
                     "lValueRequested": false,
                     "memberName": "vote",
                     "nodeType": "MemberAccess",
-                    "referencedDeclaration": 2917,
-                    "src": "994:9:10",
+                    "referencedDeclaration": 2778,
+                    "src": "909:9:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 2973,
-                  "id": 2976,
+                  "functionReturnParameters": 2834,
+                  "id": 2837,
                   "nodeType": "Return",
-                  "src": "987:16:10"
+                  "src": "902:16:10"
                 }
               ]
             },
             "documentation": null,
-            "id": 2978,
+            "id": 2839,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getVote",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2970,
+              "id": 2831,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2969,
+                  "id": 2830,
                   "name": "self",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2978,
-                  "src": "934:18:10",
+                  "scope": 2839,
+                  "src": "849:18:10",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                    "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                     "typeString": "struct VotingToken.Token"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2968,
+                    "id": 2829,
                     "name": "Token",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2920,
-                    "src": "934:5:10",
+                    "referencedDeclaration": 2781,
+                    "src": "849:5:10",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                      "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                       "typeString": "struct VotingToken.Token"
                     }
                   },
@@ -2068,19 +2016,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "933:20:10"
+              "src": "848:20:10"
             },
             "returnParameters": {
-              "id": 2973,
+              "id": 2834,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2972,
+                  "id": 2833,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2978,
-                  "src": "977:4:10",
+                  "scope": 2839,
+                  "src": "892:4:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2088,10 +2036,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2971,
+                    "id": 2832,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "977:4:10",
+                    "src": "892:4:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -2101,90 +2049,90 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "976:6:10"
+              "src": "891:6:10"
             },
-            "scope": 3001,
-            "src": "917:90:10",
+            "scope": 2862,
+            "src": "832:90:10",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 2988,
+              "id": 2849,
               "nodeType": "Block",
-              "src": "1077:25:10",
+              "src": "992:25:10",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 2985,
+                      "id": 2846,
                       "name": "self",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2980,
-                      "src": "1088:4:10",
+                      "referencedDeclaration": 2841,
+                      "src": "1003:4:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                        "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                         "typeString": "struct VotingToken.Token storage pointer"
                       }
                     },
-                    "id": 2986,
+                    "id": 2847,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
                     "lValueRequested": false,
                     "memberName": "voted",
                     "nodeType": "MemberAccess",
-                    "referencedDeclaration": 2919,
-                    "src": "1088:10:10",
+                    "referencedDeclaration": 2780,
+                    "src": "1003:10:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 2984,
-                  "id": 2987,
+                  "functionReturnParameters": 2845,
+                  "id": 2848,
                   "nodeType": "Return",
-                  "src": "1081:17:10"
+                  "src": "996:17:10"
                 }
               ]
             },
             "documentation": null,
-            "id": 2989,
+            "id": 2850,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getVoted",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2981,
+              "id": 2842,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2980,
+                  "id": 2841,
                   "name": "self",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2989,
-                  "src": "1028:18:10",
+                  "scope": 2850,
+                  "src": "943:18:10",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                    "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                     "typeString": "struct VotingToken.Token"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2979,
+                    "id": 2840,
                     "name": "Token",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2920,
-                    "src": "1028:5:10",
+                    "referencedDeclaration": 2781,
+                    "src": "943:5:10",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                      "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                       "typeString": "struct VotingToken.Token"
                     }
                   },
@@ -2192,19 +2140,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1027:20:10"
+              "src": "942:20:10"
             },
             "returnParameters": {
-              "id": 2984,
+              "id": 2845,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2983,
+                  "id": 2844,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2989,
-                  "src": "1071:4:10",
+                  "scope": 2850,
+                  "src": "986:4:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2212,10 +2160,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2982,
+                    "id": 2843,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1071:4:10",
+                    "src": "986:4:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -2225,90 +2173,90 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1070:6:10"
+              "src": "985:6:10"
             },
-            "scope": 3001,
-            "src": "1010:92:10",
+            "scope": 2862,
+            "src": "925:92:10",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 2999,
+              "id": 2860,
               "nodeType": "Block",
-              "src": "1176:29:10",
+              "src": "1091:29:10",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 2996,
+                      "id": 2857,
                       "name": "self",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2991,
-                      "src": "1187:4:10",
+                      "referencedDeclaration": 2852,
+                      "src": "1102:4:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                        "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                         "typeString": "struct VotingToken.Token storage pointer"
                       }
                     },
-                    "id": 2997,
+                    "id": 2858,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
                     "lValueRequested": false,
                     "memberName": "votedTime",
                     "nodeType": "MemberAccess",
-                    "referencedDeclaration": 2915,
-                    "src": "1187:14:10",
+                    "referencedDeclaration": 2776,
+                    "src": "1102:14:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 2995,
-                  "id": 2998,
+                  "functionReturnParameters": 2856,
+                  "id": 2859,
                   "nodeType": "Return",
-                  "src": "1180:21:10"
+                  "src": "1095:21:10"
                 }
               ]
             },
             "documentation": null,
-            "id": 3000,
+            "id": 2861,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getVotedTime",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2992,
+              "id": 2853,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2991,
+                  "id": 2852,
                   "name": "self",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3000,
-                  "src": "1127:18:10",
+                  "scope": 2861,
+                  "src": "1042:18:10",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                    "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                     "typeString": "struct VotingToken.Token"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2990,
+                    "id": 2851,
                     "name": "Token",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2920,
-                    "src": "1127:5:10",
+                    "referencedDeclaration": 2781,
+                    "src": "1042:5:10",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Token_$2920_storage_ptr",
+                      "typeIdentifier": "t_struct$_Token_$2781_storage_ptr",
                       "typeString": "struct VotingToken.Token"
                     }
                   },
@@ -2316,19 +2264,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1126:20:10"
+              "src": "1041:20:10"
             },
             "returnParameters": {
-              "id": 2995,
+              "id": 2856,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2994,
+                  "id": 2855,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3000,
-                  "src": "1170:4:10",
+                  "scope": 2861,
+                  "src": "1085:4:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2336,10 +2284,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2993,
+                    "id": 2854,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1170:4:10",
+                    "src": "1085:4:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2349,20 +2297,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1169:6:10"
+              "src": "1084:6:10"
             },
-            "scope": 3001,
-            "src": "1105:100:10",
+            "scope": 2862,
+            "src": "1020:100:10",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 3002,
-        "src": "170:1038:10"
+        "scope": 2863,
+        "src": "170:953:10"
       }
     ],
-    "src": "23:1186:10"
+    "src": "23:1101:10"
   },
   "compiler": {
     "name": "solc",
@@ -2392,11 +2340,11 @@
       },
       "links": {},
       "address": "0xc62061F5d60D6086273B559A23D600CBEbFA854E",
-      "transactionHash": "0xa32a1cf694540618f6da4391cfba27096c1154d8329ed3910b6c5fc094570aaf"
+      "transactionHash": "0xec7227c83e1b347a1274fa1ce3aa11d2ec99de13943c332aad1cdff95542f702"
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-11-06T18:46:10.974Z",
+  "updatedAt": "2019-11-06T19:50:39.796Z",
   "devdoc": {
     "methods": {}
   },

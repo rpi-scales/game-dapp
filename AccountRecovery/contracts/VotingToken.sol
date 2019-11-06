@@ -9,7 +9,6 @@ pragma solidity >=0.4.0 <0.7.0;
 library VotingToken {
 
 	struct Token {
-		string description;						// Description of the transaction between these addresses
 		address oldAccount;						// Address of the old account
 		address voter;							// Address of the voter
 

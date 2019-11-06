@@ -58,70 +58,67 @@ contract Proposal {
 		paided = true;								// The proposal has been paid for
 	}
 
-	function AddTradePartners(address[] calldata _tradePartners, address[] calldata _archivedVoters, UserManager UMI, TransactionManager TMI) external {
+	function AddTradePartners(address[] calldata _tradePartners, address[] calldata _archivedVoters, TransactionManager TMI, ProposalManager PMI) external {
 		require(paided == true, "This proposal has not been paid for yet");
 
 		for (uint i = 0; i < _archivedVoters.length; i++){
 			archivedVoters.insert(_archivedVoters[i]);
 		}
 
-
 		for (uint i = 0; i < _tradePartners.length; i++){	// For each partner
 			if (newAccount != _tradePartners[i]){			// The new account can not be a voter
-				// They have made a transaction with the old account
-				if (TMI.NumberOfTransactions(oldAccount, _tradePartners[i]) > 0){
-					if (!archivedVoters.contains(_tradePartners[i])){			// This address is not already a voter
-						voters.insert(_tradePartners[i]);
+				if (!PMI.getBlacklistedAccount(_tradePartners[i], _tradePartners[i])){
+					// They have made a transaction with the old account
+					if (TMI.NumberOfTransactions(oldAccount, _tradePartners[i]) > 0){
+						if (!archivedVoters.contains(_tradePartners[i])){			// This address is not already a voter
+							voters.insert(_tradePartners[i]);
+						}
 					}
 				}
 			}
 		}
-		require(voters.getValuesLength() >= 3, "Invalid Number of tradePartners");
+		require(voters.getValuesLength() >= 3, "Invalid Number of indicated trade partners");
+		require(_tradePartners.length - voters.getValuesLength() < 3, "You indicated to0 many invalid trade partners");
 		numberOfVoters = voters.getValuesLength() * 2;
 
-		address[] memory addresses = UMI.getAddresses(); // List of addresses on the network
+		address[] memory _haveTradedWith = TMI.getHaveTradedWith(oldAccount, newAccount);
 
-		for (uint i = 0; i < addresses.length; i++){					// For each address
-			if (newAccount != addresses[i]){							// The new account can not be a voter
-				// They have made a transaction with the old account
-				if (TMI.NumberOfTransactions(oldAccount, addresses[i]) > 0){
-					if (!voters.contains(addresses[i]) && !archivedVoters.contains(addresses[i]) ){			// This address is not already a voter
-						haveTradedWith.push(addresses[i]);				// This address is an eligible voter
-					}
-				}
+		for (uint i = 0; i < _haveTradedWith.length; i++){					// For each address
+			if (!voters.contains(_haveTradedWith[i]) && !archivedVoters.contains(_haveTradedWith[i]) ){			// This address is not already a voter
+				haveTradedWith.push(_haveTradedWith[i]);				// This address is an eligible voter
 			}
 		}
-		require(haveTradedWith.length >= 3, "Invalid Number of haveTradedWith");
-	}
-
-	function FindRandomTradingPartner() external {
-		require(numberOfVoters > 0, "Trade partners have not been added to this yet proposal");
-		require(randomVoterVetos > 0, "Can not veto any more random voters");
-		require(haveTradedWith.length > 0, "Can not veto this voter because there is not enough trade partners left");
-
-		randomVoterVetos--;
-		uint index = random(lastOtherPartner, haveTradedWith.length);			// Find random value
-				
-		lastOtherPartner = haveTradedWith[index];
-
-		for (uint i = index; i < haveTradedWith.length - 1; i++){
-			haveTradedWith[i] = haveTradedWith[i+1];
-		}
-		delete haveTradedWith[haveTradedWith.length-1];
-		haveTradedWith.length--;
+		require(haveTradedWith.length >= voters.getValuesLength(), "Invalid Number of haveTradedWith");
+		RandomTradingPartner(true);
 	}
 
 	function ViewRandomTradingPartner() external view returns (address) {
 		return lastOtherPartner;
 	}
 
-	function AddRandomTradingPartner() external {
-		require( lastOtherPartner != 0x0000000000000000000000000000000000000000, "Have to find a random trading partner first");
-		require( !voters.contains(lastOtherPartner), "Already added that address");
+	function RandomTradingPartner(bool _veto) public {
+		if (!_veto){
+			require(!voters.contains(lastOtherPartner), "Already added that address");
+			randomVoterVetos++;
+			voters.insert(lastOtherPartner);
+		}
 
-		randomVoterVetos++;
+		if (voters.getValuesLength() != numberOfVoters){
+			require(numberOfVoters > 0, "Trade partners have not been added to this yet proposal");
+			require(randomVoterVetos > 0, "Can not veto any more random voters");
+			require(haveTradedWith.length > 0, "Can not veto this voter because there is not enough trade partners left");
 
-		voters.insert(lastOtherPartner);
+			randomVoterVetos--;
+			uint index = random(lastOtherPartner, haveTradedWith.length);			// Find random value
+					
+			lastOtherPartner = haveTradedWith[index];
+
+			for (uint i = index; i < haveTradedWith.length - 1; i++){
+				haveTradedWith[i] = haveTradedWith[i+1];
+			}
+			delete haveTradedWith[haveTradedWith.length-1];
+			haveTradedWith.length--;
+		}
 	}
 
 	// Make Voting Tokens
@@ -173,7 +170,6 @@ contract Proposal {
 			return -1;
 		}
 
-		// (uint yeses, uint total) = CountVotes();
 		uint total = 0;							// Total number of votes
 		uint yeses = 0;							// Total number of yesses
 
@@ -183,10 +179,10 @@ contract Proposal {
 			require(transactionDataSets[voters.getValue(i)].length > 0, "There is no transaction data to view");
 			VotingToken.Token storage temp = votingtokens[voters.getValue(i)].token;
 			totalTimeToVote += temp.getVotedTime();
-			if (temp.getVoted()){			// They are a voter and they voted
+			if (temp.getVoted()){				// They are a voter and they voted
 				total++;						// Incroment the total number of votes
-				if (temp.getVote()){ 				// They are a voter and they voted yes
-					yeses++;						// Incroment the number of yesses
+				if (temp.getVote()){ 			// They are a voter and they voted yes
+					yeses++;					// Incroment the number of yesses
 				}
 			}
 		}
@@ -195,7 +191,7 @@ contract Proposal {
 			if (block.timestamp - startTime > 172800){
 				return 60;
 			}
-			return -1;
+			return -2;
 		}
 
 		bool outcome = (100*yeses) / total >= 66;			// The outcome of the vote
@@ -240,7 +236,7 @@ contract Proposal {
 		require(transactionDataSets[_voter].length > 0, "There is no transaction data to view");
 	} 
 
-	function getVoters() public view returns (address[] memory){
+	function getVoters() external view returns (address[] memory){
 		return voters.getValues();
 	}
 }

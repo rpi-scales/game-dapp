@@ -14,21 +14,23 @@ import "../contracts/Transaction.sol";
 
 contract TransactionManager {
 	mapping (address => mapping (address => Transaction[]) ) transactions;
-	UserManager UserManagerInstance;			// Connects to the list of users on the network
+	address[]  haveTradedWith;
+
+	UserManager UMI;			// Connects to the list of users on the network
 	ProposalManager PMI;	// Connects to the list of active proposals on the network
 
 	constructor(address UserManagerAddress, address ProposalManagerAddress) public {
-		UserManagerInstance = UserManager(UserManagerAddress);
+		UMI = UserManager(UserManagerAddress);
 		PMI = ProposalManager(ProposalManagerAddress);
 	}
 
 	function BuyCoin() public payable {
-		require (!PMI.getBlacklistedAccount(msg.sender), "The buyer is blacklisted");
+		require (!PMI.getBlacklistedAccount(msg.sender, UMI.getAdmin()), "Once of these accounts are blacklisted");
 
-		address payable admin = UserManagerInstance.getAdmin();
+		address payable admin = UMI.getAdmin();
 		admin.transfer(msg.value);								// Spend ETH
 
-		Person buyer = UserManagerInstance.getUser(msg.sender); // Finds buy
+		Person buyer = UMI.getUser(msg.sender); // Finds buy
 		uint price = msg.value/10000000000000000;				// 1 ETh = 100 Coins
 		buyer.increaseBalance(price);							// Increase the reciever's balance
 
@@ -37,9 +39,10 @@ contract TransactionManager {
 	// Makes a transaction between 2 users
 	function MakeTransaction(address _reciever, uint _amount) external {
 		require (_reciever != msg.sender, "Can not send money to yourself");
-		require (!PMI.getBlacklistedAccount(msg.sender), "The sender is blacklisted");
-		require (!PMI.getBlacklistedAccount(_reciever), "The reciever is blacklisted");
-		require (_reciever != address(UserManagerInstance.getAdmin()), "Can not send money to the admin");
+		require (_reciever != address(UMI.getAdmin()), "Can not send money to the admin");
+
+		require (!PMI.getBlacklistedAccount(msg.sender, _reciever), "Once of these accounts are blacklisted");
+
 		require (!CheckForBribery(msg.sender, _reciever), "This is Bribery");
 
 		address newAccount = CheckForOldAccount(msg.sender);
@@ -48,8 +51,8 @@ contract TransactionManager {
 			newAccount = CheckForOldAccount(msg.sender);
 		}
 
-		Person sender = UserManagerInstance.getUser(msg.sender); // Finds sender
-		Person reciever = UserManagerInstance.getUser(_reciever); // Finds reciever
+		Person sender = UMI.getUser(msg.sender); // Finds sender
+		Person reciever = UMI.getUser(_reciever); // Finds reciever
 
 		// Makes transaction 
 		transactions[msg.sender][_reciever].push(new Transaction(sender, reciever, _amount));
@@ -61,7 +64,7 @@ contract TransactionManager {
 	}
 
 	// Gets the number of transacions between 2 addresses
-	function NumberOfTransactions(address sender, address receiver) external view returns(uint) {
+	function NumberOfTransactions(address sender, address receiver) public view returns(uint) {
 		return transactions[sender][receiver].length;
 	}
 
@@ -71,19 +74,22 @@ contract TransactionManager {
 		return transactions[sender][receiver][i].getTransaction();
 	}
 
-	function Equal(address sender, address receiver, uint timeStamp, uint _amount) external view returns (bool) {
+	function Equal(address sender, address receiver, uint timeStamp, uint _amount) external view {
 		Transaction[] storage temp = transactions[sender][receiver];
+
+		bool found = false;
 
 		for (uint i = 0; i < temp.length; i++){
 			if (temp[i].Equal(timeStamp, sender, receiver, _amount)){
-				return true;
+				found = true;
 			}
+
 		}
-		return false;
+		require(found, "This transaction does not exist");
 	}
 
 	function CheckForOldAccount(address _oldAccount) internal returns (address){
-		address[] memory addresses = UserManagerInstance.getAddresses(); // List of addresses on the network
+		address[] memory addresses = UMI.getAddresses(); // List of addresses on the network
 		for (uint i = 0; i < addresses.length; i++){					// For each address
 			if (_oldAccount != addresses[i]){							// The new account can not be a voter
 				if (PMI.getActiveProposalExists(_oldAccount, addresses[i])){
@@ -98,7 +104,7 @@ contract TransactionManager {
 	}
 
 	function CheckForBribery(address _newAccount, address _voter) internal returns (bool){
-		address[] memory addresses = UserManagerInstance.getAddresses(); // List of addresses on the network
+		address[] memory addresses = UMI.getAddresses(); // List of addresses on the network
 
 		for (uint i = 0; i < addresses.length; i++){					// For each address
 			if (_newAccount != addresses[i]){							// The new account can not be a voter
@@ -119,4 +125,20 @@ contract TransactionManager {
 		}
 		return false;
 	}
+
+	function getHaveTradedWith(address _oldAccount, address _newAccount) external returns (address[] memory){
+		delete haveTradedWith;
+		address[] memory addresses = UMI.getAddresses(); // List of addresses on the network
+		for (uint i = 0; i < addresses.length; i++){					// For each address
+			if (_newAccount != addresses[i]){							// The new account can not be a voter
+				// They have made a transaction with the old account
+				if (NumberOfTransactions(_oldAccount, addresses[i]) > 0){
+					haveTradedWith.push(addresses[i]);				// This address is an eligible voter
+				}
+			}
+		}
+		// require(haveTradedWith.length >= 3, "Invalid Number of haveTradedWith");
+		return haveTradedWith;
+	}
+
 }

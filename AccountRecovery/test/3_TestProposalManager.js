@@ -89,12 +89,15 @@ contract('ProposalManager', (accounts) => {
 
 	it('Find Randomly assigned Voter', async () => {
 		for (var i = 0; i < 3; i++) {
-			await PCI.FindRandomTradingPartner(oldAccount, { from: newAccount });
 			var voter = (await PCI.ViewRandomTradingPartner(oldAccount, { from: newAccount }));
-			await PCI.AddRandomTradingPartner(oldAccount, { from: newAccount });
+			await PCI.RandomTradingPartner(oldAccount, false, { from: newAccount });
+
 			console.log("Random voter: " + voter);
 			TradePartners.push(voter);
 		}
+
+		// console.log("Voters: " + (await PCI.getVoters(oldAccount, { from: newAccount })));
+
 	});
 
 	it('Make Voting Token', async () => {

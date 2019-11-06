@@ -37,7 +37,8 @@ contract Transaction {
 
 	// Returns if a set of data and this tranaction have the same set of public information
 	function Equal(uint _timeStamp, address _sender, address _receiver, uint _amount) external view returns (bool){
-		return _timeStamp == timeStamp && sender.ID() == _sender && receiver.ID() == _receiver && _amount == amount;
+		bool temp = _timeStamp >= timeStamp - 10 && _timeStamp <= timeStamp + 10;
+		return temp && sender.ID() == _sender && receiver.ID() == _receiver && _amount == amount;
 	}
 
 	function getTransaction() external view returns(address, address, uint) {

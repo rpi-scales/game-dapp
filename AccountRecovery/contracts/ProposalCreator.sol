@@ -22,21 +22,14 @@ contract ProposalCreator {
 	}
 	
 	function StartProposal(address _oldAccount) external {
-		require(_oldAccount != msg.sender, "An account can not recover itself");
-		
-		require (!PMI.getBlacklistedAccount(msg.sender), "The sender is blacklisted");
-		require (!PMI.getBlacklistedAccount(_oldAccount), "The oldAccount is blacklisted");
-
-		require(_oldAccount != UMI.getAdmin(), "Can not try to recover the admin");
+		require (!PMI.getBlacklistedAccount(msg.sender, _oldAccount), "Once of these accounts are blacklisted");
 		require(PMI.validProposal(_oldAccount), "There already exists a Proposal for this account");
 
 		uint balance = UMI.getUser(_oldAccount).balance();
 		uint price = balance / 20;
 
 		// Creates Proposal and adds it to the active proposal map
-		Proposal temp = new Proposal(_oldAccount, msg.sender, price);
-
-		PMI.AddActiveProposal(_oldAccount, msg.sender, temp);		// Deletes proposal
+		PMI.AddActiveProposal(_oldAccount, msg.sender, new Proposal(_oldAccount, msg.sender, price));
 	}
 
 	function ViewPrice(address _oldAccount) external view returns (uint) {
@@ -54,20 +47,19 @@ contract ProposalCreator {
 
 	function AddTradePartners(address _oldAccount, address[] calldata _tradePartners) external {
 		address[] memory archivedVoters = PMI.getArchivedVoter(_oldAccount);
-		// address[] memory addresses = UMI.getAddresses(); // List of addresses on the network
-		PMI.getActiveProposal(_oldAccount, msg.sender).AddTradePartners(_tradePartners, archivedVoters, UMI, TMI);
+		PMI.getActiveProposal(_oldAccount, msg.sender).AddTradePartners(_tradePartners, archivedVoters, TMI, PMI);
 	}
 
-	function FindRandomTradingPartner(address _oldAccount) external {
-		PMI.getActiveProposal(_oldAccount, msg.sender).FindRandomTradingPartner();
+	function getVoters(address _oldAccount) external view returns (address[] memory) {
+		return PMI.getActiveProposal(_oldAccount, msg.sender).getVoters();
 	}
 
 	function ViewRandomTradingPartner(address _oldAccount) external view returns (address) {
 		return PMI.getActiveProposal(_oldAccount, msg.sender).ViewRandomTradingPartner();
 	}
-	
-	function AddRandomTradingPartner(address _oldAccount) external {
-		PMI.getActiveProposal(_oldAccount, msg.sender).AddRandomTradingPartner();
+
+	function RandomTradingPartner(address _oldAccount, bool _veto) external {
+		PMI.getActiveProposal(_oldAccount, msg.sender).RandomTradingPartner(_veto);
 	}
 
 	// Finds proposal and makes voting token for a specified voter
@@ -78,12 +70,15 @@ contract ProposalCreator {
 	// Makes a set of data for a transaction of one of the trade partners. Checks this data 
 	function MakeTransactionDataSet(address oldAccount, uint timeStamp, uint _amount, address _voter, 
 		string calldata _description, string calldata _itemsInTrade) external {
-
-		require( TMI.Equal(oldAccount, _voter, timeStamp, _amount), "This transaction does not exist");
+		TMI.Equal(oldAccount, _voter, timeStamp, _amount);
 
 		// Finds proposal and creates set of data 
 		PMI.getActiveProposal(oldAccount, msg.sender).AddTransactionDataSet(timeStamp, _voter, _amount, _description, _itemsInTrade);
 	}
 }
 
-// 6565376
+// 6527579
+// 6400425
+// 6330146
+// 6402941
+// 6520794

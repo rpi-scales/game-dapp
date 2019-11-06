@@ -18,7 +18,7 @@ contract ProposalManager {
 		bool exists;
 	}
 
-	UserManager UserManagerInstance;				// Connects to the list of users on the network
+	UserManager UMI;				// Connects to the list of users on the network
 
 	mapping (address => mapping (address => ProposalPair) ) activeProposals; // Map of active proposals
 
@@ -28,10 +28,11 @@ contract ProposalManager {
 
 	// Used to originally deploy the contract
 	constructor(address UserManagerAddress ) public {
-		UserManagerInstance = UserManager(UserManagerAddress);
+		UMI = UserManager(UserManagerAddress);
 	}
 
 	function VetoAccountRecovery(address _newAccount) external{
+		getActiveProposal(msg.sender, _newAccount).ConcludeAccountRecovery(UMI);
 		archiveProposal(msg.sender, _newAccount);
 	}
 
@@ -52,16 +53,15 @@ contract ProposalManager {
 	
 	// Counts up votes and distriputes the reward
 	function ConcludeAccountRecovery(address _oldAccount) external {
-		Proposal temp = getActiveProposal(_oldAccount, msg.sender);
-		
-		int outcome = temp.ConcludeAccountRecovery(UserManagerInstance);
+		int outcome = getActiveProposal(_oldAccount, msg.sender).ConcludeAccountRecovery(UMI);
 
 		require (outcome != -1, "You must wait more time until you can conclude the vote");
+		require (outcome != -2, "Not enough voters have voted yet");
 
 		if (outcome >= 66){											// Successful vote
 			// Finds old account and new account on the network
-			Person oldAccount = UserManagerInstance.getUser(_oldAccount);
-			Person newAccount = UserManagerInstance.getUser(msg.sender);
+			Person oldAccount = UMI.getUser(_oldAccount);
+			Person newAccount = UMI.getUser(msg.sender);
 
 			// Transfers balance
 			newAccount.increaseBalance(oldAccount.balance());	// Increase new accounts balance
@@ -115,14 +115,17 @@ contract ProposalManager {
 	}
 
 	function validProposal(address _oldAccount) external view returns (bool) {
+		require(_oldAccount != UMI.getAdmin(), "Can not try to recover the admin");
+		require(_oldAccount != msg.sender, "An account can not recover itself");
+
 		return !invalidProposal[_oldAccount];
 	}
 
-	function getBlacklistedAccount(address _address) public view returns (bool) {
-		return blackListedAccounts[_address];
+	function getBlacklistedAccount(address _address1, address _address2) external view returns (bool) {
+		return blackListedAccounts[_address1] || blackListedAccounts[_address2];
 	}
 
-	function setBlacklistedAccount(address _address) public {
+	function setBlacklistedAccount(address _address) external {
 		blackListedAccounts[_address] = true;
 	}
 }

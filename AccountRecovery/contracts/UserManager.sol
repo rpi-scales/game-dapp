@@ -11,25 +11,29 @@ import "../contracts/TransactionManager.sol";
 
 contract UserManager {
 
+	// A struct containing a user as well as if they are a part of the network
 	struct UserPair {
 		Person person;
 		bool exists;
 	}
 
-	mapping (address => UserPair) Users;					// Map of users on the network
-	address[] addresses;								// Addresses on the network
-	address payable admin;
+	mapping (address => UserPair) Users;		// Map of users on the network
+	address[] addresses;						// Addresses on the network
+	address payable admin;						// Address of the admin
 
 	constructor(address[] memory _addresses) public {
 		addresses = _addresses;
 
 		admin = msg.sender;
 
-		for (uint i = 0; i < addresses.length; i++) {	// Creates users on the network
+		// Creates users on the network
+		for (uint i = 0; i < addresses.length; i++) {
+
+			// A struct containing a user and if they are a part of the network
 			UserPair memory tempPair;
-			tempPair.person = new Person(addresses[i], 0, 86400);
-			tempPair.exists = true;
-			Users[addresses[i]] = tempPair;
+			tempPair.person = new Person(addresses[i], 0, 86400);	// Create account
+			tempPair.exists = true;				// They are apart of the network	
+			Users[addresses[i]] = tempPair;		// Add them to the map of users
 		}
 	}
 
@@ -38,10 +42,11 @@ contract UserManager {
 		return admin;
 	}
 
-	// Gets User with the given address
-	function getUser(address i) external view returns (Person) {
+	// Gets the user with the given address
+	function getUser(address i) public view returns (Person) {
+		// Requires that the user is a part of the network
 		require(Users[i].exists == true, "This user does not exist");
-		return Users[i].person;
+		return Users[i].person;					// Returns user
 	}
 
 	// Gets the list of addresses on the network
@@ -49,13 +54,13 @@ contract UserManager {
 		return addresses;
 	}
 	
+	// Gets the balance of a user in the network
 	function getUserBalance(address i) external view returns (uint) {
-		require(Users[i].exists == true, "This user does not exist");
-		return Users[i].person.balance();
+		return getUser(i).balance();
 	}
 
+	// Changes the time desinated for this address to veto a malicious proposal
 	function changeVetoTime(uint _time) external {
-		require(Users[msg.sender].exists == true, "This user does not exist");
-		Users[msg.sender].person.setVetoTime(_time);
+		getUser(msg.sender).setVetoTime(_time);
 	}
 }

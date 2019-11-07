@@ -144,7 +144,7 @@ contract('ProposalManager', (accounts) => {
 		await PMI.CastVote(oldAccount, newAccount, false, { from: users[6] });
 	});	
 
-	it('Conclude Account Recovery', async () => {
+	it('Conclude Proposal', async () => {
 		const before0 = (await UMI.getUserBalance(oldAccount)).toNumber();
 		const before1 = (await UMI.getUserBalance(users[1])).toNumber();
 		const before2 = (await UMI.getUserBalance(users[2])).toNumber();
@@ -154,7 +154,7 @@ contract('ProposalManager', (accounts) => {
 		const before6 = (await UMI.getUserBalance(users[6])).toNumber();
 		const before8 = (await UMI.getUserBalance(newAccount)).toNumber();
 
-		await PMI.ConcludeAccountRecovery(oldAccount, {from: newAccount});
+		await PMI.ConcludeProposal(oldAccount, {from: newAccount});
 		// var temp = (await PMI.getArchivedProposals(oldAccount, newAccount));
 		// assert.equal(temp[0], true, "Wrong Outcome");
 

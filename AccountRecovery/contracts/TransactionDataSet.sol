@@ -13,7 +13,8 @@ library TransactionDataSet {
 	struct DataSet {
 		// Private Information
 		string description;					// Description of transaction
-		string itemsInTrade;				// Items in transaction
+		string location;					// Location of the transaction
+		string itemsInTrade;				// Items in the transaction
 
 		// Public Information
 		address sender;						// Sender of transaction
@@ -31,10 +32,10 @@ library TransactionDataSet {
 	}
 	
 	// View private information on a set of data for a transaction
-	function ViewPrivateInformation(DataSet storage self) 
-			external view returns (string memory, string memory) {
+	function ViewPrivateInformation(DataSet storage self) external view 
+		returns (string memory, string memory, string memory) {
 
 		// Returns private information
-		return (self.description, self.itemsInTrade);
+		return (self.description, self.location, self.itemsInTrade);
 	}
 }

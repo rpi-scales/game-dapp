@@ -104,11 +104,14 @@ contract('ProposalManager', (accounts) => {
 	const receiver = users[1];
 	const sender = oldAccount;
 	const description = "AAA";
-	const itemsInTrade = "BBB";
+	const location = "CCC";
+	const itemIDs = ["DDD"];
+	const itemQuantity = [2];
 
 	it('Add Transaction Data Set', async () => {
 		for (var i = 0; i < TradePartners.length; i++) {
-			await PCI.MakeTransactionDataSet(oldAccount, timeStamps[i], amount, TradePartners[i], description, itemsInTrade, { from: newAccount });
+			await PCI.MakeTransactionDataSet(oldAccount, timeStamps[i], amount, TradePartners[i], 
+				description, location, itemIDs, itemQuantity,{ from: newAccount });
 		}
 	});
 

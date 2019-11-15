@@ -1,25 +1,25 @@
 {
   "contractName": "TransactionDataSet",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/TransactionDataSet.sol\":\"TransactionDataSet\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/TransactionDataSet.sol\":{\"keccak256\":\"0x784e1148ea70d9f880762e883bf82c1bee12b6557a6d6f7e6b46377571fc9c3e\",\"urls\":[\"bzzr://8d0fab21cfb4b2b801577a64ed7be34a8aa3b91e0a36fd2de040b9261450b0a3\"]}},\"version\":1}",
-  "bytecode": "0x6103e8610026600b82828239805160001a60731461001957fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600436106100405760003560e01c8063b18e919614610045578063c233d7e8146100f4575b600080fd5b6100716004803603602081101561005b57600080fd5b8101908080359060200190929190505050610207565b604051808581526020018481526020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200194505050505060405180910390f35b6101206004803603602081101561010a57600080fd5b8101908080359060200190929190505050610270565b604051808060200180602001838103835285818151815260200191508051906020019080838360005b83811015610164578082015181840152602081019050610149565b50505050905090810190601f1680156101915780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b838110156101ca5780820151818401526020810190506101af565b50505050905090810190601f1680156101f75780820380516001836020036101000a031916815260200191505b5094505050505060405180910390f35b600080600080846004015485600501548660020160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff168760030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1693509350935093509193509193565b6060808260000183600101818054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103105780601f106102e557610100808354040283529160200191610310565b820191906000526020600020905b8154815290600101906020018083116102f357829003601f168201915b50505050509150808054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103ac5780601f10610381576101008083540402835291602001916103ac565b820191906000526020600020905b81548152906001019060200180831161038f57829003601f168201915b505050505090509150915091509156fea165627a7a72305820b086c89929e25c32d52de2d12b205c5f85e0515604b97dec6cf90b7b208d5c7e0029",
-  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600436106100405760003560e01c8063b18e919614610045578063c233d7e8146100f4575b600080fd5b6100716004803603602081101561005b57600080fd5b8101908080359060200190929190505050610207565b604051808581526020018481526020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200194505050505060405180910390f35b6101206004803603602081101561010a57600080fd5b8101908080359060200190929190505050610270565b604051808060200180602001838103835285818151815260200191508051906020019080838360005b83811015610164578082015181840152602081019050610149565b50505050905090810190601f1680156101915780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b838110156101ca5780820151818401526020810190506101af565b50505050905090810190601f1680156101f75780820380516001836020036101000a031916815260200191505b5094505050505060405180910390f35b600080600080846004015485600501548660020160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff168760030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1693509350935093509193509193565b6060808260000183600101818054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103105780601f106102e557610100808354040283529160200191610310565b820191906000526020600020905b8154815290600101906020018083116102f357829003601f168201915b50505050509150808054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103ac5780601f10610381576101008083540402835291602001916103ac565b820191906000526020600020905b81548152906001019060200180831161038f57829003601f168201915b505050505090509150915091509156fea165627a7a72305820b086c89929e25c32d52de2d12b205c5f85e0515604b97dec6cf90b7b208d5c7e0029",
-  "sourceMap": "226:1044:7:-;;132:2:-1;166:7;155:9;146:7;137:37;255:7;249:14;246:1;241:23;235:4;232:33;222:2;;269:9;222:2;293:9;290:1;283:20;323:4;314:7;306:22;347:7;338;331:24",
-  "deployedSourceMap": "226:1044:7:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;773:221;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;773:221:7;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1065:202;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1065:202:7;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;1065:202:7;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;1065:202:7;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;773:221;854:4;860;866:7;875;932:4;:14;;;948:4;:11;;;961:4;:11;;;;;;;;;;;;974:4;:13;;;;;;;;;;;;924:65;;;;;;;;773:221;;;;;:::o;1065:202::-;1147:13;1162;1226:4;:16;;1244:4;:17;;1218:44;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1065:202;;;:::o",
-  "source": "/* TransactionDataSet.sol */\r\n\r\npragma solidity >=0.4.0 <0.7.0;\r\n\r\n/* <Summary> \r\n\tThis library repersents transaction data. This is by the voter to decide\r\n\t if the new account is the genuine owner of the old account.\r\n*/\r\n\r\nlibrary TransactionDataSet {\r\n\r\n\t// A struct containing the private and the public information\r\n\tstruct DataSet {\r\n\t\t// Private Information\r\n\t\tstring description;\t\t\t\t\t// Description of transaction\r\n\t\tstring itemsInTrade;\t\t\t\t// Items in transaction\r\n\r\n\t\t// Public Information\r\n\t\taddress sender;\t\t\t\t\t\t// Sender of transaction\r\n\t\taddress receiver;\t\t\t\t\t// Reciever of transaction\r\n\t\tuint timeStamp;\t\t\t\t\t\t// Time stamp of transaction\r\n\t\tuint amount;\t\t\t\t\t\t// Amount of transaction\r\n\t}\r\n\r\n\t// View public information on a set of data for a transaction\r\n\tfunction ViewPublicInformation(DataSet storage self) \r\n\t\t\texternal view returns (uint, uint, address, address) {\r\n\r\n\t\t// Returns public information\r\n\t\treturn (self.timeStamp, self.amount, self.sender, self.receiver );\r\n\t}\r\n\t\r\n\t// View private information on a set of data for a transaction\r\n\tfunction ViewPrivateInformation(DataSet storage self) \r\n\t\t\texternal view returns (string memory, string memory) {\r\n\r\n\t\t// Returns private information\r\n\t\treturn (self.description, self.itemsInTrade);\r\n\t}\r\n}\r\n",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/TransactionDataSet.sol\":\"TransactionDataSet\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/TransactionDataSet.sol\":{\"keccak256\":\"0x0a69d2ab275835258415161c4365ba7fc1a1a0510f0a5070fdd73b459d9042ec\",\"urls\":[\"bzzr://2953f315128bae512906a755b03a28cb9b3bc2be70a375f57d89c1d663a6ecc8\"]}},\"version\":1}",
+  "bytecode": "0x6104fa610026600b82828239805160001a60731461001957fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600436106100405760003560e01c8063b18e919614610045578063c233d7e8146100f4575b600080fd5b6100716004803603602081101561005b57600080fd5b8101908080359060200190929190505050610273565b604051808581526020018481526020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200194505050505060405180910390f35b6101206004803603602081101561010a57600080fd5b81019080803590602001909291905050506102dc565b60405180806020018060200180602001848103845287818151815260200191508051906020019080838360005b8381101561016857808201518184015260208101905061014d565b50505050905090810190601f1680156101955780820380516001836020036101000a031916815260200191505b50848103835286818151815260200191508051906020019080838360005b838110156101ce5780820151818401526020810190506101b3565b50505050905090810190601f1680156101fb5780820380516001836020036101000a031916815260200191505b50848103825285818151815260200191508051906020019080838360005b83811015610234578082015181840152602081019050610219565b50505050905090810190601f1680156102615780820380516001836020036101000a031916815260200191505b50965050505050505060405180910390f35b600080600080846005015485600601548660030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff168760040160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1693509350935093509193509193565b6060806060836000018460010185600201828054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103825780601f1061035757610100808354040283529160200191610382565b820191906000526020600020905b81548152906001019060200180831161036557829003601f168201915b50505050509250818054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561041e5780601f106103f35761010080835404028352916020019161041e565b820191906000526020600020905b81548152906001019060200180831161040157829003601f168201915b50505050509150808054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104ba5780601f1061048f576101008083540402835291602001916104ba565b820191906000526020600020905b81548152906001019060200180831161049d57829003601f168201915b50505050509050925092509250919390925056fea165627a7a72305820009860df7dd8e6a982d8231680624498364207821a2b7301f4775b7eea975fd20029",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600436106100405760003560e01c8063b18e919614610045578063c233d7e8146100f4575b600080fd5b6100716004803603602081101561005b57600080fd5b8101908080359060200190929190505050610273565b604051808581526020018481526020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200194505050505060405180910390f35b6101206004803603602081101561010a57600080fd5b81019080803590602001909291905050506102dc565b60405180806020018060200180602001848103845287818151815260200191508051906020019080838360005b8381101561016857808201518184015260208101905061014d565b50505050905090810190601f1680156101955780820380516001836020036101000a031916815260200191505b50848103835286818151815260200191508051906020019080838360005b838110156101ce5780820151818401526020810190506101b3565b50505050905090810190601f1680156101fb5780820380516001836020036101000a031916815260200191505b50848103825285818151815260200191508051906020019080838360005b83811015610234578082015181840152602081019050610219565b50505050905090810190601f1680156102615780820380516001836020036101000a031916815260200191505b50965050505050505060405180910390f35b600080600080846005015485600601548660030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff168760040160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1693509350935093509193509193565b6060806060836000018460010185600201828054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103825780601f1061035757610100808354040283529160200191610382565b820191906000526020600020905b81548152906001019060200180831161036557829003601f168201915b50505050509250818054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561041e5780601f106103f35761010080835404028352916020019161041e565b820191906000526020600020905b81548152906001019060200180831161040157829003601f168201915b50505050509150808054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104ba5780601f1061048f576101008083540402835291602001916104ba565b820191906000526020600020905b81548152906001019060200180831161049d57829003601f168201915b50505050509050925092509250919390925056fea165627a7a72305820009860df7dd8e6a982d8231680624498364207821a2b7301f4775b7eea975fd20029",
+  "sourceMap": "226:1132:7:-;;132:2:-1;166:7;155:9;146:7;137:37;255:7;249:14;246:1;241:23;235:4;232:33;222:2;;269:9;222:2;293:9;290:1;283:20;323:4;314:7;306:22;347:7;338;331:24",
+  "deployedSourceMap": "226:1132:7:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;832:221;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;832:221:7;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1124:231;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1124:231:7;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;1124:231:7;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;1124:231:7;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;1124:231:7;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;832:221;913:4;919;925:7;934;991:4;:14;;;1007:4;:11;;;1020:4;:11;;;;;;;;;;;;1033:4;:13;;;;;;;;;;;;983:65;;;;;;;;832:221;;;;;:::o;1124:231::-;1205:13;1220;1235;1299:4;:16;;1317:4;:13;;1332:4;:17;;1291:59;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1124:231;;;;;:::o",
+  "source": "/* TransactionDataSet.sol */\r\n\r\npragma solidity >=0.4.0 <0.7.0;\r\n\r\n/* <Summary> \r\n\tThis library repersents transaction data. This is by the voter to decide\r\n\t if the new account is the genuine owner of the old account.\r\n*/\r\n\r\nlibrary TransactionDataSet {\r\n\r\n\t// A struct containing the private and the public information\r\n\tstruct DataSet {\r\n\t\t// Private Information\r\n\t\tstring description;\t\t\t\t\t// Description of transaction\r\n\t\tstring location;\t\t\t\t\t// Location of the transaction\r\n\t\tstring itemsInTrade;\t\t\t\t// Items in the transaction\r\n\r\n\t\t// Public Information\r\n\t\taddress sender;\t\t\t\t\t\t// Sender of transaction\r\n\t\taddress receiver;\t\t\t\t\t// Reciever of transaction\r\n\t\tuint timeStamp;\t\t\t\t\t\t// Time stamp of transaction\r\n\t\tuint amount;\t\t\t\t\t\t// Amount of transaction\r\n\t}\r\n\r\n\t// View public information on a set of data for a transaction\r\n\tfunction ViewPublicInformation(DataSet storage self) \r\n\t\t\texternal view returns (uint, uint, address, address) {\r\n\r\n\t\t// Returns public information\r\n\t\treturn (self.timeStamp, self.amount, self.sender, self.receiver );\r\n\t}\r\n\t\r\n\t// View private information on a set of data for a transaction\r\n\tfunction ViewPrivateInformation(DataSet storage self) external view \r\n\t\treturns (string memory, string memory, string memory) {\r\n\r\n\t\t// Returns private information\r\n\t\treturn (self.description, self.location, self.itemsInTrade);\r\n\t}\r\n}\r\n",
   "sourcePath": "C:\\Users\\m5w5b\\Desktop\\GitHub\\game-dapp\\AccountRecovery\\contracts\\TransactionDataSet.sol",
   "ast": {
     "absolutePath": "/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/TransactionDataSet.sol",
     "exportedSymbols": {
       "TransactionDataSet": [
-        2025
+        2041
       ]
     },
-    "id": 2026,
+    "id": 2042,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1971,
+        "id": 1981,
         "literals": [
           "solidity",
           ">=",
@@ -38,23 +38,23 @@
         "contractKind": "library",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 2025,
+        "id": 2041,
         "linearizedBaseContracts": [
-          2025
+          2041
         ],
         "name": "TransactionDataSet",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "TransactionDataSet.DataSet",
-            "id": 1984,
+            "id": 1996,
             "members": [
               {
                 "constant": false,
-                "id": 1973,
+                "id": 1983,
                 "name": "description",
                 "nodeType": "VariableDeclaration",
-                "scope": 1984,
+                "scope": 1996,
                 "src": "369:18:7",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -63,7 +63,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 1972,
+                  "id": 1982,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "369:6:7",
@@ -77,11 +77,11 @@
               },
               {
                 "constant": false,
-                "id": 1975,
-                "name": "itemsInTrade",
+                "id": 1985,
+                "name": "location",
                 "nodeType": "VariableDeclaration",
-                "scope": 1984,
-                "src": "426:19:7",
+                "scope": 1996,
+                "src": "426:15:7",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -89,7 +89,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 1974,
+                  "id": 1984,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "426:6:7",
@@ -103,11 +103,37 @@
               },
               {
                 "constant": false,
-                "id": 1977,
+                "id": 1987,
+                "name": "itemsInTrade",
+                "nodeType": "VariableDeclaration",
+                "scope": 1996,
+                "src": "481:19:7",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 1986,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "481:6:7",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1989,
                 "name": "sender",
                 "nodeType": "VariableDeclaration",
-                "scope": 1984,
-                "src": "504:14:7",
+                "scope": 1996,
+                "src": "563:14:7",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -115,10 +141,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 1976,
+                  "id": 1988,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "504:7:7",
+                  "src": "563:7:7",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -130,11 +156,11 @@
               },
               {
                 "constant": false,
-                "id": 1979,
+                "id": 1991,
                 "name": "receiver",
                 "nodeType": "VariableDeclaration",
-                "scope": 1984,
-                "src": "553:16:7",
+                "scope": 1996,
+                "src": "612:16:7",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -142,10 +168,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 1978,
+                  "id": 1990,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "553:7:7",
+                  "src": "612:7:7",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -157,11 +183,11 @@
               },
               {
                 "constant": false,
-                "id": 1981,
+                "id": 1993,
                 "name": "timeStamp",
                 "nodeType": "VariableDeclaration",
-                "scope": 1984,
-                "src": "605:14:7",
+                "scope": 1996,
+                "src": "664:14:7",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -169,10 +195,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 1980,
+                  "id": 1992,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "605:4:7",
+                  "src": "664:4:7",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -183,11 +209,11 @@
               },
               {
                 "constant": false,
-                "id": 1983,
+                "id": 1995,
                 "name": "amount",
                 "nodeType": "VariableDeclaration",
-                "scope": 1984,
-                "src": "658:11:7",
+                "scope": 1996,
+                "src": "717:11:7",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -195,10 +221,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 1982,
+                  "id": 1994,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "658:4:7",
+                  "src": "717:4:7",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -210,15 +236,15 @@
             ],
             "name": "DataSet",
             "nodeType": "StructDefinition",
-            "scope": 2025,
-            "src": "323:381:7",
+            "scope": 2041,
+            "src": "323:440:7",
             "visibility": "public"
           },
           {
             "body": {
-              "id": 2007,
+              "id": 2019,
               "nodeType": "Block",
-              "src": "884:110:7",
+              "src": "943:110:7",
               "statements": [
                 {
                   "expression": {
@@ -228,26 +254,26 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1997,
+                          "id": 2009,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1986,
-                          "src": "932:4:7",
+                          "referencedDeclaration": 1998,
+                          "src": "991:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 1998,
+                        "id": 2010,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "timeStamp",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1981,
-                        "src": "932:14:7",
+                        "referencedDeclaration": 1993,
+                        "src": "991:14:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -257,26 +283,26 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1999,
+                          "id": 2011,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1986,
-                          "src": "948:4:7",
+                          "referencedDeclaration": 1998,
+                          "src": "1007:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2000,
+                        "id": 2012,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "amount",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1983,
-                        "src": "948:11:7",
+                        "referencedDeclaration": 1995,
+                        "src": "1007:11:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -286,26 +312,26 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2001,
+                          "id": 2013,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1986,
-                          "src": "961:4:7",
+                          "referencedDeclaration": 1998,
+                          "src": "1020:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2002,
+                        "id": 2014,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1977,
-                        "src": "961:11:7",
+                        "referencedDeclaration": 1989,
+                        "src": "1020:11:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -315,85 +341,85 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2003,
+                          "id": 2015,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1986,
-                          "src": "974:4:7",
+                          "referencedDeclaration": 1998,
+                          "src": "1033:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2004,
+                        "id": 2016,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "receiver",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1979,
-                        "src": "974:13:7",
+                        "referencedDeclaration": 1991,
+                        "src": "1033:13:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       }
                     ],
-                    "id": 2005,
+                    "id": 2017,
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "TupleExpression",
-                    "src": "931:58:7",
+                    "src": "990:58:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$_t_uint256_$_t_uint256_$_t_address_$_t_address_$",
                       "typeString": "tuple(uint256,uint256,address,address)"
                     }
                   },
-                  "functionReturnParameters": 1996,
-                  "id": 2006,
+                  "functionReturnParameters": 2008,
+                  "id": 2018,
                   "nodeType": "Return",
-                  "src": "924:65:7"
+                  "src": "983:65:7"
                 }
               ]
             },
             "documentation": null,
-            "id": 2008,
+            "id": 2020,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "ViewPublicInformation",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1987,
+              "id": 1999,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1986,
+                  "id": 1998,
                   "name": "self",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2008,
-                  "src": "804:20:7",
+                  "scope": 2020,
+                  "src": "863:20:7",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                    "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                     "typeString": "struct TransactionDataSet.DataSet"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 1985,
+                    "id": 1997,
                     "name": "DataSet",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 1984,
-                    "src": "804:7:7",
+                    "referencedDeclaration": 1996,
+                    "src": "863:7:7",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                      "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                       "typeString": "struct TransactionDataSet.DataSet"
                     }
                   },
@@ -401,19 +427,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "803:22:7"
+              "src": "862:22:7"
             },
             "returnParameters": {
-              "id": 1996,
+              "id": 2008,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1989,
+                  "id": 2001,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2008,
-                  "src": "854:4:7",
+                  "scope": 2020,
+                  "src": "913:4:7",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -421,10 +447,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1988,
+                    "id": 2000,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "854:4:7",
+                    "src": "913:4:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -435,11 +461,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1991,
+                  "id": 2003,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2008,
-                  "src": "860:4:7",
+                  "scope": 2020,
+                  "src": "919:4:7",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -447,10 +473,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1990,
+                    "id": 2002,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "860:4:7",
+                    "src": "919:4:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -461,11 +487,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1993,
+                  "id": 2005,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2008,
-                  "src": "866:7:7",
+                  "scope": 2020,
+                  "src": "925:7:7",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -473,10 +499,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1992,
+                    "id": 2004,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "866:7:7",
+                    "src": "925:7:7",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -488,11 +514,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1995,
+                  "id": 2007,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2008,
-                  "src": "875:7:7",
+                  "scope": 2020,
+                  "src": "934:7:7",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -500,10 +526,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1994,
+                    "id": 2006,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "875:7:7",
+                    "src": "934:7:7",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -514,19 +540,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "853:30:7"
+              "src": "912:30:7"
             },
-            "scope": 2025,
-            "src": "773:221:7",
+            "scope": 2041,
+            "src": "832:221:7",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 2023,
+              "id": 2039,
               "nodeType": "Block",
-              "src": "1177:90:7",
+              "src": "1250:105:7",
               "statements": [
                 {
                   "expression": {
@@ -536,26 +562,26 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2017,
+                          "id": 2031,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2010,
-                          "src": "1226:4:7",
+                          "referencedDeclaration": 2022,
+                          "src": "1299:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2018,
+                        "id": 2032,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "description",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1973,
-                        "src": "1226:16:7",
+                        "referencedDeclaration": 1983,
+                        "src": "1299:16:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_storage",
                           "typeString": "string storage ref"
@@ -565,85 +591,114 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2019,
+                          "id": 2033,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2010,
-                          "src": "1244:4:7",
+                          "referencedDeclaration": 2022,
+                          "src": "1317:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2020,
+                        "id": 2034,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "location",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 1985,
+                        "src": "1317:13:7",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_storage",
+                          "typeString": "string storage ref"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 2035,
+                          "name": "self",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2022,
+                          "src": "1332:4:7",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
+                            "typeString": "struct TransactionDataSet.DataSet storage pointer"
+                          }
+                        },
+                        "id": 2036,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "itemsInTrade",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1975,
-                        "src": "1244:17:7",
+                        "referencedDeclaration": 1987,
+                        "src": "1332:17:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_storage",
                           "typeString": "string storage ref"
                         }
                       }
                     ],
-                    "id": 2021,
+                    "id": 2037,
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "TupleExpression",
-                    "src": "1225:37:7",
+                    "src": "1298:52:7",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$_t_string_storage_$_t_string_storage_$",
-                      "typeString": "tuple(string storage ref,string storage ref)"
+                      "typeIdentifier": "t_tuple$_t_string_storage_$_t_string_storage_$_t_string_storage_$",
+                      "typeString": "tuple(string storage ref,string storage ref,string storage ref)"
                     }
                   },
-                  "functionReturnParameters": 2016,
-                  "id": 2022,
+                  "functionReturnParameters": 2030,
+                  "id": 2038,
                   "nodeType": "Return",
-                  "src": "1218:44:7"
+                  "src": "1291:59:7"
                 }
               ]
             },
             "documentation": null,
-            "id": 2024,
+            "id": 2040,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "ViewPrivateInformation",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2011,
+              "id": 2023,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2010,
+                  "id": 2022,
                   "name": "self",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2024,
-                  "src": "1097:20:7",
+                  "scope": 2040,
+                  "src": "1156:20:7",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                    "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                     "typeString": "struct TransactionDataSet.DataSet"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2009,
+                    "id": 2021,
                     "name": "DataSet",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 1984,
-                    "src": "1097:7:7",
+                    "referencedDeclaration": 1996,
+                    "src": "1156:7:7",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                      "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                       "typeString": "struct TransactionDataSet.DataSet"
                     }
                   },
@@ -651,19 +706,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1096:22:7"
+              "src": "1155:22:7"
             },
             "returnParameters": {
-              "id": 2016,
+              "id": 2030,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2013,
+                  "id": 2025,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2024,
-                  "src": "1147:13:7",
+                  "scope": 2040,
+                  "src": "1205:13:7",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -671,10 +726,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2012,
+                    "id": 2024,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1147:6:7",
+                    "src": "1205:6:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -685,11 +740,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2015,
+                  "id": 2027,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2024,
-                  "src": "1162:13:7",
+                  "scope": 2040,
+                  "src": "1220:13:7",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -697,10 +752,36 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2014,
+                    "id": 2026,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1162:6:7",
+                    "src": "1220:6:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2029,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2040,
+                  "src": "1235:13:7",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2028,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1235:6:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -710,33 +791,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1146:30:7"
+              "src": "1204:45:7"
             },
-            "scope": 2025,
-            "src": "1065:202:7",
+            "scope": 2041,
+            "src": "1124:231:7",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 2026,
-        "src": "226:1044:7"
+        "scope": 2042,
+        "src": "226:1132:7"
       }
     ],
-    "src": "32:1240:7"
+    "src": "32:1328:7"
   },
   "legacyAST": {
     "absolutePath": "/C/Users/m5w5b/Desktop/GitHub/game-dapp/AccountRecovery/contracts/TransactionDataSet.sol",
     "exportedSymbols": {
       "TransactionDataSet": [
-        2025
+        2041
       ]
     },
-    "id": 2026,
+    "id": 2042,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1971,
+        "id": 1981,
         "literals": [
           "solidity",
           ">=",
@@ -755,23 +836,23 @@
         "contractKind": "library",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 2025,
+        "id": 2041,
         "linearizedBaseContracts": [
-          2025
+          2041
         ],
         "name": "TransactionDataSet",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "TransactionDataSet.DataSet",
-            "id": 1984,
+            "id": 1996,
             "members": [
               {
                 "constant": false,
-                "id": 1973,
+                "id": 1983,
                 "name": "description",
                 "nodeType": "VariableDeclaration",
-                "scope": 1984,
+                "scope": 1996,
                 "src": "369:18:7",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -780,7 +861,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 1972,
+                  "id": 1982,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "369:6:7",
@@ -794,11 +875,11 @@
               },
               {
                 "constant": false,
-                "id": 1975,
-                "name": "itemsInTrade",
+                "id": 1985,
+                "name": "location",
                 "nodeType": "VariableDeclaration",
-                "scope": 1984,
-                "src": "426:19:7",
+                "scope": 1996,
+                "src": "426:15:7",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -806,7 +887,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 1974,
+                  "id": 1984,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "426:6:7",
@@ -820,11 +901,37 @@
               },
               {
                 "constant": false,
-                "id": 1977,
+                "id": 1987,
+                "name": "itemsInTrade",
+                "nodeType": "VariableDeclaration",
+                "scope": 1996,
+                "src": "481:19:7",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 1986,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "481:6:7",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1989,
                 "name": "sender",
                 "nodeType": "VariableDeclaration",
-                "scope": 1984,
-                "src": "504:14:7",
+                "scope": 1996,
+                "src": "563:14:7",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -832,10 +939,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 1976,
+                  "id": 1988,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "504:7:7",
+                  "src": "563:7:7",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -847,11 +954,11 @@
               },
               {
                 "constant": false,
-                "id": 1979,
+                "id": 1991,
                 "name": "receiver",
                 "nodeType": "VariableDeclaration",
-                "scope": 1984,
-                "src": "553:16:7",
+                "scope": 1996,
+                "src": "612:16:7",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -859,10 +966,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 1978,
+                  "id": 1990,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "553:7:7",
+                  "src": "612:7:7",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -874,11 +981,11 @@
               },
               {
                 "constant": false,
-                "id": 1981,
+                "id": 1993,
                 "name": "timeStamp",
                 "nodeType": "VariableDeclaration",
-                "scope": 1984,
-                "src": "605:14:7",
+                "scope": 1996,
+                "src": "664:14:7",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -886,10 +993,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 1980,
+                  "id": 1992,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "605:4:7",
+                  "src": "664:4:7",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -900,11 +1007,11 @@
               },
               {
                 "constant": false,
-                "id": 1983,
+                "id": 1995,
                 "name": "amount",
                 "nodeType": "VariableDeclaration",
-                "scope": 1984,
-                "src": "658:11:7",
+                "scope": 1996,
+                "src": "717:11:7",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -912,10 +1019,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 1982,
+                  "id": 1994,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "658:4:7",
+                  "src": "717:4:7",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -927,15 +1034,15 @@
             ],
             "name": "DataSet",
             "nodeType": "StructDefinition",
-            "scope": 2025,
-            "src": "323:381:7",
+            "scope": 2041,
+            "src": "323:440:7",
             "visibility": "public"
           },
           {
             "body": {
-              "id": 2007,
+              "id": 2019,
               "nodeType": "Block",
-              "src": "884:110:7",
+              "src": "943:110:7",
               "statements": [
                 {
                   "expression": {
@@ -945,26 +1052,26 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1997,
+                          "id": 2009,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1986,
-                          "src": "932:4:7",
+                          "referencedDeclaration": 1998,
+                          "src": "991:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 1998,
+                        "id": 2010,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "timeStamp",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1981,
-                        "src": "932:14:7",
+                        "referencedDeclaration": 1993,
+                        "src": "991:14:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -974,26 +1081,26 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1999,
+                          "id": 2011,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1986,
-                          "src": "948:4:7",
+                          "referencedDeclaration": 1998,
+                          "src": "1007:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2000,
+                        "id": 2012,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "amount",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1983,
-                        "src": "948:11:7",
+                        "referencedDeclaration": 1995,
+                        "src": "1007:11:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1003,26 +1110,26 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2001,
+                          "id": 2013,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1986,
-                          "src": "961:4:7",
+                          "referencedDeclaration": 1998,
+                          "src": "1020:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2002,
+                        "id": 2014,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1977,
-                        "src": "961:11:7",
+                        "referencedDeclaration": 1989,
+                        "src": "1020:11:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1032,85 +1139,85 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2003,
+                          "id": 2015,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1986,
-                          "src": "974:4:7",
+                          "referencedDeclaration": 1998,
+                          "src": "1033:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2004,
+                        "id": 2016,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "receiver",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1979,
-                        "src": "974:13:7",
+                        "referencedDeclaration": 1991,
+                        "src": "1033:13:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       }
                     ],
-                    "id": 2005,
+                    "id": 2017,
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "TupleExpression",
-                    "src": "931:58:7",
+                    "src": "990:58:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$_t_uint256_$_t_uint256_$_t_address_$_t_address_$",
                       "typeString": "tuple(uint256,uint256,address,address)"
                     }
                   },
-                  "functionReturnParameters": 1996,
-                  "id": 2006,
+                  "functionReturnParameters": 2008,
+                  "id": 2018,
                   "nodeType": "Return",
-                  "src": "924:65:7"
+                  "src": "983:65:7"
                 }
               ]
             },
             "documentation": null,
-            "id": 2008,
+            "id": 2020,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "ViewPublicInformation",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1987,
+              "id": 1999,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1986,
+                  "id": 1998,
                   "name": "self",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2008,
-                  "src": "804:20:7",
+                  "scope": 2020,
+                  "src": "863:20:7",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                    "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                     "typeString": "struct TransactionDataSet.DataSet"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 1985,
+                    "id": 1997,
                     "name": "DataSet",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 1984,
-                    "src": "804:7:7",
+                    "referencedDeclaration": 1996,
+                    "src": "863:7:7",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                      "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                       "typeString": "struct TransactionDataSet.DataSet"
                     }
                   },
@@ -1118,19 +1225,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "803:22:7"
+              "src": "862:22:7"
             },
             "returnParameters": {
-              "id": 1996,
+              "id": 2008,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1989,
+                  "id": 2001,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2008,
-                  "src": "854:4:7",
+                  "scope": 2020,
+                  "src": "913:4:7",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1138,10 +1245,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1988,
+                    "id": 2000,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "854:4:7",
+                    "src": "913:4:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1152,11 +1259,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1991,
+                  "id": 2003,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2008,
-                  "src": "860:4:7",
+                  "scope": 2020,
+                  "src": "919:4:7",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1164,10 +1271,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1990,
+                    "id": 2002,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "860:4:7",
+                    "src": "919:4:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1178,11 +1285,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1993,
+                  "id": 2005,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2008,
-                  "src": "866:7:7",
+                  "scope": 2020,
+                  "src": "925:7:7",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1190,10 +1297,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1992,
+                    "id": 2004,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "866:7:7",
+                    "src": "925:7:7",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1205,11 +1312,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 1995,
+                  "id": 2007,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2008,
-                  "src": "875:7:7",
+                  "scope": 2020,
+                  "src": "934:7:7",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1217,10 +1324,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1994,
+                    "id": 2006,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "875:7:7",
+                    "src": "934:7:7",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1231,19 +1338,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "853:30:7"
+              "src": "912:30:7"
             },
-            "scope": 2025,
-            "src": "773:221:7",
+            "scope": 2041,
+            "src": "832:221:7",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 2023,
+              "id": 2039,
               "nodeType": "Block",
-              "src": "1177:90:7",
+              "src": "1250:105:7",
               "statements": [
                 {
                   "expression": {
@@ -1253,26 +1360,26 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2017,
+                          "id": 2031,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2010,
-                          "src": "1226:4:7",
+                          "referencedDeclaration": 2022,
+                          "src": "1299:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2018,
+                        "id": 2032,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "description",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1973,
-                        "src": "1226:16:7",
+                        "referencedDeclaration": 1983,
+                        "src": "1299:16:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_storage",
                           "typeString": "string storage ref"
@@ -1282,85 +1389,114 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2019,
+                          "id": 2033,
                           "name": "self",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2010,
-                          "src": "1244:4:7",
+                          "referencedDeclaration": 2022,
+                          "src": "1317:4:7",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                            "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                             "typeString": "struct TransactionDataSet.DataSet storage pointer"
                           }
                         },
-                        "id": 2020,
+                        "id": 2034,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "location",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 1985,
+                        "src": "1317:13:7",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_storage",
+                          "typeString": "string storage ref"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 2035,
+                          "name": "self",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2022,
+                          "src": "1332:4:7",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
+                            "typeString": "struct TransactionDataSet.DataSet storage pointer"
+                          }
+                        },
+                        "id": 2036,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "itemsInTrade",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1975,
-                        "src": "1244:17:7",
+                        "referencedDeclaration": 1987,
+                        "src": "1332:17:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_storage",
                           "typeString": "string storage ref"
                         }
                       }
                     ],
-                    "id": 2021,
+                    "id": 2037,
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "TupleExpression",
-                    "src": "1225:37:7",
+                    "src": "1298:52:7",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$_t_string_storage_$_t_string_storage_$",
-                      "typeString": "tuple(string storage ref,string storage ref)"
+                      "typeIdentifier": "t_tuple$_t_string_storage_$_t_string_storage_$_t_string_storage_$",
+                      "typeString": "tuple(string storage ref,string storage ref,string storage ref)"
                     }
                   },
-                  "functionReturnParameters": 2016,
-                  "id": 2022,
+                  "functionReturnParameters": 2030,
+                  "id": 2038,
                   "nodeType": "Return",
-                  "src": "1218:44:7"
+                  "src": "1291:59:7"
                 }
               ]
             },
             "documentation": null,
-            "id": 2024,
+            "id": 2040,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "ViewPrivateInformation",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2011,
+              "id": 2023,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2010,
+                  "id": 2022,
                   "name": "self",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2024,
-                  "src": "1097:20:7",
+                  "scope": 2040,
+                  "src": "1156:20:7",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                    "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                     "typeString": "struct TransactionDataSet.DataSet"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2009,
+                    "id": 2021,
                     "name": "DataSet",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 1984,
-                    "src": "1097:7:7",
+                    "referencedDeclaration": 1996,
+                    "src": "1156:7:7",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_DataSet_$1984_storage_ptr",
+                      "typeIdentifier": "t_struct$_DataSet_$1996_storage_ptr",
                       "typeString": "struct TransactionDataSet.DataSet"
                     }
                   },
@@ -1368,19 +1504,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1096:22:7"
+              "src": "1155:22:7"
             },
             "returnParameters": {
-              "id": 2016,
+              "id": 2030,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2013,
+                  "id": 2025,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2024,
-                  "src": "1147:13:7",
+                  "scope": 2040,
+                  "src": "1205:13:7",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1388,10 +1524,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2012,
+                    "id": 2024,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1147:6:7",
+                    "src": "1205:6:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -1402,11 +1538,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2015,
+                  "id": 2027,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2024,
-                  "src": "1162:13:7",
+                  "scope": 2040,
+                  "src": "1220:13:7",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1414,10 +1550,36 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2014,
+                    "id": 2026,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1162:6:7",
+                    "src": "1220:6:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2029,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2040,
+                  "src": "1235:13:7",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2028,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1235:6:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -1427,20 +1589,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1146:30:7"
+              "src": "1204:45:7"
             },
-            "scope": 2025,
-            "src": "1065:202:7",
+            "scope": 2041,
+            "src": "1124:231:7",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 2026,
-        "src": "226:1044:7"
+        "scope": 2042,
+        "src": "226:1132:7"
       }
     ],
-    "src": "32:1240:7"
+    "src": "32:1328:7"
   },
   "compiler": {
     "name": "solc",
@@ -1451,11 +1613,11 @@
       "events": {},
       "links": {},
       "address": "0xb231C9AD22d403f17E76660FA610502544deBc40",
-      "transactionHash": "0x669b3ed3409e24750c57d7e515003f6ca76a24785eac8d578d48903c2c44b326"
+      "transactionHash": "0x64808c1df256b9c7df8359630f192ffec79a8ef3899550332bf008b6dd118f98"
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-11-07T20:24:43.189Z",
+  "updatedAt": "2019-11-15T18:03:58.463Z",
   "devdoc": {
     "methods": {}
   },

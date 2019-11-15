@@ -170,7 +170,8 @@ contract Proposal {
 	// Add set of data for a give transaction for a give voter
 	function AddTransactionDataSet(address _oldAccount, uint _timeStamp, 
 			address _voter, uint _amount, string calldata _description, 
-			string calldata _itemsInTrade) external {
+			string calldata _location, string calldata _itemsInTrade) external {
+
 
 		// If this is the first set transaction data being added for this voter
 		if (transactionDataSets[_voter].length == 0){
@@ -187,7 +188,8 @@ contract Proposal {
 
 		// Create the data set and add it to the list for this voter
 		transactionDataSets[_voter].push(TransactionDataSet.DataSet(
-			_description, _itemsInTrade, _oldAccount, _voter, _timeStamp, _amount));
+			_description, _location, _itemsInTrade,
+			_oldAccount, _voter, _timeStamp, _amount));
 	}
 
 	// View public information on a set of data for a transaction
@@ -203,8 +205,8 @@ contract Proposal {
 	}
 
 	// View private information on a set of data for a transaction
-	function ViewPrivateInformation( address _voter, uint i) 
-		external view returns (string memory, string memory) {
+	function ViewPrivateInformation( address _voter, uint i) external view 
+		returns (string memory, string memory, string memory) {
 
 		// Require that all voters are able to voter
 		require(VotingTokensCreated == voters.getValuesLength(), 

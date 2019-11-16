@@ -85,6 +85,7 @@ contract('ProposalManager', (accounts) => {
 
 	it('Add Trading Partners: [1,2,3]', async () => {
 		await PCI.AddTradePartners(oldAccount, TradePartners, { from: newAccount });
+		TradePartners = (await PCI.ViewVoters(oldAccount, { from: newAccount }))
 	});
 
 	it('Find Randomly assigned Voter', async () => {
@@ -96,22 +97,22 @@ contract('ProposalManager', (accounts) => {
 			TradePartners.push(voter);
 		}
 
-		// console.log("Voters: " + (await PCI.ViewVoters(oldAccount, { from: newAccount })));
+			console.log(TradePartners);
+
 
 	});
 
 	const amount = 10;
 	const receiver = users[1];
-	const sender = oldAccount;
 	const description = "AAA";
+	const importantNotes = "BBB";
 	const location = "CCC";
-	const itemIDs = ["DDD"];
-	const itemQuantity = [2];
+	const itemsInTrade = "DDD";
 
 	it('Add Transaction Data Set', async () => {
 		for (var i = 0; i < TradePartners.length; i++) {
-			await PCI.MakeTransactionDataSet(oldAccount, timeStamps[i], amount, TradePartners[i], 
-				description, location, itemIDs, itemQuantity,{ from: newAccount });
+			await PCI.MakeTransactionDataSet(oldAccount, TradePartners[i], timeStamps[i], amount,
+				description, importantNotes, location, itemsInTrade,{ from: newAccount });
 		}
 	});
 
@@ -120,31 +121,31 @@ contract('ProposalManager', (accounts) => {
 
 		// assert.equal(temp[0], timeStamp, "Wrong dataSet.timeStamp");
 		assert.equal(temp[1], amount, "Wrong dataSet.amount");
-		assert.equal(temp[2], sender, "Wrong dataSet.sender");
-		assert.equal(temp[3], receiver, "Wrong dataSet.receiver");
 	});
 
 	it('View Private Information', async () => {
 		var temp = (await PMI.ViewPrivateInformation(oldAccount, newAccount, 0, {from: receiver}));
 
 		assert.equal(temp[0], description, "Wrong dataSet.description");
-		assert.equal(temp[1], itemsInTrade, "Wrong dataSet.itemsInTrade");
+		assert.equal(temp[1], importantNotes, "Wrong dataSet.importantNotes");
+		assert.equal(temp[2], location, "Wrong dataSet.location");
+		assert.equal(temp[3], itemsInTrade, "Wrong dataSet.itemsInTrade");
 	});
 
 	it('Cast a Vote (Yes Votes)', async () => {
-		await PMI.CastVote(oldAccount, newAccount, true, { from: users[1] });
+		await PMI.CastVote(oldAccount, newAccount, true, { from: TradePartners[0] });
 		await sleep(1000);
-		await PMI.CastVote(oldAccount, newAccount, true, { from: users[2] });
+		await PMI.CastVote(oldAccount, newAccount, true, { from: TradePartners[1] });
 		await sleep(3000);
-		await PMI.CastVote(oldAccount, newAccount, true, { from: users[3] });
+		await PMI.CastVote(oldAccount, newAccount, true, { from: TradePartners[2] });
 		await sleep(1000);
-		await PMI.CastVote(oldAccount, newAccount, true, { from: users[4] });
+		await PMI.CastVote(oldAccount, newAccount, true, { from: TradePartners[3] });
 		await sleep(7000);
-		await PMI.CastVote(oldAccount, newAccount, true, { from: users[5] });
+		await PMI.CastVote(oldAccount, newAccount, true, { from: TradePartners[4] });
 	});	
 
 	it('Cast a Vote (No Votes)', async () => {
-		await PMI.CastVote(oldAccount, newAccount, false, { from: users[6] });
+		await PMI.CastVote(oldAccount, newAccount, false, { from: TradePartners[5] });
 	});	
 
 	it('Conclude Proposal', async () => {

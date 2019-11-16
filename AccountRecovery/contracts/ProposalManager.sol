@@ -58,7 +58,7 @@ contract ProposalManager {
 
 	// View public information of a set of data for a transaction
 	function ViewPublicInformation(address _oldAccount, address _newAccount, uint i) 
-			external view returns (uint, uint, address, address) {
+			external view returns (uint, uint) {
 
 		Proposal temp = getProposal(_oldAccount, _newAccount); // Finds proposal 
 		// Checks if the sender is a voter 
@@ -68,7 +68,8 @@ contract ProposalManager {
 
 	// View private information of a set of data for a transaction
 	function ViewPrivateInformation(address _oldAccount, address _newAccount, uint i) 
-			external view returns (string memory, string memory, string memory) {
+			external view returns (string memory, string memory, 
+			string memory, string memory) {
 
 		Proposal temp = getProposal(_oldAccount, _newAccount); // Finds proposal 
 		// Checks if the sender is a voter 

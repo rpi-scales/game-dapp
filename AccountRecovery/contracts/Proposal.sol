@@ -78,17 +78,23 @@ contract Proposal {
 						// Voter was a voter in a past proposal for this account
 						if (!archivedVoters.contains(_tradePartners[i])){
 
-							// Make the trade partner a voter
-							voters.insert(_tradePartners[i]);
+							// Has not already been indicated as a trade partner
+							if (!voters.contains(_tradePartners[i])){
+
+								// Make the trade partner a voter
+								voters.insert(_tradePartners[i]);
+							}
 						}
 					}
 				}
 			}
 		}
 
+		/*
 		// Requires at least 3 indicated valid voters 
-		require(voters.getValuesLength() >= 3, 
+		require(voters.getValuesLength() >= 2, 
 			"Invalid Number of indicated trade partners");
+		*/
 
 		// Requires a maximum of 3 invlaid indicated trade partners
 		require(_tradePartners.length - voters.getValuesLength() < 3, 
@@ -96,6 +102,9 @@ contract Proposal {
 
 		// Sets the required number of voters
 		numberOfVoters = voters.getValuesLength() * 2;
+		if (numberOfVoters < 5){				// Requires at least 5 voters
+			numberOfVoters = 5;
+		}
 
 		// Finds all of the old accounts's trade partners
 		address[] memory _haveTradedWith = TMI.getHaveTradedWith(_oldAccount);
@@ -119,7 +128,7 @@ contract Proposal {
 			}
 		}
 
-		require(haveTradedWith.length >= voters.getValuesLength(), 
+		require(haveTradedWith.length >= numberOfVoters - voters.getValuesLength(), 
 			"Invalid number of other trade partners");
 
 		// Find the first randomly selected voter
@@ -149,7 +158,7 @@ contract Proposal {
 		if (voters.getValuesLength() != numberOfVoters){ 	// Needs to find more partners
 			require(randomVoterVetos > 0, 
 				"Can not veto any more randomly selected voters");
-			require(haveTradedWith.length > 0, 
+			require(haveTradedWith.length >= numberOfVoters - voters.getValuesLength(), 
 				"Can not veto this voter because there is not enough trade partners left");
 
 			// Finds a random index in the haveTradedWith array
@@ -168,8 +177,8 @@ contract Proposal {
 	}
 
 	// Add set of data for a give transaction for a give voter
-	function AddTransactionDataSet(address _oldAccount, uint _timeStamp, 
-			address _voter, uint _amount, string calldata _description, 
+	function AddTransactionDataSet(address _voter, uint _timeStamp, uint _amount, 
+			string calldata _description, string calldata _importantNotes, 
 			string calldata _location, string calldata _itemsInTrade) external {
 
 
@@ -188,13 +197,13 @@ contract Proposal {
 
 		// Create the data set and add it to the list for this voter
 		transactionDataSets[_voter].push(TransactionDataSet.DataSet(
-			_description, _location, _itemsInTrade,
-			_oldAccount, _voter, _timeStamp, _amount));
+			_description, _importantNotes, _location, _itemsInTrade,
+			_timeStamp, _amount));
 	}
 
 	// View public information on a set of data for a transaction
 	function ViewPublicInformation( address _voter, uint i) 
-		external view returns (uint, uint, address, address) {
+		external view returns (uint, uint) {
 
 		// Require that all voters are able to voter
 		require(VotingTokensCreated == voters.getValuesLength(), 
@@ -205,8 +214,9 @@ contract Proposal {
 	}
 
 	// View private information on a set of data for a transaction
-	function ViewPrivateInformation( address _voter, uint i) external view 
-		returns (string memory, string memory, string memory) {
+	function ViewPrivateInformation( address _voter, uint i) 
+		external view returns (string memory, string memory, 
+			string memory, string memory) {
 
 		// Require that all voters are able to voter
 		require(VotingTokensCreated == voters.getValuesLength(), 
@@ -261,7 +271,7 @@ contract Proposal {
 		}
 
 		// Requires a certain number of voters to vote before concluding the vote
-		if (total < 5){
+		if (total < (numberOfVoters*3)/4){
 			// If enough time has passed allow a revote
 			if (block.timestamp - startTime > 172800){
 				return 60;

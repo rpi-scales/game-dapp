@@ -1,4 +1,4 @@
-# game-dapp
+# Hermes
 
 Installing Truffle and Ganache:
 * Truffle: https://www.trufflesuite.com/docs/truffle/getting-started/installation

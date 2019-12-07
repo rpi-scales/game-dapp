@@ -31,7 +31,7 @@ contract UserManager {
 
 			// A struct containing a user and if they are a part of the network
 			UserPair memory tempPair;
-			tempPair.person = new Person(addresses[i], 0, 86400);	// Create account
+			tempPair.person = new Person(addresses[i], 0, 1209600);	// Create account
 			tempPair.exists = true;				// They are apart of the network	
 			Users[addresses[i]] = tempPair;		// Add them to the map of users
 		}

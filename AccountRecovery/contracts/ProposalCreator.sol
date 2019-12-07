@@ -83,9 +83,9 @@ contract ProposalCreator {
 
 	// Checks transaction data and adds it to the proposal to be viewed later
 	function MakeTransactionDataSet( address _oldAccount, address _voter, 
-			uint _timeStamp, uint _amount, string calldata _description, 
-			string calldata _importantNotes, string calldata _location,
-			string calldata _itemsInTrade) external {
+		uint _timeStamp, uint _amount, string calldata _description, 
+		string calldata _importantNotes, string calldata _location,
+		string calldata _itemsInTrade) external {
 
 
 		// Checks if there exists a transaction with this infromation

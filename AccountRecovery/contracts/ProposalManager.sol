@@ -58,7 +58,7 @@ contract ProposalManager {
 
 	// View public information of a set of data for a transaction
 	function ViewPublicInformation(address _oldAccount, address _newAccount, uint i) 
-			external view returns (uint, uint) {
+		external view returns (uint, uint) {
 
 		Proposal temp = getProposal(_oldAccount, _newAccount); // Finds proposal 
 		// Checks if the sender is a voter 
@@ -68,8 +68,8 @@ contract ProposalManager {
 
 	// View private information of a set of data for a transaction
 	function ViewPrivateInformation(address _oldAccount, address _newAccount, uint i) 
-			external view returns (string memory, string memory, 
-			string memory, string memory) {
+		external view returns (string memory, string memory, 
+		string memory, string memory) {
 
 		Proposal temp = getProposal(_oldAccount, _newAccount); // Finds proposal 
 		// Checks if the sender is a voter 
@@ -113,13 +113,14 @@ contract ProposalManager {
 
 	// Finds if there is an active proposal between _oldAccount and _newAccount
 	function getActiveProposalExists(address _oldAccount, address _newAccount) 
-			public view returns (bool) {
+		public view returns (bool) {
+		
 		return activeProposals[_oldAccount][_newAccount].exists;
 	}
 	
 	// Find the active proposal between _oldAccount and _newAccount
 	function getProposal(address _oldAccount, address _newAccount) 
-			public view returns (Proposal) {
+		public view returns (Proposal) {
 
 		require(getActiveProposalExists(_oldAccount, _newAccount), 
 			"There is no active proposal");
@@ -128,7 +129,7 @@ contract ProposalManager {
 	
 	// Adds an active proposal between _oldAccount and _newAccount
 	function AddActiveProposal(address _oldAccount, address _newAccount, 
-			Proposal temp) external {
+		Proposal temp) external {
 
 		invalidProposal[_oldAccount] = true;	// Can not make another proposal
 
@@ -141,7 +142,8 @@ contract ProposalManager {
 
 	// Find an archived voters between _oldAccount and _newAccount
 	function getArchivedVoter(address _oldAccount) 
-			external view returns (address[] memory) {
+		external view returns (address[] memory) {
+		
 		return archivedVoters[_oldAccount];		// Return archived voters
 	}
 

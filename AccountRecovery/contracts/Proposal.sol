@@ -52,8 +52,8 @@ contract Proposal {
 	}
 
 	function AddTradePartners(address _newAccount, address _oldAccount, 
-			address[] calldata _tradePartners, address[] calldata _archivedVoters, 
-			TransactionManager TMI, ProposalManager PMI) external {
+		address[] calldata _tradePartners, address[] calldata _archivedVoters, 
+		TransactionManager TMI, ProposalManager PMI) external {
 
 		// Checks that the new account has paid
 		require(paided, "This proposal has not been paid for yet");
@@ -178,8 +178,8 @@ contract Proposal {
 
 	// Add set of data for a give transaction for a give voter
 	function AddTransactionDataSet(address _voter, uint _timeStamp, uint _amount, 
-			string calldata _description, string calldata _importantNotes, 
-			string calldata _location, string calldata _itemsInTrade) external {
+		string calldata _description, string calldata _importantNotes, 
+		string calldata _location, string calldata _itemsInTrade) external {
 
 
 		// If this is the first set transaction data being added for this voter

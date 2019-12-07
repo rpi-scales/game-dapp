@@ -97,7 +97,7 @@ contract('ProposalManager', (accounts) => {
 			TradePartners.push(voter);
 		}
 
-			console.log(TradePartners);
+		// console.log(TradePartners);
 
 
 	});

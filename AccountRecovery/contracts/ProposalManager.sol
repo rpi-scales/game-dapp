@@ -183,6 +183,7 @@ contract ProposalManager {
 		return blackListedAccounts[_address];
 	}
 
+	
 	// Blacklists a given account
 	function setBlacklistedAccount(address _address) external {
 		blackListedAccounts[_address] = true;

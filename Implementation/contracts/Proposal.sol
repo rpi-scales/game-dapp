@@ -156,7 +156,7 @@ contract Proposal {
 
 		// Select another trade partner randomly 
 		if (voters.getValuesLength() != numberOfVoters){ 	// Needs to find more partners
-			require(randomVoterVetos > 0, 
+			require(randomVoterVetos >= 0, 
 				"Can not veto any more randomly selected voters");
 			require(haveTradedWith.length >= numberOfVoters - voters.getValuesLength(), 
 				"Can not veto this voter because there is not enough trade partners left");
